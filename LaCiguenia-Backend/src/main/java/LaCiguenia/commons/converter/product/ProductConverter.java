@@ -1,5 +1,6 @@
 package LaCiguenia.commons.converter.product;
 
+import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
@@ -20,7 +21,7 @@ public class ProductConverter {
                     .map(productEntity.getCategoryEntity(), CategoryDTO.class);
             productDTO.setCategoryEntity(categoryDTO);
         } catch (Exception e) {
-            log.error(IUserResponse.DOCUMENT_FAIL + e);
+            log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }
         return productDTO;
     }
@@ -33,7 +34,7 @@ public class ProductConverter {
                     .map(productDTO.getCategoryEntity(), CategoryEntity.class);
             productEntity.setCategoryEntity(categoryEntity);
         } catch (Exception e) {
-            log.error(IUserResponse.DOCUMENT_FAIL + e);
+            log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }
         return productEntity;
     }

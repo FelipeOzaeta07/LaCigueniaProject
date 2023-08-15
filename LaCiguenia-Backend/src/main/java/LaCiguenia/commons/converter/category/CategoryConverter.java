@@ -1,5 +1,6 @@
 package LaCiguenia.commons.converter.category;
 
+import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
@@ -15,7 +16,7 @@ public class CategoryConverter {
         try {
             categoryDTO = HelperMapper.modelMapper().map(categoryEntity, CategoryDTO.class);
         } catch (Exception e) {
-            log.error(IUserResponse.DOCUMENT_FAIL + e);
+            log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }
         return categoryDTO;
     }
@@ -26,7 +27,7 @@ public class CategoryConverter {
             categoryEntity = HelperMapper.modelMapper().map(categoryDTO, CategoryEntity.class);
 
         } catch (Exception e) {
-            log.error(IUserResponse.DOCUMENT_FAIL + e);
+            log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }
         return categoryEntity;
     }

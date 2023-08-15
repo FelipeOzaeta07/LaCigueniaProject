@@ -1,7 +1,7 @@
 package LaCiguenia.commons.constans.endpoints.category;
 
 public interface ICategoryEndPoint {
-    String BASE_URL_CATEGORY = "/category-web/api";
+    String BASE_URL_CATEGORY = "/categoria";
     String CREATE_CATEGORY = "/crear-categoria";
     String READ_CATEGORY = "/leer-categoria";
     String READ_CATEGORIES = "/leer-categorias";

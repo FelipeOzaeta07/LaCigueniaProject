@@ -1,6 +1,7 @@
 package LaCiguenia.webApi.category.implement;
 
 import LaCiguenia.commons.constans.endpoints.category.ICategoryEndPoint;
+import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
@@ -31,15 +32,15 @@ public class CategoryApi implements ICategoryApi {
     @Override
     @Operation(summary = "crear una nueva categoria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(ICategoryEndPoint.CREATE_CATEGORY)
     public ResponseEntity<GenericResponseDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
@@ -50,15 +51,15 @@ public class CategoryApi implements ICategoryApi {
     @Override
     @Operation(summary = "leer una categoria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(ICategoryEndPoint.READ_CATEGORY)
     public ResponseEntity<GenericResponseDTO> readCategory(@RequestBody CategoryDTO categoryDTO) {
@@ -68,15 +69,15 @@ public class CategoryApi implements ICategoryApi {
     @Override
     @Operation(summary = "leer todas las categorias")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(ICategoryEndPoint.READ_CATEGORIES)
     public ResponseEntity<GenericResponseDTO> readCategories() {
@@ -86,15 +87,15 @@ public class CategoryApi implements ICategoryApi {
     @Override
     @Operation(summary = "Actualizar una categoria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PutMapping(ICategoryEndPoint.UPDATE_CATEGORY)
     public ResponseEntity<GenericResponseDTO> updateCategory(CategoryDTO categoryDTO) {
@@ -104,15 +105,15 @@ public class CategoryApi implements ICategoryApi {
     @Override
     @Operation(summary = "Eliminar una categoria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(ICategoryEndPoint.DELETE_CATEGORY)
     public ResponseEntity<GenericResponseDTO> deleteCategory(CategoryDTO categoryDTO) {

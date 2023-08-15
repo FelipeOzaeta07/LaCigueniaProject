@@ -2,6 +2,7 @@ package LaCiguenia.webApi.products.implement;
 
 
 import LaCiguenia.commons.constans.endpoints.product.IProductEndPoint;
+import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
@@ -33,15 +34,15 @@ public class ProductApi implements IProductApi {
     @Override
     @Operation(summary = "Crear un nuevo producto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IProductEndPoint.CREATE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
@@ -51,15 +52,15 @@ public class ProductApi implements IProductApi {
     @Override
     @Operation(summary = "visualizar un producto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCT)
     public ResponseEntity<GenericResponseDTO> readProduct(@RequestBody ProductDTO productDTO) {
@@ -69,15 +70,15 @@ public class ProductApi implements IProductApi {
     @Override
     @Operation(summary = "visualizar todos los productos")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCTS)
     public ResponseEntity<GenericResponseDTO> readProducts() {
@@ -87,15 +88,15 @@ public class ProductApi implements IProductApi {
     @Override
     @Operation(summary = "Actualizar un producto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PutMapping(IProductEndPoint.UPDATE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> updateProduct(@RequestBody ProductDTO productDTO) {
@@ -105,15 +106,15 @@ public class ProductApi implements IProductApi {
     @Override
     @Operation(summary = "Eliminar un producto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = GenericResponseDTO.class))}),
-            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
-            @ApiResponse(responseCode  = "404", description = IUserResponse.NOT_FOUND,
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
                     content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode  = "500", description = IUserResponse.INTERNAL_SERVER,
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.DELETE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> deleteProducts(@RequestBody ProductDTO productDTO) {

@@ -30,7 +30,7 @@ public class UserService implements IUserService {
     @Override
     public ResponseEntity<GenericResponseDTO> userService(UserDTO userDTO) {
         try {
-            List<UserEntity> usuarios = iUserRepository.findByUsuarioEmail(userDTO.getUserEmail());
+            List<UserEntity> usuarios = iUserRepository.findAll();
             if (!usuarios.isEmpty()) {
                 for (UserEntity usuario : usuarios) {
                     UserDTO usuarioDecode = userConverter.convertUserEntityToUserDTO(usuario);

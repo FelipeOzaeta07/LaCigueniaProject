@@ -57,6 +57,8 @@ public class UserApi implements IUserApi {
             @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IUserEndPoint.USER_CRATE)

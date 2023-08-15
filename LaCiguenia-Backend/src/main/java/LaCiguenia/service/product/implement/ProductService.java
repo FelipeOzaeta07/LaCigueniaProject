@@ -1,5 +1,6 @@
 package LaCiguenia.service.product.implement;
 
+import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.product.ProductConverter;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
@@ -34,8 +35,8 @@ public class ProductService implements IProductService {
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.CREATE_SUCCESS)
-                        .objectResponse(IProductResponse.CREATE_PRODUCT_SUCCESS)
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(GeneralResponse.CREATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -47,10 +48,10 @@ public class ProductService implements IProductService {
             }
 
         }catch (Exception e) {
-            log.error(IProductResponse.INTERNAL_SERVER, e);
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
-                            .message(IProductResponse.INTERNAL_SERVER)
+                            .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
@@ -64,7 +65,7 @@ public class ProductService implements IProductService {
                     .findById(productDTO.getIdProduct());
             if (productoExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.OPERATION_SUCCESS)
+                        .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(this.iProductRepository.findById(productDTO.getIdProduct()))
                         .statusCode(HttpStatus.OK.value())
                         .build());
@@ -77,10 +78,10 @@ public class ProductService implements IProductService {
             }
 
         }catch (Exception e) {
-            log.error(IProductResponse.INTERNAL_SERVER, e);
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
-                            .message(IProductResponse.INTERNAL_SERVER)
+                            .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
@@ -98,24 +99,24 @@ public class ProductService implements IProductService {
                     listProductDTO.add(productDTO);
                 }
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.OPERATION_SUCCESS)
+                        .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(listProductDTO)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }
             else {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.OPERATION_FAIL)
+                        .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(IProductResponse.PRODUCT_FAIL)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }
 
         }catch (Exception e) {
-            log.error(IProductResponse.INTERNAL_SERVER, e);
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
-                            .message(IProductResponse.INTERNAL_SERVER)
+                            .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
@@ -131,8 +132,8 @@ public class ProductService implements IProductService {
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.OPERATION_SUCCESS)
-                        .objectResponse(IProductResponse.UPDATE_SUCCESS)
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(GeneralResponse.UPDATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -144,10 +145,10 @@ public class ProductService implements IProductService {
             }
 
         }catch (Exception e) {
-            log.error(IProductResponse.INTERNAL_SERVER, e);
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
-                            .message(IProductResponse.INTERNAL_SERVER)
+                            .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
@@ -162,8 +163,8 @@ public class ProductService implements IProductService {
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.delete(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
-                        .message(IProductResponse.OPERATION_SUCCESS)
-                        .objectResponse(IProductResponse.DELETE_SUCCESS)
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(GeneralResponse.DELETE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -175,10 +176,10 @@ public class ProductService implements IProductService {
             }
 
         }catch (Exception e) {
-            log.error(IProductResponse.INTERNAL_SERVER, e);
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
-                            .message(IProductResponse.INTERNAL_SERVER)
+                            .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
