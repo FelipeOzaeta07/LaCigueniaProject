@@ -1,13 +1,11 @@
-package LaCiguenia.webApi.products.implement;
+package LaCiguenia.webApi.customer.implement;
 
-
-import LaCiguenia.commons.constans.endpoints.product.IProductEndPoint;
+import LaCiguenia.commons.constans.endpoints.customer.ICustomerEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.user.IUserResponse;
-import LaCiguenia.commons.domains.dto.product.ProductDTO;
+import LaCiguenia.commons.domains.dto.customer.CustomerDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
-import LaCiguenia.service.product.IProductService;
-import LaCiguenia.webApi.products.IProductApi;
+import LaCiguenia.service.customer.implement.CustomerService;
+import LaCiguenia.webApi.customer.ICustomerApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,20 +17,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(IProductEndPoint.BASE_URL_PRODUCT)
-@Tag(name = "Sistema de Gestión de Productos", description = "Ops de autenticar, crear, eliminar y actualizar productos")
+@RequestMapping(ICustomerEndPoint.BASE_URL_CUSTOMER)
+@Tag(name = "Sistema de Gestión de Clientes", description = "Ops de autenticar, crear, eliminar y actualizar Clientes")
 @Log4j2
-public class ProductApi implements IProductApi {
+public class CustomerApi implements ICustomerApi {
 
-    private final IProductService iProductService;
+    private final CustomerService customerService;
 
-    public ProductApi(IProductService iProductService) {
-        this.iProductService = iProductService;
+    public CustomerApi(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-
     @Override
-    @Operation(summary = "Crear un nuevo producto")
+    @Operation(summary = "Crear un nuevo cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -44,13 +41,13 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @PostMapping(IProductEndPoint.CREATE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.createProducts(productDTO);
+    @PostMapping(ICustomerEndPoint.CREATE_CUSTOMER)
+    public ResponseEntity<GenericResponseDTO> createCustomer(CustomerDTO customerDTO) {
+        return this.customerService.createCustomer(customerDTO);
     }
 
     @Override
-    @Operation(summary = "visualizar un producto")
+    @Operation(summary = "Leer un cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -62,13 +59,13 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IProductEndPoint.READ_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> readProduct(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.readProduct(productDTO);
+    @GetMapping(ICustomerEndPoint.READ_CUSTOMER)
+    public ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO) {
+        return this.customerService.readCustomer(customerDTO);
     }
 
     @Override
-    @Operation(summary = "visualizar todos los productos")
+    @Operation(summary = "Leer todos los clientes")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -80,13 +77,13 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IProductEndPoint.READ_PRODUCTS)
-    public ResponseEntity<GenericResponseDTO> readProducts() {
-        return this.iProductService.readProducts();
+    @GetMapping(ICustomerEndPoint.READ_CUSTOMERS)
+    public ResponseEntity<GenericResponseDTO> readCustomers() {
+        return this.customerService.readCustomers();
     }
 
     @Override
-    @Operation(summary = "Actualizar un producto")
+    @Operation(summary = "Actualizar un cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -98,13 +95,13 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @PutMapping(IProductEndPoint.UPDATE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> updateProduct(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.updateProduct(productDTO);
+    @PutMapping(ICustomerEndPoint.UPDATE_CUSTOMER)
+    public ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO) {
+        return this.customerService.updateCustomer(customerDTO);
     }
 
     @Override
-    @Operation(summary = "Eliminar un producto")
+    @Operation(summary = "Eliminar un cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -116,8 +113,8 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IProductEndPoint.DELETE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> deleteProducts(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.deleteProducts(productDTO);
+    @DeleteMapping(ICustomerEndPoint.DELETE_CUSTOMER)
+    public ResponseEntity<GenericResponseDTO> deleteCustomer(CustomerDTO customerDTO) {
+        return this.customerService.deleteCustomer(customerDTO);
     }
 }
