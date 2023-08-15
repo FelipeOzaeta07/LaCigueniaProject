@@ -44,7 +44,7 @@ public class UserApi implements IUserApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IUserEndPoint.USER_SERVICE)
-    public ResponseEntity<GenericResponseDTO> loginService(UserDTO userDTO) {
+    public ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO) {
         return this.iUserService.userService(userDTO);
     }
 
@@ -62,7 +62,7 @@ public class UserApi implements IUserApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IUserEndPoint.USER_CRATE)
-    public ResponseEntity<GenericResponseDTO> saveLogin(UserDTO userDTO) {
+    public ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO) {
         return iUserService.userCreate(userDTO);
     }
 }
