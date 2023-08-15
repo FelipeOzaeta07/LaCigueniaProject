@@ -1,0 +1,17 @@
+<main class="display_flex">
+    <app-section-navbar class="col_2_md col_2 display_none_sm bg_color"></app-section-navbar>
+    <div class="col_11_md col_11 display_none_sm">
+        <div class="display_flex">
+            <div class="room display_grid col_8 max_height_100">
+                <app-section-one class="col_13"></app-section-one>
+                <app-section-two (eventoHijo)="manejarEventoHijo($event)" class="col_13"></app-section-two>
+            </div>
+            <div class="col_5 max_height_100 border_box">
+                <app-section-three [dato]="valorDesdePadre"></app-section-three>
+            </div>
+        </div>
+    </div>
+</main>
+<main class="display_grid_sm">
+    <app-mobile-section-navbar class="col_13_sm display_none_md display_none_lg display_none_xl display_none_xxl"></app-mobile-section-navbar>
+</main>

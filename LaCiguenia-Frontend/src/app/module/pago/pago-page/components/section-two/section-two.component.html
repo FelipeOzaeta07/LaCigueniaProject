@@ -1,0 +1,15 @@
+<div class="height_100 content_center align_center">
+    <div class="col_13 text_center">
+        <div *ngFor="let fila of filas" class="content_around margin_y_1">
+            <div *ngFor="let producto of productos" (click)="emitirEvento()" class="border border_radius display_grid col_3 hover_div">
+                <div class="content_center">
+                    <img [src]="imgNoEncontrada" alt="" class="width_40 border_special">
+                </div>
+                <h5 class="font_size_p font_color_product">{{producto.nombre}}</h5>
+                <div class="display_flex">
+                    <h5 class="font_size_p font_color col_13">$ {{producto.valor}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

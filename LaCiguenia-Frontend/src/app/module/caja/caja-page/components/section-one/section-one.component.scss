@@ -1,0 +1,32 @@
+@import url(/src/styles.scss);
+
+.bg_color{
+    background-color: var(--color_pink);
+}
+.border_radius{
+    border-radius: var(--border_radius_seven);
+    border-color: var(--color_gray_md) !important;
+}
+.font_size_h3{
+    font-weight: var(--font_weight_400);
+}
+.font_size_h5{
+    color: var(--color_gray_md);
+    font-weight: var(--font_weight_400);
+    text-indent: 3%;
+}
+.bg_color_input{
+    background-color: var(--color_gray);
+}
+.border_input{
+    border-color: var(--color_gray_md) !important;
+}
+.btn_primary{
+    font-size: var(--font_size_six);
+}
+.btn_primary:hover{
+    font-size: var(--font_size_six);
+}
+.btn_primary:focus{
+    font-size: var(--font_size_six);
+}

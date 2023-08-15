@@ -1,0 +1,9 @@
+@import url(/src/styles.scss);
+
+.bg_color{
+    background-color: var(--color_pink_cl);
+}
+.border_box{
+    border-left: 1px solid;
+    border-color: var(--color_gray_md);
+}

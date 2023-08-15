@@ -1,0 +1,12 @@
+@import url(/src/styles.scss);
+
+.bg_color{
+    background-color: var(--color_pink);
+}
+.border_radius{
+    border-color: var(--color_gray_md) !important;
+    border-radius: var(--border_radius_six);
+}
+.font_size_h5{
+    font-weight: var(--font_weight_400);
+}

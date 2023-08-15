@@ -1,0 +1,14 @@
+@import url(/src/styles.scss);
+
+.font_color{
+    color: var(--color_blue_oc);
+    text-decoration: var(--decoration_underline);
+}
+.input{
+    border-radius: var(--border_radius_five);
+    border-color: var(--color_gray_cl);
+}
+.font_size_label{
+    font-size: var(--font_size_five);
+    color: var(--color_gray_os);
+}

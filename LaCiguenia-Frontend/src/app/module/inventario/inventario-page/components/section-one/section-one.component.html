@@ -1,0 +1,39 @@
+<div class="height_100 margin_y_3">
+    <div class="border">
+        <div class="border_radius bg_color padding_y_2">
+            <h3 class="font_size_h3">Inventario</h3>
+        </div>
+        <div class="margin_y_3">
+            <h3 class="text_center font_size_h4">Lista de Productos</h3>
+        </div>
+        <div class="room">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text_center border_top">
+                        <th class="col_5 font_size_p text_start">Nombre</th>
+                        <th class="col_1 font_size_p">Codigo</th>
+                        <th class="col_2 font_size_p">Precio de Venta</th>
+                        <th class="col_1 font_size_p">Cantidad</th>
+                        <th class="col_2 font_size_p">Categoria</th>
+                        <th class="col_2 font_size_p">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of listaProductos; let i = index"
+                    class="text_center">
+                        <td class="text_start">{{producto.nombre}}</td>
+                        <td>{{producto.codigo}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.cantidad}}</td>
+                        <td>{{producto.categoria}}</td>
+                        
+                        <td class="content_around">
+                            <button type="submit" (click)="editarProducto(producto)" class="btn btn-warning padding_x_1"><i class="bi bi-pencil-square"></i></button>
+                            <button (click)="borrarProducto(i)" class="btn btn-danger padding_x_1"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

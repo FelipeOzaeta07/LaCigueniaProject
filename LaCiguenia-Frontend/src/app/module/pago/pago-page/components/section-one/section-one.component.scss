@@ -1,0 +1,10 @@
+@import url(/src/styles.scss);
+
+.border_radius{
+    border-radius: var(--border_radius_six);
+}
+.border_special{
+    border: 1px solid;
+    border-color: black;
+    border-radius: 50%;
+}

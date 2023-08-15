@@ -1,0 +1,29 @@
+@import url(/src/styles.scss);
+
+.font_color{
+    color: var(--color_blue_md);
+}
+.font_color_product{
+    color: var(--color_gray_cl);
+}
+.border_radius{
+    border-radius: var(--border_radius_four);
+}
+.border{
+    border: 1px solid;
+    border-color: var(--color_gray_md) !important;
+}
+.border_special{
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: var(--color_gray_cl);
+}
+.hover_div:hover{
+    background-color: var(--color_white_cl);
+}
+.hover_div:hover .font_color_product{
+    color: var(--color_black);
+}
+.hover_div:hover .font_color{
+    color: var(--color_blue_oc);
+}

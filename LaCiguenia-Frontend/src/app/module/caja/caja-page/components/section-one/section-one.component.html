@@ -1,0 +1,49 @@
+<div class="margin_y_3 room_sm">
+    <div class="display_grid border border_radius">
+        <div class="text_center border_radius bg_color">
+            <h1 class="font_size_h3 font_size_h4_sm padding_y_1">Apertura de Caja</h1>
+        </div>
+        <div class="margin_y_1">
+            <!--Formulario Apertura de Caja-->
+            <form action="">
+                <div class="room">
+                    <div class="display_grid_sm display_flex_md display_flex_lg display_flex_xl display_flex_xxl align_center margin_y_1_sm margin_y_2">
+                        <p class="col_13_sm col_4 font_size_h5 font_size_p_sm margin_y_1_sm">Fecha:</p>
+                        <div class="col_13_sm col_8">
+                            <input type="date" class="form-control font_size_h5 bg_color_input border_input" [(ngModel)]="fecha" placeholder="{{fecha}}" name="fecha">
+                        </div>
+                    </div>
+                    <div class="display_grid_sm display_flex_md display_flex_lg display_flex_xl display_flex_xxl align_center margin_y_1_sm margin_y_2">
+                        <p class="col_13_sm col_4 font_size_h5 font_size_p_sm margin_y_1_sm">Almacen:</p>
+                        <div class="col_13_sm col_8">
+                            <input type="text" class="form-control font_size_h5 border_input" [(ngModel)]="almacen" placeholder="General" name="almacen">
+                        </div>
+                    </div>
+                    <div class="display_grid_sm display_flex_md display_flex_lg display_flex_xl display_flex_xxl align_center margin_y_1_sm margin_y_2">
+                        <p class="col_13_sm col_4 font_size_h5 font_size_p_sm margin_y_1_sm">Valor Apertura:</p>
+                        <div class="col_13_sm col_8">
+                            <input type="number" class="form-control font_size_h5 border_input" [(ngModel)]="aperturaCaja" name="aperturaCaja">
+                        </div>
+                    </div>
+                    <div class="display_grid_sm display_flex_md display_flex_lg display_flex_xl display_flex_xxl align_center margin_y_1_sm margin_y_2">
+                        <p class="col_13_sm col_4 font_size_h5 font_size_p_sm margin_y_1_sm">Total:</p>
+                        <div class="col_13_sm col_8">
+                            <input type="number" class="form-control font_size_h5 bg_color_input border_input" value="{{aperturaCaja + cajaMenor}}" readonly>
+                        </div>
+                    </div>
+                    <div class="display_grid_sm display_flex_md display_flex_lg display_flex_xl display_flex_xxl align_center margin_y_1_sm margin_y_2">
+                        <p class="col_13_sm col_4 font_size_h5 font_size_p_sm margin_y_1_sm">Caja Menor:</p>
+                        <div class="col_13_sm col_8">
+                            <input type="number" class="form-control font_size_h5 border_input" [(ngModel)]="cajaMenor" name="cajaMenor">
+                        </div>
+                    </div>
+                    <div class="content_center margin_y_2">
+                        <div class="col_5">
+                            <button type="submit" class="btn btn_primary btn_primary_sm width_100" (click)="enviarDatos()">Apertura Caja</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

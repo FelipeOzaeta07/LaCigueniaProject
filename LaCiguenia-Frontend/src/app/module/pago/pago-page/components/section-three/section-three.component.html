@@ -1,0 +1,141 @@
+<div class="height_100 display_grid">
+    <div class="diplay_flex padding_x_2 bg_color border_bottom">
+        <button type="button" class="btn btn-primary col_10 margin_y_3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Cliente
+        </button>
+    </div>
+    <div class="dimension_center_md dimension_center_lg">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Cant.</th>
+                <th scope="col">Total</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{dato}}</td>
+                <td class="text_center">{{cantidad}}</td>
+                <td class="text_center">{{total}}</td>
+                <td class="text_center">{{subtotal}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="display_grid col_13 room">
+        <div class="col_13 display_flex border_top">
+            <div class="col_6 text_star">
+                <p class="color_font">SUBTOTAL</p>
+            </div>
+            <div class="col_7 text_end">
+                <p class="color_gris">$ 1000</p>
+            </div>
+        </div>
+        <div class="col_13 display_flex border_top">
+            <div class="col_6 text_star">
+                <p class="color_font">IVA</p>
+            </div>
+            <div class="col_7 text_end">
+                <p class="color_gris">$ 1000</p>
+            </div>
+        </div>
+        <div class="col_13 display_flex border_top">
+            <div class="col_6 text_star">
+                <p class="color_font">TOTAL</p>
+            </div>
+            <div class="col_7 text_end">
+                <p class="color_font_black">$ 1000</p>
+            </div>
+        </div>
+    </div>
+    <div class="content_center padding_x_2">
+        <button type="button" class="btn btn_primary col_7 margin_y_3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Pagar
+        </button>
+    </div>
+</div>
+  
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="room bg_color padding_y_2">
+                    <h1 class="fs-5" id="exampleModalLabel">Informacion de forma de pago</h1>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="display_grid col_13">
+                    <div class="col_13 display_flex border_top">
+                        <div class="col_6 text_star">
+                            <p class="color_font font_size_h5">Subtotal</p>
+                        </div>
+                        <div class="col_7 text_end">
+                            <p class="color_gris font_size_h5">$ 1000</p>
+                        </div>
+                    </div>
+                    <div class="col_13 display_flex border_top">
+                        <div class="col_6 text_star">
+                            <p class="color_font font_size_h5">Propina</p>
+                        </div>
+                        <div class="col_7 text_end">
+                            <p class="color_gris font_size_h5">$ 1000</p>
+                        </div>
+                    </div>
+                    <div class="col_13 display_flex border_top">
+                        <div class="col_6 text_star">
+                            <p class="color_font font_size_h4">Total a Pagar</p>
+                        </div>
+                        <div class="col_7 text_end">
+                            <p class="color_font_black font_size_h4 font_color_total">$ 1000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content_between col_13">
+                    <button type="button" class="btn btn_primary font_bottom_p col_6 margin_y_3 padding_y_1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Descuento
+                    </button>
+                    <button type="button" class="btn btn_primary font_bottom_p col_6 margin_y_3 padding_y_1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Forma de Pago
+                    </button>
+                </div>
+                <div class="content_between col_13">
+                    <div class="col_6">
+                        <select class="form-select padding_y_1 font_size_h4 text_indent" aria-label="Large select example">
+                            <option selected>Efectivo</option>
+                            <option value="1">Datafono</option>
+                            <option value="2">Credito</option>
+                            <option value="3">Nequi</option>
+                        </select>
+                    </div>
+                    <div class="col_6">
+                        <input type="text" class="form-control bg_input padding_y_1 font_size_h4 text_end" placeholder="$ 0" readonly>
+                    </div>
+                </div>
+                <div class="col_13 margin_top">
+                    <div class="col_13 display_flex border_top">
+                        <div class="col_6 text_star">
+                            <p class="color_font font_size_h5">Cambio</p>
+                        </div>
+                        <div class="col_7 text_end">
+                            <p class="color_font_black font_size_h5">$ 1000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="room">
+                    <div class="content_between col_13">
+                        <button type="button" class="btn btn_primary btn_close col_5 margin_y_2" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Close">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn_primary col_5 margin_y_2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Pagar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

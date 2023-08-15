@@ -1,0 +1,19 @@
+@import url(/src/styles.scss);
+
+.border_radius{
+    border-color: var(--color_gray_md) !important;
+    border-radius: var(--border_radius_six);
+}
+.font_size_h4{
+    font-weight: var(--font_weight_400);
+}
+.div_hover:hover{
+    background-color: var(--color_white_cl);
+    color: var(--color_blue_oc);
+}
+.div_hover:hover .font_size_h3{
+    color: var(--color_blue_oc);
+}
+.font_size_h3{
+    color: var(--color_blue_md);
+}
