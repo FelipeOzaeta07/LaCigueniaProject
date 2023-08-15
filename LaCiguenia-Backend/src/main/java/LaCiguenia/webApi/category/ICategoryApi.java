@@ -6,14 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 public interface ICategoryApi {
-    @PostMapping()
-    ResponseEntity<GenericResponseDTO> createCategory (@RequestBody CategoryDTO categoryDTO);
-    @GetMapping()
-    ResponseEntity<GenericResponseDTO> readCategory (@RequestBody CategoryDTO categoryDTO);
-    @GetMapping()
+
+    ResponseEntity<GenericResponseDTO> createCategory (CategoryDTO categoryDTO);
+
+    ResponseEntity<GenericResponseDTO> readCategory (CategoryDTO categoryDTO);
+
     ResponseEntity<GenericResponseDTO> readCategories ();
-    @PutMapping()
-    ResponseEntity<GenericResponseDTO> updateCategory (@RequestBody CategoryDTO categoryDTO);
-    @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteCategory (@RequestBody CategoryDTO categoryDTO);
+
+    ResponseEntity<GenericResponseDTO> updateCategory (CategoryDTO categoryDTO);
+
+    ResponseEntity<GenericResponseDTO> deleteCategory (CategoryDTO categoryDTO);
 }
