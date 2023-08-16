@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.*;
 public interface IUserApi {
 
     ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO);
-
     ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO);
 }
