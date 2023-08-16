@@ -7,8 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 public interface IUserApi {
-    @PostMapping()
-    ResponseEntity<GenericResponseDTO> loginService(@RequestBody UserDTO userDTO);
-    @PostMapping()
-    ResponseEntity<GenericResponseDTO> saveLogin(@RequestBody UserDTO userDTO);
+
+    ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO);
+    ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO);
 }

@@ -1,7 +1,6 @@
 package LaCiguenia.commons.converter.category;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.helpers.HelperMapper;
