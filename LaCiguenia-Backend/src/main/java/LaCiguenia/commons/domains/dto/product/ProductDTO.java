@@ -2,9 +2,12 @@ package LaCiguenia.commons.domains.dto.product;
 
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
+import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
+import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Getter
@@ -21,4 +24,6 @@ public class ProductDTO implements Serializable {
     private String productDescription;
     private String productMaterials;
     private CategoryDTO categoryEntity;
+    private InventoryEntity inventoryEntity;
+    private List<MaterialEntity> listMaterial;
 }
