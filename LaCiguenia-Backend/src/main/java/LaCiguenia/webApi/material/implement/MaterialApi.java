@@ -28,7 +28,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Crear un nuevo inventario")
+    @Operation(summary = "Crear un nuevo material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -46,7 +46,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Leer un inventario")
+    @Operation(summary = "Leer un material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -64,7 +64,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Leer todos los inventario")
+    @Operation(summary = "Leer todos los materiales")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -82,7 +82,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar un inventario")
+    @Operation(summary = "Actualizar un material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -100,7 +100,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un inventario")
+    @Operation(summary = "Eliminar un material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

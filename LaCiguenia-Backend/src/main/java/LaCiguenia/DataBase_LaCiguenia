@@ -2,26 +2,130 @@ CREATE DATABASE la_ciguenia;
 
 USE la_ciguenia;
 
-CREATE TABLE login_ciguenia (
-	login_id INT PRIMARY KEY AUTO_INCREMENT,
-    login_email VARCHAR(50),
-    login_password VARCHAR(50)
+CREATE TABLE user_ciguenia (
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_email VARCHAR(50),
+    user_password VARCHAR(50)
 );
 CREATE TABLE category_ciguenia (
 	category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50),
     category_description VARCHAR(100)
 );
+CREATE TABLE inventory_ciguenia (
+	inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+    inventory_amount INT,
+    inventory_entry_date DATE,
+    inventory_departure_date DATE
+);
 CREATE TABLE product_ciguenia (
 	product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(50),
     product_price DOUBLE,
     product_description TEXT,
-    product_category VARCHAR(50),
-    product_materials VARCHAR(100),
-    category_id INTEGER,
-    FOREIGN KEY (category_id) REFERENCES category_ciguenia(category_id)
+    category_id INT,
+    inventory_id INT,
+    FOREIGN KEY (category_id) REFERENCES category_ciguenia(category_id),
+    FOREIGN KEY (inventory_id) REFERENCES inventory_ciguenia(inventory_id)
+);
+CREATE TABLE material_ciguenia (
+	material_id INT PRIMARY KEY AUTO_INCREMENT,
+    material_name VARCHAR(50),
+    material_description TEXT,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES product_ciguenia(product_id)
 );
 
+-- Registro Categorias
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Juguetes', 'Juguetes educativos y de entretenimiento para bebés y niños pequeños');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Cuidado y alimentación', 'Productos para el cuidado y la alimentación de bebés');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Mobiliario infantil', 'Muebles seguros y funcionales para cuartos de bebés');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Paseo y transporte', 'Coches de paseo, portabebés y accesorios para llevar al bebé');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Decoración para el cuarto del bebé', 'Elementos decorativos para el cuarto del bebé');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Regalos y canastas para bebés', 'Canastas con productos ideales para regalos de bebé');
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES ('Libros y entretenimiento para bebés', 'Libros y juguetes para estimular la mente del bebé');
 
-SELECT * FROM login_ciguenia;
+-- Registro Inventarios
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (100, '2023-08-01', '2023-08-15');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (50, '2023-08-03', '2023-08-20');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (75, '2023-08-05', '2023-08-18');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (120, '2023-08-10', '2023-08-25');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (200, '2023-08-15', '2023-08-30');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (30, '2023-08-18', '2023-08-28');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (90, '2023-08-20', '2023-09-05');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (60, '2023-08-23', '2023-09-10');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (110, '2023-08-25', '2023-09-08');
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
+VALUES (40, '2023-08-28', '2023-09-15');
+
+-- Registro Productos
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Body para bebé', 12.99, 'Body de algodón suave para recién nacidos', 1, 1);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Sonajero de colores', 5.99, 'Juguete sonajero de colores vivos para estimulación temprana', 2, 2);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Babero impermeable', 8.49, 'Babero con diseño impermeable para evitar manchas', 3, 3);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Biberón anti-cólicos', 15.99, 'Biberón diseñado para reducir los cólicos en los bebés', 4, 4);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Cuna de madera', 199.99, 'Cuna de madera sólida con barandillas ajustables', 5, 5);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Sábana de cuna suave', 22.49, 'Sábana de algodón suave para cuna de bebé', 6, 6);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Coche de paseo plegable', 129.99, 'Coche de paseo plegable con ruedas todo terreno', 7, 7);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Lámpara de techo para cuarto', 29.99, 'Lámpara de techo con diseño de nubes para cuarto de bebé', 8, 8);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Canasta de regalos para bebé', 59.99, 'Canasta con pañales, ropita y juguetes para recién nacido', 9, 9);
+INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
+VALUES ('Libro de cuentos ilustrado', 9.99, 'Libro de cuentos con ilustraciones para estimular la imaginación', 10, 10);
+
+-- Registro Materiales
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Algodón', 'Material suave y transpirable para ropa de bebé', 1);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Plástico no tóxico', 'Material seguro para juguetes de bebé', 2);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Tela impermeable', 'Material resistente al agua para accesorios de bebé', 3);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Plástico libre de BPA', 'Material seguro para biberones y chupetes', 4);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Madera sólida', 'Material duradero para mobiliario infantil', 5);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Algodón orgánico', 'Material ecológico para ropa de cama de bebé', 6);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Aleación de aluminio', 'Material ligero y resistente para coches de paseo', 7);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Plástico y tela', 'Material combinado para lámparas de cuarto de bebé', 8);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Tejido y plástico', 'Material variado para canastas de regalos', 9);
+INSERT INTO material_ciguenia (material_name, material_description, product_id)
+VALUES ('Papel de alta calidad', 'Material seguro para libros de bebé', 10);
+
+--Consulta Para Conocer el Inventario de un Producto
+SELECT pc.product_name, ic.inventory_amount
+FROM product_ciguenia pc
+INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id
+WHERE pc.product_id = 5;

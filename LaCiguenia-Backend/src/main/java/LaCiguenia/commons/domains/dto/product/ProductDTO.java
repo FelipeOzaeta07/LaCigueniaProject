@@ -22,7 +22,6 @@ public class ProductDTO implements Serializable {
     private String productName;
     private String productPrice;
     private String productDescription;
-    private String productMaterials;
     private CategoryDTO categoryEntity;
     private InventoryEntity inventoryEntity;
     private List<MaterialEntity> listMaterial;
