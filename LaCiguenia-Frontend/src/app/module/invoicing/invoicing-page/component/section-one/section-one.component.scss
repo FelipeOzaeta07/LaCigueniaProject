@@ -1,0 +1,15 @@
+@import url(/src/styles.scss);
+
+.img_width{
+    width: calc(4vw);
+    height: calc(8vh);
+    border-radius: 50%;
+}
+.svg_width{
+    width: calc(1vh + 1.5vw);
+    fill: var(--color_two);
+}
+.svg_width:hover{
+    width: calc(1vh + 1.5vw);
+    fill: var(--color_one);
+}

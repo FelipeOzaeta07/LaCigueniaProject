@@ -1,0 +1,16 @@
+@import url(/src/styles.scss);
+
+.svg_width{
+    width: calc(4vh);
+    fill: var(--color_two);
+}
+.bg_color{
+    background-color: var(--color_five);
+}
+.text_color_two{
+    font-weight: 600;
+}
+.border_left{
+    border-left: 1px solid;
+    border-color: var(--color_two);
+}

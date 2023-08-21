@@ -1,0 +1,9 @@
+@import url(/src/styles.scss);
+
+.img_width{
+    width: calc(6vw);
+    height: calc(7vh);
+    border: 1px solid;
+    border-radius: 50px;
+    border-color: var(--color_three);
+}
