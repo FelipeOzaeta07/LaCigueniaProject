@@ -3,11 +3,17 @@ package LaCiguenia.webApi.customer;
 import LaCiguenia.commons.domains.dto.customer.CustomerDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 public interface ICustomerApi {
-    ResponseEntity<GenericResponseDTO> createCustomer(CustomerDTO customerDTO);
-    ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO);
+    @PostMapping()
+    ResponseEntity<GenericResponseDTO> createCustomer(@RequestBody CustomerDTO customerDTO);
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readCustomer(@RequestBody CustomerDTO customerDTO);
+    @GetMapping()
     ResponseEntity<GenericResponseDTO> readCustomers();
-    ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO);
-    ResponseEntity<GenericResponseDTO> deleteCustomer(CustomerDTO customerDTO);
+    @PutMapping()
+    ResponseEntity<GenericResponseDTO> updateCustomer(@RequestBody CustomerDTO customerDTO);
+    @DeleteMapping()
+    ResponseEntity<GenericResponseDTO> deleteCustomer(@RequestBody CustomerDTO customerDTO);
 }

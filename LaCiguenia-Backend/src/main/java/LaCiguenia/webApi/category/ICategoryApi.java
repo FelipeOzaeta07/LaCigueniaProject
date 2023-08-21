@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 public interface ICategoryApi {
 
-    ResponseEntity<GenericResponseDTO> createCategory (CategoryDTO categoryDTO);
-
-    ResponseEntity<GenericResponseDTO> readCategory (CategoryDTO categoryDTO);
-
+    @PostMapping()
+    ResponseEntity<GenericResponseDTO> createCategory (@RequestBody CategoryDTO categoryDTO);
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readCategory (@RequestBody CategoryDTO categoryDTO);
+    @GetMapping()
     ResponseEntity<GenericResponseDTO> readCategories ();
-
-    ResponseEntity<GenericResponseDTO> updateCategory (CategoryDTO categoryDTO);
-
-    ResponseEntity<GenericResponseDTO> deleteCategory (CategoryDTO categoryDTO);
+    @PutMapping()
+    ResponseEntity<GenericResponseDTO> updateCategory (@RequestBody CategoryDTO categoryDTO);
+    @DeleteMapping()
+    ResponseEntity<GenericResponseDTO> deleteCategory (@RequestBody CategoryDTO categoryDTO);
 }
