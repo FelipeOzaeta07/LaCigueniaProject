@@ -1,0 +1,23 @@
+@import url(/src/styles.scss);
+
+.svg_width{
+    width: calc(2vh + 3vw);
+}
+.color_svg_one{
+    fill: #06ff51;
+}
+.color_svg_two{
+    fill: #068fff;
+}
+.color_svg_three{
+    fill: #ff0606;
+}
+.color_svg_four{
+    fill: #e6ff06;
+}
+.input_value:hover{
+    color: var(--color_fifteen);
+}
+.note:hover h1{
+    color: var(--color_fifteen);
+}

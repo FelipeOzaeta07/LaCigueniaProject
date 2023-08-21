@@ -1,0 +1,36 @@
+@import url(/src/styles.scss);
+
+th{
+    padding-top: calc(2vh);
+    padding-bottom: calc(2vh);
+}
+.border{
+    border-radius: 20px;
+}
+.btn_one{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #FFEAA1;
+}
+.btn_one:hover{
+    background-color: #fbdc6c;
+}
+.btn_one:focus{
+    background-color: #fdd02f;
+}
+.btn_two{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #FF8686;
+}
+.btn_two:hover{
+    background-color: #fa5c5c;
+}
+.btn_two:focus{
+    background-color: #fd3f3f;
+}
+.svg_width{
+    width: calc(1.5vh + 0.8vw);
+}

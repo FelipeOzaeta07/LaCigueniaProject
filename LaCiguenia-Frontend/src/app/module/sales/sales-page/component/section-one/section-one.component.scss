@@ -1,0 +1,57 @@
+@import url(/src/styles.scss);
+
+th{
+    padding-top: calc(3vh);
+    padding-bottom: calc(3vh);
+}
+.border{
+    border-radius: 20px;
+}
+.btn_one{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #a1d5ff;
+}
+.btn_one:hover{
+    background-color: #73c0fe;
+}
+.btn_one:focus{
+    background-color: #0e92fd;
+}
+.btn_two{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #FFEAA1;
+}
+.btn_two:hover{
+    background-color: #fbdc6c;
+}
+.btn_two:focus{
+    background-color: #fdd02f;
+}
+.btn_three{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #FF8686;
+}
+.btn_three:hover{
+    background-color: #fa5c5c;
+}
+.btn_three:focus{
+    background-color: #fd3f3f;
+}
+.border_page{
+    border: 1px solid;
+    border-color: var(--color_three);
+    border-radius: 10px;
+}
+.p_1{
+    padding-top: calc(1vh);
+    padding-bottom: calc(1vh);
+}
+.svg_width{
+    width: calc(1.5vh + 0.8vw);
+}

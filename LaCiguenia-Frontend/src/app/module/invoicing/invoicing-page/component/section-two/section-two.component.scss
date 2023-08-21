@@ -1,0 +1,17 @@
+@import url(/src/styles.scss);
+
+.img_width{
+    width: calc(4vw);
+    height: calc(8vh);
+    border-radius: 50%;
+}
+.py_1{
+    padding-top: calc(0.2vw);
+    padding-bottom: calc(0.2vw);
+}
+.note:hover .text_color_one{
+    color: var(--color_fifteen);
+}
+.note:hover .text_color_two{
+    color: var(--color_one);
+}

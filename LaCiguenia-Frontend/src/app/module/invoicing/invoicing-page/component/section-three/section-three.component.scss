@@ -1,0 +1,20 @@
+@import url(/src/styles.scss);
+
+.border_start{
+    border-left: 1px solid;
+    border-color: var(--color_three);
+}
+.border_end{
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+.border_y{
+    border-top: 1px solid;;
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+.input{
+    padding-top: calc(0.3vw);
+    padding-bottom: calc(0.3vw);
+    border-radius: 10px;
+}

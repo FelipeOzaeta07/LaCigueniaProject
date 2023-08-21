@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "laCiguenia": {
+    "LaCiguenia-Frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/la-ciguenia",
+            "outputPath": "dist/la-ciguenia-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -30,18 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              {
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-                "bundleName": "bootstrap"
-              }
+              "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -74,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "laCiguenia:build:production"
+              "browserTarget": "LaCiguenia-Frontend:build:production"
             },
             "development": {
-              "browserTarget": "laCiguenia:build:development"
+              "browserTarget": "LaCiguenia-Frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "laCiguenia:build"
+            "browserTarget": "LaCiguenia-Frontend:build"
           }
         },
         "test": {
@@ -111,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "9fe3e208-c834-45d0-972d-394b911fe74b"
+    "analytics": "900b1c69-3f35-4997-8af2-a365d9353b9d"
   }
 }
