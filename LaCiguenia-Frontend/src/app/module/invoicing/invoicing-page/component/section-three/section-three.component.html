@@ -1,0 +1,56 @@
+<section class="row_evenly inherit border_start">
+    <div class="col_start col_17 h_10 border_end">
+        <div class="bg_color_one row_center col_17 px_1">
+            <input type="text" class="input col_10 size_1" placeholder="Cliente">
+        </div>
+    </div>
+    <div class="col_17 h_60 border_end">
+        <div class="col_17 px_1">
+            <table class="size_1 col_17">
+                <thead>
+                    <tr>
+                        <th class="col_8 col_start">{{textProduct}}</th>
+                        <th class="col_3">{{textAmount}}</th>
+                        <th class="col_3">{{textTotalTable}}</th>
+                        <th class="col_3">{{textSubTotalTable}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text_color_two">{{nombreProducto}}</td>
+                        <td class="text_center text_color_two">{{cantidad}}</td>
+                        <td class="text_center text_color_two">{{total}}</td>
+                        <td class="text_center text_color_two">{{subtotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row_center col_17 h_30">
+        <div class="row_evenly h_10">
+            <div class="col_17 px_1">
+                <div class="col_between col_17">
+                    <p class="size_1">{{textSubTotal}}</p>
+                    <p class="size_1 text_color_two">$ 1000</p>
+                </div>
+            </div>
+            <div class="col_17 px_1 border_y">
+                <div class="col_between col_17">
+                    <p class="size_1">{{textIva}}</p>
+                    <p class="size_1 text_color_two">$ 1000</p>
+                </div>
+            </div>
+            <div class="col_17 px_1">
+                <div class="col_between col_17">
+                    <p class="size_1">{{textTotal}}</p>
+                    <p class="size_1">$ 1000</p>
+                </div>
+            </div>
+        </div>
+        <div class="row_center col_17 h_20 border_y">
+            <div class="col_center col_17">
+                <button class="col_10 btn_one size_1">{{pay}}</button>
+            </div>
+        </div>
+    </div>
+</section>

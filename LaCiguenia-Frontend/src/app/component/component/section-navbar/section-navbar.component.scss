@@ -1,0 +1,15 @@
+@import url(/src/styles.scss);
+
+.svg_width{
+    width: calc(3.5vw + 2vh);
+}
+.navegation{
+    fill: #414141;
+}
+.navegation:hover svg{
+    fill: var(--color_one);
+}
+.border_bottom{
+    border-bottom: 1px solid;
+    border-color: var(--color_two);
+}

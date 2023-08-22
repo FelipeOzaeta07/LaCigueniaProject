@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 public interface IUserApi {
 
-    ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO);
-    ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO);
+    @PostMapping()
+    ResponseEntity<GenericResponseDTO> serviceUser(@RequestBody UserDTO userDTO);
+    @PostMapping()
+    ResponseEntity<GenericResponseDTO> createUser(@RequestBody UserDTO userDTO);
 }

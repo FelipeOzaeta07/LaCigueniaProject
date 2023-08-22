@@ -32,9 +32,6 @@ public class ProductEntity {
     @Column(name = "product_description")
     private String productDescription;
 
-    @Column(name = "product_materials")
-    private String productMaterials;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonBackReference
