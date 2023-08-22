@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InventoryPageComponent } from './inventory-page/inventory-page.component';
+import { InventoryPageComponent } from '@module/inventory/inventory-page/inventory-page.component';
 
 const routes: Routes = [
   {path:'', component: InventoryPageComponent}

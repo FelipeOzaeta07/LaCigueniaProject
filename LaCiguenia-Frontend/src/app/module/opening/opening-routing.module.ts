@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OpeningPageComponent } from './opening-page/opening-page.component';
+import { OpeningPageComponent } from '@module/opening/opening-page/opening-page.component';
 
 const routes: Routes = [
   {path:'', component: OpeningPageComponent},
