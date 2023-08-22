@@ -45,7 +45,7 @@ public class ProductEntity {
     @JsonBackReference
     private InventoryEntity inventoryEntity;
 
-    @OneToMany(mappedBy = "productEntity")
+   /* @OneToMany(mappedBy = "productEntity")
     @JsonManagedReference
-    private List<MaterialEntity> listMaterial;
+    private List<MaterialEntity> listMaterial;*/
 }
