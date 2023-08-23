@@ -157,8 +157,6 @@ VALUES
     (2, 1000, 4),
 	(3, 1800, 9);
 
-
-
 SELECT pc.product_name, ic.inventory_amount
 FROM product_ciguenia pc
 INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id

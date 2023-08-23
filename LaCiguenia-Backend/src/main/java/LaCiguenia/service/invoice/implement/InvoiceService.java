@@ -40,10 +40,12 @@ public class InvoiceService implements IInvoiceService {
         try{
             List<InvoiceEntity> listInvoice = this.iInvoiceRepository.findAll();
             Integer dailySales = invoiceComponent.dailySales(listInvoice);
-            if (dailySales != null){
+            Integer totalSales = invoiceComponent.totalSales(listInvoice);
+            SalesInfoService salesInfoService = new SalesInfoService(dailySales, totalSales);
+            if (dailySales != null && totalSales != null){
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(dailySales)
+                        .objectResponse(salesInfoService)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }else{
