@@ -35,12 +35,12 @@ public class InvoiceComponent implements IInvoiceComponent {
         Integer invoicesTotal = 0;
         try {
             Calendar calendar = Calendar.getInstance();
-            int mesCurrent = calendar.get(Calendar.MONTH) + 1;
+            int monthCurrent = calendar.get(Calendar.MONTH) + 1;
             for (InvoiceEntity invoiceEntity : listInvoice) {
                 Date invoiceDate = invoiceEntity.getInvoiceDate();
                 calendar.setTime(invoiceDate);
-                int mesRegister = calendar.get(Calendar.MONTH) + 1;
-                if (mesRegister == mesCurrent) {
+                int monthRegister = calendar.get(Calendar.MONTH) + 1;
+                if (monthRegister == monthCurrent) {
                     invoicesTotal += invoiceEntity.getInvoiceValor();
                 }
             }

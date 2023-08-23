@@ -41,10 +41,11 @@ public class InvoiceService implements IInvoiceService {
             List<InvoiceEntity> listInvoice = this.iInvoiceRepository.findAll();
             Integer dailySales = invoiceComponent.dailySales(listInvoice);
             Integer totalSales = invoiceComponent.totalSales(listInvoice);
-            if (dailySales != null){
+            SalesInfoService salesInfoService = new SalesInfoService(dailySales, totalSales);
+            if (dailySales != null && totalSales != null){
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(dailySales + " " + totalSales)
+                        .objectResponse(salesInfoService)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }else{
