@@ -35,103 +35,129 @@ CREATE TABLE material_ciguenia (
     product_id INT,
     FOREIGN KEY (product_id) REFERENCES product_ciguenia(product_id)
 );
+CREATE TABLE customer_ciguenia (
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_name VARCHAR(50),
+    customer_last_name VARCHAR(50),
+    customer_phone_number VARCHAR(20),
+    customer_address VARCHAR(50),
+    customer_email VARCHAR(50)
+);
+CREATE TABLE invoice_ciguenia (
+    invoice_id INT PRIMARY KEY AUTO_INCREMENT,
+    invoice_date DATE,
+    invoice_iva INT,
+    invoice_total INT,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customer_ciguenia(customer_id)
+);
+CREATE TABLE detail_invoice_ciguenia (
+    detail_id INT PRIMARY KEY AUTO_INCREMENT,
+    detail_amount INT,
+    detail_subtotal INT,
+    invoice_id INT,
+    FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia(invoice_id)
+);
+
+
+-- Registro Usuarios
+INSERT INTO user_ciguenia (user_email, user_password)
+VALUES
+    ('unsc@gmail.com', '123');
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Juguetes', 'Juguetes educativos y de entretenimiento para bebés y niños pequeños');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Cuidado y alimentación', 'Productos para el cuidado y la alimentación de bebés');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Mobiliario infantil', 'Muebles seguros y funcionales para cuartos de bebés');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Paseo y transporte', 'Coches de paseo, portabebés y accesorios para llevar al bebé');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Decoración para el cuarto del bebé', 'Elementos decorativos para el cuarto del bebé');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Regalos y canastas para bebés', 'Canastas con productos ideales para regalos de bebé');
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES ('Libros y entretenimiento para bebés', 'Libros y juguetes para estimular la mente del bebé');
+VALUES
+	('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés'),
+	('Juguetes', 'Juguetes educativos y de entretenimiento para bebés y niños pequeños'),
+	('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés'),
+	('Cuidado y alimentación', 'Productos para el cuidado y la alimentación de bebés'),
+	('Mobiliario infantil', 'Muebles seguros y funcionales para cuartos de bebés'),
+	('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés'),
+	('Paseo y transporte', 'Coches de paseo, portabebés y accesorios para llevar al bebé'),
+	('Decoración para el cuarto del bebé', 'Elementos decorativos para el cuarto del bebé'),
+	('Regalos y canastas para bebés', 'Canastas con productos ideales para regalos de bebé'),
+	('Libros y entretenimiento para bebés', 'Libros y juguetes para estimular la mente del bebé');
 
 -- Registro Inventarios
 INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (100, '2023-08-01', '2023-08-15');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (50, '2023-08-03', '2023-08-20');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (75, '2023-08-05', '2023-08-18');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (120, '2023-08-10', '2023-08-25');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (200, '2023-08-15', '2023-08-30');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (30, '2023-08-18', '2023-08-28');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (90, '2023-08-20', '2023-09-05');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (60, '2023-08-23', '2023-09-10');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (110, '2023-08-25', '2023-09-08');
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES (40, '2023-08-28', '2023-09-15');
+VALUES
+	(100, '2023-08-01', '2023-08-15'),
+	(50, '2023-08-03', '2023-08-20'),
+	(75, '2023-08-05', '2023-08-18'),
+	(120, '2023-08-10', '2023-08-25'),
+	(200, '2023-08-15', '2023-08-30'),
+	(30, '2023-08-18', '2023-08-28'),
+	(90, '2023-08-20', '2023-09-05'),
+	(60, '2023-08-23', '2023-09-10'),
+	(110, '2023-08-25', '2023-09-08'),
+	(40, '2023-08-28', '2023-09-15');
 
 -- Registro Productos
 INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Body para bebé', 12.99, 'Body de algodón suave para recién nacidos', 1, 1);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Sonajero de colores', 5.99, 'Juguete sonajero de colores vivos para estimulación temprana', 2, 2);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Babero impermeable', 8.49, 'Babero con diseño impermeable para evitar manchas', 3, 3);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Biberón anti-cólicos', 15.99, 'Biberón diseñado para reducir los cólicos en los bebés', 4, 4);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Cuna de madera', 199.99, 'Cuna de madera sólida con barandillas ajustables', 5, 5);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Sábana de cuna suave', 22.49, 'Sábana de algodón suave para cuna de bebé', 6, 6);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Coche de paseo plegable', 129.99, 'Coche de paseo plegable con ruedas todo terreno', 7, 7);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Lámpara de techo para cuarto', 29.99, 'Lámpara de techo con diseño de nubes para cuarto de bebé', 8, 8);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Canasta de regalos para bebé', 59.99, 'Canasta con pañales, ropita y juguetes para recién nacido', 9, 9);
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES ('Libro de cuentos ilustrado', 9.99, 'Libro de cuentos con ilustraciones para estimular la imaginación', 10, 10);
+VALUES
+	('Body para bebé', 12.99, 'Body de algodón suave para recién nacidos', 1, 1),
+	('Sonajero de colores', 5.99, 'Juguete sonajero de colores vivos para estimulación temprana', 2, 2),
+	('Babero impermeable', 8.49, 'Babero con diseño impermeable para evitar manchas', 3, 3),
+	('Biberón anti-cólicos', 15.99, 'Biberón diseñado para reducir los cólicos en los bebés', 4, 4),
+	('Cuna de madera', 199.99, 'Cuna de madera sólida con barandillas ajustables', 5, 5),
+	('Sábana de cuna suave', 22.49, 'Sábana de algodón suave para cuna de bebé', 6, 6),
+	('Coche de paseo plegable', 129.99, 'Coche de paseo plegable con ruedas todo terreno', 7, 7),
+	('Lámpara de techo para cuarto', 29.99, 'Lámpara de techo con diseño de nubes para cuarto de bebé', 8, 8),
+	('Canasta de regalos para bebé', 59.99, 'Canasta con pañales, ropita y juguetes para recién nacido', 9, 9),
+	('Libro de cuentos ilustrado', 9.99, 'Libro de cuentos con ilustraciones para estimular la imaginación', 10, 10);
 
 -- Registro Materiales
 INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Algodón', 'Material suave y transpirable para ropa de bebé', 1);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Plástico no tóxico', 'Material seguro para juguetes de bebé', 2);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Tela impermeable', 'Material resistente al agua para accesorios de bebé', 3);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Plástico libre de BPA', 'Material seguro para biberones y chupetes', 4);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Madera sólida', 'Material duradero para mobiliario infantil', 5);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Algodón orgánico', 'Material ecológico para ropa de cama de bebé', 6);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Aleación de aluminio', 'Material ligero y resistente para coches de paseo', 7);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Plástico y tela', 'Material combinado para lámparas de cuarto de bebé', 8);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Tejido y plástico', 'Material variado para canastas de regalos', 9);
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES ('Papel de alta calidad', 'Material seguro para libros de bebé', 10);
-INSERT INTO `customer_ciguenia` (`customer_id`, `customer_address`, `customer_email`,
-`customer_last_name`, `customer_name`, `customer_phone_number`) VALUES (NULL, 'mz b cs
-11 jordan ', 'juanito@gmail.com', 'perez', 'juanito', '3113456767'), (NULL, 'mz c cs 34
-el salado', 'pepito@gmail.com', 'osorio', 'pepito', '3213456832');
-INSERT INTO `invoice_ciguenia` (`id`, `date`, `valor`, `customer_id`)
- VALUES (NULL, '2023-08-23', '10000', '1'), (NULL, '2023-08-24', '5000', '2');
+VALUES
+	('Algodón', 'Material suave y transpirable para ropa de bebé', 1),
+	('Plástico no tóxico', 'Material seguro para juguetes de bebé', 2),
+	('Tela impermeable', 'Material resistente al agua para accesorios de bebé', 3),
+	('Plástico libre de BPA', 'Material seguro para biberones y chupetes', 4),
+	('Madera sólida', 'Material duradero para mobiliario infantil', 5),
+	('Algodón orgánico', 'Material ecológico para ropa de cama de bebé', 6),
+	('Aleación de aluminio', 'Material ligero y resistente para coches de paseo', 7),
+	('Plástico y tela', 'Material combinado para lámparas de cuarto de bebé', 8),
+	('Tejido y plástico', 'Material variado para canastas de regalos', 9),
+	('Papel de alta calidad', 'Material seguro para libros de bebé', 10);
 
---Consulta Para Conocer el Inventario de un Producto
+-- Registro Clientes
+INSERT INTO customer_ciguenia (customer_name, customer_last_name, customer_phone_number, customer_address, customer_email)
+VALUES
+	('Juan', 'Perez', '123-456-7890', 'Calle Principal 123', 'juan@example.com'),
+	('Maria', 'Gomez', '987-654-3210', 'Avenida Secundaria 456', 'maria@example.com'),
+	('Luis', 'Rodriguez', '555-123-4567', 'Plaza Central 789', 'luis@example.com');
+
+-- Registro Facturas
+INSERT INTO invoice (invoice_date, invoice_iva, invoice_total, customer_id)
+VALUES
+	('2023-08-22', 16, 15000, 1),
+	('2023-08-21', 12, 25000, 2),
+	('2023-08-20', 18, 18000, 3),
+	('2023-08-19', 20, 30000, 1),
+	('2023-08-18', 15, 18000, 2),
+	('2023-08-17', 10, 20000, 3),
+	('2023-08-16', 21, 35000, 1),
+	('2023-08-15', 18, 22000, 2),
+	('2023-08-14', 18, 12000, 3);
+
+-- Registro Detalles Factura
+INSERT INTO detail_invoice_ciguenia (detail_amount, detail_subtotal, invoice_id)
+VALUES
+	(2, 1000, 1),
+	(3, 1500, 2),
+	(1, 5000, 3),
+	(4, 2000, 1),
+    (1, 5000, 6),
+	(4, 2000, 7),
+	(2, 1200, 2),
+	(2, 1200, 8),
+	(3, 1500, 5),
+	(3, 1800, 3),
+    (2, 1000, 4),
+	(3, 1800, 9);
+
 SELECT pc.product_name, ic.inventory_amount
 FROM product_ciguenia pc
 INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id
-WHERE pc.product_id = 5;
+WHERE pc.product_id = 3;

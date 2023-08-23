@@ -1,6 +1,7 @@
 package LaCiguenia.commons.domains.entity.product;
 
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
+import LaCiguenia.commons.domains.entity.detail.DetailEntity;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -32,6 +33,10 @@ public class ProductEntity {
     @Column(name = "product_description")
     private String productDescription;
 
+    @OneToMany(mappedBy = "productEntity")
+    @JsonManagedReference
+    private List<MaterialEntity> listMaterial;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonBackReference
@@ -42,7 +47,8 @@ public class ProductEntity {
     @JsonBackReference
     private InventoryEntity inventoryEntity;
 
-    @OneToMany(mappedBy = "productEntity")
-    @JsonManagedReference
-    private List<MaterialEntity> listMaterial;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "detal_id")
+    @JsonBackReference
+    private DetailEntity detailEntity;
 }

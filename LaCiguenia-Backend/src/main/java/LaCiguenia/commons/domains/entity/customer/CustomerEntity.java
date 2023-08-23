@@ -1,7 +1,11 @@
 package LaCiguenia.commons.domains.entity.customer;
 
+import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -30,4 +34,8 @@ public class CustomerEntity {
 
     @Column(name = "customer_email")
     private String customerEmail;
+
+    @OneToMany(mappedBy = "customerEntity")
+    @JsonManagedReference
+    private List<InvoiceEntity> listInvoice;
 }
