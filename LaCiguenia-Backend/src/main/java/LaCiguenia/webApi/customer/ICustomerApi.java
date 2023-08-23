@@ -15,5 +15,5 @@ public interface ICustomerApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateCustomer(@RequestBody CustomerDTO customerDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteCustomer(@RequestBody CustomerDTO customerDTO);
+    ResponseEntity<GenericResponseDTO> deleteCustomer(@PathVariable Integer customerId);
 }

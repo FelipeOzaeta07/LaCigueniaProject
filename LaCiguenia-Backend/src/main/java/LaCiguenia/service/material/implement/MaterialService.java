@@ -50,7 +50,6 @@ public class MaterialService implements IMaterialService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -85,7 +84,6 @@ public class MaterialService implements IMaterialService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -115,7 +113,6 @@ public class MaterialService implements IMaterialService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -148,7 +145,6 @@ public class MaterialService implements IMaterialService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -161,14 +157,11 @@ public class MaterialService implements IMaterialService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteMaterial(MaterialDTO materialDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteMaterial(Integer materialId) {
         try {
-            Optional<MaterialEntity> materialExist =
-                    this.iMaterialRepository.findById(materialDTO.getMaterialId());
+            Optional<MaterialEntity> materialExist = this.iMaterialRepository.findById(materialId);
             if (materialExist.isPresent()){
-                MaterialEntity materialEntity =
-                        this.materialConverter.convertMaterialDTOToMaterialEntity(materialDTO);
-                this.iMaterialRepository.delete(materialEntity);
+                this.iMaterialRepository.deleteById(materialId);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)

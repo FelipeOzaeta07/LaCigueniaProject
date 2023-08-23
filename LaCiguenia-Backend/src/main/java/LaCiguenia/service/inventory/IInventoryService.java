@@ -9,5 +9,5 @@ public interface IInventoryService {
     ResponseEntity<GenericResponseDTO> readInventory(InventoryDTO inventoryDTO);
     ResponseEntity<GenericResponseDTO> readInventories();
     ResponseEntity<GenericResponseDTO> updateInventory(InventoryDTO inventoryDTO);
-    ResponseEntity<GenericResponseDTO> deleteInventory(InventoryDTO inventoryDTO);
+    ResponseEntity<GenericResponseDTO> deleteInventory(Integer inventoryId);
 }

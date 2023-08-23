@@ -9,5 +9,5 @@ public interface ICustomerService {
     ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO);
     ResponseEntity<GenericResponseDTO> readCustomers();
     ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO);
-    ResponseEntity<GenericResponseDTO> deleteCustomer(CustomerDTO customerDTO);
+    ResponseEntity<GenericResponseDTO> deleteCustomer(Integer customerId);
 }

@@ -2,6 +2,7 @@ package LaCiguenia.webApi.invoice.implement;
 
 import LaCiguenia.commons.constans.endpoints.invoice.IInvoiceEndPoint;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
+import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.service.invoice.implement.InvoiceService;
 import LaCiguenia.webApi.invoice.IInvoiceApi;
@@ -13,10 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IInvoiceEndPoint.BASE_URL_INVOICE)
@@ -28,6 +26,42 @@ public class InvoiceApi implements IInvoiceApi {
 
     public InvoiceApi(InvoiceService invoiceService) {
         this.invoiceService = invoiceService;
+    }
+
+    @Override
+    @Operation(summary = "Crear una nueva factura")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @PostMapping(IInvoiceEndPoint.CREATE_INVOICE)
+    public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {
+        return this.invoiceService.createInvoice(invoiceDTO);
+    }
+
+    @Override
+    @Operation(summary = "leer una factura")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IInvoiceEndPoint.READ_INVOICE)
+    public ResponseEntity<GenericResponseDTO> readInvoice(InvoiceDTO invoiceDTO) {
+        return this.invoiceService.readInvoice(invoiceDTO);
     }
 
     @Override
@@ -48,4 +82,39 @@ public class InvoiceApi implements IInvoiceApi {
         return this.invoiceService.readInvoices();
     }
 
+    @Override
+    @Operation(summary = "Actualizar una factura")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @PutMapping(IInvoiceEndPoint.UPDATE_INVOICE)
+    public ResponseEntity<GenericResponseDTO> updateInvoice(InvoiceDTO invoiceDTO) {
+        return this.invoiceService.updateInvoice(invoiceDTO);
+    }
+
+    @Override
+    @Operation(summary = "Eliminar una factura")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @DeleteMapping(IInvoiceEndPoint.DELETE_INVOICE)
+    public ResponseEntity<GenericResponseDTO> deleteInvoice(Integer invoiceId) {
+        return this.invoiceService.deleteInvoice(invoiceId);
+    }
 }

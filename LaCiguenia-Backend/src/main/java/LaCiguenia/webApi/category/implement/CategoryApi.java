@@ -116,7 +116,7 @@ public class CategoryApi implements ICategoryApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(ICategoryEndPoint.DELETE_CATEGORY)
-    public ResponseEntity<GenericResponseDTO> deleteCategory(CategoryDTO categoryDTO) {
-        return this.categoryService.deleteCategory(categoryDTO);
+    public ResponseEntity<GenericResponseDTO> deleteCategory(@PathVariable Integer categoryId) {
+        return this.categoryService.deleteCategory(categoryId);
     }
 }

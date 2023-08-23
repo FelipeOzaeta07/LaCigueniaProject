@@ -15,5 +15,5 @@ public interface IDetailApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateDetail(@RequestBody DetailDTO detailDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteDetail(@RequestBody DetailDTO detailDTO);
+    ResponseEntity<GenericResponseDTO> deleteDetail(@PathVariable Integer detailId);
 }

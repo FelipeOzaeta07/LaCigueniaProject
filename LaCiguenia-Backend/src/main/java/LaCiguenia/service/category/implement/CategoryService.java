@@ -5,7 +5,6 @@ import LaCiguenia.commons.constans.response.category.ICategoryResponse;
 import LaCiguenia.commons.converter.category.CategoryConverter;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
-import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.category.ICategoryRepository;
 import LaCiguenia.service.category.ICategoryService;
@@ -30,7 +29,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> createCategory(CategoryDTO categoryDTO) {
         try {
-            Optional<CategoryEntity> categoryExist = iCategoryRepository.findById(categoryDTO.getCategoryId());
+            Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryDTO.getCategoryId());
             if (!categoryExist.isPresent()) {
                 CategoryEntity categoryEntity = categoryConverter.convertCategoryDTOToCategoryEntity(categoryDTO);
                 this.iCategoryRepository.save(categoryEntity);
@@ -88,13 +87,20 @@ public class CategoryService implements ICategoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readCategories() {
         try {
-            List<CategoryEntity> listCategoryEntities = this.iCategoryRepository.findAll();
-            return new ResponseEntity<>(GenericResponseDTO.builder()
-                    .message(GeneralResponse.OPERATION_SUCCESS)
-                    .objectResponse(listCategoryEntities)
-                    .statusCode(HttpStatus.OK.value())
-                    .build(), HttpStatus.OK);
-
+            List<CategoryEntity> listCategoryExist = this.iCategoryRepository.findAll();
+            if (!listCategoryExist.isEmpty()){
+                return new ResponseEntity<>(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(listCategoryExist)
+                        .statusCode(HttpStatus.OK.value())
+                        .build(), HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(ICategoryResponse.CATEGORIES_FAIL)
+                        .statusCode(HttpStatus.OK.value())
+                        .build(), HttpStatus.OK);
+            }
         } catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER_ERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -109,7 +115,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> updateCategory(CategoryDTO categoryDTO) {
         try {
-            Optional<CategoryEntity> categoryExist = iCategoryRepository.findById(categoryDTO.getCategoryId());
+            Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryDTO.getCategoryId());
             if (categoryExist.isPresent()) {
                 CategoryEntity categoryEntity = categoryConverter.convertCategoryDTOToCategoryEntity(categoryDTO);
                 this.iCategoryRepository.save(categoryEntity);
@@ -137,12 +143,11 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteCategory(CategoryDTO categoryDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteCategory(Integer categoryId) {
         try {
-            Optional<CategoryEntity> categoryExist = iCategoryRepository.findById(categoryDTO.getCategoryId());
+            Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryId);
             if (categoryExist.isPresent()) {
-                CategoryEntity categoryEntity = categoryConverter.convertCategoryDTOToCategoryEntity(categoryDTO);
-                this.iCategoryRepository.delete(categoryEntity);
+                this.iCategoryRepository.deleteById(categoryId);
                 return new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)

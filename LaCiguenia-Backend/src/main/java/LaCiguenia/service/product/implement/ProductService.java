@@ -30,7 +30,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getIdProduct());
+                    .findById(productDTO.getProductId());
             if (!productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -46,7 +46,6 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -62,11 +61,11 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getIdProduct());
+                    .findById(productDTO.getProductId());
             if (productoExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(this.iProductRepository.findById(productDTO.getIdProduct()))
+                        .objectResponse(this.iProductRepository.findById(productDTO.getProductId()))
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -76,7 +75,6 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -111,7 +109,6 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -127,7 +124,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getIdProduct());
+                    .findById(productDTO.getProductId());
             if (productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -143,7 +140,6 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -156,12 +152,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteProducts(ProductDTO productDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteProducts(Integer productId) {
         try {
-            Optional<ProductEntity> productoExist = this.iProductRepository.findById(productDTO.getIdProduct());
+            Optional<ProductEntity> productoExist = this.iProductRepository.findById(productId);
             if (productoExist.isPresent()){
-                ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
-                this.iProductRepository.delete(productEntity);
+                this.iProductRepository.deleteById(productId);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
@@ -174,7 +169,6 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
