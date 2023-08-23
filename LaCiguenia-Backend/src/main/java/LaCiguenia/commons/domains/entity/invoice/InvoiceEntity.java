@@ -1,5 +1,8 @@
 package LaCiguenia.commons.domains.entity.invoice;
+import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Date;
@@ -11,25 +14,25 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "test")
+@Table(name = "invoice_ciguenia")
 public class InvoiceEntity {
     @Id
-    @Column(name = "id")
+    @Column(name = "invoice_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer InvoiceId;
+    private Integer invoiceId;
 
-    @Column(name = "date")
+    @Column(name = "invoice_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date InvoiceDate;
+    private Date invoiceDate;
 
-    @Column(name = "valor")
-    private Integer InvoiceValor;
+    @Column(name = "invoice_iva")
+    private Integer invoiceIva;
 
-    public Integer getInvoiceValor() {
-        return InvoiceValor;
-    }
+    @Column(name = "invoice_total")
+    private Integer invoiceTotal;
 
-    public Date getInvoiceDate() {
-        return InvoiceDate;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private CustomerEntity customerEntity;
 }
