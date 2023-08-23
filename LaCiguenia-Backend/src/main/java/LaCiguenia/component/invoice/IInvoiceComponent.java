@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IInvoiceComponent {
     public Integer dailySales (List<InvoiceEntity> listInvoice);
+
+    public Integer totalSales(List<InvoiceEntity> listInvoice);
 }
