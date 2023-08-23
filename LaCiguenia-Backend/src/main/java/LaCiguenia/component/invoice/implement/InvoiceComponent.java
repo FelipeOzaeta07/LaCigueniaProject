@@ -33,7 +33,7 @@ public class InvoiceComponent implements IInvoiceComponent {
     @Override
     public Integer totalSales(List<InvoiceEntity> listInvoice) {
         Integer invoicesTotal = 0;
-        try {
+        try{
             Calendar calendar = Calendar.getInstance();
             int monthCurrent = calendar.get(Calendar.MONTH) + 1;
             for (InvoiceEntity invoiceEntity : listInvoice) {
@@ -46,7 +46,7 @@ public class InvoiceComponent implements IInvoiceComponent {
             }
             return invoicesTotal;
         }
-        catch (Exception e) {
+        catch (Exception e){
             return invoicesTotal;
         }
     }
