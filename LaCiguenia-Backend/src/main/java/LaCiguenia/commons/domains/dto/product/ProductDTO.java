@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 public class ProductDTO implements Serializable {
 
-    private Integer idProduct;
+    private Integer productId;
     private String productName;
     private String productPrice;
     private String productDescription;
