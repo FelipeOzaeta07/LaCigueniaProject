@@ -9,5 +9,5 @@ public interface IDetailService {
     ResponseEntity<GenericResponseDTO> readDetail(DetailDTO detailDTO);
     ResponseEntity<GenericResponseDTO> readDetails();
     ResponseEntity<GenericResponseDTO> updateDetail(DetailDTO detailDTO);
-    ResponseEntity<GenericResponseDTO> deleteDetail(DetailDTO detailDTO);
+    ResponseEntity<GenericResponseDTO> deleteDetail(Integer detailId);
 }

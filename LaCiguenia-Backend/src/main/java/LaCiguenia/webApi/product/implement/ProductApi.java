@@ -116,7 +116,7 @@ public class ProductApi implements IProductApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.DELETE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> deleteProducts(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.deleteProducts(productDTO);
+    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId) {
+        return this.iProductService.deleteProducts(productId);
     }
 }

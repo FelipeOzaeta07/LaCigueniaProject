@@ -29,8 +29,7 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> createInventory(InventoryDTO inventoryDTO) {
         try {
-            Optional<InventoryEntity> inventoryExist =
-                    this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
+            Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
             if (!inventoryExist.isPresent()){
                 InventoryEntity inventoryEntity =
                         this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
@@ -47,7 +46,6 @@ public class InventoryService implements IInventoryService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -62,16 +60,11 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readInventory(InventoryDTO inventoryDTO) {
         try {
-            Optional<InventoryEntity> inventoryExist =
-                    this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
+            Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
             if (inventoryExist.isPresent()){
-                InventoryEntity inventoryEntity =
-                        this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
-                InventoryDTO inventoryDTOResponse =
-                        this.inventoryConverter.convertInventoryEntityToInventoryDTO(inventoryEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(inventoryDTOResponse)
+                        .objectResponse(inventoryExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -81,7 +74,6 @@ public class InventoryService implements IInventoryService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -96,8 +88,7 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readInventories() {
         try {
-            List<InventoryEntity> listInventoryExist =
-                    this.iInventoryRepository.findAll();
+            List<InventoryEntity> listInventoryExist = this.iInventoryRepository.findAll();
             if (!listInventoryExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -111,7 +102,6 @@ public class InventoryService implements IInventoryService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -126,11 +116,9 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> updateInventory(InventoryDTO inventoryDTO) {
         try {
-            Optional<InventoryEntity> inventoryExist =
-                    this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
+            Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
             if (inventoryExist.isPresent()){
-                InventoryEntity inventoryEntity =
-                        this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
+                InventoryEntity inventoryEntity = this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
                 this.iInventoryRepository.save(inventoryEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -144,7 +132,6 @@ public class InventoryService implements IInventoryService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -157,14 +144,11 @@ public class InventoryService implements IInventoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteInventory(InventoryDTO inventoryDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteInventory(Integer inventoryId) {
         try {
-            Optional<InventoryEntity> inventoryExist =
-                    this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
+            Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryId);
             if (inventoryExist.isPresent()){
-                InventoryEntity inventoryEntity =
-                        this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
-                this.iInventoryRepository.delete(inventoryEntity);
+                this.iInventoryRepository.deleteById(inventoryId);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
@@ -177,7 +161,6 @@ public class InventoryService implements IInventoryService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

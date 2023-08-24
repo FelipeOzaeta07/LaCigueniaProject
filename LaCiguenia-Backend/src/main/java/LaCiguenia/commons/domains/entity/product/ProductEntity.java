@@ -28,7 +28,7 @@ public class ProductEntity {
     private String productName;
 
     @Column(name = "product_price")
-    private String productPrice;
+    private Double productPrice;
 
     @Column(name = "product_description")
     private String productDescription;
@@ -36,6 +36,10 @@ public class ProductEntity {
     @OneToMany(mappedBy = "productEntity")
     @JsonManagedReference
     private List<MaterialEntity> listMaterial;
+
+    @OneToMany(mappedBy = "productEntity")
+    @JsonManagedReference
+    private List<DetailEntity> listDetail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -46,9 +50,4 @@ public class ProductEntity {
     @JoinColumn(name = "inventory_id")
     @JsonBackReference
     private InventoryEntity inventoryEntity;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "detal_id")
-    @JsonBackReference
-    private DetailEntity detailEntity;
 }

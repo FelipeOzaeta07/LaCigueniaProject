@@ -27,8 +27,7 @@ public class DetailService implements IDetailService {
     @Override
     public ResponseEntity<GenericResponseDTO> createDetail(DetailDTO detailDTO) {
         try {
-            Optional<DetailEntity> detailExist =
-                    this.iDetailRepository.findById(detailDTO.getDetailId());
+            Optional<DetailEntity> detailExist = this.iDetailRepository.findById(detailDTO.getDetailId());
             if (!detailExist.isPresent()){
                 DetailEntity detailEntity = this.detailConverter.convertDetailDTOToDetailEntity(detailDTO);
                 this.iDetailRepository.save(detailEntity);
@@ -44,7 +43,6 @@ public class DetailService implements IDetailService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -62,11 +60,9 @@ public class DetailService implements IDetailService {
             Optional<DetailEntity> detailExist =
                     this.iDetailRepository.findById(detailDTO.getDetailId());
             if (detailExist.isPresent()){
-                DetailEntity detailEntity = this.detailConverter.convertDetailDTOToDetailEntity(detailDTO);
-                DetailDTO detailDTOResponse = this.detailConverter.convertDetailEntityToDetailDTO(detailEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(detailDTOResponse)
+                        .objectResponse(detailExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -90,8 +86,7 @@ public class DetailService implements IDetailService {
     @Override
     public ResponseEntity<GenericResponseDTO> readDetails() {
         try {
-            List<DetailEntity> listDetailExist =
-                    this.iDetailRepository.findAll();
+            List<DetailEntity> listDetailExist = this.iDetailRepository.findAll();
             if (!listDetailExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -119,8 +114,7 @@ public class DetailService implements IDetailService {
     @Override
     public ResponseEntity<GenericResponseDTO> updateDetail(DetailDTO detailDTO) {
         try {
-            Optional<DetailEntity> detailExist =
-                    this.iDetailRepository.findById(detailDTO.getDetailId());
+            Optional<DetailEntity> detailExist = this.iDetailRepository.findById(detailDTO.getDetailId());
             if (detailExist.isPresent()){
                 DetailEntity detailEntity = this.detailConverter.convertDetailDTOToDetailEntity(detailDTO);
                 this.iDetailRepository.save(detailEntity);
@@ -136,7 +130,6 @@ public class DetailService implements IDetailService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -149,13 +142,12 @@ public class DetailService implements IDetailService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteDetail(DetailDTO detailDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteDetail(Integer detailId) {
         try {
             Optional<DetailEntity> detailExist =
-                    this.iDetailRepository.findById(detailDTO.getDetailId());
+                    this.iDetailRepository.findById(detailId);
             if (detailExist.isPresent()){
-                DetailEntity detailEntity = this.detailConverter.convertDetailDTOToDetailEntity(detailDTO);
-                this.iDetailRepository.delete(detailEntity);
+                this.iDetailRepository.deleteById(detailId);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
@@ -168,7 +160,6 @@ public class DetailService implements IDetailService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -1,4 +1,3 @@
 package LaCiguenia.component.category;
 
-public interface ICategoryComponent {
-}
+public interface ICategoryComponent { }

@@ -28,9 +28,10 @@ public class DetailEntity {
     @Column(name = "detail_subtotal")
     private Integer detailSubTotal;
 
-    @OneToMany(mappedBy = "detailEntity")
-    @JsonManagedReference
-    private List<ProductEntity> listProducts;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    @JsonBackReference
+    private ProductEntity productEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id")

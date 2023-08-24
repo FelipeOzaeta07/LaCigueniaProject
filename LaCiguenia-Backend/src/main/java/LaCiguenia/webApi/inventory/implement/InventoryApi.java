@@ -114,7 +114,7 @@ public class InventoryApi implements IInventoryApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(IInventoryEndPoint.DELETE_INVENTORY)
-    public ResponseEntity<GenericResponseDTO> deleteInventory(@RequestBody InventoryDTO inventoryDTO) {
-        return this.inventoryService.deleteInventory(inventoryDTO);
+    public ResponseEntity<GenericResponseDTO> deleteInventory(@PathVariable Integer inventoryId) {
+        return this.inventoryService.deleteInventory(inventoryId);
     }
 }

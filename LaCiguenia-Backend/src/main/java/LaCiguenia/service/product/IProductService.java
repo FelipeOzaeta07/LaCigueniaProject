@@ -9,5 +9,5 @@ public interface IProductService {
     ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO);
     ResponseEntity<GenericResponseDTO> readProducts();
     ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO);
-    ResponseEntity<GenericResponseDTO> deleteProducts(ProductDTO productDTO);
+    ResponseEntity<GenericResponseDTO> deleteProducts(Integer productId);
 }

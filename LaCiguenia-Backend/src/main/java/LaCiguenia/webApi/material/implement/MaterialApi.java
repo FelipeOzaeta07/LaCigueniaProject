@@ -113,7 +113,7 @@ public class MaterialApi implements IMaterialApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(IMaterialEndPoint.DELETE_MATERIAL)
-    public ResponseEntity<GenericResponseDTO> deleteMaterial(MaterialDTO materialDTO) {
-        return this.materialService.deleteMaterial(materialDTO);
+    public ResponseEntity<GenericResponseDTO> deleteMaterial(@PathVariable Integer materialId) {
+        return this.materialService.deleteMaterial(materialId);
     }
 }

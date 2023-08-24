@@ -1,8 +1,10 @@
 package LaCiguenia.commons.domains.dto.customer;
 
+import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Getter
@@ -14,8 +16,9 @@ import java.io.Serializable;
 public class CustomerDTO implements Serializable {
     private Integer customerId;
     private String customerName;
-    private String customerLastName;
+    private String customerIdentification;
     private String customerPhoneNumber;
-    private String customerAddress;
     private String customerEmail;
+    private String customerAddress;
+    private List<InvoiceEntity> listInvoice;
 }

@@ -1,4 +1,3 @@
 package LaCiguenia.component.product;
 
-public interface IProductComponent {
-}
+public interface IProductComponent { }

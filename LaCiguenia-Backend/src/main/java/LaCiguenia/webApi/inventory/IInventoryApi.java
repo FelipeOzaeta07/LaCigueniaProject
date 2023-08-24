@@ -15,5 +15,5 @@ public interface IInventoryApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateInventory(@RequestBody InventoryDTO inventoryDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteInventory(@RequestBody InventoryDTO inventoryDTO);
+    ResponseEntity<GenericResponseDTO> deleteInventory(@PathVariable Integer inventoryId);
 }

@@ -114,7 +114,7 @@ public class CustomerApi implements ICustomerApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(ICustomerEndPoint.DELETE_CUSTOMER)
-    public ResponseEntity<GenericResponseDTO> deleteCustomer(CustomerDTO customerDTO) {
-        return this.customerService.deleteCustomer(customerDTO);
+    public ResponseEntity<GenericResponseDTO> deleteCustomer(@PathVariable Integer customerId) {
+        return this.customerService.deleteCustomer(customerId);
     }
 }

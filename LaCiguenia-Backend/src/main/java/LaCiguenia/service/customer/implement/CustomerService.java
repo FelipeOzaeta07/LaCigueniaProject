@@ -66,11 +66,9 @@ public class CustomerService implements ICustomerService {
             Optional<CustomerEntity> customerExist =
                     this.iCustomerRepository.findById(customerDTO.getCustomerId());
             if (customerExist.isPresent()){
-                CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
-                CustomerDTO customerDTORead = this.customerConverter.convertCustomerEntityToCustomerDTO(customerEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(customerDTORead)
+                        .objectResponse(customerExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -95,8 +93,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public ResponseEntity<GenericResponseDTO> readCustomers() {
         try {
-            List<CustomerEntity> listCustomerExist =
-                    this.iCustomerRepository.findAll();
+            List<CustomerEntity> listCustomerExist = this.iCustomerRepository.findAll();
             if (!listCustomerExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -125,8 +122,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO) {
         try {
-            Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findById(customerDTO.getCustomerId());
+            Optional<CustomerEntity> customerExist = this.iCustomerRepository.findById(customerDTO.getCustomerId());
             if (customerExist.isPresent()){
                 CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
                 this.iCustomerRepository.save(customerEntity);
@@ -155,13 +151,11 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<GenericResponseDTO> deleteCustomer(Integer customerId) {
         try {
-            Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findById(customerDTO.getCustomerId());
+            Optional<CustomerEntity> customerExist = this.iCustomerRepository.findById(customerId);
             if (customerExist.isPresent()){
-                CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
-                this.iCustomerRepository.delete(customerEntity);
+                this.iCustomerRepository.deleteById(customerId);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)

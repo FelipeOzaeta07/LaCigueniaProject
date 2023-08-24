@@ -15,6 +15,6 @@ public interface IProductApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateProduct(@RequestBody ProductDTO productDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteProducts(@RequestBody ProductDTO productDTO);
+    ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId);
 }
 

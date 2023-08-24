@@ -13,6 +13,7 @@ import lombok.*;
 public class UserDTO implements Serializable {
 
     private Integer userId;
+    private String userName;
     private String userEmail;
     private String userPassword;
 }
