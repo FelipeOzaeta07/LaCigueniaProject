@@ -16,5 +16,5 @@ public interface ICategoryApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateCategory (@RequestBody CategoryDTO categoryDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteCategory (@RequestBody CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponseDTO> deleteCategory (@PathVariable Integer categoryId);
 }

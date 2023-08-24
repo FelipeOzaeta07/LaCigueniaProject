@@ -9,5 +9,5 @@ public interface IMaterialService {
     ResponseEntity<GenericResponseDTO> readMaterial(MaterialDTO materialDTO);
     ResponseEntity<GenericResponseDTO> readMaterials();
     ResponseEntity<GenericResponseDTO> updateMaterial(MaterialDTO materialDTO);
-    ResponseEntity<GenericResponseDTO> deleteMaterial(MaterialDTO materialDTO);
+    ResponseEntity<GenericResponseDTO> deleteMaterial(Integer materialId);
 }

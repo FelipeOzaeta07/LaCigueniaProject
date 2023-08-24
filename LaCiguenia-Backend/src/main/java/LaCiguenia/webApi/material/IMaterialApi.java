@@ -15,5 +15,5 @@ public interface IMaterialApi {
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateMaterial(@RequestBody MaterialDTO materialDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteMaterial(@RequestBody MaterialDTO materialDTO);
+    ResponseEntity<GenericResponseDTO> deleteMaterial(@PathVariable Integer materialId);
 }

@@ -9,5 +9,5 @@ public interface ICategoryService {
     ResponseEntity<GenericResponseDTO> readCategory (CategoryDTO categoryDTO);
     ResponseEntity<GenericResponseDTO> readCategories ();
     ResponseEntity<GenericResponseDTO> updateCategory (CategoryDTO categoryDTO);
-    ResponseEntity<GenericResponseDTO> deleteCategory (CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponseDTO> deleteCategory (Integer categoryId);
 }

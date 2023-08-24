@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -119,7 +120,7 @@ public class DetailApi implements IDetailApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.DELETE_DETAIL)
-    public ResponseEntity<GenericResponseDTO> deleteDetail(DetailDTO detailDTO) {
-        return this.iDetailService.deleteDetail(detailDTO);
+    public ResponseEntity<GenericResponseDTO> deleteDetail(@PathVariable Integer detailId) {
+        return this.iDetailService.deleteDetail(detailId);
     }
 }
