@@ -1,0 +1,9 @@
+export const TITLE = "Editar Producto";
+export const NAME_PRODUCT = "Nombre Producto";
+export const PRICE = "Precio";
+export const IVA = "IVA";
+export const DESCRIPTION = "Descripcion";
+export const CODE = "Codigo";
+export const AMOUNT = "Cantidad";
+export const FAIL = "CANCELAR";
+export const DONE = "CONFIRMAR";

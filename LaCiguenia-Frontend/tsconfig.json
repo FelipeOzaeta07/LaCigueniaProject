@@ -2,11 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"],
-      "@app/*": ["src/app/*"],
-      "@module/*": ["src/app/module/*"]
+      "@module/*": ["./src/app/module/*"],
+      "@commons/*": ["./src/app/commons/*"],
+      "@component/*": ["./src/app/component/*"],
+      "@repository/*": ["./src/app/repository/*"],
+      "@service/*": ["./src/app/service/*"]
       },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

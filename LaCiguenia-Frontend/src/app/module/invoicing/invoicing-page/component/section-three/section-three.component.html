@@ -1,7 +1,7 @@
 <section class="row_evenly inherit border_start">
     <div class="col_start col_17 h_10 border_end">
         <div class="bg_color_one row_center col_17 px_1">
-            <input type="text" class="input col_10 size_1" placeholder="Cliente">
+            <a (click)="modalEventOne()" class="input col_10 size_1 bg_color">Cliente</a>
         </div>
     </div>
     <div class="col_17 h_60 border_end">
@@ -49,7 +49,7 @@
         </div>
         <div class="row_center col_17 h_20 border_y">
             <div class="col_center col_17">
-                <button class="col_10 btn_one size_1">{{pay}}</button>
+                <button (click)="modalEventTwo()" class="col_10 btn_one size_1">{{pay}}</button>
             </div>
         </div>
     </div>

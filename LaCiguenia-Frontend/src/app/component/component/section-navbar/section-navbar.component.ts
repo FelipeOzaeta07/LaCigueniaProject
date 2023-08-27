@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BOXPAY, INVENTORY, PRODUCTS, SALES } from '@app/component/component/section-navbar/constans/section-navbar';
+import { BOXPAY, INVENTORY, PRODUCTS, SALES } from '@component/component/section-navbar/constans/section-navbar';
 
 @Component({
   selector: 'app-section-navbar',

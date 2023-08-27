@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DATE, OPENING_BOX, STORE, TITLE, TOTAL } from '@module/opening/opening-page/component/section-one/constans/section-one';
 
@@ -9,36 +9,37 @@ import { DATE, OPENING_BOX, STORE, TITLE, TOTAL } from '@module/opening/opening-
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent {
-  title = TITLE;
+  textTitle = TITLE;
   textDate = DATE;
   textTotal = TOTAL;
   textStore = STORE;
   textOpeningBox = OPENING_BOX;
   
-  BoxOpeningForm: FormGroup;
   openingBox!: number;
   store: string = "General";
   total!: number;
   date: string = new Date().toISOString().slice(0, 10);
-
+  BoxOpeningForm!: FormGroup;
+  
 
   constructor(private formulario: FormBuilder, private router: Router){
     this.BoxOpeningForm = this.formulario.group({
-      date: new FormControl(this.date, [Validators.required]),
-      store: new FormControl(this.store, [Validators.required]),
-      openingBox: new FormControl(this.openingBox, [Validators.required]),
+      date: [this.date, [Validators.required]],
+      store: [this.store, [Validators.required]],
+      openingBox: [this.openingBox, [Validators.required]],
       total: ['', [Validators.required]]
     });
-  }
+   }
 
   useCase(){
-    this.total = this.openingBox;
     this.BoxOpeningForm.patchValue({
-      aperturaCaja: this.openingBox,
-      total: this.total
+      openingBox: this.openingBox,
+      total: this.openingBox
     });
+
     if (this.BoxOpeningForm.valid){
-      this.router.navigate(['/login-laciguenia/pago-page-principal']);
+      console.log("prueba Datos: " + this.BoxOpeningForm.valid);
+      this.router.navigate(['/login-laciguenia/opening-page-principal/invoicing-page-principal']);
     }
   }
 }

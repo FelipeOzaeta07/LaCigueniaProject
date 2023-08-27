@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from '@module/admin/admin-routing.module';
 import { AdminPageComponent } from '@module/admin/admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentModule } from '@src/app/component/component.module';
+import { ComponentModule } from '@component/component.module';
 import { SectionOneComponent } from '@module/admin/admin-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/admin/admin-page/component/section-two/section-two.component';
 import { SectionThreeComponent } from '@module/admin/admin-page/component/section-three/section-three.component';

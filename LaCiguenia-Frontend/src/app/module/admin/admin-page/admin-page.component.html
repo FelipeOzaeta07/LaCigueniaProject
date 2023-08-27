@@ -1,18 +1,15 @@
-<app-modal-one></app-modal-one>
-
-
-<!--<main class="h_100 col_start">
+<main class="h_100 col_start">
+    <app-modal-one *ngIf="modal" (modalActivate)="modalActivate($event)" class="h_100"></app-modal-one>
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_15 h_100">
         <app-section-header class="col_17 h_8"></app-section-header>
         <app-section-one class="col_17 h_22"></app-section-one>
         <section class="room col_17 col_start h_70">
             <div class="col_13">
-                <app-section-two class="h_28"></app-section-two>
+                <app-section-two (modalActivate)="modalActivate($event)" class="h_28"></app-section-two>
                 <app-section-three class="h_42"></app-section-three>
             </div>
             <app-section-four class="col_4 h_70"></app-section-four>
         </section>
     </section>
 </main>
--->

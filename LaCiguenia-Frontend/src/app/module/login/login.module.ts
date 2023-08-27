@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SectionOneComponent } from '@module/login/login-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/login/login-page/component/section-two/section-two.component';
+import { UserModule } from '@service/user/user.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SectionTwoComponent } from '@module/login/login-page/component/section-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    UserModule
   ]
 })
 export class LoginModule { }

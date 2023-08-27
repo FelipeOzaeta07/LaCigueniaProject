@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CREATE_ACCOUNT, FORGOT_PASSWORD, HERE, NEED_HELP, SIGN_IN } from '@module/login/login-page/component/section-two/constans/section-two';
+import { GenericResponse } from '@commons/response/GenericResponse';
+import { UserServiceUseCase } from '@repository/user/case/UserServiceUseCase';
 
 @Component({
   selector: 'app-section-two',
@@ -7,9 +11,48 @@ import { CREATE_ACCOUNT, FORGOT_PASSWORD, HERE, NEED_HELP, SIGN_IN } from '@modu
   styleUrls: ['./section-two.component.scss']
 })
 export class SectionTwoComponent {
-  signIn = SIGN_IN;
-  forgotPassword = FORGOT_PASSWORD;
-  createAccount = CREATE_ACCOUNT;
-  needHelp = NEED_HELP;
-  here = HERE;
+  textSignIn = SIGN_IN;
+  textForgotPassword = FORGOT_PASSWORD;
+  textCreateAccount = CREATE_ACCOUNT;
+  textNeedHelp = NEED_HELP;
+  textHere = HERE;
+
+  userService!: FormGroup;
+
+  constructor(public formulary: FormBuilder, private userServiceUseCase: UserServiceUseCase,
+              public router: Router){
+    this.userService = formulary.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  userServices() {
+    if (!this.userService.valid) {
+      this.userService.markAllAsTouched();
+      return;
+    }
+  
+    const params = {
+      userEmail: this.userService.controls['email'].value,
+      userPassword: this.userService.controls['password'].value,
+    };
+  
+    this.userServiceUseCase.execute(params).subscribe(
+      (genericResponse: GenericResponse) => {
+        if (genericResponse.statusCode === 200) {
+          this.router.navigateByUrl('login-laciguenia/admin-page-principal');
+          this.userService.reset();
+        } else {
+          alert("Verificar Contraseña o Email");
+          this.userService.reset();
+        }
+      },
+      (error) => {
+        console.error('Error en la suscripción:', error);
+        alert("Ocurrió un error al procesar la solicitud");
+        this.userService.reset();
+      }
+    );
+  }
 }

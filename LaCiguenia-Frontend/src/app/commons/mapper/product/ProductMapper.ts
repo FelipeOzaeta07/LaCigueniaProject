@@ -1,6 +1,6 @@
-import { Mapper } from "@src/app/commons/helpers/Mapper";
-import { ProductEntity } from "@app/commons/domains/entity/product/ProductEntity";
-import { ProductModel } from "@src/app/commons/domains/model/product/ProductModel";
+import { Mapper } from "@commons/helpers/Mapper";
+import { ProductEntity } from "@commons/domains/entity/product/ProductEntity";
+import { ProductModel } from "@commons/domains/model/product/ProductModel";
 
 
 export class ProductMapper extends Mapper<ProductEntity, ProductModel>{
@@ -10,7 +10,8 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel>{
             productName: params.productName,
             productPrice: params.productPrice,
             productDescription: params.productDescription,
-            categoryEntity: params.categoryEntity
+            categoryEntity: params.categoryEntity,
+            inventoryEntity: params.inventoryEntity
         };
     }
     override converterModelToEntity(params: ProductModel): ProductEntity {
@@ -19,7 +20,8 @@ export class ProductMapper extends Mapper<ProductEntity, ProductModel>{
             productName: params.productName,
             productPrice: params.productPrice,
             productDescription: params.productDescription,
-            categoryEntity: params.categoryEntity
+            categoryEntity: params.categoryEntity,
+            inventoryEntity: params.inventoryEntity
         };
     }
 }

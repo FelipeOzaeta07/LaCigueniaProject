@@ -1,6 +1,6 @@
-export const BASE_URL_PRODUCT = 'Http:localhost:8080';
-export const CREATE_PRODUCT = "/create-product";
-export const READ_PRODUCT = "/leer-product";
-export const READ_PRODUCTS = "/leer-products";
-export const UPDATE_PRODUCT = "/actualizar-product";
-export const DELETE_PRODUCT = "/eliminar-product";
+export const BASE_URL_PRODUCT = 'http://localhost:8080/producto';
+export const CREATE_PRODUCT = "/create-producto";
+export const READ_PRODUCT = "/leer-producto";
+export const READ_PRODUCTS = "/leer-productos";
+export const UPDATE_PRODUCT = "/actualizar-producto";
+export const DELETE_PRODUCT = "/eliminar-producto";

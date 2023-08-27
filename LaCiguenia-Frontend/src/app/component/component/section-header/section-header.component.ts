@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WHATSAPP } from '@app/component/component/section-header/constans/section-header';
+import { WHATSAPP } from '@component/component/section-header/constans/section-header';
 
 @Component({
   selector: 'app-section-header',

@@ -46,6 +46,12 @@ td {
     padding-top: calc(0.3vw);
     padding-bottom: calc(0.3vw);
 }
+.ng-valid:not(form).ng-touched   {
+    border-bottom: 0.4vh solid #42A948;
+}
+.ng-invalid:not(form).ng-touched  {
+    border-bottom: 0.4vh solid #a94442;
+}
 
 /* Implement for mobile */
 @media screen and (min-width: 0px) and (max-width: 499px){}
