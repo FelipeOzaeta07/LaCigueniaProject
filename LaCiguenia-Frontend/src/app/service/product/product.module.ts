@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductRepository } from '@src/app/repository/product/ProductRepository';
-import { ProductCreateUseCase } from '@src/app/repository/product/case/ProductCreateUseCase';
-import { ProductReadUseCase } from '@src/app/repository/product/case/ProductReadUseCase';
-import { ProductsReadUseCase } from '@src/app/repository/product/case/ProductsReadUseCase';
-import { ProductUpdateUseCase } from '@src/app/repository/product/case/ProductUpdateUseCase';
-import { ProductDeleteUseCase } from '@src/app/repository/product/case/ProductDeleteUseCase';
-import { ProductService } from '@app/service/product/service/ProductService';
+import { ProductRepository } from '@repository/product/ProductRepository';
+import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseCase';
+import { ProductReadUseCase } from '@repository/product/case/ProductReadUseCase';
+import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
+import { ProductUpdateUseCase } from '@repository/product/case/ProductUpdateUseCase';
+import { ProductDeleteUseCase } from '@repository/product/case/ProductDeleteUseCase';
+import { ProductService } from '@service/product/implement/ProductService';
 import { HttpClientModule } from '@angular/common/http';
 
 

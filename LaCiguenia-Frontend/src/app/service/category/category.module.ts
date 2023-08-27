@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryRepository } from '@src/app/repository/category/CategoryRepository';
-import { CategoryDeleteUseCase } from '@src/app/repository/category/case/CategoryDeleteUseCase';
-import { CategoryUpdateUseCase } from '@src/app/repository/category/case/CategoryUpdateUseCase';
-import { CategoriesReadUseCase } from '@src/app/repository/category/case/CategoriesReadUseCase';
-import { CategoryCreateUseCase } from '@src/app/repository/category/case/CategoryCreateUseCase';
-import { CategoryReadUseCase } from '@src/app/repository/category/case/CategoryReadUseCase';
-import { CategoryService } from '@app/service/category/service/CategoryService';
+import { CategoryRepository } from '@repository/category/CategoryRepository';
+import { CategoryDeleteUseCase } from '@repository/category/case/CategoryDeleteUseCase';
+import { CategoryUpdateUseCase } from '@repository/category/case/CategoryUpdateUseCase';
+import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
+import { CategoryCreateUseCase } from '@repository/category/case/CategoryCreateUseCase';
+import { CategoryReadUseCase } from '@repository/category/case/CategoryReadUseCase';
+import { CategoryService } from '@service/category/implement/CategoryService';
 import { HttpClientModule } from '@angular/common/http';
 
 

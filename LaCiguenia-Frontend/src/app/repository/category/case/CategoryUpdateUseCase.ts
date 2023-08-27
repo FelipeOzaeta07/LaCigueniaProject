@@ -1,14 +1,15 @@
-import { UseCase } from "@src/app/commons/helpers/UserCase";
-import { CategoryRepository } from "@app/repository/category/CategoryRepository";
-import { CategoryModel } from "@app/commons/domains/model/category/CategoryModel";
+import { UseCase } from "@commons/helpers/UserCase";
+import { CategoryRepository } from "@repository/category/CategoryRepository";
+import { CategoryModel } from "@commons/domains/model/category/CategoryModel";
 import { Observable } from "rxjs";
+import { GenericResponse } from "@commons/response/GenericResponse";
 
 
-export class CategoryUpdateUseCase implements UseCase<CategoryModel, GenericResponseDTO>{
+export class CategoryUpdateUseCase implements UseCase<CategoryModel, GenericResponse>{
 
     constructor(private categoryRepository: CategoryRepository){}
 
-    execute(categoryModel: CategoryModel) : Observable<GenericResponseDTO>{
+    execute(categoryModel: CategoryModel) : Observable<GenericResponse>{
         return this.categoryRepository.updateCategory(categoryModel);
     }
 }

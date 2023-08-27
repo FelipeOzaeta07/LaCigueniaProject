@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class InvoicingPageComponent {
 
+  modalOne!: boolean;
+  modalTwo!: boolean;
+
+  modalActivateOne(datos: boolean) {
+    this.modalOne = datos;
+  }
+  modalActivateTwo(datos: boolean) {
+    this.modalTwo = datos;
+  }
 }

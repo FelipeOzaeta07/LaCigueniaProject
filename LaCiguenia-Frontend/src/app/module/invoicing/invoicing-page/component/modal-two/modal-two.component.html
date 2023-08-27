@@ -1,0 +1,40 @@
+<section  class="col_center item_center inherit bg_color_black z_index">
+    <div class="col_8 room border h_63 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitle}}</h1>
+        </div>
+        <div class="col_17">
+            <div class="col_between py_1 border_top">
+                <p class="size_1">{{textSubtotal}}</p>
+                <p class="size_1">{{textSymbolPrice}} 777777</p>
+            </div>
+            <div class="col_between py_1 border_y">
+                <p class="size_1">{{textIva}}</p>
+                <p class="size_1">{{textSymbolPrice}} 777777</p>
+            </div>
+            <div class="col_between py_1 border_bottom">
+                <p class="size_2 item_center">{{textTotal}}</p>
+                <p class="size_3 text_color_one">{{textSymbolPrice}} 777777</p>
+            </div>
+        </div>
+        <div class="col_17">
+            <div class="col_between">
+                <button type="submit" class="col_8 btn_one size_1">{{textDiscount}}</button>
+                <button type="submit" class="col_8 btn_one size_1">{{textAddPay}}</button>
+            </div>
+            <div class="col_between pt_1">
+                <input type="text" class="input col_8 size_2 text_weight" value="Efectivo">
+                <input type="text" class="input col_8 size_2 text_color_two text_end" value="{{textSymbolPrice}} 777777">
+            </div>
+        </div>
+        
+        <div class="col_17 py_1 col_between border_y">
+            <p class="size_1">{{textChange}}</p>
+            <p class="size_1">{{textSymbolPrice}} 7777</p>
+        </div>
+        <div class="col_17 col_between">
+            <button class="col_5 btn_two size_2" (click)="modalEventTwo()">{{textFail}}</button>
+            <button type="submit" class="col_5 btn_one size_2">{{textPay}}</button>
+        </div>
+    </div>
+</section>

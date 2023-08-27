@@ -1,11 +1,12 @@
-import { UserModel } from "@src/app/commons/domains/model/user/UserModel";
-import { UserEntity } from "@app/commons/domains/entity/user/UserEntity";
-import { Mapper } from "@src/app/commons/helpers/Mapper";
+import { UserModel } from "@commons/domains/model/user/UserModel";
+import { UserEntity } from "@commons/domains/entity/user/UserEntity";
+import { Mapper } from "@commons/helpers/Mapper";
 
 export class UserMapper extends Mapper<UserEntity, UserModel>{
     override converterEntityToModel(params: UserEntity): UserModel {
         return{
             userId: params.userId,
+            userName: params.userName,
             userEmail: params.userEmail,
             userPassword: params.userPassword
         };
@@ -13,6 +14,7 @@ export class UserMapper extends Mapper<UserEntity, UserModel>{
     override converterModelToEntity(params: UserModel): UserEntity {
         return{
             userId: params.userId,
+            userName: params.userName,
             userEmail: params.userEmail,
             userPassword: params.userPassword
         };
