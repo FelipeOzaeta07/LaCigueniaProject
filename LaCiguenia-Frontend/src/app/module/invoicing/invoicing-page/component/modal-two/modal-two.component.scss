@@ -1,0 +1,48 @@
+@import url(/src/styles.scss);
+
+.z_index{
+    position: fixed;
+    z-index: 1;
+    width: calc(100vw);
+    height: calc(100vh);
+}
+.border{
+    border-radius: 20px;
+}
+.border_top{
+    border-top: 1px solid;
+    border-color: var(--color_three);
+}
+.border_y{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+.border_bottom{
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+.text_weight{
+    font-weight: 700;
+}
+.py_1{
+    padding-top: calc(0.7vh);
+    padding-bottom: calc(0.7vh);
+}
+.pt_1{
+    padding-top: calc(2vh);
+}
+.text_color_one{
+    color: var(--color_fourteen);
+}
+.input{
+    padding-top: calc(0.4vw);
+    padding-bottom: calc(0.4vw);
+    border-radius: 10px;
+}
+.bg_color_black{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.bg_color_white{
+    background-color: var(--color_seven);
+}

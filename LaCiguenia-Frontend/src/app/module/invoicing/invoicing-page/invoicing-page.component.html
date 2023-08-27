@@ -1,4 +1,6 @@
 <main class="h_100 col_start">
+    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" class="h_100"></app-modal-one>
+    <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)" class="h_100"></app-modal-two>
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_10 h_100">
         <div class="col_17">
@@ -7,6 +9,6 @@
         </div>
     </section>
     <section class="col_5">
-        <app-section-three class="h_100"></app-section-three>
+        <app-section-three (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" class="h_100"></app-section-three>
     </section>
 </main>

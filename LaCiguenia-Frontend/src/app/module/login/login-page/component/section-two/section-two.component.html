@@ -5,34 +5,34 @@
         </div>
     </div>
     <div class="h_60 col_center item_center">
-        <div class="col_17">
+        <form (ngSubmit)="userServices()" [formGroup]="userService" class="col_17">
             <div class="py_2">
-                <h3 class="size_4 text_center">{{signIn}}</h3>
+                <h3 class="size_4 text_center">{{textSignIn}}</h3>
             </div>
             <div>
-                <input type="text" class="input col_17 size_1" placeholder="Ingresar el Correo Electrónico">
+                <input type="text" class="input col_17 size_1" placeholder="Ingresar el Correo Electrónico" formControlName="email">
             </div>
             <div class="py_1">
-                <input type="text" class="input col_17 size_1" placeholder="Contraseña">
+                <input type="password" class="input col_17 size_1" placeholder="Contraseña" formControlName="password">
             </div>
             <div class="py_1 col_between">
                 <div>
-                    <p>{{forgotPassword}}</p>
+                    <p>{{textForgotPassword}}</p>
                 </div>
                 <div>
-                    <p>{{createAccount}}</p>
+                    <p>{{textCreateAccount}}</p>
                 </div>
             </div>
             <div class="py_1">
-                <button class="col_17 size_3 btn_one">{{signIn}}</button>
+                <button class="col_17 size_3 btn_one">{{textSignIn}}</button>
             </div>
-        </div>
+        </form>
     </div>
 
                     
     <div class="h_10 col_center item_center">
         <div class="col_17">
-            <p class="text_center size_1 text_color_two">{{needHelp}}<a href="" class="text_a">{{here}}</a></p>
+            <p class="text_center size_1 text_color_two">{{textNeedHelp}}<a href="" class="text_a">{{textHere}}</a></p>
         </div>
     </div>
 </section>

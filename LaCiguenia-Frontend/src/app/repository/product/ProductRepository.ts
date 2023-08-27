@@ -1,10 +1,11 @@
 import { Observable } from "rxjs";
-import { ProductModel } from "@app/commons/domains/model/product/ProductModel";
+import { ProductModel } from "@commons/domains/model/product/ProductModel";
+import { GenericResponse } from "@commons/response/GenericResponse";
 
 export abstract class ProductRepository {
-    abstract createProduct(productModel : ProductModel): Observable<GenericResponseDTO>;
-    abstract readProduct(params: {productId: number}): Observable<GenericResponseDTO>;
-    abstract readProducts (): Observable<GenericResponseDTO>;
-    abstract updateProduct (categoryModel : ProductModel): Observable<GenericResponseDTO>;
-    abstract deleteProduct (params: {productId: number}): Observable<GenericResponseDTO>;
+    abstract createProduct(productModel : ProductModel): Observable<GenericResponse>;
+    abstract readProduct(params: {productId: number}): Observable<GenericResponse>;
+    abstract readProducts (): Observable<GenericResponse>;
+    abstract updateProduct (categoryModel : ProductModel): Observable<GenericResponse>;
+    abstract deleteProduct (params: {productId: number}): Observable<GenericResponse>;
 }

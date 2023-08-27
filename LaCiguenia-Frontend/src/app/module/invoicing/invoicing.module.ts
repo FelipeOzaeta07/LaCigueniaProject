@@ -7,7 +7,10 @@ import { SectionOneComponent } from '@module/invoicing/invoicing-page/component/
 import { SectionTwoComponent } from '@module/invoicing/invoicing-page/component/section-two/section-two.component';
 import { SectionThreeComponent } from '@module/invoicing/invoicing-page/component/section-three/section-three.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentModule } from '@src/app/component/component.module';
+import { ComponentModule } from '@component/component.module';
+import { ModalOneComponent } from './invoicing-page/component/modal-one/modal-one.component';
+import { ModalTwoComponent } from './invoicing-page/component/modal-two/modal-two.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,13 +18,16 @@ import { ComponentModule } from '@src/app/component/component.module';
     InvoicingPageComponent,
     SectionOneComponent,
     SectionTwoComponent,
-    SectionThreeComponent
+    SectionThreeComponent,
+    ModalOneComponent,
+    ModalTwoComponent
   ],
   imports: [
     CommonModule,
     InvoicingRoutingModule,
     HttpClientModule,
-    ComponentModule
+    ComponentModule,
+    ReactiveFormsModule
   ]
 })
 export class InvoicingModule { }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ComponentRoutingModule } from '@app/component/component-routing.module';
-import { SectionNavbarComponent } from '@app/component/component/section-navbar/section-navbar.component';
-import { SectionHeaderComponent } from '@app/component/component/section-header/section-header.component';
+import { ComponentRoutingModule } from '@component/component-routing.module';
+import { SectionNavbarComponent } from '@component/component/section-navbar/section-navbar.component';
+import { SectionHeaderComponent } from '@component/component/section-header/section-header.component';
 
 
 @NgModule({
