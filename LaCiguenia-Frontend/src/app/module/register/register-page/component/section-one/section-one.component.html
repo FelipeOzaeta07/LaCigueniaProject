@@ -1,0 +1,47 @@
+<section class="h_100 px_3">
+    <div class="h_22 col_center item_center">
+        <div class="col_17">
+            <h1 class="text_center">Imagen Logo La Ciguenia</h1>
+        </div>
+    </div>
+    <div class="h_70 col_center item_center">
+        <form [formGroup]="registerForm" class="col_17">
+            <div>
+                <h3 class="size_4 text_center">{{textTitle}}</h3>
+            </div>
+            <div>
+                <p class="size_1 py_1">{{textName}}</p>
+                <input type="text" class="input col_17 size_1" placeholder="Ingrese el Nombre Completo" formControlName="name">
+            </div>
+            <div>
+                <p class="size_1 py_1">{{textEmail}}</p>
+                <input type="email" class="input col_17 size_1" placeholder="Ingresar Correo Electronico" formControlName="email">
+            </div>
+            
+            <div class="col_17 col_between">
+                <div class="col_8">
+                    <p class="size_1 py_1">{{textPassword}}</p>
+                    <input type="password" class="input col_17 size_1" placeholder="Password" formControlName="password">
+                </div>
+                <div class="col_8">
+                    <p class="size_1 py_1">{{textConfirmPassword}}</p>
+                    <input type="password" class="input col_17 size_1" placeholder="Confirmar Password" formControlName="confirmPassaword">
+                </div>
+            </div>
+            
+            <div class="py_1 col_between">
+                <div>
+                    <p class="size_1 text_color_two">{{textDoneConditions}}</p>
+                </div>
+            </div>
+            <div>
+                <button class="col_17 size_3 btn_one">{{textTitle}}</button>
+            </div>
+        </form>
+    </div>
+    <div class="h_8 col_center item_center">
+        <div class="col_17">
+            <p class="text_center size_1 text_color_two">{{textText}}<a routerLink="/login-laciguenia" class="text_a">{{textHere}}</a></p>
+        </div>
+    </div>
+</section>
