@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "detail_invoice_ciguenia")
 public class DetailEntity {
     @Id
-    @Column(name = "detal_id")
+    @Column(name = "detail_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer detailId;
 

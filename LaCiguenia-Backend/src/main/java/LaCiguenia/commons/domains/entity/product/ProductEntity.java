@@ -50,4 +50,11 @@ public class ProductEntity {
     @JoinColumn(name = "inventory_id")
     @JsonBackReference
     private InventoryEntity inventoryEntity;
+
+    public CategoryEntity getCategoryEntity() {
+        return this.categoryEntity;
+    }
+
+    public void setCategoryEntity(CategoryEntity categoryEntity) {
+    }
 }

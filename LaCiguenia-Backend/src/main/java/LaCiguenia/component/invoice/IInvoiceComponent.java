@@ -6,4 +6,7 @@ import java.util.List;
 public interface IInvoiceComponent {
     Integer invoiceSalesTotalDay (List<InvoiceEntity> listInvoice);
     Integer invoiceSalesTotalMonth (List<InvoiceEntity> listInvoice);
+    Integer invoiceCountTotalMonth (List <InvoiceEntity> listInvoice);
+
+
 }

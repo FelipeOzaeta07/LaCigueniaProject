@@ -31,7 +31,7 @@ public class ProductService implements IProductService {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
                     .findById(productDTO.getProductId());
-            if (!productoExist.isPresent()){
+            if (productoExist.isEmpty()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()

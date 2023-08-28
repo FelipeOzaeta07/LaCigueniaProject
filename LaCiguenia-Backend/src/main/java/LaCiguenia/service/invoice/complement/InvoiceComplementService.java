@@ -10,6 +10,7 @@ import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.service.invoice.IInvoiceComplementService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @Log4j2
+
 public class InvoiceComplementService implements IInvoiceComplementService {
     @Autowired
     private IInvoiceRepository iInvoiceRepository;
@@ -32,9 +34,12 @@ public class InvoiceComplementService implements IInvoiceComplementService {
             if (!listInvoice.isEmpty()){
                 Integer salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);
                 Integer salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
-                Object genericResponse = GenericResponse.builder()
+                Integer countInvoiceMonth = this.invoiceComponent.invoiceCountTotalMonth(listInvoice);
+                GenericResponse genericResponse = GenericResponse.builder()
                         .objectResponseOne(salesTotalDay)
-                        .objectResponseTwo(salesTotalMonth);
+                        .objectResponseTwo(salesTotalMonth)
+                        .objectResponseThree(countInvoiceMonth)
+                        .build();
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(genericResponse)

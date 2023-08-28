@@ -25,4 +25,17 @@ public class ProductDTO implements Serializable {
     private String productDescription;
     private List<MaterialEntity> listMaterial;
     private List<DetailEntity> listDetail;
+
+
+    public Integer getProductId() {
+        return this.productId;
+    }
+
+    public void setCategoryEntity(CategoryDTO categoryDTO) {
+
+    }
+
+    public Object getCategoryEntity() {
+        return null;
+    }
 }

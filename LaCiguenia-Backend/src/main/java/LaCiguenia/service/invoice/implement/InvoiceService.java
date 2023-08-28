@@ -29,7 +29,7 @@ public class InvoiceService implements IInvoiceService {
     public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {
         try {
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
-            if (!invoiceExist.isPresent()){
+            if (invoiceExist.isEmpty()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
                 this.iInvoiceRepository.save(invoiceEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()

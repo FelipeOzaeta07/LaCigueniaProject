@@ -78,8 +78,8 @@ public class InvoiceApi implements IInvoiceApi {
             @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IInvoiceEndPoint.READ_INVOICES)
-    public ResponseEntity<GenericResponseDTO> readInvoices()
-    {return this.invoiceService.readInvoices();
+    public ResponseEntity<GenericResponseDTO> readInvoices() {
+        return this.invoiceService.readInvoices();
     }
 
     @Override

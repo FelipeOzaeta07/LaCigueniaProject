@@ -49,4 +49,24 @@ public class InvoiceComponent implements IInvoiceComponent {
             return invoicesTotal;
         }
     }
+
+    @Override
+    public Integer invoiceCountTotalMonth(List<InvoiceEntity> listInvoice) {
+        Integer invoicesTotal = 0;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            Integer monthCurrent = calendar.get(Calendar.MONTH) + 1;
+            for (InvoiceEntity invoiceEntity : listInvoice) {
+                Date invoiceDate = invoiceEntity.getInvoiceDate();
+                calendar.setTime(invoiceDate);
+                if (monthCurrent.equals(calendar.get(Calendar.MONTH) + 1)) {
+                    invoicesTotal += 1;
+                }
+            }
+            return invoicesTotal;
+        } catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return invoicesTotal;
+        }
+    }
 }
