@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="h_70 col_center item_center">
-        <form [formGroup]="registerForm" class="col_17">
+        <form (ngSubmit)="userCreate()" [formGroup]="registerForm" class="col_17">
             <div>
                 <h3 class="size_4 text_center">{{textTitle}}</h3>
             </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col_8">
                     <p class="size_1 py_1">{{textConfirmPassword}}</p>
-                    <input type="password" class="input col_17 size_1" placeholder="Confirmar Password" formControlName="confirmPassaword">
+                    <input type="password" class="input col_17 size_1" placeholder="Confirmar Password" [(ngModel)]="confirmPassaword" formControlName="confirmPassaword">
                 </div>
             </div>
             
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div>
-                <button class="col_17 size_3 btn_one">{{textTitle}}</button>
+                <button type="submit" class="col_17 size_3 btn_one">{{textTitle}}</button>
             </div>
         </form>
     </div>

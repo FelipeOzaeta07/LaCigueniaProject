@@ -2,13 +2,14 @@ import { Observable } from "rxjs";
 import { UserRepository } from "@repository/user/UserRepository";
 import { UseCase } from "@commons/helpers/UserCase";
 import { GenericResponse } from "@commons/response/GenericResponse";
+import { UserModel } from "@commons/domains/model/user/UserModel";
 
 
-export class UserCreateUseCase implements UseCase<{userEmail: string; userPassword: string}, GenericResponse>{
+export class UserCreateUseCase implements UseCase<UserModel, GenericResponse>{
 
     constructor(private userRepository: UserRepository){}
 
-    execute(params: {userEmail: string; userPassword: string}) : Observable<GenericResponse>{
-        return this.userRepository.userCreate(params);
+    execute(userModel: UserModel) : Observable<GenericResponse>{
+        return this.userRepository.userCreate(userModel);
     }
 }
