@@ -34,7 +34,7 @@ public class InvoiceComplementApi implements IInvoiceComplementApi {
 
 
     @Override
-    @Operation(summary = "Leer factura por mes y por dia")
+    @Operation(summary = "Leer factura por dia")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
                     content = {@Content(mediaType = "application/json",
@@ -46,8 +46,44 @@ public class InvoiceComplementApi implements IInvoiceComplementApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IInvoiceEndPoint.READ_INVOICE_MONTH_DAY)
-    public ResponseEntity<GenericResponseDTO> readInvoices() {
-       return this.invoiceComplementService.readInvoices();
+    @GetMapping(IInvoiceEndPoint.READ_INVOICE_DAY)
+    public ResponseEntity<GenericResponseDTO> readInvoicesDay() {
+       return this.invoiceComplementService.readSalesTotalInvoicesDay();
+    }
+
+    @Override
+    @Operation(summary = "Leer factura por mes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IInvoiceEndPoint.READ_INVOICE_MONTH)
+    public ResponseEntity<GenericResponseDTO> readInvoicesMonth() {
+        return this.invoiceComplementService.readSalesTotalInvoiceMonth();
+    }
+
+    @Override
+    @Operation(summary = "Leer cantidad de facturas por mes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IUserResponse.AUTENTIFICACION_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IUserResponse.USER_FAIL,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IInvoiceEndPoint.READ_INVOICE_TOTAL)
+    public ResponseEntity<GenericResponseDTO> readTotalInvoices() {
+        return this.invoiceComplementService.readCountTotalInvoiceMonth();
     }
 }

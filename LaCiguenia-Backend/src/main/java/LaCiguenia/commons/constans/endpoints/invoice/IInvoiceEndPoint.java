@@ -9,6 +9,8 @@ public interface IInvoiceEndPoint {
     String READ_INVOICES = "/leer-facturas";
     String UPDATE_INVOICE = "/actualizar-factura";
     String DELETE_INVOICE = "/eliminar-factura";
-    String READ_INVOICE_MONTH_DAY = "/leer-facturas-mes-dia";
+    String READ_INVOICE_DAY = "/leer-facturas-dia";
+    String READ_INVOICE_MONTH = "/leer-facturas-mes";
+    String READ_INVOICE_TOTAL = "leer-facturas-total";
 
 }
