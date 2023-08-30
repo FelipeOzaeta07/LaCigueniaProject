@@ -7,6 +7,8 @@ import { SectionOneComponent } from '@module/products/products-page/component/se
 import { SectionTwoComponent } from '@module/products/products-page/component/section-two/section-two.component';
 import { ComponentModule } from '@component/component.module';
 import { ModalOneComponent } from '@module/products/products-page/component/modal-one/modal-one.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +21,10 @@ import { ModalOneComponent } from '@module/products/products-page/component/moda
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    ComponentModule
+    ComponentModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class ProductsModule { }

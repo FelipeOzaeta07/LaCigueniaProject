@@ -17,9 +17,6 @@ public class ProductConverter {
         ProductDTO productDTO = new ProductDTO();
         try {
             productDTO = HelperMapper.modelMapper().map(productEntity, ProductDTO.class);
-            CategoryDTO categoryDTO = HelperMapper.modelMapper()
-                    .map(productEntity.getCategoryEntity(), CategoryDTO.class);
-            productDTO.setCategoryEntity(categoryDTO);
         } catch (Exception e) {
             log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }
@@ -30,9 +27,6 @@ public class ProductConverter {
         ProductEntity productEntity = new ProductEntity();
         try {
             productEntity = HelperMapper.modelMapper().map(productDTO, ProductEntity.class);
-            CategoryEntity categoryEntity = HelperMapper.modelMapper()
-                    .map(productDTO.getCategoryEntity(), CategoryEntity.class);
-            productEntity.setCategoryEntity(categoryEntity);
         } catch (Exception e) {
             log.error(GeneralResponse.DOCUMENT_FAIL + e);
         }

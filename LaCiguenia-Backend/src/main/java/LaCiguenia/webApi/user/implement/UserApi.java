@@ -1,6 +1,5 @@
 package LaCiguenia.webApi.user.implement;
 
-
 import LaCiguenia.commons.constans.endpoints.user.IUserEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
@@ -43,8 +42,8 @@ public class UserApi implements IUserApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IUserEndPoint.USER_SERVICE)
-    public ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO) {
+    @PostMapping(IUserEndPoint.USER_SERVICE)
+    public ResponseEntity<GenericResponseDTO> serviceUser(@RequestBody UserDTO userDTO) {
         return this.iUserService.userService(userDTO);
     }
 
@@ -62,7 +61,7 @@ public class UserApi implements IUserApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IUserEndPoint.USER_CRATE)
-    public ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO) {
+    public ResponseEntity<GenericResponseDTO> createUser(@RequestBody UserDTO userDTO) {
         return iUserService.userCreate(userDTO);
     }
 }

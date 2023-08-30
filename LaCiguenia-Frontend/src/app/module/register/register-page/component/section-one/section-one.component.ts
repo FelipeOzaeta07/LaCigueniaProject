@@ -24,13 +24,13 @@ export class SectionOneComponent {
 
   registerForm!: FormGroup;
   userModel!: UserModel;
-  confirmPassaword!: string;
 
   constructor(public formulary: FormBuilder, public router: Router, private userCreateUseCase: UserCreateUseCase){
     this.registerForm = formulary.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
     });
   }
 
@@ -40,9 +40,7 @@ export class SectionOneComponent {
       return;
     }
 
-    console.log('Prueba Datos: ' + this.confirmPassaword);
-
-    if(this.confirmPassaword === this.registerForm.controls['password'].value){
+    if(this.registerForm.controls['confirmPassword'].value === this.registerForm.controls['password'].value){
       
       this.userModel = {
         userId: 0,
