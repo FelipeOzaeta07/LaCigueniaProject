@@ -1,6 +1,8 @@
 package LaCiguenia.commons.domains.entity.category;
 
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,5 +30,6 @@ public class CategoryEntity {
 
     @OneToMany(mappedBy = "categoryEntity")
     @JsonManagedReference
+    @JsonIgnore
     private List<ProductEntity> listProducts;
 }

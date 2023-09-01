@@ -1,11 +1,10 @@
 package LaCiguenia.webApi.product.implement;
 
-
 import LaCiguenia.commons.constans.endpoints.product.IProductEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
-import LaCiguenia.service.product.IProductService;
+import LaCiguenia.service.product.implement.ProductService;
 import LaCiguenia.webApi.product.IProductApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,10 +22,10 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 public class ProductApi implements IProductApi {
 
-    private final IProductService iProductService;
+    private final ProductService productService;
 
-    public ProductApi(IProductService iProductService) {
-        this.iProductService = iProductService;
+    public ProductApi(ProductService productService) {
+        this.productService = productService;
     }
 
 
@@ -45,7 +44,7 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IProductEndPoint.CREATE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.createProducts(productDTO);
+        return this.productService.createProducts(productDTO);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCT)
     public ResponseEntity<GenericResponseDTO> readProduct(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.readProduct(productDTO);
+        return this.productService.readProduct(productDTO);
     }
 
     @Override
@@ -81,7 +80,7 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCTS)
     public ResponseEntity<GenericResponseDTO> readProducts() {
-        return this.iProductService.readProducts();
+        return this.productService.readProducts();
     }
 
     @Override
@@ -99,7 +98,7 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")})})
     @PutMapping(IProductEndPoint.UPDATE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> updateProduct(@RequestBody ProductDTO productDTO) {
-        return this.iProductService.updateProduct(productDTO);
+        return this.productService.updateProduct(productDTO);
     }
 
     @Override
@@ -116,7 +115,7 @@ public class ProductApi implements IProductApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.DELETE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId) {
-        return this.iProductService.deleteProducts(productId);
+    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable String productCode) {
+        return this.productService.deleteProducts(productCode);
     }
 }

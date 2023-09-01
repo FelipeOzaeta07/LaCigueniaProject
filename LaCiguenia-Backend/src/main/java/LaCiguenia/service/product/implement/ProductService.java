@@ -30,7 +30,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getProductId());
+                    .findByProductCode(productDTO.getProductCode());
             if (!productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -61,11 +61,11 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getProductId());
+                    .findByProductCode(productDTO.getProductCode());
             if (productoExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(this.iProductRepository.findById(productDTO.getProductId()))
+                        .objectResponse(this.iProductRepository.findByProductCode(productDTO.getProductCode()))
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -91,14 +91,9 @@ public class ProductService implements IProductService {
         try {
             List<ProductEntity> listProductsEntity =this.iProductRepository.findAll();
             if (!listProductsEntity.isEmpty()){
-                List<ProductDTO> listProductDTO = new ArrayList<>();
-                for (ProductEntity productEntity : listProductsEntity){
-                    ProductDTO productDTO = this.productConverter.convertProductEntityToProductDTO(productEntity);
-                    listProductDTO.add(productDTO);
-                }
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listProductDTO)
+                        .objectResponse(listProductsEntity)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }
@@ -124,7 +119,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findById(productDTO.getProductId());
+                    .findByProductCode(productDTO.getProductCode());
             if (productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -152,11 +147,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteProducts(Integer productId) {
+    public ResponseEntity<GenericResponseDTO> deleteProducts(String productCode) {
         try {
-            Optional<ProductEntity> productoExist = this.iProductRepository.findById(productId);
+            Optional<ProductEntity> productoExist = this.iProductRepository.findByProductCode(productCode);
             if (productoExist.isPresent()){
-                this.iProductRepository.deleteById(productId);
+                this.iProductRepository.deleteByProductCode(productCode);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)

@@ -6,22 +6,20 @@ import { ProductModel } from "@commons/domains/model/product/ProductModel";
 export class ProductMapper extends Mapper<ProductEntity, ProductModel>{
     override converterEntityToModel(params: ProductEntity): ProductModel {
         return{
-            productId: params.productId,
+            productCode: params.productCode,
             productName: params.productName,
             productPrice: params.productPrice,
             productDescription: params.productDescription,
-            categoryEntity: params.categoryEntity,
-            inventoryEntity: params.inventoryEntity
+            categoryEntity: params.categoryEntity
         };
     }
     override converterModelToEntity(params: ProductModel): ProductEntity {
         return{
-            productId: params.productId,
+            productCode: params.productCode,
             productName: params.productName,
             productPrice: params.productPrice,
             productDescription: params.productDescription,
-            categoryEntity: params.categoryEntity,
-            inventoryEntity: params.inventoryEntity
+            categoryEntity: params.categoryEntity
         };
     }
 }

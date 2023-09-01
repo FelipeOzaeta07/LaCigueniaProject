@@ -19,8 +19,7 @@ export class SectionTwoComponent {
 
   userService!: FormGroup;
 
-  constructor(public formulary: FormBuilder, private userServiceUseCase: UserServiceUseCase,
-              public router: Router){
+  constructor(public formulary: FormBuilder, private userServiceUseCase: UserServiceUseCase, public router: Router){
     this.userService = formulary.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]

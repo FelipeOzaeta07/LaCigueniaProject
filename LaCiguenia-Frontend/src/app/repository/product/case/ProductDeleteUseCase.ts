@@ -8,7 +8,7 @@ export class ProductDeleteUseCase implements UseCase<ProductModel, GenericRespon
 
     constructor(private productRepository: ProductRepository){}
 
-    execute(productModel: ProductModel) : Observable<GenericResponse>{
-        return this.productRepository.deleteProduct(productModel);
+    execute(params: {productCode: string}) : Observable<GenericResponse>{
+        return this.productRepository.deleteProduct(params);
     }
 }

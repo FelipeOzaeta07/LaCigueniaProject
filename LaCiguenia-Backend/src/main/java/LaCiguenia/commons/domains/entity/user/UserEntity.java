@@ -16,13 +16,10 @@ public class UserEntity {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
     @Column(name = "user_name")
     private String userName;
-
     @Column(name = "user_email")
     private String userEmail;
-
     @Column(name = "user_password")
     private String userPassword;
 }

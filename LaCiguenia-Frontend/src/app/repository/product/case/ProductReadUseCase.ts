@@ -8,7 +8,7 @@ export class ProductReadUseCase implements UseCase<ProductModel, GenericResponse
 
     constructor(private productRepository: ProductRepository){}
 
-    execute(params: {productId: number}) : Observable<GenericResponse>{
+    execute(params: {productCode: string}) : Observable<GenericResponse>{
         return this.productRepository.readProduct(params);
     }
 }

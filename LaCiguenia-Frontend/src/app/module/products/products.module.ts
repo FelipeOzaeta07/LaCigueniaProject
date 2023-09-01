@@ -9,6 +9,8 @@ import { ComponentModule } from '@component/component.module';
 import { ModalOneComponent } from '@module/products/products-page/component/modal-one/modal-one.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductModule } from '@service/product/product.module';
+import { CategoryModule } from '@service/category/category.module';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     ComponentModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ProductModule,
+    CategoryModule
   ]
 })
 export class ProductsModule { }
