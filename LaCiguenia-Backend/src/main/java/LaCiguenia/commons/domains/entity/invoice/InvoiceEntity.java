@@ -1,9 +1,7 @@
 package LaCiguenia.commons.domains.entity.invoice;
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Date;
@@ -39,6 +37,6 @@ public class InvoiceEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
     private CustomerEntity customerEntity;
 }

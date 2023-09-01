@@ -4,8 +4,8 @@ import { GenericResponse } from "@commons/response/GenericResponse";
 
 export abstract class ProductRepository {
     abstract createProduct(productModel : ProductModel): Observable<GenericResponse>;
-    abstract readProduct(params: {productId: number}): Observable<GenericResponse>;
+    abstract readProduct(params: {productCode: string}): Observable<GenericResponse>;
     abstract readProducts (): Observable<GenericResponse>;
     abstract updateProduct (categoryModel : ProductModel): Observable<GenericResponse>;
-    abstract deleteProduct (params: {productId: number}): Observable<GenericResponse>;
+    abstract deleteProduct (params: {productCode: string}): Observable<GenericResponse>;
 }

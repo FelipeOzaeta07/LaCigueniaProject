@@ -19,5 +19,4 @@ public class InventoryDTO implements Serializable {
     private Integer inventoryAmount;
     private Date inventoryEntryDate;
     private Date inventoryDepartureDate;
-    private List<ProductEntity> listProduct;
 }

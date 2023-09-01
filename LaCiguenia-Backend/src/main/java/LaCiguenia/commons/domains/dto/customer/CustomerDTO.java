@@ -20,5 +20,4 @@ public class CustomerDTO implements Serializable {
     private String customerPhoneNumber;
     private String customerEmail;
     private String customerAddress;
-    private List<InvoiceEntity> listInvoice;
 }

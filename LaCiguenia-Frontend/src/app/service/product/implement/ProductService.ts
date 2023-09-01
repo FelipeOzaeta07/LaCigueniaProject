@@ -28,7 +28,7 @@ export class ProductService extends ProductRepository{
             }));
     }
 
-    override readProduct(params: { productId: number; }): Observable<GenericResponse> {
+    override readProduct(params: { productCode: string; }): Observable<GenericResponse> {
 
         return this.http
             .get<GenericResponse>(BASE_URL_PRODUCT + READ_PRODUCT, {params})
@@ -55,7 +55,7 @@ export class ProductService extends ProductRepository{
             }));
     }
 
-    override deleteProduct(params: { productId: number; }): Observable<GenericResponse> {
+    override deleteProduct(params: { productCode: string; }): Observable<GenericResponse> {
         return this.http
             .delete<GenericResponse>(BASE_URL_PRODUCT + DELETE_PRODUCT, {params})
             .pipe(catchError((error: HttpErrorResponse) => {

@@ -4,8 +4,7 @@ import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.material.MaterialEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,8 +20,7 @@ import java.util.List;
 public class ProductEntity {
     @Id
     @Column(name = "product_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productId;
+    private String productCode;
 
     @Column(name = "product_name")
     private String productName;
@@ -43,11 +41,8 @@ public class ProductEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryId")
+    @JsonIgnore
     private CategoryEntity categoryEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_id")
-    @JsonBackReference
-    private InventoryEntity inventoryEntity;
 }

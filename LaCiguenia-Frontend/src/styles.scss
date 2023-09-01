@@ -592,7 +592,7 @@ td {
         background-color: var(--color_four);
         border-color: var(--color_one);
     }
-    .selector{
+    .select{
         padding-top: calc(0.8vw);
         padding-bottom: calc(0.8vw);
         text-indent: 3vh;
@@ -600,11 +600,11 @@ td {
         border-color: var(--color_three);
         border-radius: 10px;
     }
-    .selector:hover{
+    .select:hover{
         border-color: var(--color_twelve);
         box-shadow: 0 0 1px var(--color_thirteen);
     }
-    .selector:focus{
+    .select:focus{
         border: 1px solid var(--color_thirteen);
         box-shadow: 0 0 4px var(--color_thirteen);
         outline: none;
@@ -1254,7 +1254,7 @@ td {
         background-color: var(--color_four);
         border-color: var(--color_one);
     }
-    .selector_m{
+    .select_m{
         padding-top: calc(0.8vw);
         padding-bottom: calc(0.8vw);
         text-indent: 3vh;
@@ -1262,11 +1262,11 @@ td {
         border-color: var(--color_three);
         border-radius: 10px;
     }
-    .selector_m:hover{
+    .select_m:hover{
         border-color: var(--color_twelve);
         box-shadow: 0 0 1px var(--color_thirteen);
     }
-    .selector_m:focus{
+    .select_m:focus{
         border: 1px solid var(--color_thirteen);
         box-shadow: 0 0 4px var(--color_thirteen);
         outline: none;
@@ -1916,7 +1916,7 @@ td {
         background-color: var(--color_four);
         border-color: var(--color_one);
     }
-    .selector_l{
+    .select_l{
         padding-top: calc(0.8vw);
         padding-bottom: calc(0.8vw);
         text-indent: 3vh;
@@ -1924,11 +1924,11 @@ td {
         border-color: var(--color_three);
         border-radius: 10px;
     }
-    .selector_l:hover{
+    .select_l:hover{
         border-color: var(--color_twelve);
         box-shadow: 0 0 1px var(--color_thirteen);
     }
-    .selector_l:focus{
+    .select_l:focus{
         border: 1px solid var(--color_thirteen);
         box-shadow: 0 0 4px var(--color_thirteen);
         outline: none;

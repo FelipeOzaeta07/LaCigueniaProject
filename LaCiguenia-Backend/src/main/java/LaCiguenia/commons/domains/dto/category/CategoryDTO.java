@@ -20,5 +20,4 @@ public class CategoryDTO implements Serializable {
     private Integer categoryId;
     private String CategoryName;
     private String categoryDescription;
-    private List<ProductEntity> listProducts;
 }
