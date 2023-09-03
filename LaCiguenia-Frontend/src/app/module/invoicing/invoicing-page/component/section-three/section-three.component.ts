@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { DetailModel } from '@commons/domains/model/detail/DetailModel';
+import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 
@@ -7,8 +9,9 @@ import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY
   templateUrl: './section-three.component.html',
   styleUrls: ['./section-three.component.scss']
 })
-export class SectionThreeComponent {
+export class SectionThreeComponent{
 
+  @Input() detailInvoice: DetailModel [] = [];
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() modalActivateTwo = new EventEmitter<boolean>();
 
@@ -19,20 +22,14 @@ export class SectionThreeComponent {
   textAmount = AMOUNT;
   textTotalTable = TOTAL_TABLE;
   textSubTotalTable = SUBTOTAL_TABLE;
-  pay = PAY;
-
-  nombreProducto: string = "nombre";
-  cantidad: number = 0;
-  total: number = 0;
-  subtotal: number = 0;
+  textPay = PAY;
 
   modalEventOne(){
-    console.log("Prueba Entro al Metodo: ")
     const datos = true;
     this.modalActivateOne.emit(datos);
   }
+
   modalEventTwo(){
-    console.log("Prueba Entro al Metodo: ")
     const datos = true;
     this.modalActivateTwo.emit(datos);
   }

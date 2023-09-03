@@ -1,26 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ProductModel } from '@commons/domains/model/product/ProductModel';
+import { GenericResponse } from '@commons/response/GenericResponse';
+import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
 
 @Component({
   selector: 'app-section-two',
   templateUrl: './section-two.component.html',
   styleUrls: ['./section-two.component.scss']
 })
-export class SectionTwoComponent {
+export class SectionTwoComponent implements OnInit{
+  
+  @Output() selectProducts = new EventEmitter<ProductModel>();
 
-  nombreProducto: string = "Nombre Producto";
-  valorProducto: number = 0;
+  product!: ProductModel [];
 
-  filas = [1, 2, 3, 4];
+  constructor(private productsReadUseCase: ProductsReadUseCase){}
 
-  productos = [
-    { nombre: this.nombreProducto, valor: this.valorProducto },
-    { nombre: this.nombreProducto, valor: this.valorProducto },
-    { nombre: this.nombreProducto, valor: this.valorProducto },
-    { nombre: this.nombreProducto, valor: this.valorProducto },
-    { nombre: this.nombreProducto, valor: this.valorProducto }
-  ];
-
-  emitirEvento() {
-    console.log("Prueba Hijo Envio Datos: " + this.nombreProducto);
+  ngOnInit(): void {
+    this.getProducts();
   }
+
+  getProducts(){
+    this.productsReadUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.product = res.objectResponse;
+      }
+    )
+  }
+
+  selecProduct(index: number) {
+    this.selectProducts.emit(this.product[index]);
+  }
+
 }

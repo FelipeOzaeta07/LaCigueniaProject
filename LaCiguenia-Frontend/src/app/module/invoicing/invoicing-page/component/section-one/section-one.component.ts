@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
+import { GenericResponse } from '@commons/response/GenericResponse';
+import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -7,57 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionOneComponent implements OnInit{
 
-  startIndex = 0;
-  endIndex!: number;
-  resulAbs!: number;
-  divider = 4;
-  categoriesToShow: any[] = [];
+  productSelection!: string;
+  category!: CategoryModel [];
+  //Pendiente realizar la Query de consultar producto por nombre
+  constructor(private categoriesReadUseCase: CategoriesReadUseCase){}
 
   ngOnInit(): void {
-    let count = 0;
-    for (const category of this.category) {
-        console.log(category.name);
-        count++;
-    }
-    this.endIndex = count;
-    const result = this.endIndex / this.divider;
-    const resultAbs = Math.abs(result);
-    this.resulAbs = resultAbs;
-    this.endIndex = this.divider;
-    this.showCategories();
+    this.getCategory();
   }
-
-  showCategories() {
-    this.categoriesToShow = this.category.slice(this.startIndex, this.endIndex);
-  }
-
-  showNextCategories() {
-    this.startIndex = this.endIndex;
-    this.endIndex += this.divider;
-    this.showCategories();
-  }
-
-  showPreviusCategories() {
-    this.endIndex = this.startIndex;
-    this.startIndex -= this.divider;
-    this.showCategories();
-  }
-
-  category = [
-    { name: "Trajes Tipicos" },
-    { name: "Infantil" },
-    { name: "Hogar" },
-    { name: "Linea Blanca" },
-    { name: "Cosmeticos" },
-    { name: "Textil" },
-    { name: "Alcohol" },
-    { name: "Tecnologia" },
-    { name: "Cosmeticos" },
-    { name: "Textil" },
-    { name: "Alcohol" }
-  ];
-
-  one(index: number){
-    console.log( "prueba de eliminacion: " + (index + 1))
+  
+  getCategory(){
+    this.categoriesReadUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.category = res.objectResponse;
+      },
+      error => {
+        console.error("Error en la solicitud: " + error);
+      });
   }
 }

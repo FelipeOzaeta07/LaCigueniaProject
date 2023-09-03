@@ -7,6 +7,7 @@ import { ComponentModule } from '@component/component.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SectionOneComponent } from '@module/inventory/inventory-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/inventory/inventory-page/component/section-two/section-two.component';
+import { ProductModule } from '@service/product/product.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SectionTwoComponent } from '@module/inventory/inventory-page/component/
     CommonModule,
     InventoryRoutingModule,
     HttpClientModule,
-    ComponentModule
+    ComponentModule,
+    ProductModule
   ]
 })
 export class InventoryModule { }

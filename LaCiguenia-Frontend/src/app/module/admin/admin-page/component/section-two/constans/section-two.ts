@@ -1,2 +1,2 @@
-export const TITLE = "Productos mas vendidos del dia";
+export const TITLE = "Productos más vendidos del día";
 export const UNIT = "ud";

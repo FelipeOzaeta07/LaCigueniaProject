@@ -1,13 +1,13 @@
 <section class="room row_evenly inherit">
-    <div class="col_between col_17" *ngFor="let fila of filas">
-        <div class="note text_center col_3" *ngFor="let producto of productos">
+    <div class="col_between col_17" >
+        <div class="note text_center col_3" *ngFor="let productItem of product; let i = index" (click)="selecProduct(i)">
             <div class="col_center">
                 <div class="border img_width">
                     <img src="" alt="">
                 </div>
             </div>
-            <h5 class="size py_1 text_color_two">{{producto.nombre}}</h5>
-            <h5 class="size_1 text_color_one">$ {{producto.valor}}</h5>
+            <h5 class="size py_1 text_color_two">{{productItem.productName}}</h5>
+            <h5 class="size_1 text_color_one">$ {{productItem.productPrice}}</h5>
         </div>
     </div>
 </section>

@@ -1,8 +1,8 @@
 export const TITLE = "Registro de Productos";
-export const NAME_PRODUCT = "Nombre Producto";
+export const NAME_PRODUCT = "Nombre del Producto";
 export const PRICE = "Precio";
-export const CODE = "Codigo";
+export const CODE = "Código";
 export const AMOUNT = "IVA";
-export const CATEGORY = "Categoria Producto";
-export const DESCRIPTION = "Descripcion Producto";
+export const CATEGORY = "Categoría del Producto";
+export const DESCRIPTION = "Descripción del Producto";
 export const SAVE = "GUARDAR";

@@ -1,1 +1,1 @@
-export const TITLE = "¡Bienvenido a un mundo de posibilidades ilimitadas con Nuestra App de Inventario y Comanda Virtual! interactúas con productos y servicios ¡Haz llegado al lugar adecuado!";
+export const TITLE = "¡Bienvenido a un mundo de posibilidades ilimitadas con nuestra App de Inventario y Comanda Virtual! ¡Interactúa con productos y servicios! ¡Has llegado al lugar adecuado!";

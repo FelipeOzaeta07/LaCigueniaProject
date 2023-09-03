@@ -6,5 +6,4 @@ export interface DetailEntity{
     detailAmount: number;
     detailSubtotal: number;
     productId: ProductEntity;
-    invoiceId: InvoiceEntity;
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { NAME_PRODUCT, TITLE, SALES_PRICE, CATEGORY, CODE, OPTION } from '@module/products/products-page/component/section-two/constans/section-two';
+import { NAME_PRODUCT, TITLE, SALES_PRICE, DESCRIPTION, CODE, OPTION } from '@module/products/products-page/component/section-two/constans/section-two';
 import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
 
 @Component({
@@ -17,7 +17,7 @@ export class SectionTwoComponent implements OnInit{
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
   textCode = CODE;
-  textDescription = CATEGORY;
+  textDescription = DESCRIPTION;
   textSalesPrices = SALES_PRICE;
   textOption = OPTION;
 
