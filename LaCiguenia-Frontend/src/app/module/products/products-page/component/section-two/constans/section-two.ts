@@ -1,6 +1,6 @@
-export const TITLE = "Productos registrados recientemente";
-export const NAME_PRODUCT = "Nombre Producto";
-export const SALES_PRICE = "Precio Venta";
-export const CODE = "Codigo";
-export const CATEGORY = "Category";
-export const OPTION = "Opcion";
+export const TITLE = "Productos Registrados Recientemente";
+export const NAME_PRODUCT = "Nombre del Producto";
+export const SALES_PRICE = "Precio de Venta";
+export const CODE = "Código";
+export const DESCRIPTION = "Descripción";
+export const OPTION = "Opción";

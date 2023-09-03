@@ -6,5 +6,4 @@ export interface DetailModel{
     detailAmount: number;
     detailSubtotal: number;
     productId: ProductModel;
-    invoiceId: InvoiceModel;
 }

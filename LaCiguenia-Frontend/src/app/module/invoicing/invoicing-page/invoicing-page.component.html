@@ -5,10 +5,10 @@
     <section class="col_10 h_100">
         <div class="col_17">
             <app-section-one class="h_30"></app-section-one>
-            <app-section-two class="h_70"></app-section-two>
+            <app-section-two (selectProducts)="selectProducts($event)" class="h_70"></app-section-two>
         </div>
     </section>
     <section class="col_5">
-        <app-section-three (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" class="h_100"></app-section-three>
+        <app-section-three (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" [detailInvoice]="detailInvoice" class="h_100"></app-section-three>
     </section>
 </main>

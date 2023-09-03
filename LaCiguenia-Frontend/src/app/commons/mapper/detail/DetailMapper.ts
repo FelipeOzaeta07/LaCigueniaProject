@@ -8,8 +8,7 @@ export class DetailMapper extends Mapper<DetailEntity, DetailModel>{
             detailId: params.detailId,
             detailAmount: params.detailAmount,
             detailSubtotal: params.detailSubtotal,
-            productId: params.productId,
-            invoiceId: params.invoiceId
+            productId: params.productId
         };
     }
     override converterModelToEntity(params: DetailModel): DetailEntity {
@@ -17,8 +16,7 @@ export class DetailMapper extends Mapper<DetailEntity, DetailModel>{
             detailId: params.detailId,
             detailAmount: params.detailAmount,
             detailSubtotal: params.detailSubtotal,
-            productId: params.productId,
-            invoiceId: params.invoiceId
+            productId: params.productId
         };
     }
 }

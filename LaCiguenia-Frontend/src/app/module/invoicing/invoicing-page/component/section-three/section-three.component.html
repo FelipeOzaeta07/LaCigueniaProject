@@ -16,11 +16,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text_color_two">{{nombreProducto}}</td>
-                        <td class="text_center text_color_two">{{cantidad}}</td>
-                        <td class="text_center text_color_two">{{total}}</td>
-                        <td class="text_center text_color_two">{{subtotal}}</td>
+                    <tr *ngFor="let detailItem of detailInvoice">
+                        <td class="text_color_two">{{detailItem.productId.productName}}</td>
+                        <td class="text_center text_color_two">{{detailItem.detailAmount}}</td>
+                        <td class="text_center text_color_two">{{detailItem.detailSubtotal * detailItem.detailAmount}}</td>
+                        <td class="text_center text_color_two">{{detailItem.detailSubtotal}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -49,7 +49,7 @@
         </div>
         <div class="row_center col_17 h_20 border_y">
             <div class="col_center col_17">
-                <button (click)="modalEventTwo()" class="col_10 btn_one size_1">{{pay}}</button>
+                <button (click)="modalEventTwo()" class="col_10 btn_one size_1">{{textPay}}</button>
             </div>
         </div>
     </div>
