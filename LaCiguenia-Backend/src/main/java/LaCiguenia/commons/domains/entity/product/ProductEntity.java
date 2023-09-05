@@ -23,31 +23,28 @@ public class ProductEntity {
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
-
     @Column(name = "product_name")
     private String productName;
-
     @Column(name = "product_price")
     private Double productPrice;
-
     @Column(name = "product_description")
     private String productDescription;
-
     @OneToMany(mappedBy = "productEntity")
     @JsonManagedReference
     private List<MaterialEntity> listMaterial;
-
     @OneToMany(mappedBy = "productEntity")
     @JsonManagedReference
     private List<DetailEntity> listDetail;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonBackReference
     private CategoryEntity categoryEntity;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
     @JsonBackReference
     private InventoryEntity inventoryEntity;
+    public Double getProductPrice()
+    {
+        return this.productPrice;
+    }
 }

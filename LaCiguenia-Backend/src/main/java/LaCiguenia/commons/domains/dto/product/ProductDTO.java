@@ -18,7 +18,6 @@ import java.util.List;
 @ToString
 @Builder
 public class ProductDTO implements Serializable {
-
     private Integer productId;
     private String productName;
     private Double productPrice;

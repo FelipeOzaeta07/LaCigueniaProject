@@ -25,13 +25,12 @@ public class ProductService implements IProductService {
     private IProductRepository iProductRepository;
     @Autowired
     private ProductConverter productConverter;
-
     @Override
     public ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO) {
         try {
-            Optional<ProductEntity> productoExist = this.iProductRepository
+            Optional<ProductEntity> productExist = this.iProductRepository
                     .findById(productDTO.getProductId());
-            if (!productoExist.isPresent()){
+            if (productExist.isEmpty()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
@@ -39,14 +38,14 @@ public class ProductService implements IProductService {
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
-            }else {
+            }else{
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(IProductResponse.PRODUCT_SUCCESS)
                         .objectResponse(null)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-        }catch (Exception e) {
+        }catch (Exception e){
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
@@ -56,7 +55,6 @@ public class ProductService implements IProductService {
                             .build());
         }
     }
-
     @Override
     public ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO) {
         try {
