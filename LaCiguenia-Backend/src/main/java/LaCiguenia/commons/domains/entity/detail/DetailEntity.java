@@ -32,7 +32,7 @@ public class DetailEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productCode")
     private ProductEntity productEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)

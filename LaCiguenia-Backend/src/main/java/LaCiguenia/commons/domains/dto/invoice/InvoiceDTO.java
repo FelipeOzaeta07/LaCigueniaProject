@@ -22,6 +22,7 @@ public class InvoiceDTO implements Serializable
     private Date invoiceDate;
     private Integer invoiceIva;
     private Integer invoiceTotal;
+    private List<DetailEntity> listDetail;
     @JsonIdentityReference(alwaysAsId = true)
     private CustomerEntity customerEntity;
 }

@@ -42,7 +42,8 @@ public class InvoiceApi implements IInvoiceApi {
             @ApiResponse(responseCode  = "500", description = IUserResponse.USER_SUCCESS,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IInvoiceEndPoint.CREATE_INVOICE)
-    public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {
+    public ResponseEntity<GenericResponseDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+        System.out.println("Entro al Controlador");
         return this.invoiceService.createInvoice(invoiceDTO);
     }
 

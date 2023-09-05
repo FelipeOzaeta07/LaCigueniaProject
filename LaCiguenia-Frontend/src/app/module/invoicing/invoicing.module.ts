@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryModule } from '@service/category/category.module';
 import { ProductModule } from '@service/product/product.module';
 import { CustomerModule } from '@service/customer/customer.module';
+import { InvoiceModule } from '@service/invoice/invoice.module';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CustomerModule } from '@service/customer/customer.module';
     FormsModule,
     CategoryModule,
     ProductModule,
-    CustomerModule
+    CustomerModule,
+    InvoiceModule
   ]
 })
 export class InvoicingModule { }

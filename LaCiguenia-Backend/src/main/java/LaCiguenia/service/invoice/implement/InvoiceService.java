@@ -28,6 +28,7 @@ public class InvoiceService implements IInvoiceService {
     @Override
     public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {
         try {
+            System.out.println("Entro al Servicio");
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
