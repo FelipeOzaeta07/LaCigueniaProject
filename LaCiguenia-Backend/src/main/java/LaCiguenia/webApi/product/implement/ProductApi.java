@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IProductEndPoint.BASE_URL_PRODUCT)
-@Tag(name = "Sistema de Gestión de Productos", description = "Ops de autenticar, crear, eliminar y actualizar productos")
+@Tag(name = "Sistema de Gestión de Productos", description = "Crear, visualizar, eliminar y actualizar Productos")
 @Log4j2
 public class ProductApi implements IProductApi {
 
@@ -28,9 +28,8 @@ public class ProductApi implements IProductApi {
         this.productService = productService;
     }
 
-
     @Override
-    @Operation(summary = "Crear un nuevo producto")
+    @Operation(summary = "Crear un nuevo Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -46,6 +45,16 @@ public class ProductApi implements IProductApi {
     public ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
         return this.productService.createProducts(productDTO);
     }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     @Operation(summary = "visualizar un producto")

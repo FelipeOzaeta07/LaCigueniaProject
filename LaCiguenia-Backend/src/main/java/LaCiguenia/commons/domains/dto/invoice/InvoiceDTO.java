@@ -1,13 +1,10 @@
 package LaCiguenia.commons.domains.dto.invoice;
+
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
-import LaCiguenia.commons.domains.entity.detail.DetailEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
-
 import java.io.Serializable;
-
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @Getter
@@ -22,7 +19,6 @@ public class InvoiceDTO implements Serializable
     private Date invoiceDate;
     private Integer invoiceIva;
     private Integer invoiceTotal;
-    private List<DetailEntity> listDetail;
     @JsonIdentityReference(alwaysAsId = true)
     private CustomerEntity customerEntity;
 }

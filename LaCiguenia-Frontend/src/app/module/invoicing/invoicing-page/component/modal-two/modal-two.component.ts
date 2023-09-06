@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DetailModel } from '@commons/domains/model/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { SYMBOL_PRICE, TITLE, SUBTOTAL, IVA, TOTAL, DISCOUNT, ADD_PAY, CHANGE, FAIL, PAY} from '@module/invoicing/invoicing-page/component/modal-two/constans/modal-two';
+import { DetailCreateUseCase } from '@repository/detail/case/DetailCreateUseCase';
 import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseCase';
 
 @Component({
@@ -12,6 +14,7 @@ import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseC
 export class ModalTwoComponent {
 
   @Input() invoiceEnd!: InvoiceModel;
+  @Input() detailInvoice!: DetailModel [];
   @Output() modalActivateTwo = new EventEmitter<boolean>();
 
   textTitle = TITLE;
@@ -25,28 +28,39 @@ export class ModalTwoComponent {
   textFail = FAIL;
   textPay = PAY;
 
-  constructor(private invoiceCreateUseCase: InvoiceCreateUseCase){
+  detail!: DetailModel;
+
+  constructor(private invoiceCreateUseCase: InvoiceCreateUseCase, private detailCreateUseCase: DetailCreateUseCase){
 
   }
 
-  generalPay(){
-    console.log("Prueba Datos Para Generar Factura: ");
-    console.log("Fecha: " + this.invoiceEnd.invoiceDate);
-    console.log("Iva: " + this.invoiceEnd.invoiceIva);
-    console.log("Total: " + this.invoiceEnd.invoiceTotal);
-    console.log("Nombre Producto: " + this.invoiceEnd.listDetail[0].productId.productName);
-    console.log("Precio Producto: " + this.invoiceEnd.listDetail[0].productId.productPrice);
-    console.log("Nombre Cliente: " + this.invoiceEnd.customerEntity.customerName);
-
+  generalInvoicePay(){
     this.invoiceCreateUseCase.execute(this.invoiceEnd).subscribe(
       (res: GenericResponse) => {
-        console.log("Respuesta: " + res.message);
+        console.log("Respuesta: " + res.objectId);
+
+        this.invoiceEnd.invoiceId = res.objectId;
+
+        for(let detail of this.detailInvoice){
+          this.detail = {
+            detailId: 0,
+            detailAmount: detail.detailAmount,
+            detailSubTotal: (detail.detailAmount * detail.detailSubTotal),
+            productEntity: detail.productEntity,
+            invoiceEntity: this.invoiceEnd
+          }
+          console.log("Prueba Datos: " + this.detail.invoiceEntity.invoiceId)
+          console.log("Prueba Datos: " + this.detail.detailSubTotal);
+          console.log("prueba Datos: " + this.detail.productEntity.productName);
+          this.detailCreateUseCase.execute(this.detail).subscribe(
+            (res: GenericResponse) => {
+              console.log("Respuesta del Detalle: " + res.message);
+            }
+          )
+        }
       }
     )
-
-
   }
-
 
   modalEventTwo() {
     const datos = false;

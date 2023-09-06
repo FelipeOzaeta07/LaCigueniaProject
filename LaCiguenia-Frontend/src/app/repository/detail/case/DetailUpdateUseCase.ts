@@ -4,7 +4,7 @@ import { UseCase } from "@commons/helpers/UserCase";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class DetailCreateUseCase implements UseCase<DetailModel, GenericResponse>{
+export class DetailUpdateUseCase implements UseCase<DetailModel, GenericResponse>{
 
     constructor(private detailRepository: DetailRepository){}
 

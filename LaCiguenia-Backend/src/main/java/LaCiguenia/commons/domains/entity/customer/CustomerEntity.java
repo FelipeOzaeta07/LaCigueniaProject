@@ -1,6 +1,7 @@
 package LaCiguenia.commons.domains.entity.customer;
 
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,5 +38,6 @@ public class CustomerEntity {
 
     @OneToMany(mappedBy = "customerEntity")
     @JsonManagedReference
+    @JsonIgnore
     private List<InvoiceEntity> listInvoice;
 }

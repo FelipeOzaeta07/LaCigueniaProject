@@ -1,6 +1,7 @@
 package LaCiguenia.service.product.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
+import LaCiguenia.commons.constans.response.customer.ICustomerResponse;
 import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.product.ProductConverter;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
@@ -14,13 +15,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 @Log4j2
 public class ProductService implements IProductService {
+
     @Autowired
     private IProductRepository iProductRepository;
     @Autowired
@@ -30,7 +31,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findByProductCode(productDTO.getProductCode());
+                    .findByProductId(productDTO.getProductId());
             if (!productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -40,10 +41,10 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
-                        .message(IProductResponse.PRODUCT_SUCCESS)
-                        .objectResponse(null)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IProductResponse.PRODUCT_SUCCESS)
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
         }catch (Exception e) {
@@ -57,15 +58,32 @@ public class ProductService implements IProductService {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findByProductCode(productDTO.getProductCode());
+                    .findByProductId(productDTO.getProductId());
             if (productoExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(this.iProductRepository.findByProductCode(productDTO.getProductCode()))
+                        .objectResponse(this.iProductRepository.findByProductId(productDTO.getProductId()))
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
@@ -119,7 +137,7 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findByProductCode(productDTO.getProductCode());
+                    .findByProductId(productDTO.getProductId());
             if (productoExist.isPresent()){
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
@@ -149,9 +167,9 @@ public class ProductService implements IProductService {
     @Override
     public ResponseEntity<GenericResponseDTO> deleteProducts(String productCode) {
         try {
-            Optional<ProductEntity> productoExist = this.iProductRepository.findByProductCode(productCode);
+            Optional<ProductEntity> productoExist = this.iProductRepository.findByProductId(productCode);
             if (productoExist.isPresent()){
-                this.iProductRepository.deleteByProductCode(productCode);
+                this.iProductRepository.deleteByProductId(productCode);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)

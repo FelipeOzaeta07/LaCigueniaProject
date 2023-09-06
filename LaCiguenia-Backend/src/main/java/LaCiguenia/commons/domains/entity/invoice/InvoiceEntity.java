@@ -33,10 +33,12 @@ public class InvoiceEntity {
 
     @OneToMany(mappedBy = "invoiceEntity")
     @JsonManagedReference
+    @JsonIgnore
     private List<DetailEntity> listDetail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
+    @JsonIgnore
     private CustomerEntity customerEntity;
 }

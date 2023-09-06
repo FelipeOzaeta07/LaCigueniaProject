@@ -28,7 +28,7 @@ export class InvoiceService extends InvoiceRepository {
             }));
     }
 
-    override readInvoice(params: { invoiceId: number; }): Observable<GenericResponse> {
+    override readInvoice(params: { invoiceTotal: number; }): Observable<GenericResponse> {
         return this.http
             .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICE, {params})
             .pipe(catchError((error: HttpErrorResponse) => {
@@ -53,7 +53,7 @@ export class InvoiceService extends InvoiceRepository {
                 return throwError(error);
             }));
     }
-    override deleteInvoice(params: { invoiceId: number; }): Observable<GenericResponse> {
+    override deleteInvoice(params: { invoiceTotal: number; }): Observable<GenericResponse> {
         return this.http
             .post<GenericResponse>(BASE_URL_INVOICE + DELETE_INVOICE, params)
             .pipe(catchError((error: HttpErrorResponse) => {

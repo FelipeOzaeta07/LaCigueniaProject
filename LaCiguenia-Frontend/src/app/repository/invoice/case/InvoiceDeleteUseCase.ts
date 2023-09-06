@@ -8,7 +8,7 @@ export class InvoiceDeleteUseCase implements UseCase<InvoiceModel, GenericRespon
 
     constructor(private invoiceRepository: InvoiceRepository){}
 
-    execute(params: {invoiceId: number}) : Observable<GenericResponse>{
+    execute(params: {invoiceTotal: number}) : Observable<GenericResponse>{
         return this.invoiceRepository.deleteInvoice(params);
     }
 }

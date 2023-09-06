@@ -14,10 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -35,7 +32,7 @@ public class DetailApi implements IDetailApi {
 
 
     @Override
-    @Operation(summary = "Crear un nuevo detalles de factura")
+    @Operation(summary = "Crear un nuevo Detalles de Factura")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -48,9 +45,16 @@ public class DetailApi implements IDetailApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.CREATE_DETAIL)
-    public ResponseEntity<GenericResponseDTO> createDetail(DetailDTO detailDTO) {
+    public ResponseEntity<GenericResponseDTO> createDetail(@RequestBody DetailDTO detailDTO) {
         return this.iDetailService.createDetail(detailDTO);
     }
+
+
+
+
+
+
+
 
     @Override
     @Operation(summary = "Leer un detalle de factura")

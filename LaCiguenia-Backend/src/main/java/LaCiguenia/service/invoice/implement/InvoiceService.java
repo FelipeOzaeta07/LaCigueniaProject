@@ -20,6 +20,7 @@ import java.util.Optional;
 @Service
 @Log4j2
 public class InvoiceService implements IInvoiceService {
+
     @Autowired
     private IInvoiceRepository iInvoiceRepository;
     @Autowired
@@ -28,7 +29,6 @@ public class InvoiceService implements IInvoiceService {
     @Override
     public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {
         try {
-            System.out.println("Entro al Servicio");
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
@@ -36,13 +36,14 @@ public class InvoiceService implements IInvoiceService {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
+                        .objectId(this.iInvoiceRepository.lastInvoiceId())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(IInvoiceResponse.INVOICE_SUCCESS)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .objectResponse(GeneralResponse.CREATE_FAIL)
+                        .statusCode(HttpStatus.OK.value())
                         .build());
             }
         }catch (Exception e) {
@@ -55,6 +56,19 @@ public class InvoiceService implements IInvoiceService {
                             .build());
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public ResponseEntity<GenericResponseDTO> readInvoice(InvoiceDTO invoiceDTO) {

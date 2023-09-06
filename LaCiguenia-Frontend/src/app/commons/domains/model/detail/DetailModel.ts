@@ -1,9 +1,10 @@
-import { InvoiceModel } from "@commons/domains/model/invoice/InvoiceModel";
 import { ProductModel } from "@commons/domains/model/product/ProductModel";
+import { InvoiceModel } from "../invoice/InvoiceModel";
 
 export interface DetailModel{
     detailId: number;
     detailAmount: number;
-    detailSubtotal: number;
-    productId: ProductModel;
+    detailSubTotal: number;
+    productEntity: ProductModel;
+    invoiceEntity: InvoiceModel;
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/model/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
@@ -12,13 +13,13 @@ export class InvoicingPageComponent {
 
   modalOne!: boolean;
   modalTwo!: boolean;
+  customer!: CustomerModel;
   numberAmount: number = 1;
   totalPriceProducts: number = 0;
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
   hashMap: { [productItem: string]: number } = {};
   invoiceEnd!: InvoiceModel;
-
   currentDate: string;
 
   constructor(){
@@ -26,13 +27,16 @@ export class InvoicingPageComponent {
     this.currentDate = today.toISOString().slice(0, 10);
   }
 
-
   modalActivateOne(datos: boolean) {
     this.modalOne = datos;
   }
 
   modalActivateTwo(datos: boolean) {
     this.modalTwo = datos;
+  }
+
+  getCustomerId(lastCustomerId: CustomerModel){
+    this.customer = lastCustomerId;
   }
 
   selectProducts(product: ProductModel) {
@@ -45,20 +49,21 @@ export class InvoicingPageComponent {
 
     const existingIndex = this.detailInvoice.findIndex(
       (detail) => 
-      detail.productId.productName === productName
+      detail.productEntity.productName === productName
     );
 
     if (existingIndex !== -1) {
       this.detailInvoice[existingIndex].detailAmount = this.hashMap[productName];
-      this.totalPriceProducts += this.detailInvoice[existingIndex].detailSubtotal;
+      this.totalPriceProducts += this.detailInvoice[existingIndex].detailSubTotal;
     } else {
       this.detail = {
         detailId: 0,
         detailAmount: this.hashMap[productName],
-        detailSubtotal: product.productPrice,
-        productId: product,
+        detailSubTotal: product.productPrice,
+        productEntity: product,
+        invoiceEntity: this.invoiceEnd,
       };
-      this.totalPriceProducts += this.detail.detailSubtotal;
+      this.totalPriceProducts += this.detail.detailSubTotal;
       this.setDetailModel(this.detail);
     }
     this.builderInvoice();
@@ -74,15 +79,7 @@ export class InvoicingPageComponent {
       invoiceDate: this.currentDate,
       invoiceIva: (this.totalPriceProducts * 16) / 100,
       invoiceTotal: this.totalPriceProducts,
-      listDetail: this.detailInvoice,
-      customerEntity: {
-        customerId: 0,
-        customerName: "General",
-        customerIdentification: "1001001000",
-        customerPhoneNumber: "000",
-        customerEmail: "g@gmail.com",
-        customerAddress: "General",
-      }
-    };
+      customerEntity: this.customer
+    }
   }
 }

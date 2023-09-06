@@ -18,18 +18,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IInvoiceEndPoint.BASE_URL_INVOICE)
-@Tag(name = "Sistema de Gestión de facturas", description = "Ops de autenticar, crear, eliminar y actualizar facturas")
+@Tag(name = "Sistema de Gestión de Facturas", description = "Crear, visualizar, eliminar y actualizar Facturas")
 @Log4j2
 public class InvoiceApi implements IInvoiceApi {
 
     private final InvoiceService invoiceService;
-
     public InvoiceApi(InvoiceService invoiceService) {
         this.invoiceService = invoiceService;
     }
 
     @Override
-    @Operation(summary = "Crear una nueva factura")
+    @Operation(summary = "Crear una nueva Factura")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
                     content = {@Content(mediaType = "application/json",
@@ -43,9 +42,23 @@ public class InvoiceApi implements IInvoiceApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IInvoiceEndPoint.CREATE_INVOICE)
     public ResponseEntity<GenericResponseDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO) {
-        System.out.println("Entro al Controlador");
         return this.invoiceService.createInvoice(invoiceDTO);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     @Operation(summary = "leer una factura")

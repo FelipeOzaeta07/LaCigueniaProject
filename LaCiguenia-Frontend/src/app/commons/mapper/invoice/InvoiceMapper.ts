@@ -9,7 +9,6 @@ export class InvoiceMapper extends Mapper<InvoiceEntity, InvoiceModel>{
             invoiceDate: params.invoiceDate,
             invoiceIva: params.invoiceIva,
             invoiceTotal: params.invoiceTotal,
-            listDetail: params.listDetail,
             customerEntity: params.customerEntity
         };
     }
@@ -19,7 +18,6 @@ export class InvoiceMapper extends Mapper<InvoiceEntity, InvoiceModel>{
             invoiceDate: params.invoiceDate,
             invoiceIva: params.invoiceIva,
             invoiceTotal: params.invoiceTotal,
-            listDetail: params.listDetail,
             customerEntity: params.customerEntity
         };
     }

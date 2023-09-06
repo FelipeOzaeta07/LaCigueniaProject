@@ -17,10 +17,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let detailItem of detailInvoice; let i = index">
-                        <td class="text_color_two">{{detailItem.productId.productName}}</td>
+                        <td class="text_color_two">{{detailItem.productEntity.productName}}</td>
                         <td class="text_center text_color_two">{{detailItem.detailAmount}}</td>
                         <td class="text_center text_color_two">{{updateCalculatedValue(detailItem)}}</td>
-                        <td class="text_center text_color_two">{{detailItem.detailSubtotal}}</td>
+                        <td class="text_center text_color_two">{{detailItem.detailSubTotal}}</td>
                     </tr>
                 </tbody>
             </table>

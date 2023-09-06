@@ -31,7 +31,7 @@ export class SectionThreeComponent{
   textCoinIva: number = 16;
 
   updateCalculatedValue(detailItem: DetailModel): number{
-    return detailItem.detailSubtotal * detailItem.detailAmount;
+    return detailItem.detailSubTotal * detailItem.detailAmount;
   }
 
   modalEventOne(){

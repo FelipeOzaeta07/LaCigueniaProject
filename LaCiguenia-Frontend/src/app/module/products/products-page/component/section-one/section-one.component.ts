@@ -59,7 +59,7 @@ export class SectionOneComponent implements OnInit {
     }
 
     this.productModel = {
-      productCode: this.productForm.controls['codeProduct'].value,
+      productId: this.productForm.controls['codeProduct'].value,
       productName: this.productForm.controls['nameProduct'].value,
       productPrice: this.productForm.controls['priceProduct'].value,
       productDescription: this.productForm.controls['descriptionProduct'].value,

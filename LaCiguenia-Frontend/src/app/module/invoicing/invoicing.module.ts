@@ -15,6 +15,7 @@ import { CategoryModule } from '@service/category/category.module';
 import { ProductModule } from '@service/product/product.module';
 import { CustomerModule } from '@service/customer/customer.module';
 import { InvoiceModule } from '@service/invoice/invoice.module';
+import { DetailModule } from '@service/detail/detail.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { InvoiceModule } from '@service/invoice/invoice.module';
     CategoryModule,
     ProductModule,
     CustomerModule,
-    InvoiceModule
+    InvoiceModule,
+    DetailModule
   ]
 })
 export class InvoicingModule { }
