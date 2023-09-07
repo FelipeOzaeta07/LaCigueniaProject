@@ -2,6 +2,10 @@
 
 .svg_width{
     width: calc(3.5vw + 2vh);
+    transition: width 0.3s ease;
+}
+.svg_width:hover{
+    width: calc(4.5vw + 2vh);
 }
 .navegation{
     fill: #414141;
@@ -12,4 +16,11 @@
 .border_bottom{
     border-bottom: 1px solid;
     border-color: var(--color_two);
+}
+.svg_width_logo{
+    width: calc(6vw + 5.5vh);
+    transition: width 0.3s ease;
+}
+.svg_width_logo:hover{
+    width: calc(6.5vw + 5.5vh);;
 }

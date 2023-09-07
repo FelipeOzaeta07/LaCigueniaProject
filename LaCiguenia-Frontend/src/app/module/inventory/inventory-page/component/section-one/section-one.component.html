@@ -9,19 +9,21 @@
             <table class="size_1 col_17">
                 <thead>
                     <tr>
-                        <th class="col_9 col_start">{{textNameProduct}}</th>
+                        <th class="col_3">Fecha Moviemiento</th>
                         <th class="col_2">{{textCode}}</th>
+                        <th class="col_6">{{textNameProduct}}</th>
                         <th class="col_2">{{textSalesPrice}}</th>
                         <th class="col_2">{{textAmount}}</th>
                         <th class="col_2">{{textOptions}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let productItem of products">
-                        <td class="text_color_two">{{productItem.productName}}</td>
-                        <td class="text_center text_color_two">{{productItem.productId}}</td>
-                        <td class="text_center text_color_two">$ {{productItem.productPrice}}</td>
-                        <td class="text_center text_color_two">0</td>
+                    <tr *ngFor="let inventoryItem of inventoryModel">
+                        <td class="text_color_two">{{inventoryItem.inventoryEntryDate}}</td>
+                        <td class="text_color_two">{{inventoryItem.productEntity.productName}}</td>
+                        <td class="text_center text_color_two">{{inventoryItem.productEntity.productId}}</td>
+                        <td class="text_center text_color_two">$ {{inventoryItem.productEntity.productPrice}}</td>
+                        <td class="text_center text_color_two">{{inventoryItem.inventoryAmount}}</td>
                         <td class="text_center text_color_two col_evenly">
                             <button class="btn_one">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="svg_width" fill="" viewBox="0 0 16 16">

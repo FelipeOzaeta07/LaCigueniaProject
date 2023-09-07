@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
+import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, PRICE, SAVE, TITLE } from '@module/products/products-page/component/section-one/constans/section-one';
+import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, PRICE, SAVE, TITLE, IVA } from '@module/products/products-page/component/section-one/constans/section-one';
 import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
+import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
 import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseCase';
 
 @Component({
@@ -19,23 +21,31 @@ export class SectionOneComponent implements OnInit {
   textPrice = PRICE;
   textCode = CODE;
   textAmount = AMOUNT;
+  textIva = IVA;
   textCategory = CATEGORY;
   textDescription = DESCRIPTION;
   textPay = SAVE;
 
   productForm!: FormGroup;
   productModel!: ProductModel;
+  inventoryModel!: InventoryModel;
   category!: CategoryModel [];
 
+  currentDate: string;
+
+
   constructor(public formulary: FormBuilder, public router: Router, private productCreateUseCase: ProductCreateUseCase,
-              private categoriesReadUseCase: CategoriesReadUseCase){
+              private categoriesReadUseCase: CategoriesReadUseCase, private inventoryCreateUseCase: InventoryCreateUseCase){
     this.productForm = formulary.group({
       nameProduct: ['', [Validators.required]],
       codeProduct: ['', [Validators.required]],
       priceProduct: ['', [Validators.required]],
       categoryProduct: ['', [Validators.required]],
-      descriptionProduct: ['', [Validators.required]]
+      descriptionProduct: ['', [Validators.required]],
+      amountProduct: ['', [Validators.required]]
     });
+    const today = new Date();
+    this.currentDate = today.toISOString().slice(0, 10);
   }
 
   ngOnInit(): void {
@@ -80,5 +90,23 @@ export class SectionOneComponent implements OnInit {
         alert("Ocurrió un error al procesar la solicitud");
         this.productForm.reset();
     });
+
+    this.createInventory(this.productModel);
+  }
+
+  createInventory(productModel: ProductModel){
+    this.inventoryModel = {
+      inventoryId: 0,
+      inventoryAmount: this.productForm.controls['amountProduct'].value,
+      inventoryEntryDate: this.currentDate,
+      productEntity: productModel
+    }
+
+    this.inventoryCreateUseCase.execute(this.inventoryModel).subscribe(
+      (res: GenericResponse) => {
+        console.log("Respuesta del Inventario: " + res.message)
+      }
+    )
+
   }
 }

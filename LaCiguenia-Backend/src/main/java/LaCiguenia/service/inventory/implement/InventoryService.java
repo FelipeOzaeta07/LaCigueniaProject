@@ -4,6 +4,7 @@ import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.inventory.IInventoryResponse;
 import LaCiguenia.commons.converter.inventory.InventoryConverter;
 import LaCiguenia.commons.domains.dto.inventory.InventoryDTO;
+import LaCiguenia.commons.domains.dto.personalizedDTO.inventory.DetailInventoryDTO;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.inventory.IInventoryRepository;
@@ -85,14 +86,17 @@ public class InventoryService implements IInventoryService {
         }
     }
 
+
+
+
     @Override
     public ResponseEntity<GenericResponseDTO> readInventories() {
         try {
-            List<InventoryEntity> listInventoryExist = this.iInventoryRepository.findAll();
-            if (!listInventoryExist.isEmpty()){
+            List<InventoryEntity> listDetailInventoryExist = this.iInventoryRepository.findAll();
+            if (!listDetailInventoryExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listInventoryExist)
+                        .objectResponse(listDetailInventoryExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {

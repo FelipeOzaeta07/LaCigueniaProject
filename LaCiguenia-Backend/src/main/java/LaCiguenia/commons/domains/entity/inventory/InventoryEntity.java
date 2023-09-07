@@ -1,9 +1,7 @@
 package LaCiguenia.commons.domains.entity.inventory;
 
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,7 +28,8 @@ public class InventoryEntity {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date inventoryEntryDate;
 
-    @Column(name = "inventory_departure_date")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date inventoryDepartureDate;
+    @OneToOne
+    @JoinColumn(name = "product_code")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
+    private ProductEntity productEntity;
 }

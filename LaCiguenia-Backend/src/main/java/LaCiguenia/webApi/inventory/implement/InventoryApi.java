@@ -46,6 +46,11 @@ public class InventoryApi implements IInventoryApi {
         return this.inventoryService.createInventory(inventoryDTO);
     }
 
+
+
+
+
+
     @Override
     @Operation(summary = "Leer un inventario")
     @ApiResponses(value = {

@@ -13,12 +13,6 @@ CREATE TABLE category_ciguenia (
     category_name VARCHAR(50),
     category_description TEXT
 );
-CREATE TABLE inventory_ciguenia (
-    inventory_id INT PRIMARY KEY AUTO_INCREMENT,
-    inventory_amount INT,
-    inventory_entry_date DATE,
-    inventory_departure_date DATE
-);
 CREATE TABLE product_ciguenia (
     product_code VARCHAR(20) PRIMARY KEY,
     product_name VARCHAR(100),
@@ -26,6 +20,13 @@ CREATE TABLE product_ciguenia (
     product_description VARCHAR(100),
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES category_ciguenia (category_id)
+);
+CREATE TABLE inventory_ciguenia (
+    inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+    inventory_amount INT,
+    inventory_entry_date DATE,
+	product_code VARCHAR(20),
+    FOREIGN KEY (product_code) REFERENCES product_ciguenia(product_code)
 );
 CREATE TABLE material_ciguenia (
     material_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -59,7 +60,6 @@ CREATE TABLE detail_invoice_ciguenia (
     FOREIGN KEY (product_code) REFERENCES product_ciguenia (product_code),
     FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia (invoice_id)
 );
-
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)

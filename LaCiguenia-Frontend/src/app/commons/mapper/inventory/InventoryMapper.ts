@@ -8,7 +8,7 @@ export class InventoryMapper extends Mapper<InventoryEntity, InventoryModel>{
             inventoryId: params.inventoryId,
             inventoryAmount: params.inventoryAmount,
             inventoryEntryDate: params.inventoryEntryDate,
-            inventoryDepartureDate: params.inventoryDepartureDate
+            productEntity: params.productEntity
         };
     }
     override converterModelToEntity(params: InventoryModel): InventoryEntity {
@@ -16,7 +16,7 @@ export class InventoryMapper extends Mapper<InventoryEntity, InventoryModel>{
             inventoryId: params.inventoryId,
             inventoryAmount: params.inventoryAmount,
             inventoryEntryDate: params.inventoryEntryDate,
-            inventoryDepartureDate: params.inventoryDepartureDate
+            productEntity: params.productEntity
         };
     }
 }

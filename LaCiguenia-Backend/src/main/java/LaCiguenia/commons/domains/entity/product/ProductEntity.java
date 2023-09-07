@@ -2,6 +2,7 @@ package LaCiguenia.commons.domains.entity.product;
 
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
+import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
@@ -45,4 +46,8 @@ public class ProductEntity {
     @JsonManagedReference
     @JsonIgnore
     private List<MaterialEntity> listMaterial;
+
+    @OneToOne(mappedBy = "productEntity", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private InventoryEntity inventoryEntity;
 }

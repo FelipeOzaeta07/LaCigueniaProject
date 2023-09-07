@@ -49,12 +49,12 @@ export class ModalTwoComponent {
             productEntity: detail.productEntity,
             invoiceEntity: this.invoiceEnd
           }
-          console.log("Prueba Datos: " + this.detail.invoiceEntity.invoiceId)
-          console.log("Prueba Datos: " + this.detail.detailSubTotal);
-          console.log("prueba Datos: " + this.detail.productEntity.productName);
           this.detailCreateUseCase.execute(this.detail).subscribe(
             (res: GenericResponse) => {
               console.log("Respuesta del Detalle: " + res.message);
+              if(res.statusCode == 200){
+                this.modalEventTwo();
+              }
             }
           )
         }
