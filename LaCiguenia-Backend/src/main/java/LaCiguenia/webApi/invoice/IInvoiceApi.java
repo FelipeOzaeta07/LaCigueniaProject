@@ -5,7 +5,6 @@ import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 public interface IInvoiceApi {
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO);

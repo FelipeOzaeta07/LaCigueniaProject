@@ -13,17 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Log4j2
 public class DetailService implements IDetailService {
+
     @Autowired
     private IDetailRepository iDetailRepository;
     @Autowired
     private DetailConverter detailConverter;
+
     @Override
     public ResponseEntity<GenericResponseDTO> createDetail(DetailDTO detailDTO) {
         try {

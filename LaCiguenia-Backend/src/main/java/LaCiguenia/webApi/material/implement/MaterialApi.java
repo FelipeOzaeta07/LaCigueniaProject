@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IMaterialEndPoint.BASE_URL_MATERIAL)
-@Tag(name = "Sistema de Gestión de materiales", description = "Ops de autenticar, crear, eliminar y actualizar materiales")
+@Tag(name = "Sistema de Gestión de Material", description = "Crear, visualizar, eliminar y actualizar Material")
 @Log4j2
 public class MaterialApi implements IMaterialApi {
+
     private final MaterialService materialService;
 
     public MaterialApi(MaterialService materialService) {
@@ -28,7 +29,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Crear un nuevo material")
+    @Operation(summary = "Crear un nuevo Material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -46,7 +47,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Leer un material")
+    @Operation(summary = "Leer un Material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -64,7 +65,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Leer todos los materiales")
+    @Operation(summary = "Leer todos los Materiales")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -82,7 +83,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar un material")
+    @Operation(summary = "Actualizar un Material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -100,7 +101,7 @@ public class MaterialApi implements IMaterialApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un material")
+    @Operation(summary = "Eliminar un Material")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

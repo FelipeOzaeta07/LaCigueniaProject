@@ -4,7 +4,6 @@ import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.inventory.IInventoryResponse;
 import LaCiguenia.commons.converter.inventory.InventoryConverter;
 import LaCiguenia.commons.domains.dto.inventory.InventoryDTO;
-import LaCiguenia.commons.domains.dto.personalizedDTO.inventory.DetailInventoryDTO;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.inventory.IInventoryRepository;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -85,9 +83,6 @@ public class InventoryService implements IInventoryService {
                             .build());
         }
     }
-
-
-
 
     @Override
     public ResponseEntity<GenericResponseDTO> readInventories() {

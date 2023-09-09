@@ -4,9 +4,7 @@ import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.sql.Date;
-import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor

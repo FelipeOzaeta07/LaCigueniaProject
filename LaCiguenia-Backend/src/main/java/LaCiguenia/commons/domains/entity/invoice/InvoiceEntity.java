@@ -1,12 +1,13 @@
 package LaCiguenia.commons.domains.entity.invoice;
+
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Date;
 import java.util.List;
-
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -39,6 +40,10 @@ public class InvoiceEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
-    @JsonIgnore
     private CustomerEntity customerEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "opening_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
+    private OpeningEntity openingEntity;
 }

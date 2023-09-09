@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IInventoryEndPoint.BASE_URL_INVENTORY)
-@Tag(name = "Sistema de Gestión de Inventarios", description = "Ops de autenticar, crear, eliminar y actualizar inventarios")
+@Tag(name = "Sistema de Gestión de Inventario", description = "Crear, visualizar, eliminar y actualizar Inventario")
 @Log4j2
 public class InventoryApi implements IInventoryApi {
 
@@ -29,7 +29,7 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
-    @Operation(summary = "Crear un nuevo inventario")
+    @Operation(summary = "Crear un nuevo Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -46,13 +46,8 @@ public class InventoryApi implements IInventoryApi {
         return this.inventoryService.createInventory(inventoryDTO);
     }
 
-
-
-
-
-
     @Override
-    @Operation(summary = "Leer un inventario")
+    @Operation(summary = "Leer un Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -70,7 +65,7 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
-    @Operation(summary = "Leer todos los inventarios")
+    @Operation(summary = "Leer todos los Inventarios")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -88,7 +83,7 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar un inventario")
+    @Operation(summary = "Actualizar un Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -106,7 +101,7 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un inventario")
+    @Operation(summary = "Eliminar un Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -57,19 +56,6 @@ public class InvoiceService implements IInvoiceService {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public ResponseEntity<GenericResponseDTO> readInvoice(InvoiceDTO invoiceDTO) {
         try {
@@ -102,7 +88,7 @@ public class InvoiceService implements IInvoiceService {
     public ResponseEntity<GenericResponseDTO> readInvoices() {
         try {
             List<InvoiceEntity> listInvoiceExist = this.iInvoiceRepository.findAll();
-            if (listInvoiceExist.isEmpty()){
+            if (!listInvoiceExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(listInvoiceExist)

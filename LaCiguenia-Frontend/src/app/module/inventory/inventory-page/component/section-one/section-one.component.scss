@@ -36,10 +36,17 @@ th{
     border-color: var(--color_three);
     border-radius: 10px;
 }
+.pt_1{
+    padding-top: calc(0.5vh);
+}
 .p_1{
     padding-top: calc(1vh);
     padding-bottom: calc(1vh);
 }
 .svg_width{
     width: calc(1.5vh + 0.8vw);
+}
+.scroll{
+    overflow-x: hidden; 
+    overflow-y: scroll;
 }

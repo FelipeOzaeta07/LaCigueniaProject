@@ -1,12 +1,9 @@
 package LaCiguenia.service.material.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.inventory.IInventoryResponse;
 import LaCiguenia.commons.constans.response.material.IMaterialResponse;
 import LaCiguenia.commons.converter.material.MaterialConverter;
-import LaCiguenia.commons.domains.dto.inventory.InventoryDTO;
 import LaCiguenia.commons.domains.dto.material.MaterialDTO;
-import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.material.IMaterialRepository;
@@ -16,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -174,7 +170,6 @@ public class MaterialService implements IMaterialService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

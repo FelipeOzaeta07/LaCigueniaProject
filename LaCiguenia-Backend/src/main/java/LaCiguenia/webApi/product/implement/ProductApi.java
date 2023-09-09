@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IProductEndPoint.BASE_URL_PRODUCT)
-@Tag(name = "Sistema de Gestión de Productos", description = "Crear, visualizar, eliminar y actualizar Productos")
+@Tag(name = "Sistema de Gestión de Producto", description = "Crear, visualizar, eliminar y actualizar Producto")
 @Log4j2
 public class ProductApi implements IProductApi {
 
@@ -46,18 +46,8 @@ public class ProductApi implements IProductApi {
         return this.productService.createProducts(productDTO);
     }
 
-
-
-
-
-
-
-
-
-
-
     @Override
-    @Operation(summary = "visualizar un producto")
+    @Operation(summary = "Leer un Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -75,7 +65,7 @@ public class ProductApi implements IProductApi {
     }
 
     @Override
-    @Operation(summary = "visualizar todos los productos")
+    @Operation(summary = "Leer todos los Productos")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -93,7 +83,7 @@ public class ProductApi implements IProductApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar un producto")
+    @Operation(summary = "Actualizar un Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -111,7 +101,7 @@ public class ProductApi implements IProductApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un producto")
+    @Operation(summary = "Eliminar un Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

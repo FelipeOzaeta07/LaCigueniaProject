@@ -16,11 +16,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping(IDetailEndPoint.BASE_URL_DETAIL)
-@Tag(name = "Sistema de Gestión de detalles de facturacion",
-        description = "Ops de autenticar, crear, eliminar y actualizar detalles de facturacion")
+@Tag(name = "Sistema de Gestión de Detalle Facturacion", description = "Crear, visualizar, eliminar y actualizar Detalle Facturacion")
 @Log4j2
 public class DetailApi implements IDetailApi {
 
@@ -30,9 +28,8 @@ public class DetailApi implements IDetailApi {
         this.iDetailService = iDetailService;
     }
 
-
     @Override
-    @Operation(summary = "Crear un nuevo Detalles de Factura")
+    @Operation(summary = "Crear un nuevo Detalle Facturacion")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -49,15 +46,8 @@ public class DetailApi implements IDetailApi {
         return this.iDetailService.createDetail(detailDTO);
     }
 
-
-
-
-
-
-
-
     @Override
-    @Operation(summary = "Leer un detalle de factura")
+    @Operation(summary = "Leer un Detalle Facturacion")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -75,7 +65,7 @@ public class DetailApi implements IDetailApi {
     }
 
     @Override
-    @Operation(summary = "Leer todos los detalles de factura")
+    @Operation(summary = "Leer todos los Detalles Facturacion")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -93,7 +83,7 @@ public class DetailApi implements IDetailApi {
     }
 
     @Override
-    @Operation(summary = "actualizar un detalle de factura")
+    @Operation(summary = "Actualizar un Detalle Facturacion")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -111,7 +101,7 @@ public class DetailApi implements IDetailApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un detalle de factura")
+    @Operation(summary = "Eliminar un Detalle Facturacion")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

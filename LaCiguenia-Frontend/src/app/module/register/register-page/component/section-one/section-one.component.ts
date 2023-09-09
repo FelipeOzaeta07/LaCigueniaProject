@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from '@commons/domains/model/user/UserModel';
@@ -11,8 +11,11 @@ import { UserCreateUseCase } from '@repository/user/case/UserCreateUseCase';
   templateUrl: './section-one.component.html',
   styleUrls: ['./section-one.component.scss']
 })
-export class SectionOneComponent {
+export class SectionOneComponent implements OnChanges {
 
+  @Input() modal!: boolean;
+  @Output() modalActivate = new EventEmitter<boolean>();
+  
   textTitle = TITLE;
   textName = NAME;
   textEmail = EMAIL;
@@ -25,6 +28,9 @@ export class SectionOneComponent {
   registerForm!: FormGroup;
   userModel!: UserModel;
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   constructor(public formulary: FormBuilder, public router: Router, private userCreateUseCase: UserCreateUseCase){
     this.registerForm = formulary.group({
       name: ['', [Validators.required]],
@@ -32,6 +38,20 @@ export class SectionOneComponent {
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
     });
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.modal == false){
+      this.router.navigateByUrl('login-laciguenia');
+      this.registerForm.reset();
+    }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   userCreate(){
@@ -52,8 +72,7 @@ export class SectionOneComponent {
       this.userCreateUseCase.execute(this.userModel).subscribe(
         (genericResponse: GenericResponse) => {
           if (genericResponse.statusCode === 200) {
-            this.router.navigateByUrl('login-laciguenia');
-            this.registerForm.reset();
+            this.modalEvent();
           } else {
             alert("Verificar Contraseña o Email");
             this.registerForm.reset();
@@ -68,5 +87,9 @@ export class SectionOneComponent {
     }else{
       alert("Verificar Contraseña");
     }
+  }
+
+  modalEvent() {
+    this.modalActivate.emit(true);
   }
 }

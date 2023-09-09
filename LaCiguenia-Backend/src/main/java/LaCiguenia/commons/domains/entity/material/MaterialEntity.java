@@ -1,8 +1,6 @@
 package LaCiguenia.commons.domains.entity.material;
 
-import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;

@@ -1,6 +1,5 @@
 package LaCiguenia.commons.domains.dto.product;
 
-
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
@@ -14,7 +13,6 @@ import java.io.Serializable;
 @ToString
 @Builder
 public class ProductDTO implements Serializable {
-
     private String productId;
     private String productName;
     private Double productPrice;

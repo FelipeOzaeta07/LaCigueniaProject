@@ -9,7 +9,6 @@ import java.io.Serializable;
 @ToString
 @Builder
 public class GenericResponse implements Serializable {
-
     public Object objectResponseOne;
     public Object objectResponseTwo;
     public Object objectResponseThree;

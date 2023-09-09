@@ -8,13 +8,15 @@ import { SectionTwoComponent } from '@module/register/register-page/component/se
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from '@service/user/user.module';
+import { ModalOneComponent } from './register-page/component/modal-one/modal-one.component';
 
 
 @NgModule({
   declarations: [
     RegisterPageComponent,
     SectionOneComponent,
-    SectionTwoComponent
+    SectionTwoComponent,
+    ModalOneComponent
   ],
   imports: [
     CommonModule,

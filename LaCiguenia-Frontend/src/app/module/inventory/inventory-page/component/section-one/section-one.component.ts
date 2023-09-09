@@ -22,7 +22,8 @@ export class SectionOneComponent implements OnInit{
 
   products!: ProductModel [];
   inventory!: InventoryModel;
-  inventoryModel!: InventoryModel[];
+  inventoryModel: InventoryModel[] = [];
+
 
   constructor(private productsReadUseCase: ProductsReadUseCase, private inventoriesReadUseCase: InventoriesReadUseCase){
 

@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
 @AllArgsConstructor

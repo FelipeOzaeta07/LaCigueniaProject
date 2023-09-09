@@ -7,7 +7,6 @@ import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Builder(builderMethodName = "newInstance")

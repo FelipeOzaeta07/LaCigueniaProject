@@ -13,8 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @ToString
 @Builder
-public class InvoiceDTO implements Serializable
-{
+public class InvoiceDTO implements Serializable {
     private Integer invoiceId;
     private Date invoiceDate;
     private Integer invoiceIva;

@@ -1,7 +1,6 @@
 package LaCiguenia.commons.domains.dto.material;
 
 import lombok.*;
-
 import java.io.Serializable;
 
 @Data

@@ -2,7 +2,6 @@ package LaCiguenia.webApi.category.implement;
 
 import LaCiguenia.commons.constans.endpoints.category.ICategoryEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.service.category.implement.CategoryService;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ICategoryEndPoint.BASE_URL_CATEGORY)
-@Tag(name = "Sistema de Gestión de Categorias", description = "Ops de autenticar, crear, eliminar y actualizar Categorias")
+@Tag(name = "Sistema de Gestión de Categoria", description = "Crear, visualizar, eliminar y actualizar Categorias")
 @Log4j2
 public class CategoryApi implements ICategoryApi {
 
@@ -30,7 +29,7 @@ public class CategoryApi implements ICategoryApi {
     }
 
     @Override
-    @Operation(summary = "crear una nueva categoria")
+    @Operation(summary = "Crear una nueva Categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -44,12 +43,11 @@ public class CategoryApi implements ICategoryApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(ICategoryEndPoint.CREATE_CATEGORY)
     public ResponseEntity<GenericResponseDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
-        System.out.println("prueba Datos: " + categoryDTO.getCategoryId());
         return this.categoryService.createCategory(categoryDTO);
     }
 
     @Override
-    @Operation(summary = "leer una categoria")
+    @Operation(summary = "Leer una Categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -67,7 +65,7 @@ public class CategoryApi implements ICategoryApi {
     }
 
     @Override
-    @Operation(summary = "leer todas las categorias")
+    @Operation(summary = "Leer todas las Categorias")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -85,7 +83,7 @@ public class CategoryApi implements ICategoryApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar una categoria")
+    @Operation(summary = "Actualizar una Categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -103,7 +101,7 @@ public class CategoryApi implements ICategoryApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar una categoria")
+    @Operation(summary = "Eliminar una Categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

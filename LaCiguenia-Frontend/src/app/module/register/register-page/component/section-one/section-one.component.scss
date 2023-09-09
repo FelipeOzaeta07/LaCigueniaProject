@@ -5,3 +5,30 @@
     color: var(--color_fifteen);
     font-weight: 500;
 }
+.svg_width{
+    width: calc(10vh + 8vw);
+}
+.border_special{
+    border: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.border_special:hover{
+    border: none;
+    box-shadow: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.border_special:focus{
+    border: none;
+    box-shadow: none;
+    outline: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.svg_icon{
+    width: calc(2.5vh);
+}
+.border{
+    border-radius: 15px;
+}

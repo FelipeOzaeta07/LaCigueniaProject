@@ -1,7 +1,6 @@
 package LaCiguenia.service.product.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.customer.ICustomerResponse;
 import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.product.ProductConverter;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -57,23 +55,6 @@ public class ProductService implements IProductService {
                             .build());
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO) {
