@@ -37,7 +37,6 @@ export class ModalTwoComponent {
   generalInvoicePay(){
     this.invoiceCreateUseCase.execute(this.invoiceEnd).subscribe(
       (res: GenericResponse) => {
-        console.log("Respuesta: " + res.objectId);
 
         this.invoiceEnd.invoiceId = res.objectId;
 
@@ -54,6 +53,7 @@ export class ModalTwoComponent {
               console.log("Respuesta del Detalle: " + res.message);
               if(res.statusCode == 200){
                 this.modalEventTwo();
+                window.location.reload();
               }
             }
           )

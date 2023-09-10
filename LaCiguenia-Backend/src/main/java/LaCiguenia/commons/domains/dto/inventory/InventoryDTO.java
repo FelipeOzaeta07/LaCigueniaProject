@@ -4,7 +4,7 @@ import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @Getter
@@ -16,7 +16,7 @@ import java.sql.Date;
 public class InventoryDTO implements Serializable {
     private Integer inventoryId;
     private Integer inventoryAmount;
-    private Date inventoryEntryDate;
+    private LocalDate inventoryEntryDate;
     @JsonIdentityReference(alwaysAsId = true)
     private ProductEntity productEntity;
 }

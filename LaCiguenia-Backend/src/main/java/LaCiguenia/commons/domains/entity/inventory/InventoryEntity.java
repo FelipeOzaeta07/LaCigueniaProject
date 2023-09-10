@@ -4,7 +4,7 @@ import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class InventoryEntity {
 
     @Column(name = "inventory_entry_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date inventoryEntryDate;
+    private LocalDate inventoryEntryDate;
 
     @OneToOne
     @JoinColumn(name = "product_code")

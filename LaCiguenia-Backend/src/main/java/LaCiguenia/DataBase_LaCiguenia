@@ -8,6 +8,12 @@ CREATE TABLE user_ciguenia (
     user_email VARCHAR(100),
     user_password VARCHAR(100)
 );
+CREATE TABLE opening_ciguenia (
+    opening_id INT AUTO_INCREMENT PRIMARY KEY,
+    opening_date DATE,
+    opening_store VARCHAR(255),
+    opening_total INT
+);
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50),
@@ -49,7 +55,9 @@ CREATE TABLE invoice_ciguenia (
     invoice_iva INT,
     invoice_total INT,
     customer_id INT,
-    FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id)
+    opening_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id),
+	FOREIGN KEY (opening_id) REFERENCES opening_ciguenia (opening_id)
 );
 CREATE TABLE detail_invoice_ciguenia (
     detail_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,6 +68,8 @@ CREATE TABLE detail_invoice_ciguenia (
     FOREIGN KEY (product_code) REFERENCES product_ciguenia (product_code),
     FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia (invoice_id)
 );
+
+
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
