@@ -8,33 +8,38 @@ CREATE TABLE user_ciguenia (
     user_email VARCHAR(100),
     user_password VARCHAR(100)
 );
+CREATE TABLE opening_ciguenia (
+    opening_id INT AUTO_INCREMENT PRIMARY KEY,
+    opening_date DATE,
+    opening_store VARCHAR(255),
+    opening_total INT
+);
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50),
     category_description TEXT
 );
-CREATE TABLE inventory_ciguenia (
-    inventory_id INT PRIMARY KEY AUTO_INCREMENT,
-    inventory_amount INT,
-    inventory_entry_date DATE,
-    inventory_departure_date DATE
-);
 CREATE TABLE product_ciguenia (
-    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_code VARCHAR(20) PRIMARY KEY,
     product_name VARCHAR(100),
     product_price DOUBLE,
     product_description VARCHAR(100),
     category_id INT,
-    inventory_id INT,
-    FOREIGN KEY (category_id) REFERENCES category_ciguenia (category_id),
-    FOREIGN KEY (inventory_id) REFERENCES inventory_ciguenia (inventory_id)
+    FOREIGN KEY (category_id) REFERENCES category_ciguenia (category_id)
+);
+CREATE TABLE inventory_ciguenia (
+    inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+    inventory_amount INT,
+    inventory_entry_date DATE,
+	product_code VARCHAR(20),
+    FOREIGN KEY (product_code) REFERENCES product_ciguenia(product_code)
 );
 CREATE TABLE material_ciguenia (
     material_id INT PRIMARY KEY AUTO_INCREMENT,
     material_name VARCHAR(50),
     material_description VARCHAR(100),
-    product_id INT,
-    FOREIGN KEY (product_id) REFERENCES product_ciguenia (product_id)
+    product_code VARCHAR(20),
+    FOREIGN KEY (product_code) REFERENCES product_ciguenia(product_code)
 );
 CREATE TABLE customer_ciguenia (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,17 +55,37 @@ CREATE TABLE invoice_ciguenia (
     invoice_iva INT,
     invoice_total INT,
     customer_id INT,
-    FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id)
+    opening_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id),
+	FOREIGN KEY (opening_id) REFERENCES opening_ciguenia (opening_id)
 );
 CREATE TABLE detail_invoice_ciguenia (
     detail_id INT PRIMARY KEY AUTO_INCREMENT,
     detail_amount INT,
     detail_subtotal INT,
-    product_id INT,
+    product_code VARCHAR(20),
     invoice_id INT,
-    FOREIGN KEY (product_id) REFERENCES product_ciguenia (product_id),
+    FOREIGN KEY (product_code) REFERENCES product_ciguenia (product_code),
     FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia (invoice_id)
 );
+
+
+
+-- Registro Categorias
+INSERT INTO category_ciguenia (category_name, category_description)
+VALUES
+	('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés'),
+	('Juguetes', 'Juguetes educativos y de entretenimiento para bebés y niños pequeños'),
+	('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés'),
+	('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés');
+
+SELECT * FROM invoice_ciguenia;
+SELECT * FROM customer_ciguenia;
+SELECT * FROM product_ciguenia;
+SELECT * FROM detail_invoice_ciguenia;
+
+SELECT MAX(invoice_id) AS end_id FROM invoice_ciguenia;
+
 
 -- Registro Usuarios
 INSERT INTO user_ciguenia (user_name, user_email, user_password)

@@ -16,11 +16,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let detailItem of detailInvoice">
-                        <td class="text_color_two">{{detailItem.productId.productName}}</td>
+                    <tr *ngFor="let detailItem of detailInvoice; let i = index">
+                        <td class="text_color_two">{{detailItem.productEntity.productName}}</td>
                         <td class="text_center text_color_two">{{detailItem.detailAmount}}</td>
-                        <td class="text_center text_color_two">{{detailItem.detailSubtotal * detailItem.detailAmount}}</td>
-                        <td class="text_center text_color_two">{{detailItem.detailSubtotal}}</td>
+                        <td class="text_center text_color_two">{{updateCalculatedValue(detailItem)}}</td>
+                        <td class="text_center text_color_two">{{detailItem.detailSubTotal}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -31,19 +31,19 @@
             <div class="col_17 px_1">
                 <div class="col_between col_17">
                     <p class="size_1">{{textSubTotal}}</p>
-                    <p class="size_1 text_color_two">$ 1000</p>
+                    <p class="size_1 text_color_two">{{textSymbol}} {{totalPriceProducts}}</p>
                 </div>
             </div>
             <div class="col_17 px_1 border_y">
                 <div class="col_between col_17">
                     <p class="size_1">{{textIva}}</p>
-                    <p class="size_1 text_color_two">$ 1000</p>
+                    <p class="size_1 text_color_two">{{textSymbol}} {{(totalPriceProducts * textCoinIva)/100}}</p>
                 </div>
             </div>
             <div class="col_17 px_1">
                 <div class="col_between col_17">
                     <p class="size_1">{{textTotal}}</p>
-                    <p class="size_1">$ 1000</p>
+                    <p class="size_1">{{textSymbol}} {{totalPriceProducts}}</p>
                 </div>
             </div>
         </div>

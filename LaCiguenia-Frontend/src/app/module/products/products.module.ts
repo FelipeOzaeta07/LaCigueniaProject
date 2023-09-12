@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from '@service/product/product.module';
 import { CategoryModule } from '@service/category/category.module';
+import { InventoriesModule } from '@service/inventory/inventories.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CategoryModule } from '@service/category/category.module';
     ReactiveFormsModule,
     HttpClientModule,
     ProductModule,
-    CategoryModule
+    CategoryModule,
+    InventoriesModule
   ]
 })
 export class ProductsModule { }

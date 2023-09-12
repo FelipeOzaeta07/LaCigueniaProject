@@ -19,7 +19,7 @@ export class ProductService extends ProductRepository{
     }
 
     override createProduct(productModel: ProductModel): Observable<GenericResponse> {
-       const productEntity = this.productMapper.converterEntityToModel(productModel);
+       const productEntity = this.productMapper.converterModelToEntity(productModel);
 
        return this.http
             .post<GenericResponse>(BASE_URL_PRODUCT + CREATE_PRODUCT, productEntity)
@@ -28,7 +28,7 @@ export class ProductService extends ProductRepository{
             }));
     }
 
-    override readProduct(params: { productCode: string; }): Observable<GenericResponse> {
+    override readProduct(params: { productId: string; }): Observable<GenericResponse> {
 
         return this.http
             .get<GenericResponse>(BASE_URL_PRODUCT + READ_PRODUCT, {params})
@@ -46,7 +46,7 @@ export class ProductService extends ProductRepository{
     }
 
     override updateProduct(productModel: ProductModel): Observable<GenericResponse> {
-        const productEntity = this.productMapper.converterEntityToModel(productModel);
+        const productEntity = this.productMapper.converterModelToEntity(productModel);
 
         return this.http
             .put<GenericResponse>(BASE_URL_PRODUCT + UPDATE_PRODUCT, productEntity)
@@ -55,7 +55,7 @@ export class ProductService extends ProductRepository{
             }));
     }
 
-    override deleteProduct(params: { productCode: string; }): Observable<GenericResponse> {
+    override deleteProduct(params: { productId: string; }): Observable<GenericResponse> {
         return this.http
             .delete<GenericResponse>(BASE_URL_PRODUCT + DELETE_PRODUCT, {params})
             .pipe(catchError((error: HttpErrorResponse) => {

@@ -54,4 +54,4 @@ export const inventoryDeleteUseCaseProvider = {
     HttpClientModule
   ]
 })
-export class InventoryModule { }
+export class InventoriesModule { }

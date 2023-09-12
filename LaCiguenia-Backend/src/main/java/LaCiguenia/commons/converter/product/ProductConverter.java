@@ -1,10 +1,7 @@
 package LaCiguenia.commons.converter.product;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.user.IUserResponse;
-import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
-import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.commons.helpers.HelperMapper;
 import lombok.extern.log4j.Log4j2;

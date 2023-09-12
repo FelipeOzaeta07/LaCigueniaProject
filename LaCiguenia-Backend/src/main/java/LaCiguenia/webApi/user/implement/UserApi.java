@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IUserEndPoint.USER_BASE_URL)
-@Tag(name = "Sistema de Gestión de Usuarios", description = "Ops de autenticar, crear, eliminar y actualizar usuarios")
+@Tag(name = "Sistema de Gestión de Usuario", description = "Crear, visualizar, eliminar y actualizar Usuario")
 @Log4j2
 public class UserApi implements IUserApi {
 
@@ -30,7 +30,7 @@ public class UserApi implements IUserApi {
     }
 
     @Override
-    @Operation(summary = "controlar la autenticación de los usuarios")
+    @Operation(summary = "Autenticacion de Usuario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = IUserResponse.AUTENTIFICATION_SUCESS,
                     content = {@Content(mediaType = "application/json",
@@ -48,7 +48,7 @@ public class UserApi implements IUserApi {
     }
 
     @Override
-    @Operation(summary = "crear una nueva cuenta de usuario")
+    @Operation(summary = "Crear un nuevo Usuario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 public interface ICategoryApi {
-
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createCategory (@RequestBody CategoryDTO categoryDTO);
     @GetMapping()

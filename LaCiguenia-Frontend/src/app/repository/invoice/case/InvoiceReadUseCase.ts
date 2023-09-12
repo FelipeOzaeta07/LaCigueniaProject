@@ -8,7 +8,7 @@ export class InvoiceReadUseCase implements UseCase<InvoiceModel, GenericResponse
 
     constructor(private invoiceRepository: InvoiceRepository){}
 
-    execute(params: {invoiceId: number}) : Observable<GenericResponse>{
+    execute(params: {invoiceTotal: number}) : Observable<GenericResponse>{
         return this.invoiceRepository.readInvoice(params);
     }
 }

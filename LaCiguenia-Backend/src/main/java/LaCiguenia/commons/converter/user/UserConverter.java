@@ -1,13 +1,11 @@
 package LaCiguenia.commons.converter.user;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.user.UserDTO;
 import LaCiguenia.commons.domains.entity.user.UserEntity;
 import LaCiguenia.commons.helpers.HelperMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
-
 import java.util.Base64;
 
 @Component

@@ -2,14 +2,9 @@ package LaCiguenia.commons.domains.entity.detail;
 
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -31,12 +26,14 @@ public class DetailEntity {
     private Integer detailSubTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_code")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
+    @JsonIgnore
     private ProductEntity productEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "invoiceId")
+    @JsonIgnore
     private InvoiceEntity invoiceEntity;
 }

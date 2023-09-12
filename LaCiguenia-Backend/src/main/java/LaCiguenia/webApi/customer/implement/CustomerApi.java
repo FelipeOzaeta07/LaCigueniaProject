@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ICustomerEndPoint.BASE_URL_CUSTOMER)
-@Tag(name = "Sistema de Gestión de Clientes", description = "Ops de autenticar, crear, eliminar y actualizar Clientes")
+@Tag(name = "Sistema de Gestión de Cliente", description = "Crear, visualizar, eliminar y actualizar Cliente")
 @Log4j2
 public class CustomerApi implements ICustomerApi {
 
@@ -29,7 +29,7 @@ public class CustomerApi implements ICustomerApi {
     }
 
     @Override
-    @Operation(summary = "Crear un nuevo cliente")
+    @Operation(summary = "Crear un nuevo Cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -47,7 +47,7 @@ public class CustomerApi implements ICustomerApi {
     }
 
     @Override
-    @Operation(summary = "Leer un cliente")
+    @Operation(summary = "Leer un Cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -65,7 +65,7 @@ public class CustomerApi implements ICustomerApi {
     }
 
     @Override
-    @Operation(summary = "Leer todos los clientes")
+    @Operation(summary = "Leer todos los Clientes")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -83,7 +83,7 @@ public class CustomerApi implements ICustomerApi {
     }
 
     @Override
-    @Operation(summary = "Actualizar un cliente")
+    @Operation(summary = "Actualizar un Cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -101,7 +101,7 @@ public class CustomerApi implements ICustomerApi {
     }
 
     @Override
-    @Operation(summary = "Eliminar un cliente")
+    @Operation(summary = "Eliminar un Cliente")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",

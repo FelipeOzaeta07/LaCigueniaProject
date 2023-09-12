@@ -1,4 +1,5 @@
 <main class="h_100 col_start">
-    <app-section-one class="col_6"></app-section-one>
+  <app-modal-one *ngIf="modal" class="h_100" (modalActivate)="modalActivateTwo($event)" ></app-modal-one>
+    <app-section-one class="col_6" (modalActivate)="modalActivate($event)" [modal]="modal"></app-section-one>
     <app-section-two class="col_11"></app-section-two>
   </main>

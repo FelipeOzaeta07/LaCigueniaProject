@@ -9,8 +9,8 @@ import java.io.Serializable;
 @ToString
 @Builder
 public class GenericResponseDTO implements Serializable {
-
     public String message;
     public Object objectResponse;
+    public int objectId;
     public int statusCode;
 }

@@ -14,6 +14,7 @@ import { CustomerCreateUseCase } from '@repository/customer/case/CustomerCreateU
 export class ModalOneComponent {
 
   @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() customerId = new EventEmitter<CustomerModel>();
 
   textTitle = TITLE;
   textName = NAME_CUSTOMER;
@@ -37,7 +38,6 @@ export class ModalOneComponent {
     });
   }
 
-
   customerService(){
     if (!this.customerForm.valid) {
       this.customerForm.markAllAsTouched();
@@ -55,16 +55,20 @@ export class ModalOneComponent {
 
     this.customerCreateUseCase.execute(this.customer).subscribe(
       (res: GenericResponse) => {
-        console.log("Prueba: " + res.objectResponse)
-      }
+        this.customer.customerId = res.objectId;
+        this.getCustomerId();
+        this.modalEventOne();
+      },
+      (res: GenericResponse) => {}
     )
+  }
 
-    this.modalEventOne();
+  getCustomerId(){
+    this.customerId.emit(this.customer);
   }
 
   modalEventOne() {
     const datos = false;
     this.modalActivateOne.emit(datos);
   }
-
 }

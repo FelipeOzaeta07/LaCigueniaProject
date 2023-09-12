@@ -7,7 +7,6 @@ import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
@@ -19,8 +18,8 @@ import java.util.List;
 @Table(name = "product_ciguenia")
 public class ProductEntity {
     @Id
-    @Column(name = "product_id")
-    private String productCode;
+    @Column(name = "product_code")
+    private String productId;
 
     @Column(name = "product_name")
     private String productName;
@@ -31,18 +30,23 @@ public class ProductEntity {
     @Column(name = "product_description")
     private String productDescription;
 
-    @OneToMany(mappedBy = "productEntity")
-    @JsonManagedReference
-    private List<MaterialEntity> listMaterial;
-
-    @OneToMany(mappedBy = "productEntity")
-    @JsonManagedReference
-    private List<DetailEntity> listDetail;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryId")
     @JsonIgnore
     private CategoryEntity categoryEntity;
 
+    @OneToMany(mappedBy = "productEntity")
+    @JsonManagedReference
+    @JsonIgnore
+    private List<DetailEntity> listDetail;
+
+    @OneToMany(mappedBy = "productEntity")
+    @JsonManagedReference
+    @JsonIgnore
+    private List<MaterialEntity> listMaterial;
+
+    @OneToOne(mappedBy = "productEntity", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private InventoryEntity inventoryEntity;
 }

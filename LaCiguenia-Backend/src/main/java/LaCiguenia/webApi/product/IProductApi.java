@@ -17,4 +17,3 @@ public interface IProductApi {
     @DeleteMapping()
     ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable String productCode);
 }
-

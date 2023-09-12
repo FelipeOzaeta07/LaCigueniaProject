@@ -13,6 +13,7 @@ export class SectionTwoComponent implements OnInit{
   @Output() selectProducts = new EventEmitter<ProductModel>();
 
   product!: ProductModel [];
+  productMap: ProductModel [][] = [[], [], [], [], []];
 
   constructor(private productsReadUseCase: ProductsReadUseCase){}
 
@@ -24,6 +25,11 @@ export class SectionTwoComponent implements OnInit{
     this.productsReadUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.product = res.objectResponse;
+        for (let i = 0; i < this.product.length; i++) {
+          const residue = i % 4;
+          console.log("Residuo: " + i + " " + residue);
+          this.productMap[residue].push(this.product[i]);
+        }
       }
     )
   }

@@ -1,12 +1,13 @@
 package LaCiguenia.commons.domains.entity.invoice;
+
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
-
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -23,7 +24,7 @@ public class InvoiceEntity {
 
     @Column(name = "invoice_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date invoiceDate;
+    private LocalDate invoiceDate;
 
     @Column(name = "invoice_iva")
     private Integer invoiceIva;
@@ -33,10 +34,16 @@ public class InvoiceEntity {
 
     @OneToMany(mappedBy = "invoiceEntity")
     @JsonManagedReference
+    @JsonIgnore
     private List<DetailEntity> listDetail;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "customer_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
     private CustomerEntity customerEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "opening_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
+    private OpeningEntity openingEntity;
 }

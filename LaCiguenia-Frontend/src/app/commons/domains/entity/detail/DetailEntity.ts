@@ -1,9 +1,10 @@
-import { InvoiceEntity } from "@commons/domains/entity/invoice/InvoiceEntity";
-import { ProductEntity } from "@commons/domains/entity/product/ProductEntity";
+import { InvoiceModel } from "@commons/domains/model/invoice/InvoiceModel";
+import { ProductModel } from "@commons/domains/model/product/ProductModel";
 
 export interface DetailEntity{
     detailId: number;
     detailAmount: number;
-    detailSubtotal: number;
-    productId: ProductEntity;
+    detailSubTotal: number;
+    productEntity: ProductModel;
+    invoiceEntity: InvoiceModel;
 }

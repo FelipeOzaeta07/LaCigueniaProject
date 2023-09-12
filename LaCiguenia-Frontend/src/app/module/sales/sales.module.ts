@@ -6,6 +6,7 @@ import { SalesPageComponent } from '@module/sales/sales-page/sales-page.componen
 import { SectionOneComponent } from '@module/sales/sales-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/sales/sales-page/component/section-two/section-two.component';
 import { ComponentModule } from '@component/component.module';
+import { InvoiceModule } from '@service/invoice/invoice.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ComponentModule } from '@component/component.module';
   imports: [
     CommonModule,
     SalesRoutingModule,
-    ComponentModule
+    ComponentModule,
+    InvoiceModule
   ]
 })
 export class SalesModule { }

@@ -1,10 +1,7 @@
 package LaCiguenia.commons.domains.dto.customer;
 
-import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import lombok.*;
-
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Getter

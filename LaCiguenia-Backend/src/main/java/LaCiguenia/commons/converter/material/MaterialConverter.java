@@ -1,9 +1,7 @@
 package LaCiguenia.commons.converter.material;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.domains.dto.inventory.InventoryDTO;
 import LaCiguenia.commons.domains.dto.material.MaterialDTO;
-import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.material.MaterialEntity;
 import LaCiguenia.commons.helpers.HelperMapper;
 import lombok.extern.log4j.Log4j2;

@@ -1,8 +1,6 @@
 package LaCiguenia.commons.domains.entity.material;
 
-import LaCiguenia.commons.domains.entity.category.CategoryEntity;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -28,7 +26,7 @@ public class MaterialEntity {
     private String materialDescription;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_code")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
     private ProductEntity productEntity;
 }

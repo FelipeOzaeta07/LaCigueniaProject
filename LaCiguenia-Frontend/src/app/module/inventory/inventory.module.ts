@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SectionOneComponent } from '@module/inventory/inventory-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/inventory/inventory-page/component/section-two/section-two.component';
 import { ProductModule } from '@service/product/product.module';
+import { InventoriesModule } from '@service/inventory/inventories.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ProductModule } from '@service/product/product.module';
     InventoryRoutingModule,
     HttpClientModule,
     ComponentModule,
-    ProductModule
+    ProductModule,
+    InventoriesModule
   ]
 })
 export class InventoryModule { }

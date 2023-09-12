@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { AMOUNT, CODE, NAME_PRODUCT, OPTIONS, PAGING, SALES_PRICE, TITLE } from '@module/inventory/inventory-page/component/section-one/constans/section-one'
+import { InventoriesReadUseCase } from '@repository/inventory/case/InventoriesReadUseCase';
 import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
 
 @Component({
@@ -19,13 +21,29 @@ export class SectionOneComponent implements OnInit{
   textPaging = PAGING;
 
   products!: ProductModel [];
+  inventory!: InventoryModel;
+  inventoryModel: InventoryModel[] = [];
 
-  constructor(private productsReadUseCase: ProductsReadUseCase){
+
+  constructor(private productsReadUseCase: ProductsReadUseCase, private inventoriesReadUseCase: InventoriesReadUseCase){
 
   }
 
   ngOnInit(): void {
     this.getProducts();
+    this.getInventoryProduct();
+  }
+
+  getInventoryProduct(){
+    this.inventoriesReadUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        console.log("Prueba Valores Inventario: " + res.objectResponse);
+        for(const resItem of res.objectResponse){
+          this.inventory = resItem;
+          this.inventoryModel.push(this.inventory);
+        }
+      }
+    )
   }
   
   getProducts(){

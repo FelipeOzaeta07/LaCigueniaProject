@@ -2,11 +2,9 @@ package LaCiguenia.service.customer.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.customer.ICustomerResponse;
-import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.customer.CustomerConverter;
 import LaCiguenia.commons.domains.dto.customer.CustomerDTO;
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
-import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.customer.ICustomerRepository;
 import LaCiguenia.service.customer.ICustomerService;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -32,30 +29,30 @@ public class CustomerService implements ICustomerService {
     public ResponseEntity<GenericResponseDTO> createCustomer(CustomerDTO customerDTO) {
         try {
             Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findById(customerDTO.getCustomerId());
+                    this.iCustomerRepository.findByCustomerIdentification(customerDTO.getCustomerIdentification());
             if (!customerExist.isPresent()){
                 CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
                 this.iCustomerRepository.save(customerEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
+                        .objectId(this.iCustomerRepository.lastCustomerId())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(ICustomerResponse.CUSTOMER_SUCCESS)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(GenericResponseDTO.builder()
                             .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
-                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
                             .build());
         }
     }
@@ -78,7 +75,6 @@ public class CustomerService implements ICustomerService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -107,7 +103,6 @@ public class CustomerService implements ICustomerService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -138,7 +133,6 @@ public class CustomerService implements ICustomerService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -168,7 +162,6 @@ public class CustomerService implements ICustomerService {
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
-
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

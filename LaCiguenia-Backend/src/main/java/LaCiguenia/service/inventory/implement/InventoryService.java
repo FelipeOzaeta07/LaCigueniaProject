@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -88,11 +87,11 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readInventories() {
         try {
-            List<InventoryEntity> listInventoryExist = this.iInventoryRepository.findAll();
-            if (!listInventoryExist.isEmpty()){
+            List<InventoryEntity> listDetailInventoryExist = this.iInventoryRepository.findAll();
+            if (!listDetailInventoryExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listInventoryExist)
+                        .objectResponse(listDetailInventoryExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {

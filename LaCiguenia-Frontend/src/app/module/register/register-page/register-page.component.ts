@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class RegisterPageComponent {
 
+  modal!: boolean;
+
+  modalActivate(datos: boolean){
+    this.modal = datos;
+  }
+
+  modalActivateTwo(datos: boolean){
+    this.modal = datos;
+  }
 }

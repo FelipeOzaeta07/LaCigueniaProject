@@ -1,7 +1,8 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/model/detail/DetailModel';
-import { ProductModel } from '@commons/domains/model/product/ProductModel';
-import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
+import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
+import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 
 @Component({
@@ -11,10 +12,13 @@ import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY
 })
 export class SectionThreeComponent{
 
+  @Input() totalPriceProducts: number = 0;
   @Input() detailInvoice: DetailModel [] = [];
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() modalActivateTwo = new EventEmitter<boolean>();
 
+  invoice!: InvoiceModel;
+  customer!: CustomerModel;
   textTotal = TOTAL;
   textSubTotal = SUBTOTAL;
   textIva = IVA;
@@ -23,6 +27,12 @@ export class SectionThreeComponent{
   textTotalTable = TOTAL_TABLE;
   textSubTotalTable = SUBTOTAL_TABLE;
   textPay = PAY;
+  textSymbol = SYMBOL;
+  textCoinIva: number = 16;
+
+  updateCalculatedValue(detailItem: DetailModel): number{
+    return detailItem.detailSubTotal * detailItem.detailAmount;
+  }
 
   modalEventOne(){
     const datos = true;

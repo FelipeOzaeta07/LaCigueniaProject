@@ -55,3 +55,7 @@ th{
 .svg_width{
     width: calc(1.5vh + 0.8vw);
 }
+.scroll{
+    overflow-x: hidden; 
+    overflow-y: scroll;
+}

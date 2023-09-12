@@ -1,12 +1,10 @@
 package LaCiguenia.commons.domains.entity.category;
 
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Builder(builderMethodName = "newInstance")

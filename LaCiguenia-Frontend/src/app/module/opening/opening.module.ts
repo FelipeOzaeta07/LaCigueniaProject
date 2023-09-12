@@ -7,6 +7,7 @@ import { OpeningPageComponent } from '@module/opening/opening-page/opening-page.
 import { SectionOneComponent } from '@module/opening/opening-page/component/section-one/section-one.component';
 import { SectionTwoComponent } from '@module/opening/opening-page/component/section-two/section-two.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OpenModule } from '@service/opening/opening.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ComponentModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    OpenModule
   ]
 })
 export class OpeningModule { }
