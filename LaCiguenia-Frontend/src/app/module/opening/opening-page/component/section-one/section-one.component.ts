@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OpeningModel } from '@commons/domains/model/opening/OpeningModel';
+import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { DATE, OPENING_BOX, STORE, TITLE, TOTAL } from '@module/opening/opening-page/component/section-one/constans/section-one';
 import { OpeningCreateUseCase } from '@repository/opening/case/OpeningCreateUseCase';

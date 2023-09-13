@@ -1,6 +1,12 @@
 package LaCiguenia.repository.category;
 
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
+import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-public interface ICategoryRepository extends JpaRepository<CategoryEntity, Integer> { }
+import java.util.List;
+
+public interface ICategoryRepository extends JpaRepository<CategoryEntity, Integer> {
+}

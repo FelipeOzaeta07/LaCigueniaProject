@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
+import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, NAME_CUSTOMER, NUMBER_ID, NUMBER_PHONE, EMAIL, ADDRESS, DONE, FAIL } from '@module/invoicing/invoicing-page/component/modal-one/constans/modal-one';
 import { CustomerCreateUseCase } from '@repository/customer/case/CustomerCreateUseCase';

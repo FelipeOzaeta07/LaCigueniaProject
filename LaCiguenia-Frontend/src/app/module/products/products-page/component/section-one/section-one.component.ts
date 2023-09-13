@@ -1,14 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
-import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
-import { ProductModel } from '@commons/domains/model/product/ProductModel';
+import { CategoryModel } from '@commons/domains/category/CategoryModel';
+import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
+import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, PRICE, SAVE, TITLE, IVA } from '@module/products/products-page/component/section-one/constans/section-one';
+import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, SAVE, TITLE, IVA, PRICE_SALE, PRICE_COST } from '@module/products/products-page/component/section-one/constans/section-one';
 import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
 import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
-import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseCase';
+import { CreateProductsUseCase } from '@repository/product/case/CreateProductsUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -21,7 +21,8 @@ export class SectionOneComponent implements OnInit {
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
-  textPrice = PRICE;
+  textPriceSale = PRICE_SALE;
+  textPriceCost = PRICE_COST;
   textCode = CODE;
   textAmount = AMOUNT;
   textIva = IVA;
@@ -37,18 +38,19 @@ export class SectionOneComponent implements OnInit {
   currentDate: string;
 
 
-  constructor(public formulary: FormBuilder, public router: Router, private productCreateUseCase: ProductCreateUseCase,
+  constructor(public formulary: FormBuilder, public router: Router, private CreateProductsUseCase: CreateProductsUseCase,
               private categoriesReadUseCase: CategoriesReadUseCase, private inventoryCreateUseCase: InventoryCreateUseCase){
     this.productForm = formulary.group({
       nameProduct: ['', [Validators.required]],
-      codeProduct: ['', [Validators.required]],
       priceProduct: ['', [Validators.required]],
+      costProduct: ['', [Validators.required]],
+      ivaProduct: ['', [Validators.required]],
+      amountProduct: ['', [Validators.required]],
       categoryProduct: ['', [Validators.required]],
       descriptionProduct: ['', [Validators.required]],
-      amountProduct: ['', [Validators.required]]
     });
-    const today = new Date();
-    this.currentDate = today.toISOString().slice(0, 10);
+    const TODAY = new Date();
+    this.currentDate = TODAY.toISOString().slice(0, 10);
   }
 
   ngOnInit(): void {
@@ -65,23 +67,27 @@ export class SectionOneComponent implements OnInit {
       });
   }
 
-  createProduct(){
+  CreateProducts(){
     if (!this.productForm.valid) {
       this.productForm.markAllAsTouched();
-      return;
+      return
     }
 
     this.productModel = {
-      productId: this.productForm.controls['codeProduct'].value,
+      productId: 0,
       productName: this.productForm.controls['nameProduct'].value,
       productPrice: this.productForm.controls['priceProduct'].value,
+      productIva: this.productForm.controls['ivaProduct'].value,
+      productCost: this.productForm.controls['costProduct'].value,
       productDescription: this.productForm.controls['descriptionProduct'].value,
+      productStatus: "Habilitado",
       categoryEntity: this.productForm.controls['categoryProduct'].value
     }
 
-    this.productCreateUseCase.execute(this.productModel).subscribe(
+    this.CreateProductsUseCase.execute(this.productModel).subscribe(
       (genericResponse: GenericResponse) => {
-        if (genericResponse.statusCode === 200) {
+        if (genericResponse.statusCode == 200) {
+          this.createInventory(this.productModel);
           this.modalEvent();
           this.productForm.reset();
         } else {
@@ -90,12 +96,9 @@ export class SectionOneComponent implements OnInit {
         }
       },
       (error) => {
-        console.error('Error en la suscripción:', error);
-        alert("Ocurrió un error al procesar la solicitud");
+        alert("Ocurrió un error al procesar la solicitud " + error);
         this.productForm.reset();
     });
-
-    this.createInventory(this.productModel);
   }
 
   createInventory(productModel: ProductModel){
@@ -109,9 +112,10 @@ export class SectionOneComponent implements OnInit {
     this.inventoryCreateUseCase.execute(this.inventoryModel).subscribe(
       (res: GenericResponse) => {
         console.log("Respuesta del Inventario: " + res.message)
-      }
-    )
-
+      },
+      (error) => {
+        alert("Ocurrió un error al procesar la solicitud " + error);
+    });
   }
 
   modalEvent() {

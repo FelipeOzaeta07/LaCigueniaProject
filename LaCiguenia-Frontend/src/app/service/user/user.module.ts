@@ -31,4 +31,6 @@ export const userServiceUseCaseProvider = {
         CommonModule,
         HttpClientModule
     ]
-})export class UserModule { }
+})
+
+export class UserModule { }

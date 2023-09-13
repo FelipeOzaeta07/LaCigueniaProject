@@ -1,4 +1,4 @@
-import { CustomerModel } from "@commons/domains/model/customer/CustomerModel";
+import { CustomerModel } from "@commons/domains/customer/CustomerModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 

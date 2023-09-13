@@ -1,4 +1,4 @@
-import { OpeningModel } from "@commons/domains/model/opening/OpeningModel";
+import { OpeningModel } from "@commons/domains/opening/OpeningModel";
 import { UseCase } from "@commons/helpers/UserCase";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { OpeningRepository } from "../OpeningRepository";

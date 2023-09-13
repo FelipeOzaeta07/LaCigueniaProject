@@ -1,4 +1,4 @@
-import { DetailModel } from "@commons/domains/model/detail/DetailModel";
+import { DetailModel } from "@commons/domains/detail/DetailModel";
 import { DetailRepository } from "@repository/detail/DetailRepository";
 import { Observable } from "rxjs";
 import { UseCase } from "@commons/helpers/UserCase";

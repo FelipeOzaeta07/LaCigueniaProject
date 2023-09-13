@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { CategoryModel } from "@commons/domains/model/category/CategoryModel";
+import { CategoryModel } from "@commons/domains/category/CategoryModel";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
 export abstract class CategoryRepository {

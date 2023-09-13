@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserModel } from '@commons/domains/model/user/UserModel';
+import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { CONFIRM_PASSWORD, TITLE, NAME, EMAIL, PASSWORD, DONE_CONDITIONS, TEXT, HERE } from '@module/register/register-page/component/section-one/constans/section-one';
 import { UserCreateUseCase } from '@repository/user/case/UserCreateUseCase';

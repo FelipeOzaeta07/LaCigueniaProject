@@ -1,5 +1,5 @@
 
-import { CustomerModel } from "@commons/domains/model/customer/CustomerModel";
+import { CustomerModel } from "@commons/domains/customer/CustomerModel";
 import { UseCase } from "@commons/helpers/UserCase";
 import { CustomerRepository } from "@repository/customer/CustomerRepository";
 import { Observable } from "rxjs";

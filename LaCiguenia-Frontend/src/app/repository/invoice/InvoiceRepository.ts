@@ -1,4 +1,4 @@
-import { InvoiceModel } from "@commons/domains/model/invoice/InvoiceModel";
+import { InvoiceModel } from "@commons/domains/invoice/InvoiceModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 

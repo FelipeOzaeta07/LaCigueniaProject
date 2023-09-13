@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { DetailModel } from "@commons/domains/model/detail/DetailModel";
+import { DetailModel } from "@commons/domains/detail/DetailModel";
 import { BASE_URL_DETAIL, CREATE_DETAIL, DELETE_DETAIL, READ_DETAIL, READ_DETAILS, UPDATE_DETAIL } from "@commons/endpoint/detail/DetailEndPoint";
-import { DetailMapper } from "@commons/mapper/detail/DetailMapper";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { DetailRepository } from "@repository/detail/DetailRepository";
 import { Observable, catchError, throwError } from "rxjs";
@@ -12,17 +11,14 @@ import { Observable, catchError, throwError } from "rxjs";
 })
 export class DetailService extends DetailRepository {
 
-    detailMapper = new DetailMapper();
-
     constructor(private http: HttpClient){
         super();
     }
 
     override createDetail(detailModel: DetailModel): Observable<GenericResponse> {
-        const detailEntity = this.detailMapper.converterModelToEntity(detailModel);
     
         return this.http
-            .post<GenericResponse>(BASE_URL_DETAIL + CREATE_DETAIL, detailEntity)
+            .post<GenericResponse>(BASE_URL_DETAIL + CREATE_DETAIL, detailModel)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
@@ -45,10 +41,9 @@ export class DetailService extends DetailRepository {
     }
 
     override updateDetail(detailModel: DetailModel): Observable<GenericResponse> {
-        const detailEntity = this.detailMapper.converterModelToEntity(detailModel);
     
         return this.http
-            .put<GenericResponse>(BASE_URL_DETAIL + UPDATE_DETAIL, detailEntity)
+            .put<GenericResponse>(BASE_URL_DETAIL + UPDATE_DETAIL, detailModel)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));

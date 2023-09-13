@@ -1,8 +1,8 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
-import { DetailModel } from '@commons/domains/model/detail/DetailModel';
-import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
-import { ProductModel } from '@commons/domains/model/product/ProductModel';
+import { CustomerModel } from '@commons/domains/customer/CustomerModel';
+import { DetailModel } from '@commons/domains/detail/DetailModel';
+import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
+import { ProductModel } from '@commons/domains/product/ProductModel';
 
 @Component({
   selector: 'app-invoicing-page',

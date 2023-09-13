@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
+import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
 

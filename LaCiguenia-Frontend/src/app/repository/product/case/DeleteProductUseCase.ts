@@ -1,14 +1,14 @@
 import { UseCase } from "@commons/helpers/UserCase";
-import { ProductModel } from "@commons/domains/model/product/ProductModel";
+import { ProductModel } from "@commons/domains/product/ProductModel";
 import { ProductRepository } from "@repository/product/ProductRepository";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class ProductCreateUseCase implements UseCase<ProductModel, GenericResponse>{
+export class DeleteProductUseCase implements UseCase<ProductModel, GenericResponse>{
 
     constructor(private productRepository: ProductRepository){}
 
-    execute(productModel: ProductModel) : Observable<GenericResponse>{
-        return this.productRepository.createProduct(productModel);
+    execute(params: {productId: number}) : Observable<GenericResponse>{
+        return this.productRepository.deleteProduct(params);
     }
 }
