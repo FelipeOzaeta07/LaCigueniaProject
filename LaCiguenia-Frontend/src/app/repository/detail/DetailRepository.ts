@@ -1,4 +1,4 @@
-import { DetailModel } from "@commons/domains/model/detail/DetailModel";
+import { DetailModel } from "@commons/domains/detail/DetailModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 

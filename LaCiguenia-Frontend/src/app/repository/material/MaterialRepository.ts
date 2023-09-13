@@ -1,4 +1,4 @@
-import { MaterialModel } from "@commons/domains/model/material/MaterialModel";
+import { MaterialModel } from "@commons/domains/material/MaterialModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DetailModel } from '@commons/domains/model/detail/DetailModel';
-import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
+import { DetailModel } from '@commons/domains/detail/DetailModel';
+import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { SYMBOL_PRICE, TITLE, SUBTOTAL, IVA, TOTAL, DISCOUNT, ADD_PAY, CHANGE, FAIL, PAY} from '@module/invoicing/invoicing-page/component/modal-two/constans/modal-two';
 import { DetailCreateUseCase } from '@repository/detail/case/DetailCreateUseCase';

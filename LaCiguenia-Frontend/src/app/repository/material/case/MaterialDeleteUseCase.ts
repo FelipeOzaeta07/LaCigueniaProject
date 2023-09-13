@@ -1,6 +1,6 @@
 import { UseCase } from "@commons/helpers/UserCase";
 import { MaterialRepository } from "@repository/material/MaterialRepository";
-import { MaterialModel } from "@commons/domains/model/material/MaterialModel";
+import { MaterialModel } from "@commons/domains/material/MaterialModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 

@@ -1,20 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 import { UserRepository } from "@repository/user/UserRepository";
-import { UserMapper } from "@commons/mapper/user/UserMapper";
 import { Injectable } from "@angular/core";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { BASE_URL_USER, CREATE_USER, SERVICE_USER } from "@commons/endpoint/user/UserEndPoint";
 import { AccessTokenService } from "./AccessTokenService";
-import { UserModel } from "@commons/domains/model/user/UserModel";
+import { UserModel } from "@commons/domains/user/UserModel";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UserService extends UserRepository{
-
-    userMapper = new UserMapper();
 
     constructor(private http: HttpClient, private accessTokenService: AccessTokenService ){
         super();

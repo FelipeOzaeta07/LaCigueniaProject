@@ -1,4 +1,4 @@
-import { ProductModel } from "@commons/domains/model/product/ProductModel";
+import { ProductModel } from "@commons/domains/product/ProductModel";
 import { InvoiceModel } from "../invoice/InvoiceModel";
 
 export interface DetailModel{
