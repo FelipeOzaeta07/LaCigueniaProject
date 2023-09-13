@@ -15,4 +15,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
                     "ORDER BY product_id DESC\n" +
                     "LIMIT 3;", nativeQuery = true)
     List<ProductEntity> findProductRecentlyCreate();
+
+    @Query (value = "SELECT * FROM product_ciguenia WHERE product_status = 'Habilitado'", nativeQuery = true)
+    List<ProductEntity> findProductsEnabled();
 }

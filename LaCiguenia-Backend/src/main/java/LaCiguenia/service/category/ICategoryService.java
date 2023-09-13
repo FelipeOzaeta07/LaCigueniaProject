@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface ICategoryService {
     ResponseEntity<GenericResponseDTO> createCategory (CategoryDTO categoryDTO);
-    ResponseEntity<GenericResponseDTO> readCategory (CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponseDTO> readProductsForCategory (Integer categoryId);
     ResponseEntity<GenericResponseDTO> readCategories ();
     ResponseEntity<GenericResponseDTO> updateCategory (CategoryDTO categoryDTO);
     ResponseEntity<GenericResponseDTO> deleteCategory (Integer categoryId);
