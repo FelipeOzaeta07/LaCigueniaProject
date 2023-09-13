@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NAME_PRODUCT, TITLE, PRICE, AMOUNT, CATEGORY, DESCRIPTION, DONE } from '@module/admin/admin-page/component/modal-one/constans/modal-one'
+import { NAME_PRODUCT, TITLE, PRICE, AMOUNT, CATEGORY, DESCRIPTION, EDIT, FAIL, DATE } from '@module/admin/admin-page/component/modal-one/constans/modal-one'
+import { CODE, PRICE_SALE } from '@module/products/products-page/component/section-one/constans/section-one';
 
 @Component({
   selector: 'app-modal-one',
@@ -10,11 +11,14 @@ export class ModalOneComponent {
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
-  textPrice = PRICE;
+  textPriceSale = PRICE_SALE;
   textAmount = AMOUNT;
   textDescription = DESCRIPTION;
   textCategory = CATEGORY;
-  textDone = DONE;
+  textCode = CODE;
+  textDate = DATE;
+  textEdit = EDIT;
+  textFail = FAIL;
   
   @Output() modalActivate = new EventEmitter<boolean>();
 

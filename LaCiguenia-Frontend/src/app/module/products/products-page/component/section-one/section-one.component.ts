@@ -5,7 +5,7 @@ import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
 import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, PRICE, SAVE, TITLE, IVA } from '@module/products/products-page/component/section-one/constans/section-one';
+import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, SAVE, TITLE, IVA, PRICE_SALE, PRICE_COST } from '@module/products/products-page/component/section-one/constans/section-one';
 import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
 import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
 import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseCase';
@@ -21,7 +21,8 @@ export class SectionOneComponent implements OnInit {
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
-  textPrice = PRICE;
+  textPriceSale = PRICE_SALE;
+  textPriceCost = PRICE_COST;
   textCode = CODE;
   textAmount = AMOUNT;
   textIva = IVA;
