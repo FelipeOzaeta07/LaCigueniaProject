@@ -9,11 +9,15 @@ public interface IProductApi {
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO);
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readProduct(@RequestBody ProductDTO productDTO);
+    ResponseEntity<GenericResponseDTO> readProductId(@PathVariable Integer productId);
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readProduct(@PathVariable String productName);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readProducts();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readProductsRecentlyCreate();
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateProduct(@RequestBody ProductDTO productDTO);
     @DeleteMapping()
-    ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable String productCode);
+    ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId);
 }

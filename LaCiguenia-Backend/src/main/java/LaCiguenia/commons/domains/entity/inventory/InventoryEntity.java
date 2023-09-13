@@ -27,7 +27,7 @@ public class InventoryEntity {
     private LocalDate inventoryEntryDate;
 
     @OneToOne
-    @JoinColumn(name = "product_code")
+    @JoinColumn(name = "product_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
     private ProductEntity productEntity;
 }

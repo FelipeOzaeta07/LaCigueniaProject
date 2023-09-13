@@ -20,10 +20,13 @@ CREATE TABLE category_ciguenia (
     category_description TEXT
 );
 CREATE TABLE product_ciguenia (
-    product_code VARCHAR(20) PRIMARY KEY,
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(100),
     product_price DOUBLE,
+    product_iva DOUBLE,
+    product_cost DOUBLE,
     product_description VARCHAR(100),
+    product_status VARCHAR(20),
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES category_ciguenia (category_id)
 );
@@ -31,15 +34,15 @@ CREATE TABLE inventory_ciguenia (
     inventory_id INT PRIMARY KEY AUTO_INCREMENT,
     inventory_amount INT,
     inventory_entry_date DATE,
-	product_code VARCHAR(20),
-    FOREIGN KEY (product_code) REFERENCES product_ciguenia(product_code)
+	product_id INT,
+    FOREIGN KEY (product_id) REFERENCES product_ciguenia(product_id)
 );
 CREATE TABLE material_ciguenia (
     material_id INT PRIMARY KEY AUTO_INCREMENT,
     material_name VARCHAR(50),
     material_description VARCHAR(100),
-    product_code VARCHAR(20),
-    FOREIGN KEY (product_code) REFERENCES product_ciguenia(product_code)
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES product_ciguenia(product_id)
 );
 CREATE TABLE customer_ciguenia (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -63,15 +66,17 @@ CREATE TABLE detail_invoice_ciguenia (
     detail_id INT PRIMARY KEY AUTO_INCREMENT,
     detail_amount INT,
     detail_subtotal INT,
-    product_code VARCHAR(20),
+    product_id INT,
     invoice_id INT,
-    FOREIGN KEY (product_code) REFERENCES product_ciguenia (product_code),
+    FOREIGN KEY (product_id) REFERENCES product_ciguenia (product_id),
     FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia (invoice_id)
 );
 
+---------------------------------------------------------------------------------------------------
+--------------------------------------    Registro Productos  -------------------------------------
+---------------------------------------------------------------------------------------------------
 
-
--- Registro Categorias
+-------------------- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
 VALUES
 	('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés'),
@@ -79,99 +84,101 @@ VALUES
 	('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés'),
 	('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés');
 
-SELECT * FROM invoice_ciguenia;
-SELECT * FROM customer_ciguenia;
-SELECT * FROM product_ciguenia;
-SELECT * FROM detail_invoice_ciguenia;
+-------------------- Registro Productos
+---------------------------------------------------------------------------------------------------
+INSERT INTO product_ciguenia (product_name, product_price, product_iva, product_cost, product_description, product_status, category_id)
+VALUES
+    ('Producto 1', 10000, 16, 5000, 'Descripción de Producto 1', 'Habilitado', 1),
+    ('Producto 2', 15000, 16, 5000, 'Descripción de Producto 2', 'Habilitado', 2),
+    ('Producto 3', 20900, 16, 5000, 'Descripción de Producto 3', 'Habilitado', 3),
+    ('Producto 4', 8900, 16, 5000, 'Descripción de Producto 4', 'Habilitado', 4),
+    ('Producto 5', 12900, 16, 5000, 'Descripción de Producto 5', 'Habilitado', 1),
+    ('Producto 6', 9000, 16, 5000, 'Descripción de Producto 6', 'Habilitado', 2),
+    ('Producto 7', 25000, 16, 5000, 'Descripción de Producto 7', 'Habilitado', 3),
+    ('Producto 8', 14000, 16, 5000, 'Descripción de Producto 8', 'Habilitado', 4),
+    ('Producto 9', 18000, 16, 5000, 'Descripción de Producto 9', 'Habilitado', 1),
+    ('Producto 10', 7000, 16, 5000, 'Descripción de Producto 10', 'Habilitado', 2);
+
+-------------------- Registro Inventario
+---------------------------------------------------------------------------------------------------
+INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, product_id)
+VALUES
+    (100, '2023-09-06', 1),
+    (150, '2023-09-06', 2),
+    (200, '2023-09-06', 3),
+    (75, '2023-09-06', 4),
+    (120, '2023-09-06', 5),
+    (85, '2023-09-06', 6),
+    (250, '2023-09-06', 7),
+    (140, '2023-09-06', 8),
+    (180, '2023-09-06', 9),
+    (60, '2023-09-06', 10);
+
+-------------------- Registro Cliente
+---------------------------------------------------------------------------------------------------
+INSERT INTO customer_ciguenia (customer_name, customer_identification, customer_phone_number, customer_email, customer_address)
+VALUES ('Cliente General', '123456789', '3001101010', 'general@example.com', 'Calle Principal 123');
+
+---------------------------------------------------------------------------------------------------
+--------------------------------------    Query Especiales  ---------------------------------------
+---------------------------------------------------------------------------------------------------
 
 SELECT MAX(invoice_id) AS end_id FROM invoice_ciguenia;
 
 
--- Registro Usuarios
-INSERT INTO user_ciguenia (user_name, user_email, user_password)
-VALUES
-	('United National Security Code', 'unsc@gmail.com', '123');
-
--- Registro Categorias
-INSERT INTO category_ciguenia (category_name, category_description)
-VALUES
-	('Ropa para bebés', 'Ropa suave y cómoda para recién nacidos y bebés'),
-	('Juguetes', 'Juguetes educativos y de entretenimiento para bebés y niños pequeños'),
-	('Accesorios para bebés', 'Accesorios prácticos y adorables para bebés'),
-	('Cuidado y alimentación', 'Productos para el cuidado y la alimentación de bebés'),
-	('Mobiliario infantil', 'Muebles seguros y funcionales para cuartos de bebés'),
-	('Ropa de cama para bebés', 'Sábanas y mantas suaves para cunas de bebés');
-
--- Registro Inventarios
-INSERT INTO inventory_ciguenia (inventory_amount, inventory_entry_date, inventory_departure_date)
-VALUES
-	(100, '2023-08-01', '2023-08-15'),
-	(50, '2023-08-03', '2023-08-20'),
-	(75, '2023-08-05', '2023-08-18'),
-	(120, '2023-08-10', '2023-08-25'),
-	(200, '2023-08-15', '2023-08-30'),
-	(30, '2023-08-18', '2023-08-28'),
-	(90, '2023-08-20', '2023-09-05'),
-	(60, '2023-08-23', '2023-09-10'),
-	(110, '2023-08-25', '2023-09-08'),
-	(40, '2023-08-28', '2023-09-15');
-
--- Registro Productos
-INSERT INTO product_ciguenia (product_name, product_price, product_description, category_id, inventory_id)
-VALUES
-	('Body para bebé', 12000, 'Body de algodón suave para recién nacidos', 1, 1),
-	('Sonajero de colores', 50000, 'Juguete sonajero de colores vivos para estimulación temprana', 2, 2),
-	('Babero impermeable', 8500, 'Babero con diseño impermeable para evitar manchas', 3, 3),
-	('Biberón anti-cólicos', 15900, 'Biberón diseñado para reducir los cólicos en los bebés', 4, 4),
-	('Cuna de madera', 199000, 'Cuna de madera sólida con barandillas ajustables', 5, 5),
-	('Sábana de cuna suave', 22500, 'Sábana de algodón suave para cuna de bebé', 6, 6),
-	('Coche de paseo plegable', 129000, 'Coche de paseo plegable con ruedas todo terreno', 2, 7),
-	('Lámpara de techo para cuarto', 30000, 'Lámpara de techo con diseño de nubes para cuarto de bebé', 3, 8),
-	('Canasta de regalos para bebé', 60000, 'Canasta con pañales, ropita y juguetes para recién nacido', 4, 9),
-	('Libro de cuentos ilustrado', 9000, 'Libro de cuentos con ilustraciones para estimular la imaginación', 5, 10);
-
--- Registro Materiales
-INSERT INTO material_ciguenia (material_name, material_description, product_id)
-VALUES
-	('Algodón', 'Material suave y transpirable para ropa de bebé', 1),
-	('Plástico no tóxico', 'Material seguro para juguetes de bebé', 2),
-	('Tela impermeable', 'Material resistente al agua para accesorios de bebé', 3),
-	('Plástico libre de BPA', 'Material seguro para biberones y chupetes', 4),
-	('Madera sólida', 'Material duradero para mobiliario infantil', 5),
-	('Algodón orgánico', 'Material ecológico para ropa de cama de bebé', 6),
-	('Aleación de aluminio', 'Material ligero y resistente para coches de paseo', 7),
-	('Plástico y tela', 'Material combinado para lámparas de cuarto de bebé', 8),
-	('Tejido y plástico', 'Material variado para canastas de regalos', 9),
-	('Papel de alta calidad', 'Material seguro para libros de bebé', 10);
-
--- Registro Clientes
-INSERT INTO customer_ciguenia (customer_name, customer_identification, customer_phone_number, customer_email, customer_address)
-VALUES ('Emily', '123-456-7890', '3103302209', 'emily@example.com', '123 Main St, City'),
-       ('Daniel', '987-654-3210', '3504272118', 'daniel@example.com', '456 Park Ave, Town'),
-       ('Sophia', '555-123-4567', '3147953433', 'sophia@example.com', '789 Elm St, Village');
-
--- Registro Facturas
-INSERT INTO invoice_ciguenia (invoice_date, invoice_iva, invoice_total, customer_id)
-VALUES
-	('2023-08-22', 16, 15000, 1),
-	('2023-08-21', 12, 25000, 2),
-	('2023-08-20', 18, 18000, 3);
-
--- Registro Detalles Factura
-INSERT INTO detail_invoice_ciguenia (detail_amount, detail_subtotal, product_id, invoice_id)
-VALUES (2, 12500, 1, 1),
-       (3, 59000, 2, 1),
-       (1, 40000, 3, 2),
-       (5, 11400, 1, 3);
-
--- Query Cantidad Inventario por Producto
+-------------------- Query Cantidad Inventario por Producto
+---------------------------------------------------------------------------------------------------
 SELECT pc.product_name, ic.inventory_amount
 FROM product_ciguenia pc
 INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id
 WHERE pc.product_id = 3;
 
--- Query ListProductos por Categoria
+-------------------- Query ListProductos por Categoria
+---------------------------------------------------------------------------------------------------
 SELECT c.category_name, p.product_id, p.product_name, p.product_price, p.product_description
 FROM category_ciguenia c
 JOIN product_ciguenia p ON c.category_id = p.category_id
 WHERE c.category_id = 2;
+
+-------------------- Query Ventas del Dia
+---------------------------------------------------------------------------------------------------
+SELECT * FROM invoice_ciguenia WHERE invoice_date = '?' LIMIT 4;
+
+-------------------- Query Total Ventas del Mes
+---------------------------------------------------------------------------------------------------
+SELECT SUM(invoice_total) AS invoice_id
+FROM invoice_ciguenia
+WHERE YEAR (invoice_date) = 2023 AND MONTH (invoice_date) = 8;
+
+-------------------- Query Total Facturas del Mes
+---------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS invoice_id
+FROM invoice_ciguenia
+WHERE YEAR(invoice_date) = 2023 AND MONTH(invoice_date) = 8;
+
+-------------------- Query Gastos Totales del Mes
+---------------------------------------------------------------------------------------------------
+SELECT SUM(invoice_total) AS invoice_iva
+FROM invoice_ciguenia
+WHERE MONTH(invoice_date) = 8 AND YEAR(invoice_date) = 2023;
+(falta reemplazar la tabla “invoice” por una que indique el presupuesto del inventario con los proveedores).
+
+-------------------- Query Utilidad Total del Mes
+---------------------------------------------------------------------------------------------------
+SELECT (SELECT COALESCE(SUM(invoice_total), 0)
+FROM invoice_ciguenia
+WHERE MONTH(invoice_date) = 8 AND YEAR(invoice_date) = 2023)
+-
+(SELECT COALESCE(SUM(invoice_total), 0)
+FROM invoice_ciguenia
+WHERE MONTH(invoice_date) = 8 AND YEAR(invoice_date) = 2023)
+AS invoice_ciguenia;
+(Aplicar el mismo requisito que la anterior Query)
+
+-------------------- Query Producto Recientemente Registrados
+---------------------------------------------------------------------------------------------------
+SELECT *
+FROM product_ciguenia
+WHERE product_status = 'Habilitado'
+ORDER BY product_id DESC
+LIMIT 3;

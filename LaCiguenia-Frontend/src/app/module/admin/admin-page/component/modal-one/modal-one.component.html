@@ -1,41 +1,61 @@
 <section  class="col_center item_center inherit bg_color_black z_index">
-    <div class="col_8 room border h_60 row_evenly bg_color_white">
-        <div class="col_17 bg_color_one title">
+    <div class="col_10 room border h_50 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title col_5">
+            <div class="col_17 size_2">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
         </div>
+    </div>
         <div class="col_17 col_between">
             <div class="col_8 border">
                 <img src="" alt="">
             </div>
-            <div class="col_8">
-                <div>
+            <div class="py_1 col_between">
+                <div class="col_8 col_between">
                     <label for="" class="size_2">{{textNameProduct}}</label>
-                    <input type="text" class="input col_17 size_1 bg_color_four" value="Nombre Producto" readonly>
+                    <label for="" class="col_17 size_1" value="Nombre Producto" readonly>HEILER ES GAY</label>
                 </div>
-                <div class="py_1 col_17 col_between">
+                <div class="col_between col_8">
                     <div class="col_8">
-                        <label for="" class="size_2">{{textPrice}}</label>
-                        <input type="text" class="input col_17 size_1 bg_color_four" value="Precio" readonly>
+                        <label for="" class="size_2">{{textPriceSale}}</label>
+                        <label for="" class="col_17 size_1" value="Precio Venta" readonly>HEILER ES GAY</label>
                     </div>
-                    <div class="col_8">
-                        <label for="" class="size_2">{{textAmount}}</label>
-                        <input type="text" class="input col_17 size_1 bg_color_four" value="Cantidad" readonly>
-                    </div>
+            
+                   
                 </div>
+                <div class="col_8">
+                    <label for="" class="size_2">{{textDescription}}</label>
+                    <label for="" class="col_17 size_1" value="descripcion" readonly>HEILER ES GAY</label>
+                </div>
+              </div>
+        </div>
+        
+        <div class="col_17 col_between">
+            <div class="col_8">
+                <label for="" class="size_2">{{textCategory}}</label>
+                <label for="" class="col_17 size_1" value="Categoria" readonly>HEILER ES GAY</label>
+            </div>
+            <div class="col_8">
+                <label for="" class="size_2">{{textCode}}</label>
+                <label type="text" class="col_17 size_1" value="No." readonly>HEILER ES GAY</label>
             </div>
         </div>
         <div class="col_17 col_between">
             <div class="col_8">
-                <label for="" class="size_2">{{textDescription}}</label>
-                <input type="text" class="input col_17 size_1 bg_color_four" value="Descripción" readonly>
+                <label for="" class="size_2">{{textDate}}</label>
+                <label for="" class="col_17 size_1" value="Fecha" readonly>HEILER ES GAY</label>
             </div>
             <div class="col_8">
-                <label for="" class="size_2">{{textCategory}}</label>
-                <input type="text" class="input col_17 size_1 bg_color_four" value="Categoria" readonly>
+                <label for="" class="size_2">{{textAmount}}</label>
+                <label type="text" class="col_17 size_1" value="Unidades Vendidas" readonly>HEILER ES GAY</label>
             </div>
         </div>
-        <div class="col_17 col_center">
-            <button class="col_7 btn_one size_2" (click)="modalEvent()">{{textDone}}</button>
+        <div class="col_17 col_between">
+            <div class="col_17 col_between">
+                <button class="col_15 btn_one size_2">{{textEdit}}</button>
+            </div>
+    <div class="col_17 col_between">
+            <button class="col_15 btn_two size_2"(click)="modalEvent()">{{textFail}}</button>
         </div>
     </div>
+</div>
 </section>

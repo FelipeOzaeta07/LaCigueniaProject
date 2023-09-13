@@ -16,6 +16,7 @@ import { ProductModule } from '@service/product/product.module';
 import { CustomerModule } from '@service/customer/customer.module';
 import { InvoiceModule } from '@service/invoice/invoice.module';
 import { DetailModule } from '@service/detail/detail.module';
+import { ModalThreeComponent } from './invoicing-page/component/modal-three/modal-three.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DetailModule } from '@service/detail/detail.module';
     SectionTwoComponent,
     SectionThreeComponent,
     ModalOneComponent,
-    ModalTwoComponent
+    ModalTwoComponent,
+    ModalThreeComponent
   ],
   imports: [
     CommonModule,

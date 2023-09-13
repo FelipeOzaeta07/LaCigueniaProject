@@ -1,7 +1,10 @@
 export const TITLE = "Producto Más Vendido";
 export const NAME_PRODUCT = "Nombre del producto";
-export const PRICE = "Precio";
-export const AMOUNT = "Cantidad";
+export const PRICE = "Precio Venta";
+export const AMOUNT = "Unidades Vendidas";
 export const DESCRIPTION = "Descripción";
 export const CATEGORY = "Categoría";
-export const DONE = "ACEPTAR";
+export const CODE = "No.";
+export const DATE = "Fecha";
+export const EDIT = "EDITAR";
+export const FAIL = "CANCELAR";

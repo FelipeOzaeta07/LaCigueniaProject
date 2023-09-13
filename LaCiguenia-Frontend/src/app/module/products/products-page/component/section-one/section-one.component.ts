@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
 import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/model/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, PRICE, SAVE, TITLE, IVA } from '@module/products/products-page/component/section-one/constans/section-one';
+import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, SAVE, TITLE, IVA, PRICE_SALE, PRICE_COST } from '@module/products/products-page/component/section-one/constans/section-one';
 import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
 import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
 import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseCase';
@@ -16,9 +16,13 @@ import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseC
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent implements OnInit {
+
+  @Output() modalActivateTwo = new EventEmitter<boolean>();
+
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
-  textPrice = PRICE;
+  textPriceSale = PRICE_SALE;
+  textPriceCost = PRICE_COST;
   textCode = CODE;
   textAmount = AMOUNT;
   textIva = IVA;
@@ -79,6 +83,7 @@ export class SectionOneComponent implements OnInit {
     this.productCreateUseCase.execute(this.productModel).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
+          this.modalEvent();
           this.productForm.reset();
         } else {
           alert("Producto Ya Existe");
@@ -108,5 +113,9 @@ export class SectionOneComponent implements OnInit {
       }
     )
 
+  }
+
+  modalEvent() {
+    this.modalActivateTwo.emit(true);
   }
 }

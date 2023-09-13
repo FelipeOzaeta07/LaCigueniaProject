@@ -13,6 +13,7 @@ export class InvoicingPageComponent {
 
   modalOne!: boolean;
   modalTwo!: boolean;
+  modalThree!: boolean;
   customer!: CustomerModel;
   numberAmount: number = 1;
   totalPriceProducts: number = 0;
@@ -35,12 +36,18 @@ export class InvoicingPageComponent {
     this.modalTwo = datos;
   }
 
+  modalActivateThree(datos: boolean) {
+    console.log("Prueba envio del modal 3 al padre: ");
+    this.modalThree = datos;
+  }
+
   getCustomerId(lastCustomerId: CustomerModel){
     this.customer = lastCustomerId;
   }
 
   selectProducts(product: ProductModel) {
     const productName = product.productName;
+
     if (this.hashMap.hasOwnProperty(productName)) {
       this.hashMap[productName] += this.numberAmount;
     } else {

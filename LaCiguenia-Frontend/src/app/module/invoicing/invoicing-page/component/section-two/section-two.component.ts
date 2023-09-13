@@ -27,15 +27,15 @@ export class SectionTwoComponent implements OnInit{
         this.product = res.objectResponse;
         for (let i = 0; i < this.product.length; i++) {
           const residue = i % 4;
-          console.log("Residuo: " + i + " " + residue);
           this.productMap[residue].push(this.product[i]);
         }
       }
     )
   }
 
-  selecProduct(index: number) {
-    this.selectProducts.emit(this.product[index]);
+  selecProduct(n: number, i: number) {
+    console.log("Prueba Producto: " + n + i);
+    this.selectProducts.emit(this.productMap[n][i]);
   }
 
 }

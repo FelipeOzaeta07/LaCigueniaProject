@@ -11,16 +11,16 @@
                 <input type="text" class="input size_1" placeholder="Ingrese el nombre del Producto" formControlName="nameProduct">
             </div>
             <div class="col_3 row_center">
-                <label class="size_2 pb_1">{{textCode}}</label>
-                <input type="text" class="input size_1" formControlName="codeProduct">
+                <label class="size_2 pb_1">{{textPriceSale}}</label>
+                <input type="number" class="input size_1" formControlName="priceSaleProduct">
             </div>
             <div class="col_3 row_center">
-                <label class="size_2 pb_1">{{textPrice}}</label>
-                <input type="number" class="input size_1" formControlName="priceProduct">
+                <label class="size_2 pb_1">{{textPriceCost}}</label>
+                <input type="number" class="input size_1" formControlName="priceCostProduct">
             </div>
             <div class="col_3 row_center">
-                <label class="size_2 pb_1">{{textAmount}}</label>
-                <input type="number" class="input size_1" formControlName="amountProduct">
+                <label class="size_2 pb_1">{{textIva}}</label>
+                <input type="number" class="input size_1" formControlName="ivaProduct">
             </div>
         </div>
         <div class="col_17 col_between py_1">
@@ -31,13 +31,18 @@
                     <option class="size_1" *ngFor="let categoryItem of category" [ngValue]="categoryItem">{{ categoryItem.categoryName }}</option>
                 </select>
             </div>
-            <div class="col_11 row_center">
-                <label class="size_2 pb_1">{{textDescription}}</label>
-                <input type="text" class="input size_1" placeholder="Ingresar la descripcion del producto" formControlName="descriptionProduct">
+            <div class="col_3 row_center">
+                <label class="size_2 pb_1">{{textAmount}}</label>
+                <input type="number" class="input size_1" formControlName="amountProduct">
             </div>
-        </div>
+            <div class="col_8 row_center ">
+                <label class="size_2 pb_1">{{textDescription}}</label>
+                <input type="text" class="input size_1" placeholder="Ingresar la descripcion del producto" formControlName="descriptionProduct">           
+            </div>
+            </div>
         <div class="col_17 col_center">
             <button type="submit" class="btn_one size_2 col_5">{{textPay}}</button>
         </div>
+        
     </form>
 </section>

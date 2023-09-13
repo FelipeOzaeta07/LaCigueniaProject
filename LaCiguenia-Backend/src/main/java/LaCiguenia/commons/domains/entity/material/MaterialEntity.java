@@ -26,7 +26,7 @@ public class MaterialEntity {
     private String materialDescription;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_code")
+    @JoinColumn(name = "product_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
     private ProductEntity productEntity;
 }

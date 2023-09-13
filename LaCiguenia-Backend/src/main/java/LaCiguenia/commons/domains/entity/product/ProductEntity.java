@@ -18,8 +18,9 @@ import java.util.List;
 @Table(name = "product_ciguenia")
 public class ProductEntity {
     @Id
-    @Column(name = "product_code")
-    private String productId;
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer productId;
 
     @Column(name = "product_name")
     private String productName;
@@ -27,8 +28,17 @@ public class ProductEntity {
     @Column(name = "product_price")
     private Double productPrice;
 
+    @Column(name = "product_iva")
+    private Double productIva;
+
+    @Column(name = "product_cost")
+    private Double productCost;
+
     @Column(name = "product_description")
     private String productDescription;
+
+    @Column(name = "product_status")
+    private String productStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
