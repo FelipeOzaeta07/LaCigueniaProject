@@ -60,8 +60,8 @@ public class CategoryApi implements ICategoryApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(ICategoryEndPoint.READ_CATEGORY)
-    public ResponseEntity<GenericResponseDTO> readCategory(@RequestBody CategoryDTO categoryDTO) {
-        return this.categoryService.readCategory(categoryDTO);
+    public ResponseEntity<GenericResponseDTO> readProductsForCategory(@PathVariable Integer categoryId) {
+        return this.categoryService.readProductsForCategory(categoryId);
     }
 
     @Override

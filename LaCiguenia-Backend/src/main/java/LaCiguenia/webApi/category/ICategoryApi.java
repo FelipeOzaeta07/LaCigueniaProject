@@ -9,7 +9,7 @@ public interface ICategoryApi {
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createCategory (@RequestBody CategoryDTO categoryDTO);
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readCategory (@RequestBody CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponseDTO> readProductsForCategory (@PathVariable Integer categoryId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readCategories ();
     @PutMapping()

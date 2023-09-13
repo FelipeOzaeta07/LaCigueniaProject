@@ -5,6 +5,7 @@ import LaCiguenia.commons.constans.response.category.ICategoryResponse;
 import LaCiguenia.commons.converter.category.CategoryConverter;
 import LaCiguenia.commons.domains.dto.category.CategoryDTO;
 import LaCiguenia.commons.domains.entity.category.CategoryEntity;
+import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.category.ICategoryRepository;
 import LaCiguenia.service.category.ICategoryService;
@@ -56,10 +57,11 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readCategory(CategoryDTO categoryDTO) {
+    public ResponseEntity<GenericResponseDTO> readProductsForCategory(Integer categoryId) {
         try {
-            Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryDTO.getCategoryId());
-            if (categoryExist.isPresent()){
+            Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryId);
+            System.out.println(categoryExist.get());
+            if (!categoryExist.isEmpty()){
                 return new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(categoryExist)
@@ -88,7 +90,7 @@ public class CategoryService implements ICategoryService {
         try {
             List<CategoryEntity> listCategoryExist = this.iCategoryRepository.findAll();
             if (!listCategoryExist.isEmpty()){
-                return new ResponseEntity<>(GenericResponseDTO.builder()
+                return  new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(listCategoryExist)
                         .statusCode(HttpStatus.OK.value())

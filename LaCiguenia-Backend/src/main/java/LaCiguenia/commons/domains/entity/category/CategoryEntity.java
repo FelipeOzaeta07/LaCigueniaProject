@@ -28,6 +28,5 @@ public class CategoryEntity {
 
     @OneToMany(mappedBy = "categoryEntity")
     @JsonManagedReference
-    @JsonIgnore
     private List<ProductEntity> listProducts;
 }

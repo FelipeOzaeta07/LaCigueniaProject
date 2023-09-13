@@ -117,7 +117,7 @@ public class ProductService implements IProductService {
     @Override
     public ResponseEntity<GenericResponseDTO> readProducts() {
         try {
-            List<ProductEntity> listProductsEntity =this.iProductRepository.findAll();
+            List<ProductEntity> listProductsEntity =this.iProductRepository.findProductsEnabled();
             if (!listProductsEntity.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
