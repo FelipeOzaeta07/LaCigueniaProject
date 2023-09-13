@@ -13,10 +13,13 @@ import java.io.Serializable;
 @ToString
 @Builder
 public class ProductDTO implements Serializable {
-    private String productId;
+    private Integer productId;
     private String productName;
     private Double productPrice;
+    private Double productIva;
+    private Double productCost;
     private String productDescription;
+    private String productStatus;
     @JsonIdentityReference(alwaysAsId = true)
     private CategoryEntity categoryEntity;
 }

@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductModule } from '@service/product/product.module';
 import { CategoryModule } from '@service/category/category.module';
 import { InventoriesModule } from '@service/inventory/inventories.module';
+import { ModalTwoComponent } from './products-page/component/modal-two/modal-two.component';
+import { ModalThreeComponent } from './products-page/component/modal-three/modal-three.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { InventoriesModule } from '@service/inventory/inventories.module';
     ProductsPageComponent,
     SectionOneComponent,
     SectionTwoComponent,
-    ModalOneComponent
+    ModalOneComponent,
+    ModalTwoComponent,
+    ModalThreeComponent
   ],
   imports: [
     CommonModule,

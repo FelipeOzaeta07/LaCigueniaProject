@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from '@commons/domains/model/category/CategoryModel';
@@ -16,6 +16,9 @@ import { ProductCreateUseCase } from '@repository/product/case/ProductCreateUseC
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent implements OnInit {
+
+  @Output() modalActivateTwo = new EventEmitter<boolean>();
+
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
   textPrice = PRICE;
@@ -79,6 +82,7 @@ export class SectionOneComponent implements OnInit {
     this.productCreateUseCase.execute(this.productModel).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
+          this.modalEvent();
           this.productForm.reset();
         } else {
           alert("Producto Ya Existe");
@@ -108,5 +112,9 @@ export class SectionOneComponent implements OnInit {
       }
     )
 
+  }
+
+  modalEvent() {
+    this.modalActivateTwo.emit(true);
   }
 }

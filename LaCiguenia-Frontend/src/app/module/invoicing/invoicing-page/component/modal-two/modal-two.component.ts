@@ -16,6 +16,7 @@ export class ModalTwoComponent {
   @Input() invoiceEnd!: InvoiceModel;
   @Input() detailInvoice!: DetailModel [];
   @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Output() modalActivateThree = new EventEmitter<boolean>();
 
   textTitle = TITLE;
   textSubtotal = SUBTOTAL;
@@ -53,6 +54,7 @@ export class ModalTwoComponent {
               console.log("Respuesta del Detalle: " + res.message);
               if(res.statusCode == 200){
                 this.modalEventTwo();
+                this.modalEventThree();
                 window.location.reload();
               }
             }
@@ -65,5 +67,9 @@ export class ModalTwoComponent {
   modalEventTwo() {
     const datos = false;
     this.modalActivateTwo.emit(datos);
+  }
+
+  modalEventThree() {
+    this.modalActivateThree.emit(true);
   }
 }

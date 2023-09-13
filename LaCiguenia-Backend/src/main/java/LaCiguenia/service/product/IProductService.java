@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 
 public interface IProductService {
     ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO);
-    ResponseEntity<GenericResponseDTO> readProduct(ProductDTO productDTO);
+    ResponseEntity<GenericResponseDTO> readProductId(Integer productId);
+    ResponseEntity<GenericResponseDTO> readProduct(String productName);
     ResponseEntity<GenericResponseDTO> readProducts();
+    ResponseEntity<GenericResponseDTO> readProductsRecentlyCreate();
     ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO);
-    ResponseEntity<GenericResponseDTO> deleteProducts(String  productCode);
+    ResponseEntity<GenericResponseDTO> deleteProducts(Integer  productId);
 }

@@ -47,7 +47,25 @@ public class ProductApi implements IProductApi {
     }
 
     @Override
-    @Operation(summary = "Leer un Producto")
+    @Operation(summary = "Leer un Producto por Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IProductEndPoint.READ_PRODUCT_ID)
+    public ResponseEntity<GenericResponseDTO> readProductId(@PathVariable Integer productId) {
+        return this.productService.readProductId(productId);
+    }
+
+    @Override
+    @Operation(summary = "Leer un Producto por nombre")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
                     content = {@Content(mediaType = "application/json",
@@ -60,8 +78,8 @@ public class ProductApi implements IProductApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> readProduct(@RequestBody ProductDTO productDTO) {
-        return this.productService.readProduct(productDTO);
+    public ResponseEntity<GenericResponseDTO> readProduct(@PathVariable String productName) {
+        return this.productService.readProduct(productName);
     }
 
     @Override
@@ -80,6 +98,24 @@ public class ProductApi implements IProductApi {
     @GetMapping(IProductEndPoint.READ_PRODUCTS)
     public ResponseEntity<GenericResponseDTO> readProducts() {
         return this.productService.readProducts();
+    }
+
+    @Override
+    @Operation(summary = "Leer los Productos Recientemente Creados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IProductEndPoint.READ_PRODUCTS_RECENTLY_CREATE)
+    public ResponseEntity<GenericResponseDTO> readProductsRecentlyCreate(){
+        return this.productService.readProductsRecentlyCreate();
     }
 
     @Override
@@ -113,8 +149,8 @@ public class ProductApi implements IProductApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @GetMapping(IProductEndPoint.DELETE_PRODUCT)
-    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable String productCode) {
-        return this.productService.deleteProducts(productCode);
+    @DeleteMapping(IProductEndPoint.DELETE_PRODUCT)
+    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId) {
+        return this.productService.deleteProducts(productId);
     }
 }
