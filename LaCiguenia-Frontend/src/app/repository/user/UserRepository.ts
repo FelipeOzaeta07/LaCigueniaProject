@@ -1,4 +1,4 @@
-import { UserModel } from "@commons/domains/model/user/UserModel";
+import { UserModel } from "@commons/domains/user/UserModel";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { Observable } from "rxjs";
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
-import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
+import { CustomerModel } from '@commons/domains/customer/CustomerModel';
+import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, NUMBER_INVOICE, DATE, NAME_INVOICE, METHOD_PAY, TOTAL, OPTION } from "@module/sales/sales-page/component/section-one/constans/section-one"
 import { InvoicesReadUseCase } from '@repository/invoice/case/InvoicesReadUseCase';

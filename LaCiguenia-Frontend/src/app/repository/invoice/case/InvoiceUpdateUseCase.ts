@@ -1,4 +1,4 @@
-import { InvoiceModel } from "@commons/domains/model/invoice/InvoiceModel";
+import { InvoiceModel } from "@commons/domains/invoice/InvoiceModel";
 import { UseCase } from "@commons/helpers/UserCase";
 import { InvoiceRepository } from "@repository/invoice/InvoiceRepository";
 import { Observable } from "rxjs";

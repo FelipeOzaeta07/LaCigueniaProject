@@ -1,4 +1,4 @@
-import { MaterialModel } from "@commons/domains/model/material/MaterialModel";
+import { MaterialModel } from "@commons/domains/material/MaterialModel";
 import { UseCase } from "@commons/helpers/UserCase";
 import { MaterialRepository } from "@repository/material/MaterialRepository";
 import { Observable } from "rxjs";

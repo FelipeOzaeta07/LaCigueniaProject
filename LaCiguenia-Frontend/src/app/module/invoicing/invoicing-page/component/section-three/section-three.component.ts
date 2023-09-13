@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output} from '@angular/core';
-import { CustomerModel } from '@commons/domains/model/customer/CustomerModel';
-import { DetailModel } from '@commons/domains/model/detail/DetailModel';
-import { InvoiceModel } from '@commons/domains/model/invoice/InvoiceModel';
+import { CustomerModel } from '@commons/domains/customer/CustomerModel';
+import { DetailModel } from '@commons/domains/detail/DetailModel';
+import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { MaterialModel } from "@commons/domains/model/material/MaterialModel";
+import { MaterialModel } from "@commons/domains/material/MaterialModel";
 import { BASE_URL_MATERIAL, CREATE_MATERIAL, DELETE_MATERIAL, READ_MATERIAL, READ_MATERIALS, UPDATE_MATERIAL } from "@commons/endpoint/material/MaterialEndPoint";
 import { MaterialMapper } from "@commons/mapper/material/MaterialMapper";
 import { MaterialRepository } from "@repository/material/MaterialRepository";

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryModel } from '@commons/domains/model/inventory/InventoryModel';
-import { ProductModel } from '@commons/domains/model/product/ProductModel';
+import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
+import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { AMOUNT, CODE, NAME_PRODUCT, OPTIONS, PAGING, SALES_PRICE, TITLE } from '@module/inventory/inventory-page/component/section-one/constans/section-one'
 import { InventoriesReadUseCase } from '@repository/inventory/case/InventoriesReadUseCase';
-import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
+import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -25,7 +25,7 @@ export class SectionOneComponent implements OnInit{
   inventoryModel: InventoryModel[] = [];
 
 
-  constructor(private productsReadUseCase: ProductsReadUseCase, private inventoriesReadUseCase: InventoriesReadUseCase){
+  constructor(private readProductsUseCase: ReadProductsUseCase, private inventoriesReadUseCase: InventoriesReadUseCase){
 
   }
 
@@ -47,7 +47,7 @@ export class SectionOneComponent implements OnInit{
   }
   
   getProducts(){
-    this.productsReadUseCase.execute().subscribe(
+    this.readProductsUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.products = res.objectResponse;
       },

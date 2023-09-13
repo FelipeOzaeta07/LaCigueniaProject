@@ -1,4 +1,4 @@
-import { OpeningModel } from "@commons/domains/model/opening/OpeningModel";
+import { OpeningModel } from "@commons/domains/opening/OpeningModel";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { Observable } from "rxjs";
 

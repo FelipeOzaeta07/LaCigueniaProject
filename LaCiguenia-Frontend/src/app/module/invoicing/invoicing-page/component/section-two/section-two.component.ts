@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductModel } from '@commons/domains/model/product/ProductModel';
+import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { ProductsReadUseCase } from '@repository/product/case/ProductsReadUseCase';
+import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
 
 @Component({
   selector: 'app-section-two',
@@ -15,14 +15,14 @@ export class SectionTwoComponent implements OnInit{
   product!: ProductModel [];
   productMap: ProductModel [][] = [[], [], [], [], []];
 
-  constructor(private productsReadUseCase: ProductsReadUseCase){}
+  constructor(private readProductsUseCase: ReadProductsUseCase){}
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts(){
-    this.productsReadUseCase.execute().subscribe(
+    this.readProductsUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.product = res.objectResponse;
         for (let i = 0; i < this.product.length; i++) {
