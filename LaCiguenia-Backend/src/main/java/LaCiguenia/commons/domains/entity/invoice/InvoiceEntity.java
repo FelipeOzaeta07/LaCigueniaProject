@@ -45,5 +45,6 @@ public class InvoiceEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "opening_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
+    @JsonIgnore
     private OpeningEntity openingEntity;
 }

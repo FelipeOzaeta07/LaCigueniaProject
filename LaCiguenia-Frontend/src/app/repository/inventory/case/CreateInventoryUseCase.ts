@@ -4,7 +4,7 @@ import { InventoryRepository } from "@repository/inventory/InventoryRepository";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class InventoryCreateUseCase implements UseCase<InventoryModel, GenericResponse>{
+export class CreateInventoryUseCase implements UseCase<InventoryModel, GenericResponse>{
 
     constructor(private inventoryRepository: InventoryRepository){}
 

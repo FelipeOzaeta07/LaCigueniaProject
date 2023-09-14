@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { CONFIRM_PASSWORD, TITLE, NAME, EMAIL, PASSWORD, DONE_CONDITIONS, TEXT, HERE } from '@module/register/register-page/component/section-one/constans/section-one';
-import { UserCreateUseCase } from '@repository/user/case/UserCreateUseCase';
+import { CreateUserUseCase } from '@repository/user/case/CreateUserUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -31,7 +31,7 @@ export class SectionOneComponent implements OnChanges {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
-  constructor(public formulary: FormBuilder, public router: Router, private userCreateUseCase: UserCreateUseCase){
+  constructor(public formulary: FormBuilder, public router: Router, private createUserUseCase: CreateUserUseCase){
     this.registerForm = formulary.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -54,7 +54,7 @@ export class SectionOneComponent implements OnChanges {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  userCreate(){
+  createUser(){
     if (!this.registerForm.valid) {
       this.registerForm.markAllAsTouched();
       return;
@@ -69,7 +69,7 @@ export class SectionOneComponent implements OnChanges {
         userPassword: this.registerForm.controls['password'].value,
       }
       
-      this.userCreateUseCase.execute(this.userModel).subscribe(
+      this.createUserUseCase.execute(this.userModel).subscribe(
         (genericResponse: GenericResponse) => {
           if (genericResponse.statusCode === 200) {
             this.modalEvent();

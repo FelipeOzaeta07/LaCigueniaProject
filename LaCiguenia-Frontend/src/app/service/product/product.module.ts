@@ -11,10 +11,10 @@ import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/Read
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 import { DeleteProductUseCase } from '@repository/product/case/DeleteProductUseCase';
 
-const productCreateUseCaseFactory = (productRepository: ProductRepository) => new CreateProductsUseCase(productRepository);
+const createProductsUseCaseFactory = (productRepository: ProductRepository) => new CreateProductsUseCase(productRepository);
 export const createProductsUseCaseProvider = {
     provide: CreateProductsUseCase,
-    useFactory: productCreateUseCaseFactory,
+    useFactory: createProductsUseCaseFactory,
     deps: [ProductRepository]
 };
 
@@ -34,7 +34,7 @@ export const readProductUseCaseUseCaseProvider = {
 
 const readProductsUseCaseFactory = (productRespository: ProductRepository) => new ReadProductsUseCase(productRespository);
 export const readProductsUseCaseProvider = {
-    provide: ReadProductUseCase,
+    provide: ReadProductsUseCase,
     useFactory: readProductsUseCaseFactory,
     deps: [ProductRepository]
 }

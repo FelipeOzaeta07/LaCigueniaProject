@@ -1,53 +1,53 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryRepository } from '@repository/category/CategoryRepository';
-import { CategoryDeleteUseCase } from '@repository/category/case/CategoryDeleteUseCase';
-import { CategoryUpdateUseCase } from '@repository/category/case/CategoryUpdateUseCase';
-import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
-import { CategoryCreateUseCase } from '@repository/category/case/CategoryCreateUseCase';
-import { CategoryReadUseCase } from '@repository/category/case/CategoryReadUseCase';
+import { DeleteCategoryUseCase } from '@repository/category/case/DeleteCategoryUseCase';
+import { UpdateCategoryUseCase } from '@repository/category/case/UpdateCategoryUseCase';
+import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
+import { CreateCategoryUseCase } from '@repository/category/case/CreateCategoryUseCase';
+import { ReadCategoryUseCase } from '@repository/category/case/ReadCategoryUseCase';
 import { CategoryService } from '@service/category/implement/CategoryService';
 import { HttpClientModule } from '@angular/common/http';
 
 
-const categoryCreateUseCaseFactory = (categoryRepository: CategoryRepository) => new CategoryCreateUseCase(categoryRepository);
-export const categoryCreateUseCaseProvider = {
-    provide: CategoryCreateUseCase,
-    useFactory: categoryCreateUseCaseFactory,
+const createCategoryUseCaseFactory = (categoryRepository: CategoryRepository) => new CreateCategoryUseCase(categoryRepository);
+export const createCategoryUseCaseProvider = {
+    provide: CreateCategoryUseCase,
+    useFactory: createCategoryUseCaseFactory,
     deps: [CategoryRepository],
 };
-const categoryReadUseCaseFactory = (categoryRepository: CategoryRepository) => new CategoryReadUseCase(categoryRepository);
-export const categoryReadUseCaseProvider = {
-    provide: CategoryReadUseCase,
-    useFactory: categoryReadUseCaseFactory,
+const readCategoryUseCaseFactory = (categoryRepository: CategoryRepository) => new ReadCategoryUseCase(categoryRepository);
+export const readCategoryUseCaseProvider = {
+    provide: ReadCategoryUseCase,
+    useFactory: readCategoryUseCaseFactory,
     deps: [CategoryRepository],
 };
-const categoriesReadUseCaseFactory = (categoryRepository: CategoryRepository) => new CategoriesReadUseCase(categoryRepository);
-export const categoriesReadUseCaseProvider = {
-    provide: CategoriesReadUseCase,
-    useFactory: categoriesReadUseCaseFactory,
+const readCategoriesUseCaseFactory = (categoryRepository: CategoryRepository) => new ReadCategoriesUseCase(categoryRepository);
+export const readCategoriesUseCaseProvider = {
+    provide: ReadCategoriesUseCase,
+    useFactory: readCategoriesUseCaseFactory,
     deps: [CategoryRepository],
 };
-const categoryUpdateUseCaseFactory = (categoryRepository: CategoryRepository) => new CategoryUpdateUseCase(categoryRepository);
-export const categoryUpdateUseCaseProvider = {
-    provide: CategoryUpdateUseCase,
-    useFactory: categoryUpdateUseCaseFactory,
+const updateCategoryUseCaseFactory = (categoryRepository: CategoryRepository) => new UpdateCategoryUseCase(categoryRepository);
+export const updateCategoryUseCaseProvider = {
+    provide: UpdateCategoryUseCase,
+    useFactory: updateCategoryUseCaseFactory,
     deps: [CategoryRepository],
 };
-const categoryDeleteUseCaseFactory = (categoryRepository: CategoryRepository) => new CategoryDeleteUseCase(categoryRepository);
-export const categoryDeleteUseCaseProvider = {
-    provide: CategoryDeleteUseCase,
-    useFactory: categoryDeleteUseCaseFactory,
+const deleteCategoryUseCaseFactory = (categoryRepository: CategoryRepository) => new DeleteCategoryUseCase(categoryRepository);
+export const deleteCategoryUseCaseProvider = {
+    provide: DeleteCategoryUseCase,
+    useFactory: deleteCategoryUseCaseFactory,
     deps: [CategoryRepository],
 };
 
 @NgModule({
     providers: [
-        categoryCreateUseCaseProvider,
-        categoryReadUseCaseProvider,
-        categoriesReadUseCaseProvider,
-        categoryUpdateUseCaseProvider,
-        categoryDeleteUseCaseProvider,
+        createCategoryUseCaseProvider,
+        readCategoryUseCaseProvider,
+        readCategoriesUseCaseProvider,
+        updateCategoryUseCaseProvider,
+        deleteCategoryUseCaseProvider,
         {provide: CategoryRepository, useClass: CategoryService}
     ],
     imports: [

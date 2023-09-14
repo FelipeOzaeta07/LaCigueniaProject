@@ -33,7 +33,6 @@ public class InvoiceService implements IInvoiceService {
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
                 if (invoiceEntity.getCustomerEntity() == null) {
-                    System.out.println("Entramos");
                     CustomerEntity customerEntity = new CustomerEntity();
                     customerEntity.setCustomerId(1);
                     invoiceEntity.setCustomerEntity(customerEntity);

@@ -35,6 +35,7 @@ public class OpeningService implements IOpeningService {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
+                        .objectId(this.iOpeningRepository.lastOpeningId())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {

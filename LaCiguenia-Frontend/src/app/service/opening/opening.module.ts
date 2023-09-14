@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { OpeningRepository } from '@repository/opening/OpeningRepository';
-import { OpeningCreateUseCase } from '@repository/opening/case/OpeningCreateUseCase';
+import { CreateOpeningUseCase } from '@repository/opening/case/CreateOpeningUseCase';
 import { OpeningService } from './implement/OpeningService';
 
-const OpeningCreateUseCaseFactory = (openingRepository: OpeningRepository) => new OpeningCreateUseCase(openingRepository);
-export const OpeningCreateUseCaseProvider = {
-    provide: OpeningCreateUseCase,
-    useFactory: OpeningCreateUseCaseFactory,
+const createOpeningUseCaseFactory = (openingRepository: OpeningRepository) => new CreateOpeningUseCase(openingRepository);
+export const createOpeningUseCaseProvider = {
+    provide: CreateOpeningUseCase,
+    useFactory: createOpeningUseCaseFactory,
     deps: [OpeningRepository],
 };
 
 @NgModule({
   providers: [
-    OpeningCreateUseCaseProvider,
+    createOpeningUseCaseProvider,
     {provide: OpeningRepository, useClass: OpeningService}
   ],
   imports: [

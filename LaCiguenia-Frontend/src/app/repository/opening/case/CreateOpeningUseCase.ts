@@ -4,7 +4,7 @@ import { GenericResponse } from "@commons/response/GenericResponse";
 import { OpeningRepository } from "../OpeningRepository";
 import { Observable } from "rxjs";
 
-export class OpeningCreateUseCase implements UseCase<OpeningModel, GenericResponse>{
+export class CreateOpeningUseCase implements UseCase<OpeningModel, GenericResponse>{
 
     constructor(private openingRepository: OpeningRepository){}
 

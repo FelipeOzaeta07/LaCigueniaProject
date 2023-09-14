@@ -6,8 +6,8 @@ import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { AMOUNT, CATEGORY, DESCRIPTION, CODE, NAME_PRODUCT, SAVE, TITLE, IVA, PRICE_SALE, PRICE_COST } from '@module/products/products-page/component/section-one/constans/section-one';
-import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
-import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
+import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
+import { CreateInventoryUseCase } from '@repository/inventory/case/CreateInventoryUseCase';
 import { CreateProductsUseCase } from '@repository/product/case/CreateProductsUseCase';
 
 @Component({
@@ -38,8 +38,8 @@ export class SectionOneComponent implements OnInit {
   currentDate: string;
 
 
-  constructor(public formulary: FormBuilder, public router: Router, private CreateProductsUseCase: CreateProductsUseCase,
-              private categoriesReadUseCase: CategoriesReadUseCase, private inventoryCreateUseCase: InventoryCreateUseCase){
+  constructor(public formulary: FormBuilder, public router: Router, private createProductsUseCase: CreateProductsUseCase,
+              private readCategoriesUseCase: ReadCategoriesUseCase, private createInventoryUseCase: CreateInventoryUseCase){
     this.productForm = formulary.group({
       nameProduct: ['', [Validators.required]],
       priceProduct: ['', [Validators.required]],
@@ -58,7 +58,7 @@ export class SectionOneComponent implements OnInit {
   }
   
   getCategory(){
-    this.categoriesReadUseCase.execute().subscribe(
+    this.readCategoriesUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.category = res.objectResponse;
       },
@@ -84,9 +84,10 @@ export class SectionOneComponent implements OnInit {
       categoryEntity: this.productForm.controls['categoryProduct'].value
     }
 
-    this.CreateProductsUseCase.execute(this.productModel).subscribe(
-      (genericResponse: GenericResponse) => {
-        if (genericResponse.statusCode == 200) {
+    this.createProductsUseCase.execute(this.productModel).subscribe(
+      (res: GenericResponse) => {
+        if (res.statusCode == 200) {
+          this.productModel.productId = res.objectId;
           this.createInventory(this.productModel);
           this.modalEvent();
           this.productForm.reset();
@@ -109,7 +110,7 @@ export class SectionOneComponent implements OnInit {
       productEntity: productModel
     }
 
-    this.inventoryCreateUseCase.execute(this.inventoryModel).subscribe(
+    this.createInventoryUseCase.execute(this.inventoryModel).subscribe(
       (res: GenericResponse) => {
         console.log("Respuesta del Inventario: " + res.message)
       },

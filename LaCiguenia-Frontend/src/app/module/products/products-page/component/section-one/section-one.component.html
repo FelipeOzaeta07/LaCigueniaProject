@@ -12,15 +12,15 @@
             </div>
             <div class="col_3 row_center">
                 <label class="size_2 pb_1">{{textPriceSale}}</label>
-                <input type="number" class="input size_1" formControlName="priceSaleProduct">
+                <input type="number" class="input size_1" placeholder="$" formControlName="priceProduct">
             </div>
             <div class="col_3 row_center">
                 <label class="size_2 pb_1">{{textPriceCost}}</label>
-                <input type="number" class="input size_1" formControlName="priceCostProduct">
+                <input type="number" class="input size_1" placeholder="$" formControlName="costProduct">
             </div>
             <div class="col_3 row_center">
                 <label class="size_2 pb_1">{{textIva}}</label>
-                <input type="number" class="input size_1" formControlName="ivaProduct">
+                <input type="number" class="input size_1" placeholder="%" formControlName="ivaProduct">
             </div>
         </div>
         <div class="col_17 col_between py_1">
@@ -33,16 +33,15 @@
             </div>
             <div class="col_3 row_center">
                 <label class="size_2 pb_1">{{textAmount}}</label>
-                <input type="number" class="input size_1" formControlName="amountProduct">
+                <input type="number" class="input size_1" placeholder="Unidades" formControlName="amountProduct">
             </div>
             <div class="col_8 row_center ">
                 <label class="size_2 pb_1">{{textDescription}}</label>
                 <input type="text" class="input size_1" placeholder="Ingresar la descripcion del producto" formControlName="descriptionProduct">           
             </div>
-            </div>
+        </div>
         <div class="col_17 col_center">
             <button type="submit" class="btn_one size_2 col_5">{{textPay}}</button>
         </div>
-        
     </form>
 </section>

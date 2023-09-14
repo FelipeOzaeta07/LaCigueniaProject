@@ -17,9 +17,9 @@ export class UserService extends UserRepository{
         super();
     }
 
-    override userService(params: { userEmail: string; userPassword: string; }): Observable<GenericResponse> {
+    override serviceUser(params: { userEmail: string; userPassword: string; }): Observable<GenericResponse> {
         return this.http
-        .post<GenericResponse>(BASE_URL_USER + SERVICE_USER, params, { headers: { 'Content-Type': 'application/json' } })
+        .post<GenericResponse>(BASE_URL_USER + SERVICE_USER, params)
         .pipe(
             tap(genericResponse =>{
                 this.accessTokenService.accessTokenSave(genericResponse.message);
@@ -27,9 +27,9 @@ export class UserService extends UserRepository{
         );
     }
     
-    override userCreate(userModel: UserModel): Observable<GenericResponse> {
+    override createUser(userModel: UserModel): Observable<GenericResponse> {
         return this.http
-        .post<GenericResponse>(BASE_URL_USER + CREATE_USER, userModel, { headers: { 'Content-Type': 'application/json' } })
+        .post<GenericResponse>(BASE_URL_USER + CREATE_USER, userModel)
         .pipe();
     }
 }

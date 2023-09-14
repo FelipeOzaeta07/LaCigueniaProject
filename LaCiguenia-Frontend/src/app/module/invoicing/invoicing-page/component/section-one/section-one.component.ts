@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { CategoriesReadUseCase } from '@repository/category/case/CategoriesReadUseCase';
+import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -13,14 +13,14 @@ export class SectionOneComponent implements OnInit{
   productSelection!: string;
   category!: CategoryModel [];
   //Pendiente realizar la Query de consultar producto por nombre
-  constructor(private categoriesReadUseCase: CategoriesReadUseCase){}
+  constructor(private readCategoriesUseCase: ReadCategoriesUseCase){}
 
   ngOnInit(): void {
     this.getCategory();
   }
   
   getCategory(){
-    this.categoriesReadUseCase.execute().subscribe(
+    this.readCategoriesUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.category = res.objectResponse;
       },

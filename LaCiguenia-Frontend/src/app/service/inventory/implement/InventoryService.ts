@@ -17,7 +17,6 @@ export class InventoryService extends InventoryRepository {
     }
 
     override createInventory(inventoryModel: InventoryModel): Observable<GenericResponse> {
-
         return this.http
             .post<GenericResponse>(BASE_URL_INVENTORY + CREATE_INVENTORY, inventoryModel)
             .pipe(catchError((error: HttpErrorResponse) => {
