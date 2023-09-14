@@ -1,4 +1,5 @@
 import { CustomerModel } from "@commons/domains/customer/CustomerModel";
+import { OpeningModel } from "../opening/OpeningModel";
 
 export interface InvoiceModel{
     invoiceId: number;
@@ -6,4 +7,5 @@ export interface InvoiceModel{
     invoiceIva: number;
     invoiceTotal: number;
     customerEntity: CustomerModel;
+    openingEntity: OpeningModel;
 }

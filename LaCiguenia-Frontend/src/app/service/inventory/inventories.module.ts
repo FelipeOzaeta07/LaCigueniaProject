@@ -1,52 +1,52 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InventoryRepository } from '@repository/inventory/InventoryRepository';
-import { InventoryCreateUseCase } from '@repository/inventory/case/InventoryCreateUseCase';
-import { InventoryReadUseCase } from '@repository/inventory/case/InventoryReadUseCase';
-import { InventoryUpdateUseCase } from '@repository/inventory/case/InventoryUpdateUseCase';
-import { InventoryDeleteUseCase } from '@repository/inventory/case/InventoryDeleteUseCase';
-import { InventoriesReadUseCase } from '@repository/inventory/case/InventoriesReadUseCase';
+import { CreateInventoryUseCase } from '@repository/inventory/case/CreateInventoryUseCase';
+import { ReadInventoryUseCase } from '@repository/inventory/case/ReadInventoryUseCase';
+import { UpdateInventoryUseCase } from '@repository/inventory/case/UpdateInventoryUseCase';
+import { DeleteInventoryUseCase } from '@repository/inventory/case/DeleteInventoryUseCase';
+import { ReadInventoriesUseCase } from '@repository/inventory/case/ReadInventoriesUseCase';
 import { InventoryService } from '@service/inventory/implement/InventoryService';
 import { HttpClientModule } from '@angular/common/http';
 
-const inventoryCreateUseCaseFactory = (inventoryRepository: InventoryRepository) => new InventoryCreateUseCase(inventoryRepository);
-export const inventoryCreateUseCaseProvider = {
-    provide: InventoryCreateUseCase,
-    useFactory: inventoryCreateUseCaseFactory,
+const createInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new CreateInventoryUseCase(inventoryRepository);
+export const createInventoryUseCaseProvider = {
+    provide: CreateInventoryUseCase,
+    useFactory: createInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
-const inventoryReadUseCaseFactory = (inventoryRepository: InventoryRepository) => new InventoryReadUseCase(inventoryRepository);
-export const inventoryReadUseCaseProvider = {
-    provide: InventoryReadUseCase,
-    useFactory: inventoryReadUseCaseFactory,
+const readInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new ReadInventoryUseCase(inventoryRepository);
+export const readInventoryUseCaseProvider = {
+    provide: ReadInventoryUseCase,
+    useFactory: readInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
-const inventorysReadUseCaseFactory = (inventoryRepository: InventoryRepository) => new InventoriesReadUseCase(inventoryRepository);
-export const inventoriesReadUseCaseProvider = {
-    provide: InventoriesReadUseCase,
-    useFactory: inventorysReadUseCaseFactory,
+const ReadInventoriesUseCaseFactory = (inventoryRepository: InventoryRepository) => new ReadInventoriesUseCase(inventoryRepository);
+export const ReadInventoriesUseCaseProvider = {
+    provide: ReadInventoriesUseCase,
+    useFactory: ReadInventoriesUseCaseFactory,
     deps: [InventoryRepository],
 };
-const inventoryUpdateUseCaseFactory = (inventoryRepository: InventoryRepository) => new InventoryUpdateUseCase(inventoryRepository);
-export const inventoryUpdateUseCaseProvider = {
-    provide: InventoryUpdateUseCase,
-    useFactory: inventoryUpdateUseCaseFactory,
+const updateInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new UpdateInventoryUseCase(inventoryRepository);
+export const updateInventoryUseCaseProvider = {
+    provide: UpdateInventoryUseCase,
+    useFactory: updateInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
-const inventoryDeleteUseCaseFactory = (inventoryRepository: InventoryRepository) => new InventoryDeleteUseCase(inventoryRepository);
-export const inventoryDeleteUseCaseProvider = {
-    provide: InventoryDeleteUseCase,
-    useFactory: inventoryDeleteUseCaseFactory,
+const deleteInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new DeleteInventoryUseCase(inventoryRepository);
+export const deleteInventoryUseCaseProvider = {
+    provide: DeleteInventoryUseCase,
+    useFactory: deleteInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
 
 @NgModule({
   providers: [
-    inventoryCreateUseCaseProvider,
-    inventoryReadUseCaseProvider,
-    inventoriesReadUseCaseProvider,
-    inventoryUpdateUseCaseProvider,
-    inventoryDeleteUseCaseProvider,
+    createInventoryUseCaseProvider,
+    readInventoryUseCaseProvider,
+    ReadInventoriesUseCaseProvider,
+    updateInventoryUseCaseProvider,
+    deleteInventoryUseCaseProvider,
     {provide: InventoryRepository, useClass: InventoryService}
   ],
   imports: [

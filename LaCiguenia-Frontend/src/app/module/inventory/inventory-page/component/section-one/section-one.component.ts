@@ -3,7 +3,7 @@ import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { AMOUNT, CODE, NAME_PRODUCT, OPTIONS, PAGING, SALES_PRICE, TITLE } from '@module/inventory/inventory-page/component/section-one/constans/section-one'
-import { InventoriesReadUseCase } from '@repository/inventory/case/InventoriesReadUseCase';
+import { ReadInventoriesUseCase } from '@repository/inventory/case/ReadInventoriesUseCase';
 import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
 
 @Component({
@@ -25,7 +25,7 @@ export class SectionOneComponent implements OnInit{
   inventoryModel: InventoryModel[] = [];
 
 
-  constructor(private readProductsUseCase: ReadProductsUseCase, private inventoriesReadUseCase: InventoriesReadUseCase){
+  constructor(private readProductsUseCase: ReadProductsUseCase, private readInventoriesUseCase: ReadInventoriesUseCase){
 
   }
 
@@ -35,7 +35,7 @@ export class SectionOneComponent implements OnInit{
   }
 
   getInventoryProduct(){
-    this.inventoriesReadUseCase.execute().subscribe(
+    this.readInventoriesUseCase.execute().subscribe(
       (res: GenericResponse) => {
         console.log("Prueba Valores Inventario: " + res.objectResponse);
         for(const resItem of res.objectResponse){

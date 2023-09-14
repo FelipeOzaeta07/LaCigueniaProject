@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CREATE_ACCOUNT, FORGOT_PASSWORD, HERE, NEED_HELP, SIGN_IN } from '@module/login/login-page/component/section-two/constans/section-two';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { UserServiceUseCase } from '@repository/user/case/UserServiceUseCase';
+import { ServiceUserUseCase } from '@repository/user/case/ServiceUserUseCase';
 
 @Component({
   selector: 'app-section-two',
@@ -19,7 +19,7 @@ export class SectionTwoComponent {
 
   userService!: FormGroup;
 
-  constructor(public formulary: FormBuilder, private userServiceUseCase: UserServiceUseCase, public router: Router){
+  constructor(public formulary: FormBuilder, private serviceUserUseCase: ServiceUserUseCase, public router: Router){
     this.userService = formulary.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -37,7 +37,7 @@ export class SectionTwoComponent {
       userPassword: this.userService.controls['password'].value,
     };
   
-    this.userServiceUseCase.execute(params).subscribe(
+    this.serviceUserUseCase.execute(params).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
           this.router.navigateByUrl('login-laciguenia/admin-page-principal');

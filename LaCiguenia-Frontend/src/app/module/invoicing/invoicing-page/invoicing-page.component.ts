@@ -2,7 +2,9 @@ import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
+import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
+import { SendOpeningService } from '@service/opening/implement/SendOpeningService';
 
 @Component({
   selector: 'app-invoicing-page',
@@ -14,16 +16,19 @@ export class InvoicingPageComponent {
   modalOne!: boolean;
   modalTwo!: boolean;
   modalThree!: boolean;
+
   customer!: CustomerModel;
   numberAmount: number = 1;
   totalPriceProducts: number = 0;
-  detail!: DetailModel;
-  detailInvoice: DetailModel [] = [];
-  hashMap: { [productItem: string]: number } = {};
   invoiceEnd!: InvoiceModel;
   currentDate: string;
 
-  constructor(){
+  detail!: DetailModel;
+  detailInvoice: DetailModel [] = [];
+  hashMap: { [productItem: string]: number } = {};
+
+
+  constructor(private sendOpeningService: SendOpeningService){
     const today = new Date();
     this.currentDate = today.toISOString().slice(0, 10);
   }
@@ -37,7 +42,6 @@ export class InvoicingPageComponent {
   }
 
   modalActivateThree(datos: boolean) {
-    console.log("Prueba envio del modal 3 al padre: ");
     this.modalThree = datos;
   }
 
@@ -81,12 +85,7 @@ export class InvoicingPageComponent {
   }
 
   builderInvoice(){
-    this.invoiceEnd = {
-      invoiceId: 0,
-      invoiceDate: this.currentDate,
-      invoiceIva: (this.totalPriceProducts * 16) / 100,
-      invoiceTotal: this.totalPriceProducts,
-      customerEntity: this.customer
-    }
+
+ 
   }
 }

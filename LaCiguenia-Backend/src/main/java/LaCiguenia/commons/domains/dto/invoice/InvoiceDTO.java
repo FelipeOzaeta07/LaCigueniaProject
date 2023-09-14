@@ -1,6 +1,7 @@
 package LaCiguenia.commons.domains.dto.invoice;
 
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
 import java.io.Serializable;
@@ -20,4 +21,7 @@ public class InvoiceDTO implements Serializable {
     private Integer invoiceTotal;
     @JsonIdentityReference(alwaysAsId = true)
     private CustomerEntity customerEntity;
+    @JsonIdentityReference(alwaysAsId = true)
+    private OpeningEntity openingEntity;
+
 }

@@ -4,11 +4,11 @@ import { CategoryModel } from "@commons/domains/category/CategoryModel";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class CategoryDeleteUseCase implements UseCase<CategoryModel, GenericResponse>{
+export class ReadCategoryUseCase implements UseCase<CategoryModel, GenericResponse>{
 
     constructor(private categoryRepository: CategoryRepository){}
 
-    execute(categoryModel: CategoryModel) : Observable<GenericResponse>{
-        return this.categoryRepository.deleteCategory(categoryModel);
+    execute(params: {categoryId: number}) : Observable<GenericResponse>{
+        return this.categoryRepository.readCategory(params);
     }
 }

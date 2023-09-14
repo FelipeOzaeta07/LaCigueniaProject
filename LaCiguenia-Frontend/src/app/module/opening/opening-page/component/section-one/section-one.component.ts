@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { DATE, OPENING_BOX, STORE, TITLE, TOTAL } from '@module/opening/opening-page/component/section-one/constans/section-one';
-import { OpeningCreateUseCase } from '@repository/opening/case/OpeningCreateUseCase';
+import { CreateOpeningUseCase } from '@repository/opening/case/CreateOpeningUseCase';
+import { SendOpeningService } from '@service/opening/implement/SendOpeningService';
 
 @Component({
   selector: 'app-section-one',
@@ -27,7 +28,8 @@ export class SectionOneComponent {
   boxOpeningForm!: FormGroup;
   
 
-  constructor(private formulario: FormBuilder, private router: Router, private openingCreateUseCase: OpeningCreateUseCase){
+  constructor(private formulario: FormBuilder, private router: Router, private createOpeningUseCase: CreateOpeningUseCase,
+              private sendOpeningService: SendOpeningService){
     this.boxOpeningForm = this.formulario.group({
       date: [this.date, [Validators.required]],
       store: [this.store, [Validators.required]],
@@ -36,7 +38,7 @@ export class SectionOneComponent {
     });
    }
 
-  createOpening(){
+   createOpening(){
     this.boxOpeningForm.patchValue({
       openingBox: this.openingBox,
       total: this.openingBox
@@ -49,10 +51,10 @@ export class SectionOneComponent {
       openingTotal: this.boxOpeningForm.controls['openingBox'].value,
     }
 
-    this.openingCreateUseCase.execute(this.openingModel).subscribe(
+    this.createOpeningUseCase.execute(this.openingModel).subscribe(
       (res: GenericResponse) => {
-        console.log("Prueba Respuesta: " + res.message);
         if(res.statusCode == 200){
+          this.openingModel.openingId = res.objectId;
           this.router.navigate(['login-laciguenia/opening-page-principal/invoicing-page-principal'])
         }
       }

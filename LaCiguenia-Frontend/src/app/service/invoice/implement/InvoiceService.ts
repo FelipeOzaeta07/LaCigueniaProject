@@ -16,7 +16,6 @@ export class InvoiceService extends InvoiceRepository {
     }
 
     override createInvoice(invoiceModel: InvoiceModel): Observable<GenericResponse> {
-
         return this.http
             .post<GenericResponse>(BASE_URL_INVOICE + CREATE_INVOICE, invoiceModel)
             .pipe(catchError((error: HttpErrorResponse) => {

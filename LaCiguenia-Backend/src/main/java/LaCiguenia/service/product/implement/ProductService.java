@@ -8,6 +8,7 @@ import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.repository.product.IProductRepository;
 import LaCiguenia.service.product.IProductService;
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class ProductService implements IProductService {
     private ProductConverter productConverter;
 
     @Override
+    @Transactional
     public ResponseEntity<GenericResponseDTO> createProducts(ProductDTO productDTO) {
         try {
             Optional<ProductEntity> productoExist = this.iProductRepository
@@ -36,6 +38,7 @@ public class ProductService implements IProductService {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
+                        .objectId(this.iProductRepository.lastProductId())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
