@@ -83,6 +83,24 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
+    @Operation(summary = "Leer los Inventarios Recientemente Creados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IInventoryEndPoint.READ_INVENTORIES_RECENTLY_CREATE)
+    public ResponseEntity<GenericResponseDTO> readInventoriesRecentlyCreate() {
+        return this.inventoryService.readInventoriesRecentlyCreate();
+    }
+
+    @Override
     @Operation(summary = "Actualizar un Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,

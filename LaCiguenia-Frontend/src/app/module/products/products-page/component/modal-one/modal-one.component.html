@@ -1,41 +1,50 @@
 <section  class="col_center item_center inherit bg_color_black z_index">
-    <div class="col_8 room border h_55 row_evenly bg_color_white">
+    <div class="col_8 room border h_65 row_evenly bg_color_white">
         <div class="col_17 bg_color_one title">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
         </div> 
-        <form action="" class="col_17 h_30 row_evenly">
+        <form (ngSubmit)="updateProducts()" [formGroup]="productForm" class="col_17 h_50 row_evenly">
             <div class="col_17 col_between">
                 <div class="col_8">
                     <label for="" class="size_2">{{textNameProduct}}</label>
-                    <input type="text" class="input col_17 size_1" placeholder="">
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productName}}" formControlName="nameProduct">
                 </div>
                 <div class="col_4">
                     <label for="" class="size_2">{{textPrice}}</label>
-                    <input type="text" class="input col_17 size_1" placeholder="">
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productPrice}}" formControlName="priceProduct">
                 </div>
                 <div class="col_4">
-                    <label for="" class="size_2">{{textIva}}</label>
-                    <input type="text" class="input col_17 size_1 bg_color_four" placeholder="" readonly>
+                    <label for="" class="size_2">{{textCost}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productCost}}" formControlName="costProduct">
                 </div>
             </div>
-            <div class="col_17 col_between">
-                <div class="col_8">
-                    <label for="" class="size_2">{{textDescription}}</label>
-                    <input type="text" class="input col_17 size_1" placeholder="">
-                </div>
-                <div class="col_4">
-                    <label for="" class="size_2">{{textCode}}</label>
-                    <input type="text" class="input col_17 size_1" placeholder="">
+            <div class="col_17 py_1 col_between">
+                <div class="col_8 row_center">
+                    <label class="size_2 pb_1">{{textCategory}}</label>
+                    <select formControlName="categoryProduct" class="select size_1">
+                        <option class="size_1" value="" disabled selected>Ingrese la Categoria</option>
+                        <option class="size_1" *ngFor="let categoryItem of category" [ngValue]="categoryItem">{{categoryItem.categoryName}}</option>
+                    </select>
                 </div>
                 <div class="col_4">
                     <label for="" class="size_2">{{textAmount}}</label>
-                    <input type="text" class="input col_17 size_1" placeholder="">
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.inventoryAmount}}" formControlName="amountProduct">
+                </div>
+                <div class="col_4">
+                    <label for="" class="size_2">{{textIva}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productIva}}" formControlName="ivaProduct">
                 </div>
             </div>
+            <div class="col_17 col_between">
+                <div class="col_17">
+                    <label for="" class="size_2">{{textDescription}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productDescription}}" formControlName="descriptionProduct">
+                </div>
+            </div>
+            <div class="col_17 py_1 col_between">
+                <button class="col_8 btn_two size_2" (click)="modalEvent()">{{textFail}}</button>
+                <button type="submit" class="col_8 btn_one size_2">{{textDone}}</button>
+            </div>
         </form> 
-        <div class="col_17 col_between">
-            <button class="col_8 btn_two size_2" (click)="modalEvent()">{{textFail}}</button>
-            <button type="submit" class="col_8 btn_one size_2">{{textDone}}</button>
-        </div>
     </div>
 </section>

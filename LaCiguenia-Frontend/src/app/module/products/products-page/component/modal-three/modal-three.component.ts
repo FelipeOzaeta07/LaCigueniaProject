@@ -8,13 +8,13 @@ import { TITLE, DONE } from '@module/products/products-page/component/modal-thre
 })
 export class ModalThreeComponent {
 
-  @Output() modalActivate = new EventEmitter<boolean>();
+  @Output() modalActivateThree = new EventEmitter<boolean>();
 
   textTitle = TITLE;
   textDone = DONE;
 
   modalEvent() {
-    this.modalActivate.emit(false);
+    this.modalActivateThree.emit(false);
   }
 
 }

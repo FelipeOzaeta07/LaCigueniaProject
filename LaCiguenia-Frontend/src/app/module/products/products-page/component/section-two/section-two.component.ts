@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { NAME_PRODUCT, TITLE, SALES_PRICE, AMOUNT, OPTION } from '@module/products/products-page/component/section-two/constans/section-two';
-import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/ReadProductsRecentlyCreateUseCase';
+import { ReadInventoriesRecentlyCreateUseCase } from '@repository/inventory/case/ReadInventoriesRecentlyCreateUseCase';
 
 @Component({
   selector: 'app-section-two',
@@ -12,7 +13,10 @@ import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/Read
 
 export class SectionTwoComponent implements OnInit{
 
-  @Output() modalActivate = new EventEmitter<boolean>();
+  @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() sendProduct = new EventEmitter<InventoryModel>();
+  @Output() sendProductId = new EventEmitter<number>();
+  @Output() modalActivateTwo = new EventEmitter<boolean>();
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
@@ -20,23 +24,28 @@ export class SectionTwoComponent implements OnInit{
   textSalesPrices = SALES_PRICE;
   textOption = OPTION;
 
-  products!: ProductModel [];
+  inventoryModel!: InventoryModel [];
 
-  modalEvent(){
-    const datos = true;
-    this.modalActivate.emit(datos);
+  constructor(private readInventoriesRecentlyCreateUseCase: ReadInventoriesRecentlyCreateUseCase){}
+
+  modalEdit(index: number){
+    this.sendProduct.emit(this.inventoryModel[index])
+    this.modalActivateOne.emit(true);
   }
 
-  constructor(private readProductsRecentlyCreateUseCase: ReadProductsRecentlyCreateUseCase){}
+  modalDelete(index: number){
+    this.sendProductId.emit(this.inventoryModel[index].productEntity.productId);
+    this.modalActivateTwo.emit(true);
+  }
 
   ngOnInit(): void {
     this.readProductsRecentlyCreate();
   }
 
   readProductsRecentlyCreate(){
-    this.readProductsRecentlyCreateUseCase.execute().subscribe(
+    this.readInventoriesRecentlyCreateUseCase.execute().subscribe(
       (res: GenericResponse) => {
-        this.products = res.objectResponse;
+        this.inventoryModel = res.objectResponse;
       },
       error => {
         console.error("Error en la solicitud: " + error);

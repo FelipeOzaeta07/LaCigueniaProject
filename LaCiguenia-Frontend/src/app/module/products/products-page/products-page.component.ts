@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
+import { InventoryModule } from '@module/inventory/inventory.module';
 
 @Component({
   selector: 'app-products-page',
@@ -7,14 +9,29 @@ import { Component } from '@angular/core';
 })
 export class ProductsPageComponent {
 
-  modal!: boolean;
+  modalOne!: boolean;
   modalTwo!: boolean;
+  modalThree!: boolean;
+  inventoryModel!: InventoryModel;
+  productId!: number;
 
-  modalActivate(datos: boolean) {
-    this.modal = datos;
+  sendProduct(inventoryModel: InventoryModel){
+    this.inventoryModel = inventoryModel;
   }
 
-  modalActivateTwo(datos: boolean){
+  sendProductId(productId: number){
+    this.productId = productId;
+  }
+
+  modalActivateOne(datos: boolean) {
+    this.modalOne = datos;
+  }
+
+  modalActivateTwo(datos: boolean) {
     this.modalTwo = datos;
+  }
+
+  modalActivateThree(datos: boolean){
+    this.modalThree = datos;
   }
 }

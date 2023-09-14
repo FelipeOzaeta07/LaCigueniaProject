@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ProductModel } from "@commons/domains/product/ProductModel";
 import { ProductRepository } from "@repository/product/ProductRepository";
@@ -64,9 +64,9 @@ export class ProductService extends ProductRepository{
             }));
     }
 
-    override deleteProduct(params: {productId: number}): Observable<GenericResponse> {
-        return this.http
-            .delete<GenericResponse>(BASE_URL_PRODUCT + DELETE_PRODUCT, {params})
+    override deleteProduct(productId: number): Observable<GenericResponse> {
+          return this.http
+            .delete<GenericResponse>(BASE_URL_PRODUCT + DELETE_PRODUCT + productId)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));

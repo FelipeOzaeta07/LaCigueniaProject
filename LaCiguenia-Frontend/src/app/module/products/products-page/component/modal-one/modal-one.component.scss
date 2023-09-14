@@ -20,3 +20,14 @@
 .bg_color_white{
     background-color: var(--color_seven);
 }
+.input::placeholder{
+    color: var(--color_one);
+}
+.input:hover::placeholder{
+    border-color: var(--color_twelve);
+    color: var(--color_one);
+}
+.input:focus::placeholder{
+    border-color: var(--color_twelve);
+    color: var(--color_one);
+}

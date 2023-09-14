@@ -17,7 +17,7 @@ import { CreateProductsUseCase } from '@repository/product/case/CreateProductsUs
 })
 export class SectionOneComponent implements OnInit {
 
-  @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Output() modalActivateThree = new EventEmitter<boolean>();
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
@@ -67,7 +67,7 @@ export class SectionOneComponent implements OnInit {
       });
   }
 
-  CreateProducts(){
+  createProducts(){
     if (!this.productForm.valid) {
       this.productForm.markAllAsTouched();
       return
@@ -120,6 +120,6 @@ export class SectionOneComponent implements OnInit {
   }
 
   modalEvent() {
-    this.modalActivateTwo.emit(true);
+    this.modalActivateThree.emit(true);
   }
 }

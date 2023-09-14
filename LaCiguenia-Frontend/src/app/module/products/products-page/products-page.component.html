@@ -1,10 +1,11 @@
 <main class="h_100 col_start">
-    <app-modal-one *ngIf="modal" (modalActivate)="modalActivate($event)" class="h_100"></app-modal-one>
-    <app-modal-three *ngIf="modalTwo" class="h_100" (modalActivate)="modalActivateTwo($event)" ></app-modal-three>
+    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" [inventoryModel]="inventoryModel" class="h_100"></app-modal-one>
+    <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)" [productId]="productId" class="h_100"></app-modal-two>
+    <app-modal-three *ngIf="modalThree" class="h_100" (modalActivateThree)="modalActivateThree($event)" ></app-modal-three>
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_15 h_100">
         <app-section-header class="col_17 h_8"></app-section-header>
-        <app-section-one class="col_17 h_48" (modalActivateTwo)="modalActivateTwo($event)"></app-section-one>
-        <app-section-two (modalActivate)="modalActivate($event)" class="col_17 h_44"></app-section-two>
+        <app-section-one class="col_17 h_48" (modalActivateThree)="modalActivateThree($event)"></app-section-one>
+        <app-section-two (modalActivateOne)="modalActivateOne($event)" (sendProduct)="sendProduct($event)" (sendProductId)="sendProductId($event)" (modalActivateTwo)="modalActivateTwo($event)" class="col_17 h_44"></app-section-two>
     </section>
 </main>

@@ -5,6 +5,7 @@ import LaCiguenia.commons.constans.response.inventory.IInventoryResponse;
 import LaCiguenia.commons.converter.inventory.InventoryConverter;
 import LaCiguenia.commons.domains.dto.inventory.InventoryDTO;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
+import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.inventory.IInventoryRepository;
 import LaCiguenia.service.inventory.IInventoryService;
@@ -92,6 +93,35 @@ public class InventoryService implements IInventoryService {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(listDetailInventoryExist)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IInventoryResponse.INVENTORY_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readInventoriesRecentlyCreate() {
+        try{
+            List<InventoryEntity> listInventoryExist =
+                    this.iInventoryRepository.findInventoriesRecentlyCreate();
+            if (!listInventoryExist.isEmpty()){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(listInventoryExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {

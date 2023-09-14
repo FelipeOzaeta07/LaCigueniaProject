@@ -12,6 +12,8 @@ public interface IInventoryApi {
     ResponseEntity<GenericResponseDTO> readInventory(@RequestBody InventoryDTO inventoryDTO);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readInventories();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readInventoriesRecentlyCreate();
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateInventory(@RequestBody InventoryDTO inventoryDTO);
     @DeleteMapping()
