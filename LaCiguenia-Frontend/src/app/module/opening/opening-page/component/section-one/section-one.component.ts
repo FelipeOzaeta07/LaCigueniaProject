@@ -55,7 +55,6 @@ export class SectionOneComponent {
       (res: GenericResponse) => {
         if(res.statusCode == 200){
           this.openingModel.openingId = res.objectId;
-          this.sendOpeningService.updateOpeningId(this.openingModel);
           this.router.navigate(['login-laciguenia/opening-page-principal/invoicing-page-principal'])
         }
       }

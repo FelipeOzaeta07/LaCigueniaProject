@@ -10,13 +10,5 @@ import { BehaviorSubject } from "rxjs";
 
 export class SendOpeningService {
 
-    private openingModel = new BehaviorSubject<OpeningModel | null>(null);
 
-    getOpeningId() {
-        return this.openingModel.asObservable();
-    }
-
-    updateOpeningId(openingModel: OpeningModel) {
-        this.openingModel.next(openingModel);
-    }
 }
