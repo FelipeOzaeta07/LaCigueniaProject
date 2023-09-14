@@ -10,5 +10,14 @@ import { BehaviorSubject } from "rxjs";
 
 export class SendOpeningService {
 
+    openingModel!: OpeningModel;
+
+    getOpeningModel() {
+        return this.openingModel;
+    }
+
+    updateOpeningModel(openingModel: OpeningModel) {
+        this.openingModel = openingModel;
+    }
 
 }

@@ -85,7 +85,14 @@ export class InvoicingPageComponent {
   }
 
   builderInvoice(){
-
+    this.invoiceEnd = {
+      invoiceId: 0,
+      invoiceDate: this.currentDate,
+      invoiceIva: (this.totalPriceProducts * 16) / 100,
+      invoiceTotal: this.totalPriceProducts,
+      customerEntity: this.customer,
+      openingEntity: this.sendOpeningService.getOpeningModel()
+    }
  
   }
 }
