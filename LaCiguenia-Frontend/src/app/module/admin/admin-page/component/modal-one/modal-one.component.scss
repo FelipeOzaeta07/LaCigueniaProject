@@ -20,3 +20,11 @@
 .bg_color_white{
     background-color: var(--color_seven);
 }
+.border-top{
+margin-block: 7px;
+border-top: 1px solid black;
+}
+.border-bottom{
+    border-bottom: 1px solid black;
+    margin-top: 7px;
+}

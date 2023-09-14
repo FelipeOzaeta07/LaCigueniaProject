@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -55,7 +55,7 @@ export class SectionOneComponent {
       (res: GenericResponse) => {
         if(res.statusCode == 200){
           this.openingModel.openingId = res.objectId;
-          this.sendOpeningService.updateOpeningId(this.openingModel);
+          this.sendOpeningService.updateOpeningModel(this.openingModel);
           this.router.navigate(['login-laciguenia/opening-page-principal/invoicing-page-principal'])
         }
       }

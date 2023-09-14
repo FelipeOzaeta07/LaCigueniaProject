@@ -34,7 +34,6 @@ export class SectionTwoComponent implements OnInit{
   }
 
   selecProduct(n: number, i: number) {
-    console.log("Prueba Producto: " + n + i);
     this.selectProducts.emit(this.productMap[n][i]);
   }
 
