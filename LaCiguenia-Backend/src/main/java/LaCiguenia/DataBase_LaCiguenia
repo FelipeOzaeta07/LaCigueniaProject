@@ -6,18 +6,19 @@ CREATE TABLE user_ciguenia (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(100),
     user_email VARCHAR(100),
-    user_password VARCHAR(100)
+    user_password VARCHAR(100),
+    user_status VARCHAR(20)
 );
 CREATE TABLE opening_ciguenia (
     opening_id INT AUTO_INCREMENT PRIMARY KEY,
     opening_date DATE,
-    opening_store VARCHAR(255),
+    opening_store VARCHAR(50),
     opening_total INT
 );
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50),
-    category_description TEXT
+    category_description VARCHAR(100)
 );
 CREATE TABLE product_ciguenia (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -56,7 +57,8 @@ CREATE TABLE invoice_ciguenia (
     invoice_id INT PRIMARY KEY AUTO_INCREMENT,
     invoice_date DATE,
     invoice_iva INT,
-    invoice_total INT,
+    invoice_total DOUBLE,
+    invoice_status VARCHAR(20),
     customer_id INT,
     opening_id INT,
     FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id),
@@ -65,7 +67,7 @@ CREATE TABLE invoice_ciguenia (
 CREATE TABLE detail_invoice_ciguenia (
     detail_id INT PRIMARY KEY AUTO_INCREMENT,
     detail_amount INT,
-    detail_subtotal INT,
+    detail_subtotal DOUBLE,
     product_id INT,
     invoice_id INT,
     FOREIGN KEY (product_id) REFERENCES product_ciguenia (product_id),

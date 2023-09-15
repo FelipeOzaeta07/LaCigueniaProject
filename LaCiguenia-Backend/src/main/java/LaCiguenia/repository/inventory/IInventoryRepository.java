@@ -18,4 +18,9 @@ public interface IInventoryRepository extends JpaRepository<InventoryEntity, Int
                     "ORDER BY i.inventory_id DESC\n" +
                     "LIMIT 3;", nativeQuery = true)
     List<InventoryEntity> findInventoriesRecentlyCreate();
+    @Query (value = "SELECT i.*\n" +
+                    "FROM inventory_ciguenia i\n" +
+                    "INNER JOIN product_ciguenia p ON i.product_id = p.product_id\n" +
+                    "WHERE p.product_status = 'habilitado';", nativeQuery = true)
+    List<InventoryEntity> findInventories();
 }

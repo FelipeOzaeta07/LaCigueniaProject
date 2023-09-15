@@ -88,7 +88,8 @@ public class InventoryService implements IInventoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readInventories() {
         try {
-            List<InventoryEntity> listDetailInventoryExist = this.iInventoryRepository.findAll();
+            List<InventoryEntity> listDetailInventoryExist =
+                    this.iInventoryRepository.findInventories();
             if (!listDetailInventoryExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
