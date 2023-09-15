@@ -5,28 +5,31 @@ import { CustomerService } from './implement/CustomerService';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerReadUseCase } from '@repository/customer/case/CustomerReadUseCase';
 import { CustomesReadUseCase } from '@repository/customer/case/CustomesReadUseCase';
-import { CustomerCreateUseCase } from '@repository/customer/case/CustomerCreateUseCase';
+import { CreateCustomerUseCase } from '@repository/customer/case/CreateCustomerUseCase';
 import { CustomerUpdateUseCase } from '@repository/customer/case/CustomerUpdateUseCase';
 import { CustomerDeleteUseCase } from '@repository/customer/case/CustomerDeleteUseCase';
 
-const customerCreateUseCaseFactory = (customerRepository: CustomerRepository) => new CustomerCreateUseCase(customerRepository);
-export const customerCreateUseCaseProvider = {
-    provide: CustomerCreateUseCase,
-    useFactory: customerCreateUseCaseFactory,
+const createCustomerUseCaseFactory = (customerRepository: CustomerRepository) => new CreateCustomerUseCase(customerRepository);
+export const createCustomerUseCaseProvider = {
+    provide: CreateCustomerUseCase,
+    useFactory: createCustomerUseCaseFactory,
     deps: [CustomerRepository],
 };
+
 const customerReadUseCaseFactory = (customerRepository: CustomerRepository) => new CustomerReadUseCase(customerRepository);
 export const customerReadUseCaseProvider = {
     provide: CustomerReadUseCase,
     useFactory: customerReadUseCaseFactory,
     deps: [CustomerRepository],
 };
+
 const customersReadUseCaseFactory = (customerRepository: CustomerRepository) => new CustomesReadUseCase(customerRepository);
 export const customersReadUseCaseProvider = {
     provide: CustomesReadUseCase,
     useFactory: customersReadUseCaseFactory,
     deps: [CustomerRepository],
 };
+
 const customerUpdateUseCaseFactory = (customerRepository: CustomerRepository) => new CustomerUpdateUseCase(customerRepository);
 export const customerUpdateUseCaseProvider = {
     provide: CustomerUpdateUseCase,
@@ -42,7 +45,7 @@ export const customerDeleteUseCaseProvider = {
 
 @NgModule({
   providers: [
-    customerCreateUseCaseProvider,
+    createCustomerUseCaseProvider,
     customerReadUseCaseProvider,
     customersReadUseCaseProvider,
     customerUpdateUseCaseProvider,

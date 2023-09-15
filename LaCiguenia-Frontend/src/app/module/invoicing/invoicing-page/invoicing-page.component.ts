@@ -39,6 +39,7 @@ export class InvoicingPageComponent {
 
   modalActivateTwo(datos: boolean) {
     this.modalTwo = datos;
+    this.builderInvoice();
   }
 
   modalActivateThree(datos: boolean) {
@@ -66,7 +67,8 @@ export class InvoicingPageComponent {
     if (existingIndex !== -1) {
       this.detailInvoice[existingIndex].detailAmount = this.hashMap[productName];
       this.totalPriceProducts += this.detailInvoice[existingIndex].detailSubTotal;
-    } else {
+    } 
+    else {
       this.detail = {
         detailId: 0,
         detailAmount: this.hashMap[productName],
@@ -77,7 +79,6 @@ export class InvoicingPageComponent {
       this.totalPriceProducts += this.detail.detailSubTotal;
       this.setDetailModel(this.detail);
     }
-    this.builderInvoice();
   }
 
   setDetailModel(detail: DetailModel) {

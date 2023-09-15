@@ -1,7 +1,11 @@
 <section class="row_evenly inherit border_start">
     <div class="col_start col_17 h_10 border_end">
-        <div class="bg_color_one row_center col_17 px_1">
-            <a (click)="modalEventOne()" class="input col_10 size_1 bg_color">Cliente</a>
+        <div *ngIf="!customer" class="bg_color_one row_center col_17 px_1">
+            <a type="submit" (click)="modalEventOne()" class="input col_10 size_1 bg_color">{{textCustomer}}</a>
+        </div>
+        <div *ngIf="customer" class="bg_color_one col_between item_center col_17 px_1">
+            <label class="input col_9 size_1 bg_color">{{customer.customerName}}</label>
+            <label class="input col_7 size_1 bg_color">{{customer.customerIdentification}}</label>
         </div>
     </div>
     <div class="col_17 h_60 border_end">

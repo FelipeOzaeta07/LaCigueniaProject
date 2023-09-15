@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, NAME_CUSTOMER, NUMBER_ID, NUMBER_PHONE, EMAIL, ADDRESS, DONE, FAIL } from '@module/invoicing/invoicing-page/component/modal-one/constans/modal-one';
-import { CustomerCreateUseCase } from '@repository/customer/case/CustomerCreateUseCase';
+import { CreateCustomerUseCase } from '@repository/customer/case/CreateCustomerUseCase';
 
 @Component({
   selector: 'app-modal-one',
@@ -28,7 +28,7 @@ export class ModalOneComponent {
   customerForm!: FormGroup;
   customer!: CustomerModel;
 
-  constructor(public formulary: FormBuilder, public router: Router, private customerCreateUseCase: CustomerCreateUseCase){
+  constructor(public formulary: FormBuilder, public router: Router, private createCustomerUseCase: CreateCustomerUseCase){
       this.customerForm = formulary.group({
         nameProduct: ['', [Validators.required]],
         numberId: ['', [Validators.required]],
@@ -53,13 +53,12 @@ export class ModalOneComponent {
       customerAddress: this.customerForm.controls['address'].value
     }
 
-    this.customerCreateUseCase.execute(this.customer).subscribe(
+    this.createCustomerUseCase.execute(this.customer).subscribe(
       (res: GenericResponse) => {
         this.customer.customerId = res.objectId;
         this.getCustomerId();
         this.modalEventOne();
-      },
-      (res: GenericResponse) => {}
+      }
     )
   }
 
@@ -68,7 +67,6 @@ export class ModalOneComponent {
   }
 
   modalEventOne() {
-    const datos = false;
-    this.modalActivateOne.emit(datos);
+    this.modalActivateOne.emit(false);
   }
 }

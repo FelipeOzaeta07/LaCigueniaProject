@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
-import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
+import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 
 @Component({
@@ -14,11 +14,14 @@ export class SectionThreeComponent{
 
   @Input() totalPriceProducts: number = 0;
   @Input() detailInvoice: DetailModel [] = [];
+  @Input() customer!: CustomerModel;
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() modalActivateTwo = new EventEmitter<boolean>();
 
   invoice!: InvoiceModel;
-  customer!: CustomerModel;
+
+
+
   textTotal = TOTAL;
   textSubTotal = SUBTOTAL;
   textIva = IVA;
@@ -29,18 +32,17 @@ export class SectionThreeComponent{
   textPay = PAY;
   textSymbol = SYMBOL;
   textCoinIva: number = 16;
+  textCustomer = CUSTOMER;
 
   updateCalculatedValue(detailItem: DetailModel): number{
     return detailItem.detailSubTotal * detailItem.detailAmount;
   }
 
   modalEventOne(){
-    const datos = true;
-    this.modalActivateOne.emit(datos);
+    this.modalActivateOne.emit(true);
   }
 
   modalEventTwo(){
-    const datos = true;
-    this.modalActivateTwo.emit(datos);
+    this.modalActivateTwo.emit(true);
   }
 }

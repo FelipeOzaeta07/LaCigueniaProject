@@ -7,3 +7,4 @@ export const TOTAL_TABLE = "Total";
 export const SUBTOTAL_TABLE = "Subtotal";
 export const PAY = "Pagar";
 export const SYMBOL = "$ ";
+export const CUSTOMER = "Cliente";

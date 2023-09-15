@@ -65,8 +65,7 @@ export class ModalTwoComponent {
   }
 
   modalEventTwo() {
-    const datos = false;
-    this.modalActivateTwo.emit(datos);
+    this.modalActivateTwo.emit(false);
   }
 
   modalEventThree() {
