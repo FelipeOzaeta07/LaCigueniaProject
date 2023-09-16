@@ -46,7 +46,13 @@ th{
 .svg_width{
     width: calc(1.5vh + 0.8vw);
 }
-.scroll{
-    overflow-x: hidden; 
+
+
+.scroll {
     overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
 }

@@ -55,7 +55,6 @@ export class ModalTwoComponent {
               if(res.statusCode == 200){
                 this.modalEventTwo();
                 this.modalEventThree();
-                window.location.reload();
               }
             }
           )

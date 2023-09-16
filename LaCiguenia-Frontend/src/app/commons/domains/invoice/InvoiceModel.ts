@@ -6,6 +6,7 @@ export interface InvoiceModel{
     invoiceDate: string;
     invoiceIva: number;
     invoiceTotal: number;
+    invoiceStatus: string;
     customerEntity: CustomerModel;
     openingEntity: OpeningModel;
 }

@@ -13,7 +13,9 @@ export class SectionTwoComponent implements OnInit{
   @Output() selectProducts = new EventEmitter<ProductModel>();
 
   product!: ProductModel [];
-  productMap: ProductModel [][] = [[], [], [], [], []];
+
+  productGroups: ProductModel[][] = [];
+
 
   constructor(private readProductsUseCase: ReadProductsUseCase){}
 
@@ -21,20 +23,24 @@ export class SectionTwoComponent implements OnInit{
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts() {
     this.readProductsUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.product = res.objectResponse;
-        for (let i = 0; i < this.product.length; i++) {
-          const residue = i % 4;
-          this.productMap[residue].push(this.product[i]);
+        const productsPerGroup = 5;
+        let currentIndex = 0;
+        
+        while (currentIndex < this.product.length) {
+          const productGroup = this.product.slice(currentIndex, currentIndex + productsPerGroup);
+          this.productGroups.push(productGroup);
+          currentIndex += productsPerGroup;
         }
       }
     )
   }
 
   selecProduct(n: number, i: number) {
-    this.selectProducts.emit(this.productMap[n][i]);
+    this.selectProducts.emit(this.productGroups[n][i]);
   }
 
 }

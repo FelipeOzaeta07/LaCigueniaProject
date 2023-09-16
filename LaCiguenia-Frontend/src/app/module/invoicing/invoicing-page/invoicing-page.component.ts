@@ -44,6 +44,9 @@ export class InvoicingPageComponent {
 
   modalActivateThree(datos: boolean) {
     this.modalThree = datos;
+    if(datos === false){
+      window.location.reload();
+    }
   }
 
   getCustomerId(lastCustomerId: CustomerModel){
@@ -91,9 +94,17 @@ export class InvoicingPageComponent {
       invoiceDate: this.currentDate,
       invoiceIva: (this.totalPriceProducts * 16) / 100,
       invoiceTotal: this.totalPriceProducts,
-      customerEntity: this.customer,
+      invoiceStatus: "Habilitado",
+      customerEntity: this.customer != null
+        ? this.customer
+        : { customerId: 1,
+            customerName: "Cliente General",
+            customerIdentification: "123456789",
+            customerPhoneNumber: "3001101010",
+            customerEmail: "general@example.com",
+            customerAddress: "Calle Principal 123",
+        },
       openingEntity: this.sendOpeningService.getOpeningModel()
     }
- 
   }
 }

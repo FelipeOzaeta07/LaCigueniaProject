@@ -32,6 +32,9 @@ public class InvoiceEntity {
     @Column(name = "invoice_total")
     private Integer invoiceTotal;
 
+    @Column(name = "invoice_status")
+    private String invoiceStatus;
+
     @OneToMany(mappedBy = "invoiceEntity")
     @JsonManagedReference
     @JsonIgnore

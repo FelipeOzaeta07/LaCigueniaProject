@@ -99,9 +99,11 @@ export class ModalOneComponent {
         if (res.statusCode == 200) {
           this.updateInventory(this.productModel);
           this.modalEvent();
-          this.productForm.reset();
+          if(res.statusCode == 200){
+            window.location.reload();
+          }
         } else {
-          alert("Producto Ya Existe");
+          alert("Producto NO Existe");
           this.productForm.reset();
         }
       },

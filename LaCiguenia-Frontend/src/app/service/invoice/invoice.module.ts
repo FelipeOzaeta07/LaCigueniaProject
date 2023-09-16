@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseCase';
 import { InvoiceRepository } from '@repository/invoice/InvoiceRepository';
 import { InvoiceReadUseCase } from '@repository/invoice/case/InvoiceReadUseCase';
-import { InvoicesReadUseCase } from '@repository/invoice/case/InvoicesReadUseCase';
+import { ReadInvoiciesUseCase } from '@repository/invoice/case/ReadInvoiciesUseCase';
 import { InvoiceUpdateUseCase } from '@repository/invoice/case/InvoiceUpdateUseCase';
 import { InvoiceDeleteUseCase } from '@repository/invoice/case/InvoiceDeleteUseCase';
 import { InvoiceService } from '@service/invoice/implement/InvoiceService';
@@ -21,10 +21,10 @@ export const invoiceReadUseCaseProvider = {
     useFactory: invoiceReadUseCaseFactory,
     deps: [InvoiceRepository],
 };
-const invoicesReadUseCaseFactory = (invoiceRepository: InvoiceRepository) => new InvoicesReadUseCase(invoiceRepository);
-export const invoicesReadUseCaseProvider = {
-    provide: InvoicesReadUseCase,
-    useFactory: invoicesReadUseCaseFactory,
+const readInvoiciesUseCaseFactory = (invoiceRepository: InvoiceRepository) => new ReadInvoiciesUseCase(invoiceRepository);
+export const readInvoiciesUseCaseProvider = {
+    provide: ReadInvoiciesUseCase,
+    useFactory: readInvoiciesUseCaseFactory,
     deps: [InvoiceRepository],
 };
 const invoiceUpdateUseCaseFactory = (invoiceRepository: InvoiceRepository) => new InvoiceUpdateUseCase(invoiceRepository);
@@ -43,7 +43,7 @@ export const invoiceDeleteUseCaseProvider = {
   providers: [
     invoiceCreateUseCaseProvider,
     invoiceReadUseCaseProvider,
-    invoicesReadUseCaseProvider,
+    readInvoiciesUseCaseProvider,
     invoiceUpdateUseCaseProvider,
     invoiceDeleteUseCaseProvider,
     {provide: InvoiceRepository, useClass: InvoiceService}

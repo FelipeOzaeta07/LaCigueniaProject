@@ -25,10 +25,9 @@ public class DetailEntity {
     @Column(name = "detail_subtotal")
     private Integer detailSubTotal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "product_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
-    @JsonIgnore
     private ProductEntity productEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)

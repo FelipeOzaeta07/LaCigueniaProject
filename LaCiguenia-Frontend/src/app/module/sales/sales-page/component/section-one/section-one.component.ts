@@ -3,7 +3,7 @@ import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, NUMBER_INVOICE, DATE, NAME_INVOICE, METHOD_PAY, TOTAL, OPTION } from "@module/sales/sales-page/component/section-one/constans/section-one"
-import { InvoicesReadUseCase } from '@repository/invoice/case/InvoicesReadUseCase';
+import { ReadInvoiciesUseCase } from '@repository/invoice/case/ReadInvoiciesUseCase';
 
 @Component({
   selector: 'app-section-one',
@@ -23,16 +23,17 @@ export class SectionOneComponent implements OnInit {
   invoice!: InvoiceModel;
   invoiceModel: InvoiceModel [] = [];
 
-  constructor(private invoicesReadUseCase: InvoicesReadUseCase){}
+  constructor(private readInvoiciesUseCase: ReadInvoiciesUseCase){}
 
   ngOnInit(): void {
     this.getInvoices();
   }
 
   getInvoices(){
-    this.invoicesReadUseCase.execute().subscribe(
+    this.readInvoiciesUseCase.execute().subscribe(
       (res: GenericResponse) => {
         for(let resItem of res.objectResponse){
+          console.log("Prueba del Cliente " + resItem.customerEntity.customerName)
           this.invoice = resItem;
           this.invoiceModel.push(this.invoice);
         }

@@ -4,7 +4,6 @@ import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.invoice.IInvoiceResponse;
 import LaCiguenia.commons.converter.invoice.InvoiceConverter;
 import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
-import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
@@ -14,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +33,6 @@ public class InvoiceService implements IInvoiceService {
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
-                if (invoiceEntity.getCustomerEntity() == null) {
-                    CustomerEntity customerEntity = new CustomerEntity();
-                    customerEntity.setCustomerId(1);
-                    invoiceEntity.setCustomerEntity(customerEntity);
-                }
                 this.iInvoiceRepository.save(invoiceEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -92,12 +88,15 @@ public class InvoiceService implements IInvoiceService {
 
     @Override
     public ResponseEntity<GenericResponseDTO> readInvoices() {
+        List<InvoiceDTO> invoiceDTOList = new ArrayList<>();
         try {
             List<InvoiceEntity> listInvoiceExist = this.iInvoiceRepository.findAll();
+            listInvoiceExist.forEach(invoiceEntity ->
+                   invoiceDTOList.add(invoiceConverter.convertInvoiceEntityToInvoiceDTO(invoiceEntity)));
             if (!listInvoiceExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listInvoiceExist)
+                        .objectResponse(invoiceDTOList)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {

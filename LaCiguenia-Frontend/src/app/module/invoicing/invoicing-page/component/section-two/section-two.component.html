@@ -1,5 +1,5 @@
-<section class="room row_evenly inherit">
-    <div class="col_start col_17" *ngFor="let productGroup of productMap; let n = index">
+<section class="room row_evenly inherit scroll">
+    <div class="col_start col_17" *ngFor="let productGroup of productGroups; let n = index">
         <div class="note text_center col_3" *ngFor="let productItem of productGroup; let i = index" (click)="selecProduct(n, i)">
             <div class="col_center">
                 <div class="border img_width">

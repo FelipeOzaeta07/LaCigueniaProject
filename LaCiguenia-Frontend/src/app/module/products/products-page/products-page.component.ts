@@ -29,9 +29,15 @@ export class ProductsPageComponent {
 
   modalActivateTwo(datos: boolean) {
     this.modalTwo = datos;
+    if(datos === false){
+      window.location.reload();
+    }
   }
 
   modalActivateThree(datos: boolean){
     this.modalThree = datos;
+    if(datos === false){
+      window.location.reload();
+    }
   }
 }
