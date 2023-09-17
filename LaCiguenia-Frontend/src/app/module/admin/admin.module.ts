@@ -9,6 +9,7 @@ import { SectionTwoComponent } from '@module/admin/admin-page/component/section-
 import { SectionThreeComponent } from '@module/admin/admin-page/component/section-three/section-three.component';
 import { SectionFourComponent } from '@module/admin/admin-page/component/section-four/section-four.component';
 import { ModalOneComponent } from '@module/admin/admin-page/component/modal-one/modal-one.component';
+import { InvoiceModule } from '@service/invoice/invoice.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ModalOneComponent } from '@module/admin/admin-page/component/modal-one/
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
-    ComponentModule
+    ComponentModule,
+    InvoiceModule
   ]
 })
 export class AdminModule { }

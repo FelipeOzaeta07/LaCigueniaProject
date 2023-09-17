@@ -1,10 +1,10 @@
 <section class="room row_around inherit">
     <div class="col_17 col_start">
         <div class="col_2 row_center">
-            <h3 class="size_2">{{store}}</h3>
+            <h3 class="size_2">{{textStore}}</h3>
         </div>
         <div class="col_17">
-            <input class="col_6 select size_2 text_color_two input_value" type="text" [value]="general">
+            <input class="col_6 select size_2 text_color_two input_value" type="text" [value]="textGeneral">
         </div>
     </div>
     <div class="col_17 col_between">
@@ -13,8 +13,8 @@
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
             <div class="col_17 text_center">
-                <h1 class="size_2 text_color_two">{{salesDay}}</h1>
-                <h3 class="size_2">$ 777.777</h3>
+                <h1 class="size_2 text_color_two">{{textSalesDay}}</h1>
+                <h3 class="size_2">{{textSymbol}} {{salesTotalDay | number}}</h3>
             </div>
         </div>
         <div class="note col_center col_4 p_1">
@@ -23,8 +23,8 @@
                 <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
             </svg>
             <div class="col_17 text_center">
-                <h1 class="size_2 text_color_two">{{numberInvoice}}</h1>
-                <h3 class="size_2"># 777</h3>
+                <h1 class="size_2 text_color_two">{{textNumberInvoice}}</h1>
+                <h3 class="size_2"># 0</h3>
             </div>
         </div>
         <div class="note col_center col_4 p_1">
@@ -34,8 +34,8 @@
                 <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
             </svg>
             <div class="col_17 text_center">
-                <h1 class="size_2 text_color_two">{{expensesDay}}</h1>
-                <h3 class="size_2">$ 500.000</h3>
+                <h1 class="size_2 text_color_two">{{textExpensesDay}}</h1>
+                <h3 class="size_2">{{textSymbol}} 0</h3>
             </div>
         </div>
         <div class="note col_center col_4 p_1">
@@ -43,8 +43,8 @@
                 <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
             </svg>
             <div class="col_17 text_center">
-                <h1 class="size_2 text_color_two">{{utilityDay}}</h1>
-                <h3 class="size_2">$ 277.777</h3>
+                <h1 class="size_2 text_color_two">{{textUtilityDay}}</h1>
+                <h3 class="size_2">{{textSymbol}} {{salesTotalDay | number}}</h3>
             </div>
         </div>
     </div>

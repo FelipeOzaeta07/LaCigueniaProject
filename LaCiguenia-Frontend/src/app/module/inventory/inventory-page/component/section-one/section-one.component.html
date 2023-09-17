@@ -23,7 +23,7 @@
                     <div class="size_1 text_center text_color_two col_6">{{inventoryItem.productEntity.productName}}</div>
                     <div class="size_1 text_center text_color_two col_3">{{inventoryItem.inventoryEntryDate}}</div>
                     <div class="size_1 text_center text_color_two col_2">{{inventoryItem.productEntity.productId}}</div>
-                    <div class="size_1 text_center text_color_two col_2">$ {{inventoryItem.productEntity.productPrice}}</div>
+                    <div class="size_1 text_center text_color_two col_2">$ {{inventoryItem.productEntity.productPrice | number}}</div>
                     <div class="size_1 text_center text_color_two col_2">{{inventoryItem.inventoryAmount}}</div>
                     <div class="text_center text_color_two col_evenly col_2 pt_1">
                         <button class="btn_one">

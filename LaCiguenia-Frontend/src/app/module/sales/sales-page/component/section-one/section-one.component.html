@@ -24,7 +24,7 @@
                     <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.invoiceDate}}</div>
                     <div class="col_5 size_1 text_center text_color_two">{{invoiceItem.customerEntity.customerName}}</div>
                     <div class="col_3 size_1 text_center text_color_two">Efectivo</div>
-                    <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.invoiceTotal}}</div>
+                    <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.invoiceTotal | number}}</div>
                     <div class="col_3 text_center text_color_two col_evenly pt_1">
                         <button class="btn_one">
                             <svg xmlns="http://www.w3.org/2000/svg" class="svg_width" fill="" viewBox="0 0 16 16">

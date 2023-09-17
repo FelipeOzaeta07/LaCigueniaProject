@@ -1,9 +1,9 @@
-package LaCiguenia.service.invoice.complement;
+package LaCiguenia.service.invoice.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.invoice.IInvoiceResponse;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
-import LaCiguenia.commons.domains.responseDTO.GenericResponse;
+import LaCiguenia.commons.domains.responseDTO.InformationGeneralInvoice;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.component.invoice.implement.InvoiceComponent;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
@@ -25,18 +25,18 @@ public class InvoiceComplementService implements IInvoiceComplementService {
     private InvoiceComponent invoiceComponent;
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readInvoices() {
+    public ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices() {
         try{
             List<InvoiceEntity> listInvoice = this.iInvoiceRepository.findAll();
             if (!listInvoice.isEmpty()){
-                Integer salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);
-                Integer salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
-                Object genericResponse = GenericResponse.builder()
-                        .objectResponseOne(salesTotalDay)
-                        .objectResponseTwo(salesTotalMonth);
+                Double salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);
+                Double salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
+                InformationGeneralInvoice informationGeneralInvoice = new InformationGeneralInvoice();
+                informationGeneralInvoice.salesTotalDay = salesTotalDay;
+                informationGeneralInvoice.salesTotalMonth = salesTotalMonth;
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(genericResponse)
+                        .objectResponse(informationGeneralInvoice)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else{

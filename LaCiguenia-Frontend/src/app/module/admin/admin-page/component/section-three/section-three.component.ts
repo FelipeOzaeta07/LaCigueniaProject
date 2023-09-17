@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE } from '@module/admin/admin-page/component/section-three/constans/section-three';
+import { Component, Input } from '@angular/core';
+import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE, SYMBOL } from '@module/admin/admin-page/component/section-three/constans/section-three';
 
 @Component({
   selector: 'app-section-three',
@@ -7,9 +7,13 @@ import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE } f
   styleUrls: ['./section-three.component.scss']
 })
 export class SectionThreeComponent {
-  salesMonth = SALES_MONTH;
-  numberInvoices = NU_INVOICE_MONTH;
-  expensesMonth = EXPENSES_MONTH;
-  utilityMonth = UTILITY_MONTH;
-  title = TITLE;
+
+  @Input() salesTotalMonth!:number;
+
+  textTitle = TITLE;
+  textSalesMonth = SALES_MONTH;
+  textNumberInvoices = NU_INVOICE_MONTH;
+  textExpensesMonth = EXPENSES_MONTH;
+  textProfitMonth = UTILITY_MONTH;
+  textSymbol = SYMBOL;
 }

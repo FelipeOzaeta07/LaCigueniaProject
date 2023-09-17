@@ -8,7 +8,7 @@ import { TITLE, UNIT } from '@module/admin/admin-page/component/section-two/cons
 })
 export class SectionTwoComponent {
 
-  @Output() modalActivate = new EventEmitter<boolean>();
+  @Output() modalActivateOne = new EventEmitter<boolean>();
 
 
   title = TITLE;
@@ -17,6 +17,6 @@ export class SectionTwoComponent {
 
   modalEvent(){
     const datos = true;
-    this.modalActivate.emit(datos);
+    this.modalActivateOne.emit(datos);
   }
 }

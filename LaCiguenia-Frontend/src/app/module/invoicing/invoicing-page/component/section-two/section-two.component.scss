@@ -15,7 +15,10 @@
 .note:hover .text_color_two{
     color: var(--color_one);
 }
-
+.space{
+    padding-top: calc(0.5vw);
+    padding-bottom: calc(0.5vw);
+}
 .scroll {
     overflow-y: scroll;
     scrollbar-width: none;

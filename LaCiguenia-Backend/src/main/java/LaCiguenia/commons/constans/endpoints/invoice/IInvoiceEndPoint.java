@@ -5,6 +5,7 @@ public interface IInvoiceEndPoint {
     String CREATE_INVOICE = "/crear-factura";
     String READ_INVOICE = "/leer-factura";
     String READ_INVOICES = "/leer-facturas";
+    String READ_INVOICES_MONTH_DAY = "/leer-facturas-mes-dia";
     String UPDATE_INVOICE = "/actualizar-factura";
     String DELETE_INVOICE = "/eliminar-factura";
 }

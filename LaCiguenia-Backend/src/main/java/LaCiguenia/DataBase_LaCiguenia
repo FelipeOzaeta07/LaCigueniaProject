@@ -124,9 +124,9 @@ VALUES ('Cliente General', '123456789', '3001101010', 'general@example.com', 'Ca
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------
 ---------------------------------------------------------------------------------------------------
-
+-------------------- Query Retornar el Id de la factura
+---------------------------------------------------------------------------------------------------
 SELECT MAX(invoice_id) AS end_id FROM invoice_ciguenia;
-
 
 -------------------- Query Cantidad Inventario por Producto
 ---------------------------------------------------------------------------------------------------
@@ -178,6 +178,28 @@ AS invoice_ciguenia;
 (Aplicar el mismo requisito que la anterior Query)
 
 -------------------- Query Producto Recientemente Registrados
+---------------------------------------------------------------------------------------------------
+SELECT *
+FROM product_ciguenia
+WHERE product_status = 'Habilitado'
+ORDER BY product_id DESC
+LIMIT 3;
+
+-------------------- Query Seleccionar Todas las Facturas y Clientes
+---------------------------------------------------------------------------------------------------
+SELECT c.*, i.*
+FROM customer_ciguenia c
+JOIN invoice_ciguenia i ON c.customer_id = i.customer_id
+ORDER BY c.customer_id, i.invoice_id;
+
+-------------------- Query Seleccionar Los Productos Habilitados de un Inventario
+---------------------------------------------------------------------------------------------------
+SELECT i.*
+FROM inventory_ciguenia i
+INNER JOIN product_ciguenia p ON i.product_id = p.product_id
+WHERE p.product_status = 'habilitado';
+
+-------------------- Query Seleccionar Maximo 3 Productos Habilitados
 ---------------------------------------------------------------------------------------------------
 SELECT *
 FROM product_ciguenia

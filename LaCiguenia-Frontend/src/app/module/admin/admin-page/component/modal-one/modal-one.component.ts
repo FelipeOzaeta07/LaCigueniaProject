@@ -23,11 +23,10 @@ export class ModalOneComponent {
   textEdit = EDIT;
   textFail = FAIL;
   
-  @Output() modalActivate = new EventEmitter<boolean>();
+  @Output() modalActivateOne = new EventEmitter<boolean>();
 
   modalEvent() {
-    const datos = false;
-    this.modalActivate.emit(datos);
+    this.modalActivateOne.emit(false);
   }
 
 }

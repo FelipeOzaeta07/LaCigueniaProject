@@ -1,7 +1,10 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { InformationGeneralInvoice } from "@commons/domains/invoice/InformationGeneralInvoice";
 import { InvoiceModel } from "@commons/domains/invoice/InvoiceModel";
-import { BASE_URL_INVOICE, CREATE_INVOICE, DELETE_INVOICE, READ_INVOICE, READ_INVOICIES, UPDATE_INVOICE } from "@commons/endpoint/invoice/InvoiceEndPoint";
+import {    BASE_URL_INVOICE, CREATE_INVOICE, DELETE_INVOICE, READ_INVOICE, 
+            READ_INVOICIES, UPDATE_INVOICE, READ_INVOICES_MONTH_DAY } 
+        from "@commons/endpoint/invoice/InvoiceEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { InvoiceRepository } from "@repository/invoice/InvoiceRepository";
 import { Observable, catchError, throwError } from "rxjs";
@@ -47,11 +50,20 @@ export class InvoiceService extends InvoiceRepository {
                 return throwError(error);
             }));
     }
+
     override deleteInvoice(params: { invoiceTotal: number; }): Observable<GenericResponse> {
         return this.http
             .post<GenericResponse>(BASE_URL_INVOICE + DELETE_INVOICE, params)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
+    }
+
+    override readInformationGeneralInvoices(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICES_MONTH_DAY)
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
     }
 }

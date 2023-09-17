@@ -25,3 +25,15 @@ th{
     padding-top: calc(0.6vh);
     padding-bottom: calc(0.6vh);
 }
+.py_1{
+    padding-bottom: calc(0.6vh);
+    padding-top: calc(0.6vh);
+}
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
+}

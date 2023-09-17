@@ -19,15 +19,15 @@
                         <th class="col_3">{{textSubTotalTable}}</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let detailItem of detailInvoice; let i = index">
-                        <td class="text_color_two">{{detailItem.productEntity.productName}}</td>
-                        <td class="text_center text_color_two">{{detailItem.detailAmount}}</td>
-                        <td class="text_center text_color_two">{{updateCalculatedValue(detailItem)}}</td>
-                        <td class="text_center text_color_two">{{detailItem.detailSubTotal}}</td>
-                    </tr>
-                </tbody>
             </table>
+            <div class="col_17 h_51 scroll">
+                <div class="col_center py_1" *ngFor="let detailItem of detailInvoice; let i = index">
+                    <div class="col_8 text_color_two">{{detailItem.productEntity.productName}}</div>
+                    <div class="col_3 text_center text_color_two">{{detailItem.detailAmount}}</div>
+                    <div class="col_3 text_center text_color_two">{{updateCalculatedValue(detailItem)}}</div>
+                    <div class="col_3 text_end text_color_two">{{detailItem.detailSubTotal}}</div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row_center col_17 h_30">

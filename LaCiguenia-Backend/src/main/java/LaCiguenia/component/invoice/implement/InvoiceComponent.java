@@ -15,8 +15,8 @@ import java.util.List;
 public class InvoiceComponent implements IInvoiceComponent {
 
     @Override
-    public Integer invoiceSalesTotalDay(List<InvoiceEntity> listInvoice) {
-        Integer invoicesDaily = 0;
+    public Double invoiceSalesTotalDay(List<InvoiceEntity> listInvoice) {
+        Double invoicesDaily = 0.0;
         try {
             LocalDate today = LocalDate.now();
             for (InvoiceEntity invoiceEntity : listInvoice) {
@@ -33,8 +33,8 @@ public class InvoiceComponent implements IInvoiceComponent {
     }
 
     @Override
-    public Integer invoiceSalesTotalMonth(List<InvoiceEntity> listInvoice) {
-        Integer invoicesTotal = 0;
+    public Double invoiceSalesTotalMonth(List<InvoiceEntity> listInvoice) {
+        Double invoicesTotal = 0.0;
         try {
             LocalDate now = LocalDate.now();
             Month currentMonth = now.getMonth();
