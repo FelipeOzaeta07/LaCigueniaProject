@@ -9,3 +9,4 @@ export const DATE = "Fecha";
 export const EXIST = "Existencias";
 export const EDIT = "EDITAR";
 export const FAIL = "CANCELAR";
+export const INFORMATION = "Informacion General Inventario";

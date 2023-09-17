@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE, SYMBOL } from '@module/admin/admin-page/component/section-three/constans/section-three';
+import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE, SYMBOL, SYMBOL_NUMBER } from '@module/admin/admin-page/component/section-three/constans/section-three';
 
 @Component({
   selector: 'app-section-three',
@@ -8,7 +8,8 @@ import { EXPENSES_MONTH, NU_INVOICE_MONTH, SALES_MONTH, UTILITY_MONTH, TITLE, SY
 })
 export class SectionThreeComponent {
 
-  @Input() salesTotalMonth!:number;
+  @Input() salesTotalMonth!: number;
+  @Input() countInvoiceMonth!: number;
 
   textTitle = TITLE;
   textSalesMonth = SALES_MONTH;
@@ -16,4 +17,5 @@ export class SectionThreeComponent {
   textExpensesMonth = EXPENSES_MONTH;
   textProfitMonth = UTILITY_MONTH;
   textSymbol = SYMBOL;
+  textSymbolNumber = SYMBOL_NUMBER;
 }

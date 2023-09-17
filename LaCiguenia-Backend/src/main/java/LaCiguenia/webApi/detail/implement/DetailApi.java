@@ -5,6 +5,7 @@ import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.domains.dto.detail.DetailDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.service.detail.IDetailService;
+import LaCiguenia.service.detail.implement.DetailService;
 import LaCiguenia.webApi.detail.IDetailApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,10 +23,10 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 public class DetailApi implements IDetailApi {
 
-    private final IDetailService iDetailService;
+    private final DetailService detailService;
 
-    public DetailApi(IDetailService iDetailService) {
-        this.iDetailService = iDetailService;
+    public DetailApi(DetailService detailService) {
+        this.detailService = detailService;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.CREATE_DETAIL)
     public ResponseEntity<GenericResponseDTO> createDetail(@RequestBody DetailDTO detailDTO) {
-        return this.iDetailService.createDetail(detailDTO);
+        return this.detailService.createDetail(detailDTO);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.READ_DETAIL)
     public ResponseEntity<GenericResponseDTO> readDetail(DetailDTO detailDTO) {
-        return this.iDetailService.readDetail(detailDTO);
+        return this.detailService.readDetail(detailDTO);
     }
 
     @Override
@@ -77,9 +78,27 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @PostMapping(IDetailEndPoint.READ_DETAILS)
+    @GetMapping(IDetailEndPoint.READ_DETAILS)
     public ResponseEntity<GenericResponseDTO> readDetails() {
-        return this.iDetailService.readDetails();
+        return this.detailService.readDetails();
+    }
+
+    @Override
+    @Operation(summary = "Leer los Detalles de Productos Mas Facturados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IDetailEndPoint.READ_DETAILS_MORE_SOLD)
+    public ResponseEntity<GenericResponseDTO> detailProductoMoreSold() {
+        return this.detailService.detailProductoMoreSold();
     }
 
     @Override
@@ -97,7 +116,7 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.UPDATE_DETAIL)
     public ResponseEntity<GenericResponseDTO> updateDetail(DetailDTO detailDTO) {
-        return this.iDetailService.updateDetail(detailDTO);
+        return this.detailService.updateDetail(detailDTO);
     }
 
     @Override
@@ -115,6 +134,6 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IDetailEndPoint.DELETE_DETAIL)
     public ResponseEntity<GenericResponseDTO> deleteDetail(@PathVariable Integer detailId) {
-        return this.iDetailService.deleteDetail(detailId);
+        return this.detailService.deleteDetail(detailId);
     }
 }

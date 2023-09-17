@@ -12,6 +12,8 @@ public interface IDetailApi {
     ResponseEntity<GenericResponseDTO> readDetail(@RequestBody DetailDTO detailDTO);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readDetails();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> detailProductoMoreSold();
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateDetail(@RequestBody DetailDTO detailDTO);
     @DeleteMapping()

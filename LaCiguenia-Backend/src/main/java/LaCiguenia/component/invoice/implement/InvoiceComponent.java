@@ -6,8 +6,13 @@ import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.component.invoice.IInvoiceComponent;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -48,6 +53,46 @@ public class InvoiceComponent implements IInvoiceComponent {
         } catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return invoicesTotal;
+        }
+    }
+
+    @Override
+    public Integer invoiceCountTotalMonth(List<InvoiceEntity> listInvoice) {
+        Integer invoiceCount = 0;
+        try {
+            Integer monthCurrent = Calendar.getInstance().get(Calendar.MONTH);
+
+            Long invoicesTotal = listInvoice.stream()
+                    .map(InvoiceEntity::getInvoiceDate)
+                    .filter(invoiceDate -> {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(Date.from(invoiceDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                        return calendar.get(Calendar.MONTH) == monthCurrent;
+                    })
+                    .count();
+
+            return Math.toIntExact(invoicesTotal);
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return invoiceCount;
+        }
+    }
+
+    @Override
+    public Integer invoiceCountTotalToday(List<InvoiceEntity> listInvoice) {
+        Integer invoiceCount = 0;
+        try {
+            LocalDate currentDate = LocalDate.now();
+            for (InvoiceEntity invoiceEntity : listInvoice) {
+                LocalDate invoiceLocalDate = invoiceEntity.getInvoiceDate();
+                if (invoiceLocalDate.isEqual(currentDate)) {
+                    invoiceCount++;
+                }
+            }
+            return invoiceCount;
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return invoiceCount;
         }
     }
 }

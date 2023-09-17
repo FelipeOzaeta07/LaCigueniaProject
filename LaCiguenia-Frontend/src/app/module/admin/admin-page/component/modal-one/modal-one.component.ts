@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { NAME_PRODUCT, TITLE, AMOUNT, CATEGORY, DESCRIPTION, EDIT, FAIL, DATE, EXIST, NUMBER } from '@module/admin/admin-page/component/modal-one/constans/modal-one'
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DetailProductMoreSold } from '@commons/domains/detail/DetailProductMoreSold';
+import { NAME_PRODUCT, TITLE, AMOUNT, CATEGORY, DESCRIPTION, EDIT, FAIL, DATE, EXIST, NUMBER, INFORMATION } from '@module/admin/admin-page/component/modal-one/constans/modal-one'
 import { CODE, PRICE_SALE } from '@module/products/products-page/component/section-one/constans/section-one';
 
 @Component({
@@ -9,12 +10,14 @@ import { CODE, PRICE_SALE } from '@module/products/products-page/component/secti
 })
 export class ModalOneComponent {
 
-  imageUrl: string = 'LaCiguenia-Front-end/src/assets/Rectangle28.png';
+  @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Input() product!: DetailProductMoreSold;
 
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
   textPriceSale = PRICE_SALE;
   textAmount = AMOUNT;
+  textInformation = INFORMATION;
   textDescription = DESCRIPTION;
   textCategory = CATEGORY;
   textNumber = NUMBER;
@@ -22,8 +25,7 @@ export class ModalOneComponent {
   textExist = EXIST;
   textEdit = EDIT;
   textFail = FAIL;
-  
-  @Output() modalActivateOne = new EventEmitter<boolean>();
+  date: string = new Date().toISOString().slice(0, 10);
 
   modalEvent() {
     this.modalActivateOne.emit(false);

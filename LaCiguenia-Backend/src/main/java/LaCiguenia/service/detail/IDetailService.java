@@ -8,6 +8,7 @@ public interface IDetailService {
     ResponseEntity<GenericResponseDTO> createDetail(DetailDTO detailDTO);
     ResponseEntity<GenericResponseDTO> readDetail(DetailDTO detailDTO);
     ResponseEntity<GenericResponseDTO> readDetails();
+    ResponseEntity<GenericResponseDTO> detailProductoMoreSold();
     ResponseEntity<GenericResponseDTO> updateDetail(DetailDTO detailDTO);
     ResponseEntity<GenericResponseDTO> deleteDetail(Integer detailId);
 }

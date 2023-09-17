@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DetailProductMoreSold } from '@commons/domains/detail/DetailProductMoreSold';
 import { TITLE, UNIT } from '@module/admin/admin-page/component/section-two/constans/section-two';
 
 @Component({
@@ -9,14 +10,15 @@ import { TITLE, UNIT } from '@module/admin/admin-page/component/section-two/cons
 export class SectionTwoComponent {
 
   @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() sendDetailProductMoreSold = new EventEmitter<DetailProductMoreSold>();
+  @Input() productMoreSold!: DetailProductMoreSold [][];
 
 
-  title = TITLE;
-  unit = UNIT;
-  product = "Nombre del producto";
+  textTitle = TITLE;
+  textUnit = UNIT;
 
-  modalEvent(){
-    const datos = true;
-    this.modalActivateOne.emit(datos);
+  modalEvent(n: number, i: number){
+    this.sendDetailProductMoreSold.emit(this.productMoreSold[n][i])
+    this.modalActivateOne.emit(true);
   }
 }

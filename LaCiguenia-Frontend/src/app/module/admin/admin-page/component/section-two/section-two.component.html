@@ -1,40 +1,14 @@
-<section  class="pe_1 row_center inherit">
+<section  class="pe_1 row_evenly inherit">
     <div class="col_17 bg_color_one title">
-        <h1 class="size_3 text_center">{{title}}</h1>
+        <h1 class="size_3 text_center">{{textTitle}}</h1>
     </div>
     <div class="col_between">
-        <div class="col_8">
-            <div class="py_1">
-                <a (click)="modalEvent()" class="col_17 col_center item_center p_1 note">
+        <div class="col_8 py_1" *ngFor="let productGroup of productMoreSold; let n = index">
+            <div class="space" *ngFor="let productItem of productGroup; let i = index">
+                <a (click)="modalEvent(n, i)" class="col_17 col_center item_center p_1 note">
                     <div class="col_center item_center">
-                        <h3 class="px_2 size_1">{{product}}</h3>
-                        <p class="size_1">18<span class="px_1 size_1">{{unit}}</span></p>
-                    </div>
-                </a>
-            </div>
-            <div>
-                <a (click)="modalEvent()" class="col_17 col_center item_center p_1 note">
-                    <div class="col_center item_center">
-                        <h3 class="px_2 size_1">{{product}}</h3>
-                        <p class="size_1">18<span class="px_1 size_1">{{unit}}</span></p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col_8">
-            <div class="py_1">
-                <a (click)="modalEvent()" class="col_17 col_center item_center p_1 note">
-                    <div class="col_center item_center">
-                        <h3 class="px_2 size_1">{{product}}</h3>
-                        <p class="size_1">18<span class="px_1 size_1">{{unit}}</span></p>
-                    </div>
-                </a>
-            </div>
-            <div>
-                <a (click)="modalEvent()" class="col_17 col_center item_center p_1 note">
-                    <div class="col_center item_center">
-                        <h3 class="px_2 size_1">{{product}}</h3>
-                        <p class="size_1">18<span class="px_1 size_1">{{unit}}</span></p>
+                        <h3 class="px_2 size_1">{{productItem.productName}}</h3>
+                        <p class="size_1">{{productItem.totalDetailAmount}}<span class="px_1 size_1">{{textUnit}}</span></p>
                     </div>
                 </a>
             </div>

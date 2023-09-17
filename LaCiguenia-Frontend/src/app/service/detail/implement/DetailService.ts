@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { DetailModel } from "@commons/domains/detail/DetailModel";
-import { BASE_URL_DETAIL, CREATE_DETAIL, DELETE_DETAIL, READ_DETAIL, READ_DETAILS, UPDATE_DETAIL } from "@commons/endpoint/detail/DetailEndPoint";
+import { BASE_URL_DETAIL, CREATE_DETAIL, DELETE_DETAIL, 
+    READ_DETAIL, READ_DETAILS, UPDATE_DETAIL, READ_DETAILS_MORE_SOLD } 
+    from "@commons/endpoint/detail/DetailEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { DetailRepository } from "@repository/detail/DetailRepository";
 import { Observable, catchError, throwError } from "rxjs";
@@ -52,6 +54,14 @@ export class DetailService extends DetailRepository {
     override deleteDetail(params: { detailId: number; }): Observable<GenericResponse> {
         return this.http
         .delete<GenericResponse>(BASE_URL_DETAIL + DELETE_DETAIL, {params})
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
+    }
+
+    override detailProductoMoreSold(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_DETAIL + READ_DETAILS_MORE_SOLD)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));

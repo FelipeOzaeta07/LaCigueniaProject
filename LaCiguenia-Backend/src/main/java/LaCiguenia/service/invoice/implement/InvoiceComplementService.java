@@ -29,11 +29,11 @@ public class InvoiceComplementService implements IInvoiceComplementService {
         try{
             List<InvoiceEntity> listInvoice = this.iInvoiceRepository.findAll();
             if (!listInvoice.isEmpty()){
-                Double salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);
-                Double salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
                 InformationGeneralInvoice informationGeneralInvoice = new InformationGeneralInvoice();
-                informationGeneralInvoice.salesTotalDay = salesTotalDay;
-                informationGeneralInvoice.salesTotalMonth = salesTotalMonth;
+                informationGeneralInvoice.salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);
+                informationGeneralInvoice.salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
+                informationGeneralInvoice.countInvoiceMonth = this.invoiceComponent.invoiceCountTotalMonth(listInvoice);
+                informationGeneralInvoice.countInvoiceDay = this.invoiceComponent.invoiceCountTotalToday(listInvoice);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(informationGeneralInvoice)
