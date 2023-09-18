@@ -90,7 +90,7 @@ public class InvoiceService implements IInvoiceService {
     public ResponseEntity<GenericResponseDTO> readInvoices() {
         List<InvoiceDTO> invoiceDTOList = new ArrayList<>();
         try {
-            List<InvoiceEntity> listInvoiceExist = this.iInvoiceRepository.findAll();
+            List<InvoiceEntity> listInvoiceExist = this.iInvoiceRepository.findInvoiceEnabled();
             listInvoiceExist.forEach(invoiceEntity ->
                    invoiceDTOList.add(invoiceConverter.convertInvoiceEntityToInvoiceDTO(invoiceEntity)));
             if (!listInvoiceExist.isEmpty()){
@@ -152,7 +152,8 @@ public class InvoiceService implements IInvoiceService {
         try {
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceId);
             if (invoiceExist.isPresent()){
-                this.iInvoiceRepository.deleteById(invoiceId);
+                    invoiceExist.get().setInvoiceStatus("Borrado");
+                    this.iInvoiceRepository.save(invoiceExist.get());
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)

@@ -50,4 +50,8 @@ public class InvoiceEntity {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
     @JsonIgnore
     private OpeningEntity openingEntity;
+
+    public void setInvoiceStatus(String invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
+    }
 }
