@@ -30,4 +30,16 @@ public class InventoryEntity {
     @JoinColumn(name = "product_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
     private ProductEntity productEntity;
+
+    public Integer getInventoryAmount() {
+        return inventoryAmount;
+    }
+
+    public void setInventoryAmount(Integer inventoryAmount) {
+        this.inventoryAmount = inventoryAmount;
+    }
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
 }

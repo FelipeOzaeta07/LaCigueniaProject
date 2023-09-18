@@ -21,4 +21,12 @@ public class DetailDTO implements Serializable {
     private ProductEntity productEntity;
     @JsonIdentityReference(alwaysAsId = true)
     private InvoiceEntity invoiceEntity;
+
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
+    }
 }

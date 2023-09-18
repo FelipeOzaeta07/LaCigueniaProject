@@ -59,4 +59,13 @@ public class ProductEntity {
     @OneToOne(mappedBy = "productEntity", fetch = FetchType.LAZY)
     @JsonIgnore
     private InventoryEntity inventoryEntity;
+
+    public Integer getProductId()
+    {
+        return productId;
+    }
+
+    public InventoryEntity getInventoryEntity() {
+        return inventoryEntity;
+    }
 }

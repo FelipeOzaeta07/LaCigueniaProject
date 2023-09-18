@@ -3,8 +3,13 @@ package LaCiguenia.repository.inventory;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface IInventoryRepository extends JpaRepository<InventoryEntity, Integer> {
     @Query(value =  "SELECT p.product_name,i.inventory_id, i.inventory_amount, p.product_price, p.product_code\n" +
@@ -23,4 +28,4 @@ public interface IInventoryRepository extends JpaRepository<InventoryEntity, Int
                     "INNER JOIN product_ciguenia p ON i.product_id = p.product_id\n" +
                     "WHERE p.product_status = 'habilitado';", nativeQuery = true)
     List<InventoryEntity> findInventories();
-}
+   }

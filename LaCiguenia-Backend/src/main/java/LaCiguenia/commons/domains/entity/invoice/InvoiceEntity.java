@@ -50,4 +50,7 @@ public class InvoiceEntity {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
     @JsonIgnore
     private OpeningEntity openingEntity;
+    public List<DetailEntity> getListDetail() {
+        return listDetail;
+    }
 }

@@ -35,4 +35,13 @@ public class DetailEntity {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "invoiceId")
     @JsonIgnore
     private InvoiceEntity invoiceEntity;
+
+    public Integer getDetailAmount()
+    {
+        return detailAmount;
+    }
+    public ProductEntity getProductEntity() {
+        return productEntity;
+    }
+
 }
