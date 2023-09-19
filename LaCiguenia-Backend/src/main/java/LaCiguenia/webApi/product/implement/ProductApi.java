@@ -153,4 +153,22 @@ public class ProductApi implements IProductApi {
     public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId) {
         return this.productService.deleteProducts(productId);
     }
+
+    @Override
+    @Operation(summary = "Leer los Productos por nombre")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IProductEndPoint.READ_PRODUCT_NAME)
+    public ResponseEntity<GenericResponseDTO> readProductForName(String productName) {
+        return this.productService.readProductForName(productName);
+    }
 }

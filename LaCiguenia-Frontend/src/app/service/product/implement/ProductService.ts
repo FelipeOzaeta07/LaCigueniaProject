@@ -4,7 +4,7 @@ import { ProductModel } from "@commons/domains/product/ProductModel";
 import { ProductRepository } from "@repository/product/ProductRepository";
 import { Observable, catchError, throwError } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
-import { BASE_URL_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, READ_PRODUCT, READ_PRODUCTS, UPDATE_PRODUCT, READ_PRODUCT_ID,  READ_PRODUCTS_RECENTLY_CREATE  } from "@commons/endpoint/product/ProductEndPoint";
+import { BASE_URL_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, READ_PRODUCT, READ_PRODUCTS, UPDATE_PRODUCT, READ_PRODUCT_ID,  READ_PRODUCTS_RECENTLY_CREATE, READ_PRODUCT_NAME  } from "@commons/endpoint/product/ProductEndPoint";
 
 @Injectable({
     providedIn: 'root'
@@ -70,5 +70,13 @@ export class ProductService extends ProductRepository{
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
+    }
+
+    override readProductForName(productName: string): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_PRODUCT + READ_PRODUCT_NAME + productName)
+        .pipe(catchError((error: HttpErrorResponse) => {
+             return throwError(error);
+         }));
     }
 }

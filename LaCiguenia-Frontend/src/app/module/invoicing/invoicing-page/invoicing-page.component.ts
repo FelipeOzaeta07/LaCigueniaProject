@@ -25,6 +25,7 @@ export class InvoicingPageComponent {
 
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
+  productGroupsSelector!: ProductModel [][];
   hashMap: { [productItem: string]: number } = {};
 
 
@@ -106,5 +107,9 @@ export class InvoicingPageComponent {
         },
       openingEntity: this.sendOpeningService.getOpeningModel()
     }
+  }
+
+  sendProductSelector(productSelector: ProductModel [][]){
+    this.productGroupsSelector = productSelector;
   }
 }

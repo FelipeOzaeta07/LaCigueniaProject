@@ -1,14 +1,29 @@
 <section class="room row_evenly inherit">
     <div class="col_17 h_70 scroll py_1">
-        <div class="col_evenly col_17 space" *ngFor="let productGroup of productGroups; let n = index">
-            <div class="note text_center col_3" *ngFor="let productItem of productGroup; let i = index" (click)="selecProduct(n, i)">
-                <div class="col_center">
-                    <div class="border img_width">
-                        <img src="" alt="">
+        <div *ngIf="productGroupsSelector">
+            <div class="col_evenly col_17 space" *ngFor="let productGroup of productGroupsSelector; let n = index">
+                <div class="note text_center col_3" *ngFor="let productItem of productGroup; let i = index" (click)="selecProductSearch(n, i)">
+                    <div class="col_center">
+                        <div class="border img_width">
+                            <img src="" alt="">
+                        </div>
                     </div>
+                    <h5 class="size py_1 text_color_two">{{productItem.productName}}</h5>
+                    <h5 class="size_1 text_color_one">$ {{productItem.productPrice}}</h5>
                 </div>
-                <h5 class="size py_1 text_color_two">{{productItem.productName}}</h5>
-                <h5 class="size_1 text_color_one">$ {{productItem.productPrice}}</h5>
+            </div>
+        </div>
+        <div *ngIf="!productGroupsSelector">
+            <div class="col_evenly col_17 space" *ngFor="let productGroup of productGroups; let n = index">
+                <div class="note text_center col_3" *ngFor="let productItem of productGroup; let i = index" (click)="selecProduct(n, i)">
+                    <div class="col_center">
+                        <div class="border img_width">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <h5 class="size py_1 text_color_two">{{productItem.productName}}</h5>
+                    <h5 class="size_1 text_color_one">$ {{productItem.productPrice}}</h5>
+                </div>
             </div>
         </div>
     </div>

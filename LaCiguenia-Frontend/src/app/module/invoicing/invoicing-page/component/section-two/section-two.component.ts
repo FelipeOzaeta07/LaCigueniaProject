@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
@@ -8,22 +8,27 @@ import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCas
   templateUrl: './section-two.component.html',
   styleUrls: ['./section-two.component.scss']
 })
-export class SectionTwoComponent implements OnInit{
+export class SectionTwoComponent implements OnInit, OnChanges{
   
   @Output() selectProducts = new EventEmitter<ProductModel>();
+  @Input() productGroupsSelector!: ProductModel [][];
 
   product!: ProductModel [];
-
   productGroups: ProductModel[][] = [];
-
 
   constructor(private readProductsUseCase: ReadProductsUseCase){}
 
-  ngOnInit(): void {
-    this.getProducts();
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['productSelector']){
+      console.log("Entro el Valor y es el Siguiente: " + this.productGroupsSelector[0][0].productName)
+    }
   }
 
-  getProducts() {
+  ngOnInit(): void {
+    this.readProducts();
+  }
+
+  readProducts() {
     this.readProductsUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.product = res.objectResponse;
@@ -41,6 +46,10 @@ export class SectionTwoComponent implements OnInit{
 
   selecProduct(n: number, i: number) {
     this.selectProducts.emit(this.productGroups[n][i]);
+  }
+
+  selecProductSearch(n: number, i: number){
+    this.selectProducts.emit(this.productGroupsSelector[n][i]);
   }
 
 }

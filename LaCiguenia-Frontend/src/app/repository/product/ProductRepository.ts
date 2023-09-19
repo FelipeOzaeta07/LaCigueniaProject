@@ -10,4 +10,5 @@ export abstract class ProductRepository {
     abstract readProductsRecentlyCreate(): Observable<GenericResponse>;
     abstract updateProduct (productModel : ProductModel): Observable<GenericResponse>;
     abstract deleteProduct (productId: number): Observable<GenericResponse>;
+    abstract readProductForName (productName: string): Observable<GenericResponse>;
 }

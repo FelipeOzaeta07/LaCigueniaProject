@@ -8,6 +8,8 @@ public class LaCigueniaApplication {
 
 	/**                    UNSC
 	        United National the Security Code
+	Intructor:
+	 		Andres Mauricio Arciniegas - ADSO
 	Integrantes:
 	        Diego Esteban Vera Enciso     Leader Project
 	        Laura Valentina Trujillo      UX Designer

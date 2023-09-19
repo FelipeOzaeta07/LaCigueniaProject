@@ -10,6 +10,7 @@ import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCas
 import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/ReadProductsRecentlyCreateUseCase';
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 import { DeleteProductUseCase } from '@repository/product/case/DeleteProductUseCase';
+import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductForNameUseCase';
 
 const createProductsUseCaseFactory = (productRepository: ProductRepository) => new CreateProductsUseCase(productRepository);
 export const createProductsUseCaseProvider = {
@@ -60,6 +61,12 @@ export const deleteProductUseCaseProvider = {
     deps: [ProductRepository],
 };
 
+const readProductForNameUseCaseFactory = (productRepository: ProductRepository) => new ReadProductForNameUseCase(productRepository);
+export const readProductForNameUseCaseProvider = {
+    provide: ReadProductForNameUseCase,
+    useFactory: readProductForNameUseCaseFactory,
+    deps: [ProductRepository]
+};
 @NgModule({
     providers: [
         createProductsUseCaseProvider,
@@ -69,6 +76,7 @@ export const deleteProductUseCaseProvider = {
         readProductsRecentlyCreateUseCaseProvider,
         updateProductUseCaseProvider,
         deleteProductUseCaseProvider,
+        readProductForNameUseCaseProvider,
         {provide: ProductRepository, useClass: ProductService}
     ],
     imports: [

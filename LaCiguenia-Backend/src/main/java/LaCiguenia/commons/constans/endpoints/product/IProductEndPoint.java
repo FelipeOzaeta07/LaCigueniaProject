@@ -9,4 +9,5 @@ public interface IProductEndPoint {
     String READ_PRODUCTS_RECENTLY_CREATE = "/leer-productos-creados";
     String UPDATE_PRODUCT = "/actualizar-producto";
     String DELETE_PRODUCT = "/eliminar-producto/{productId}";
+    String READ_PRODUCT_NAME = "/leer-producto-por-nombre/{productName}";
 }
