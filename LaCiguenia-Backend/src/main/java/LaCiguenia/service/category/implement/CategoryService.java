@@ -60,8 +60,7 @@ public class CategoryService implements ICategoryService {
     public ResponseEntity<GenericResponseDTO> readProductsForCategory(Integer categoryId) {
         try {
             Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryId);
-            System.out.println(categoryExist.get());
-            if (!categoryExist.isEmpty()){
+            if (categoryExist.isPresent()){
                 return new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(categoryExist)

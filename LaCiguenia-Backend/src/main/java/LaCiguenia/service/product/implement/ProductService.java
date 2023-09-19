@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,12 +93,17 @@ public class ProductService implements IProductService {
     @Override
     public ResponseEntity<GenericResponseDTO> readProduct(String productName) {
         try {
-            Optional<ProductEntity> productoExist = this.iProductRepository
-                    .findByProductName(productName);
-            if (productoExist.isPresent()){
+            // Felipe Ozaeta Historia de usuario Sena - 099 19/09/2023
+            ArrayList<String> listProductExistName = new ArrayList<>();
+            List<ProductEntity> productExist = this.iProductRepository
+                    .findByProductNameStartingWith(productName);
+            for (ProductEntity productEntity : productExist) {
+                listProductExistName.add(productEntity.getProductName());
+            }
+            if (!listProductExistName.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(this.iProductRepository.findByProductName(productName))
+                        .objectResponse(listProductExistName)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
