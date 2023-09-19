@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DetailProductMoreSold } from '@commons/domains/detail/DetailProductMoreSold';
-import { TITLE, UNIT } from '@module/admin/admin-page/component/section-two/constans/section-two';
+import { TITLE, UNIT, NO_INVOICE } from '@module/admin/admin-page/component/section-two/constans/section-two';
 
 @Component({
   selector: 'app-section-two',
@@ -16,6 +16,7 @@ export class SectionTwoComponent {
 
   textTitle = TITLE;
   textUnit = UNIT;
+  textNoInvoice = NO_INVOICE;
 
   modalEvent(n: number, i: number){
     this.sendDetailProductMoreSold.emit(this.productMoreSold[n][i])

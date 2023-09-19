@@ -5,11 +5,11 @@ import { UseCase } from "@commons/helpers/UserCase";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
 
-export class DetailDeleteUseCase implements UseCase<DetailModel, GenericResponse>{
+export class DetailDeleteUseCase implements UseCase<number, GenericResponse>{
 
     constructor(private detailRepository: DetailRepository){}
 
-    execute(params: {detailId: number}) : Observable<GenericResponse>{
-        return this.detailRepository.deleteDetail(params);
+    execute(detailId: number) : Observable<GenericResponse>{
+        return this.detailRepository.deleteDetail(detailId);
     }
 }

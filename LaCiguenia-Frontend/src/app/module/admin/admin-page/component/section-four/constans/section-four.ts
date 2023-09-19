@@ -1,1 +1,1 @@
-export const SUPLIER = "Proveedores";
+export const SUPPLIER = "Proveedores";

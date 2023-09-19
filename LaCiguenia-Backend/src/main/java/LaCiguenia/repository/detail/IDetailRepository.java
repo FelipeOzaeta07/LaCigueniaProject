@@ -1,9 +1,12 @@
 package LaCiguenia.repository.detail;
 
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
+import LaCiguenia.commons.domains.wrapper.DetailProductForInvoice;
 import LaCiguenia.commons.domains.wrapper.DetailProductSoldDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface IDetailRepository  extends JpaRepository<DetailEntity, Integer> {
@@ -16,10 +19,23 @@ public interface IDetailRepository  extends JpaRepository<DetailEntity, Integer>
                     "LEFT JOIN category_ciguenia ct ON p.category_id = ct.category_id\n" +
                     "LEFT JOIN (SELECT product_id, SUM(inventory_amount) AS inventory_amount FROM inventory_ciguenia\n" +
                     "GROUP BY product_id ) AS iq ON p.product_id = iq.product_id\n" +
-                    "WHERE p.product_status = 'Habilitado'\n" +
+                    "WHERE p.product_status = 'Habilitado' AND i.invoice_status = 'Habilitado'\n" +
                     "GROUP BY p.product_id, p.product_name, p.product_price, p.product_iva, p.product_cost,\n" +
                     "p.product_description, p.product_status, p.category_id\n" +
                     "ORDER BY totalDetailAmount DESC\n" +
                     "LIMIT 4;", nativeQuery = true)
     List<DetailProductSoldDTO> detailProductoMoreSold();
+
+    @Query(value =  "SELECT ic.invoice_id AS invoiceId, ic.invoice_date AS invoiceDate,\n" +
+                    "cc.customer_name AS customerName, cc.customer_identification AS customerIdentification,\n" +
+                    "cc.customer_phone_number AS customerPhone, cc.customer_email AS customerEmail,\n" +
+                    "pc.product_name AS productName, pc.product_price AS productPrice, dic.detail_amount AS detailAmount,\n" +
+                    "SUM(pc.product_price * pc.product_iva /100) AS productIva, dic.detail_subtotal AS detailSubtotal,\n" +
+                    "ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal\n" +
+                    "FROM invoice_ciguenia ic\n" +
+                    "LEFT JOIN detail_invoice_ciguenia dic ON dic.invoice_id = ic.invoice_id\n" +
+                    "LEFT JOIN customer_ciguenia cc ON cc.customer_id = ic.customer_id\n" +
+                    "LEFT JOIN product_ciguenia pc ON pc.product_id = dic.product_id\n" +
+                    "WHERE ic.invoice_status = 'Habilitado' AND ic.invoice_id = :invoiceId", nativeQuery = true)
+    List<DetailProductForInvoice> detailProductForInvoices(@Param("invoiceId") Integer invoiceId);
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -11,6 +11,9 @@ import { ReadInvoiciesUseCase } from '@repository/invoice/case/ReadInvoiciesUseC
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent implements OnInit {
+
+  @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() sendInvoiceModel = new EventEmitter<number>();
 
   textTitle = TITLE;
   textNumberInvoice = NUMBER_INVOICE;
@@ -33,11 +36,15 @@ export class SectionOneComponent implements OnInit {
     this.readInvoiciesUseCase.execute().subscribe(
       (res: GenericResponse) => {
         for(let resItem of res.objectResponse){
-          console.log("Prueba del Cliente " + resItem.customerEntity.customerName)
           this.invoice = resItem;
           this.invoiceModel.push(this.invoice);
         }
       }
     )
+  }
+
+  modalEvent(index: number){
+    this.sendInvoiceModel.emit(index + 1)
+    this.modalActivateOne.emit(true);
   }
 }

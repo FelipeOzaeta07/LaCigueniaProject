@@ -9,7 +9,7 @@ public interface IDetailApi {
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createDetail(@RequestBody DetailDTO detailDTO);
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readDetail(@RequestBody DetailDTO detailDTO);
+    ResponseEntity<GenericResponseDTO> readDetail(@PathVariable Integer invoiceId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readDetails();
     @GetMapping()

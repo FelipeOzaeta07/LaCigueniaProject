@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SUPLIER } from '@module/admin/admin-page/component/section-four/constans/section-four';
+import { SUPPLIER } from '@module/admin/admin-page/component/section-four/constans/section-four';
 
 @Component({
   selector: 'app-section-four',
@@ -7,5 +7,5 @@ import { SUPLIER } from '@module/admin/admin-page/component/section-four/constan
   styleUrls: ['./section-four.component.scss']
 })
 export class SectionFourComponent {
-  suplier = SUPLIER;
+  suplier = SUPPLIER;
 }

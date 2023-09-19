@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface IDetailService {
     ResponseEntity<GenericResponseDTO> createDetail(DetailDTO detailDTO);
-    ResponseEntity<GenericResponseDTO> readDetail(DetailDTO detailDTO);
+    ResponseEntity<GenericResponseDTO> readDetail(Integer invoiceId);
     ResponseEntity<GenericResponseDTO> readDetails();
     ResponseEntity<GenericResponseDTO> detailProductoMoreSold();
     ResponseEntity<GenericResponseDTO> updateDetail(DetailDTO detailDTO);

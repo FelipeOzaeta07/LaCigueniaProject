@@ -1,0 +1,72 @@
+<section class="col_center item_center inherit bg_color_black z_index">
+    <div class="col_10 room border h_70 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title col_5">
+            <div class="col_17 size_2">
+                <h1 class="size_3 text_center">{{textTitle}}</h1>
+            </div>
+        </div>
+        <div class="col_17 border_special">
+            <div class="col_17 col_center p_one">
+                <div class="col_2 text_center row_center">
+                    <h3 class="size_1">{{textNumber}}</h3>
+                    <h3 class="size_1 text_color_one">{{detailProductInvoice[0].invoiceId}}</h3>
+                </div>
+                <div class="col_3 text_center row_center">
+                    <h3 class="size_1">{{textDate}}</h3>
+                    <h3 class="size_1 text_color_one">{{detailProductInvoice[0].invoiceDate}}</h3>
+                </div>
+                <div class="col_7 text_center row_center">
+                    <h3 class="size_1">{{textCustomerName}}</h3>
+                    <h3 class="size_1 text_color_one">{{detailProductInvoice[0].customerName}}</h3>
+                </div>
+                <div class="col_5 text_center row_center">
+                    <h3 class="size_1">{{textIdentification}}</h3>
+                    <h3 class="size_1 text_color_one">{{detailProductInvoice[0].customerIdentification}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col_17">
+            <table class="size_1 col_17">
+                <thead>
+                    <tr>
+                        <th class="col_2">{{textNumberDetail}}</th>
+                        <th class="col_5">{{textProductName}}</th>
+                        <th class="col_3">{{textProductPrice}}</th>
+                        <th class="col_2">{{textAmount}}</th>
+                        <th class="col_2">{{textIva}}</th>
+                        <th class="col_3">{{textTotal}}</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="col_17 h_25 scroll py_1" *ngFor="let invoiceItem of detailProductInvoice; let i = index">
+                <div class="col_17 col_between item_center py">
+                    <div class="col_2 size_1 text_center text_color_two">{{i + 1}}</div>
+                    <div class="col_5 size_1 text_center text_color_two">{{invoiceItem.productName}}</div>
+                    <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.productPrice}}</div>
+                    <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.detailAmount}}</div>
+                    <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.productIva}}</div>
+                    <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.detailSubtotal}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col_17 border_special">
+            <div class="col_17 col_center p_one">
+                <div class="col_5 text_center col_center">
+                    <h3 class="col_8 size_1">{{textMethodPay}}</h3>
+                    <h3 class="col_8 size_1 text_color_one">Efectivo</h3>
+                </div>
+                <div class="col_4 text_center col_center">
+                    <h3 class="col_8 size_1">{{textTotalIva}}</h3>
+                    <h3 class="col_8 size_1 text_color_one">{{textSymbol}} {{detailProductInvoice[0].invoiceIva}}</h3>
+                </div>
+                <div class="col_5 text_center col_center">
+                    <h3 class="col_8 size_1">{{textTotalPay}}</h3>
+                    <h3 class="col_8 size_1 text_color_one">{{textSymbol}} {{detailProductInvoice[0].invoiceTotal}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col_17 col_center">
+            <button type="submit" (click)="modalEvent()" class="btn_one size_2 col_8">ACEPTAR</button>
+        </div>
+    </div>
+</section>

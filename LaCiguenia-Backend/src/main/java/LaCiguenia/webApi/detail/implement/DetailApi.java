@@ -60,9 +60,9 @@ public class DetailApi implements IDetailApi {
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
-    @PostMapping(IDetailEndPoint.READ_DETAIL)
-    public ResponseEntity<GenericResponseDTO> readDetail(DetailDTO detailDTO) {
-        return this.detailService.readDetail(detailDTO);
+    @GetMapping(IDetailEndPoint.READ_DETAIL)
+    public ResponseEntity<GenericResponseDTO> readDetail(@PathVariable Integer invoiceId) {
+        return this.detailService.readDetail(invoiceId);
     }
 
     @Override

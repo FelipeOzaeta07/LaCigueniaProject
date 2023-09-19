@@ -10,3 +10,12 @@
 .space{
     padding-top: calc(1vh);
 }
+.svg_width{
+    width: calc(20vh);
+}
+.border{
+    border-radius: 10px;
+}
+.hover_special:hover h1 {
+    color: var(--color_fifteen);
+}

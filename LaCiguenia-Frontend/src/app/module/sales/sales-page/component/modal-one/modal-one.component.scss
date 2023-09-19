@@ -1,0 +1,44 @@
+@import url(/src/styles.scss);
+
+.z_index{
+    position: fixed;
+    z-index: 1;
+    width: calc(100vw);
+    height: calc(100vh);
+}
+.border{
+    border-radius: 20px;
+}
+.border_special{
+    border-radius: 0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: none;
+    border-right: none;
+    border-color: var(--color_three);
+}
+.p_one{
+    padding-top: calc(0.6vh);
+    padding-bottom: calc(0.6vh);
+}
+.py{
+    padding-top: calc(0.5vh);
+    padding-bottom: calc(0.5vh);
+}
+th{
+    padding-bottom: calc(1vh);
+}
+.bg_color_black{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.bg_color_white{
+    background-color: var(--color_seven);
+}
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
+}

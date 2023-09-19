@@ -7,19 +7,23 @@ import { SectionOneComponent } from '@module/sales/sales-page/component/section-
 import { SectionTwoComponent } from '@module/sales/sales-page/component/section-two/section-two.component';
 import { ComponentModule } from '@component/component.module';
 import { InvoiceModule } from '@service/invoice/invoice.module';
+import { ModalOneComponent } from './sales-page/component/modal-one/modal-one.component';
+import { DetailModule } from '@service/detail/detail.module';
 
 
 @NgModule({
   declarations: [
     SalesPageComponent,
     SectionOneComponent,
-    SectionTwoComponent
+    SectionTwoComponent,
+    ModalOneComponent
   ],
   imports: [
     CommonModule,
     SalesRoutingModule,
     ComponentModule,
-    InvoiceModule
+    InvoiceModule,
+    DetailModule
   ]
 })
 export class SalesModule { }

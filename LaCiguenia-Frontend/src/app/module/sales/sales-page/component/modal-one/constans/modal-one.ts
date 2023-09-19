@@ -1,0 +1,15 @@
+export const TITLE = "Visualiza la Facturación de Tus Clientes";
+export const NUMBER = "No.";
+export const DATE = "Fecha";
+export const CUSTOMER_NAME = "Nombre Cliente";
+export const IDENTIFICATION = "Cédula Cliente";
+export const NUMBER_DETAIL = "No.";
+export const PRODUCT_NAME = "Nombre Producto";
+export const PRODUCT_PRICE = "Precio Venta";
+export const AMOUNT = "Unidades";
+export const IVA = "IVA";
+export const TOTAL = "Total";
+export const METHOD_PAY = "Método Pago";
+export const TOTAL_IVA = "Total IVA";
+export const TOTAL_PAY = "Total Pagado";
+export const SYMBOL = "$";

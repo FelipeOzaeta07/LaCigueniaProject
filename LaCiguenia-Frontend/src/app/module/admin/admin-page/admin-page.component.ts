@@ -32,10 +32,15 @@ export class AdminPageComponent implements OnInit{
   readInformationGeneralInvoices(){
     this.readInformationGeneralInvoicesUseCase.execute().subscribe(
       (res: GenericResponse) => {
-        this.salesTotalDay = res.objectResponse.salesTotalDay;
-        this.salesTotalMonth = res.objectResponse.salesTotalMonth;
-        this.countInvoiceDay = res.objectResponse.countInvoiceDay;
-        this.countInvoiceMonth = res.objectResponse.countInvoiceMonth;
+          this.salesTotalDay = res.objectResponse.salesTotalDay;
+          this.salesTotalMonth = res.objectResponse.salesTotalMonth;
+          this.countInvoiceDay = res.objectResponse.countInvoiceDay;
+          this.countInvoiceMonth = res.objectResponse.countInvoiceMonth;
+      },(error) => {
+        this.salesTotalDay = 0;
+        this.salesTotalMonth = 0;
+        this.countInvoiceDay = 0;
+        this.countInvoiceMonth = 0;
       }
     )
   }
