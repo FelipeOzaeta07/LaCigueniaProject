@@ -8,5 +8,5 @@ export abstract class InventoryRepository {
     abstract readInventories(): Observable<GenericResponse>;
     abstract readInventoriesRecentlyCreate(): Observable<GenericResponse>;
     abstract updateInventory(inventoryModel :InventoryModel): Observable<GenericResponse>;
-    abstract deleteInventory(params: {inventoryId: number}): Observable<GenericResponse>;
+    abstract deleteInventory(inventoryId: number): Observable<GenericResponse>;
 }

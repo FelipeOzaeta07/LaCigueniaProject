@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,7 +45,7 @@ public class OpeningApi implements IOpeningApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IOpeningEndPoint.CREATE_OPENING)
-    public ResponseEntity<GenericResponseDTO> createOpening(OpeningDTO openingDTO) {
+    public ResponseEntity<GenericResponseDTO> createOpening(@RequestBody OpeningDTO openingDTO) {
         return this.openingService.createOpening(openingDTO);
     }
 }

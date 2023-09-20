@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -12,6 +12,12 @@ import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCas
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent implements OnInit{
+
+  @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Output() sendInventoryId = new EventEmitter<number>();
+  @Output() sendInventory = new EventEmitter<InventoryModel>();
+
   textTitle = TITLE;
   textNameProduct = NAME_PRODUCT;
   textCode = CODE;
@@ -56,4 +62,13 @@ export class SectionOneComponent implements OnInit{
       });
   }
 
+  modalEdit(index: number){
+    this.sendInventory.emit(this.inventoryModel[index]);
+    this.modalActivateOne.emit(true);
+  }
+
+  modalDelete(index: number){
+    this.sendInventoryId.emit(this.inventoryModel[index].inventoryId);
+    this.modalActivateTwo.emit(true);
+  }
 }

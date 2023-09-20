@@ -46,7 +46,6 @@ export class ModalOneComponent implements OnInit{
   detailRead(){
     this.detailReadUseCase.execute(this.invoiceId).subscribe(
       (res: GenericResponse) => {
-        console.log("Tamaño de la respuesta " + res.objectResponse.length)
         for (let invoiceItem of res.objectResponse){
           this.detailProductInvoice.push(invoiceItem);
         }

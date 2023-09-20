@@ -18,7 +18,7 @@
                 <tbody>
                     <tr *ngFor="let inventoryItem of inventoryModel; let i = index">
                         <td class="text_color_two">{{inventoryItem.productEntity.productName}}</td>
-                        <td class="text_center text_color_two">{{inventoryItem.productEntity.productPrice | number}}</td>
+                        <td class="text_center text_color_two">$ {{inventoryItem.productEntity.productPrice | number}}</td>
                         <td class="text_center text_color_two">{{inventoryItem.inventoryAmount}}</td>
                         <td class="text_center text_color_two col_evenly">
                             <button (click)="modalEdit(i)" class="btn_one">

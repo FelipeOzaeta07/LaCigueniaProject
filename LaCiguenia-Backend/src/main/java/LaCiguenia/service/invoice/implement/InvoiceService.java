@@ -5,6 +5,7 @@ import LaCiguenia.commons.constans.response.invoice.IInvoiceResponse;
 import LaCiguenia.commons.converter.invoice.InvoiceConverter;
 import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.repository.opening.IOpeningRepository;
@@ -26,6 +27,7 @@ public class InvoiceService implements IInvoiceService {
 
     @Autowired
     private IInvoiceRepository iInvoiceRepository;
+    @Autowired
     private IOpeningRepository iOpeningRepository;
     @Autowired
     private InvoiceConverter invoiceConverter;
@@ -36,7 +38,9 @@ public class InvoiceService implements IInvoiceService {
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
-                invoiceEntity.getOpeningEntity().setOpeningId(this.iOpeningRepository.lastOpeningId());
+                Optional<OpeningEntity> openingEntity =
+                        this.iOpeningRepository.findById(this.iOpeningRepository.lastOpeningId());
+                invoiceEntity.setOpeningEntity(openingEntity.get());
                 this.iInvoiceRepository.save(invoiceEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

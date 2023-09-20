@@ -56,9 +56,9 @@ export class InventoryService extends InventoryRepository {
             }));
     }
 
-    override deleteInventory(params: { inventoryId: number; }): Observable<GenericResponse> {
+    override deleteInventory(inventoryId: number): Observable<GenericResponse> {
         return this.http
-            .post<GenericResponse>(BASE_URL_INVENTORY + DELETE_INVENTORY, params)
+            .delete<GenericResponse>(BASE_URL_INVENTORY + DELETE_INVENTORY + inventoryId)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));

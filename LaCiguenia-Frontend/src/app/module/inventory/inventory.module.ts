@@ -9,18 +9,25 @@ import { SectionOneComponent } from '@module/inventory/inventory-page/component/
 import { SectionTwoComponent } from '@module/inventory/inventory-page/component/section-two/section-two.component';
 import { ProductModule } from '@service/product/product.module';
 import { InventoriesModule } from '@service/inventory/inventories.module';
+import { ModalOneComponent } from './inventory-page/component/modal-one/modal-one.component';
+import { ModalTwoComponent } from './inventory-page/component/modal-two/modal-two.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     InventoryPageComponent,
     SectionOneComponent,
-    SectionTwoComponent
+    SectionTwoComponent,
+    ModalOneComponent,
+    ModalTwoComponent
   ],
   imports: [
     CommonModule,
     InventoryRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     ComponentModule,
     ProductModule,
     InventoriesModule

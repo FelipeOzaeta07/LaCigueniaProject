@@ -7,5 +7,5 @@ public interface IInventoryEndPoint {
     String READ_INVENTORIES = "/leer-inventarios";
     String READ_INVENTORIES_RECENTLY_CREATE = "/leer-inventarios-creados";
     String UPDATE_INVENTORY = "/actualizar-inventario";
-    String DELETE_INVENTORY = "/eliminar-inventario";
+    String DELETE_INVENTORY = "/eliminar-inventario{inventoryId}";
 }

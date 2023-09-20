@@ -229,11 +229,10 @@ LIMIT 4;
 SELECT ic.invoice_id AS invoiceId, ic.invoice_date AS invoiceDate,
 cc.customer_name AS customerName, cc.customer_identification AS customerIdentification,
 cc.customer_phone_number AS customerPhone, cc.customer_email AS customerEmail,
-pc.product_name AS productName, pc.product_price AS productPrice, dic.detail_amount AS detailAmount,
-SUM(pc.product_price * pc.product_iva /100) AS productIva, dic.detail_subtotal AS detailSubtotal,
+pc.product_name AS productName, pc.product_price AS productPrice, di.detail_amount AS detailAmount,
+di.detail_subtotal AS detailSubtotal, pc.product_iva AS productIva,
 ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal
-FROM invoice_ciguenia ic
-LEFT JOIN detail_invoice_ciguenia dic ON dic.invoice_id = ic.invoice_id
-LEFT JOIN customer_ciguenia cc ON cc.customer_id = ic.customer_id
-LEFT JOIN product_ciguenia pc ON pc.product_id = dic.product_id
-WHERE ic.invoice_status = 'Habilitado' AND ic.invoice_id = 2;
+FROM invoice_ciguenia ic JOIN customer_ciguenia cc ON ic.customer_id = cc.customer_id
+JOIN detail_invoice_ciguenia di ON ic.invoice_id = di.invoice_id
+JOIN product_ciguenia pc ON di.product_id = pc.product_id
+WHERE ic.invoice_id = 2;

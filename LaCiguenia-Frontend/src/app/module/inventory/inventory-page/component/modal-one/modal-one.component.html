@@ -1,0 +1,27 @@
+<section  class="col_center item_center inherit bg_color_black z_index">
+    <div class="col_8 room border h_50 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitle}}</h1>
+        </div>
+        <form (ngSubmit)="updateInventory()" [formGroup]="inventoryForm" class="h_35 row_evenly">
+            <div class="col_17 col_center item_center">
+                <h1 class="col_12 size_2">{{textDate}}</h1>
+                <input type="text" class="col_5 bg_color_four input size_1" [value]="currentDate" readonly>
+            </div>
+            <div class="col_17 col_between">
+                <div class="col_11">
+                    <h1 class="col_17 size_2">{{textNameProduct}}</h1>
+                    <input type="text" class="col_17 input size_1" [value]="inventoryModel.productEntity.productName" readonly>
+                </div>
+                <div class="col_5">
+                    <h1 class="col_12 size_2">{{textAmount}}</h1>
+                    <input type="text" class="col_17 input size_1" placeholder="{{inventoryModel.inventoryAmount}}" formControlName="amountProduct">
+                </div>
+            </div>
+            <div class="col_17 col_between">
+                <button class="col_8 btn_two size_2" (click)="modalEvent()">{{textFail}}</button>
+                <button type="submit" class="col_8 btn_one size_2">{{textEdit}}</button>
+            </div>
+        </form>
+    </div>
+</section>

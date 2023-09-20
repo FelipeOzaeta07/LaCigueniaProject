@@ -178,7 +178,8 @@ public class InventoryService implements IInventoryService {
         try {
             Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryId);
             if (inventoryExist.isPresent()){
-                this.iInventoryRepository.deleteById(inventoryId);
+                inventoryExist.get().setInventoryAmount(0);
+                this.iInventoryRepository.save(inventoryExist.get());
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
