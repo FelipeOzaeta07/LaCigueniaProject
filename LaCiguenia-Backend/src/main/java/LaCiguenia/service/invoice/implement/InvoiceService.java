@@ -7,7 +7,9 @@ import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
+import LaCiguenia.repository.opening.IOpeningRepository;
 import LaCiguenia.service.invoice.IInvoiceService;
+import LaCiguenia.service.opening.IOpeningService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ public class InvoiceService implements IInvoiceService {
 
     @Autowired
     private IInvoiceRepository iInvoiceRepository;
+    private IOpeningRepository iOpeningRepository;
     @Autowired
     private InvoiceConverter invoiceConverter;
 
@@ -33,6 +36,7 @@ public class InvoiceService implements IInvoiceService {
             Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceDTO.getInvoiceId());
             if (!invoiceExist.isPresent()){
                 InvoiceEntity invoiceEntity = this.invoiceConverter.convertInvoiceDTOToInvoiceEntity(invoiceDTO);
+                invoiceEntity.getOpeningEntity().setOpeningId(this.iOpeningRepository.lastOpeningId());
                 this.iInvoiceRepository.save(invoiceEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
