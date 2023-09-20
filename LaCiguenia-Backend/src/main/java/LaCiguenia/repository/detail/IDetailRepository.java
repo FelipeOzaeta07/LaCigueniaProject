@@ -29,13 +29,12 @@ public interface IDetailRepository  extends JpaRepository<DetailEntity, Integer>
     @Query(value =  "SELECT ic.invoice_id AS invoiceId, ic.invoice_date AS invoiceDate,\n" +
                     "cc.customer_name AS customerName, cc.customer_identification AS customerIdentification,\n" +
                     "cc.customer_phone_number AS customerPhone, cc.customer_email AS customerEmail,\n" +
-                    "pc.product_name AS productName, pc.product_price AS productPrice, dic.detail_amount AS detailAmount,\n" +
-                    "SUM(pc.product_price * pc.product_iva /100) AS productIva, dic.detail_subtotal AS detailSubtotal,\n" +
+                    "pc.product_name AS productName, pc.product_price AS productPrice, di.detail_amount AS detailAmount,\n" +
+                    "di.detail_subtotal AS detailSubtotal, pc.product_iva AS productIva,\n" +
                     "ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal\n" +
-                    "FROM invoice_ciguenia ic\n" +
-                    "LEFT JOIN detail_invoice_ciguenia dic ON dic.invoice_id = ic.invoice_id\n" +
-                    "LEFT JOIN customer_ciguenia cc ON cc.customer_id = ic.customer_id\n" +
-                    "LEFT JOIN product_ciguenia pc ON pc.product_id = dic.product_id\n" +
-                    "WHERE ic.invoice_status = 'Habilitado' AND ic.invoice_id = :invoiceId", nativeQuery = true)
+                    "FROM invoice_ciguenia ic JOIN customer_ciguenia cc ON ic.customer_id = cc.customer_id\n" +
+                    "JOIN detail_invoice_ciguenia di ON ic.invoice_id = di.invoice_id\n" +
+                    "JOIN product_ciguenia pc ON di.product_id = pc.product_id\n" +
+                    "WHERE ic.invoice_id = :invoiceId", nativeQuery = true)
     List<DetailProductForInvoice> detailProductForInvoices(@Param("invoiceId") Integer invoiceId);
 }
