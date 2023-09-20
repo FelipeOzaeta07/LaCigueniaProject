@@ -22,6 +22,7 @@ export class InvoicingPageComponent {
   totalPriceProducts: number = 0;
   invoiceEnd!: InvoiceModel;
   currentDate: string;
+  productSelector: string = '';
 
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
@@ -109,7 +110,7 @@ export class InvoicingPageComponent {
     }
   }
 
-  sendProductSelector(productSelector: ProductModel [][]){
-    this.productGroupsSelector = productSelector;
+  sendProductSelector(productSelector: string){
+    this.productSelector = productSelector;
   }
 }

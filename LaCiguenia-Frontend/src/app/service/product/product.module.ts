@@ -11,6 +11,7 @@ import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/Read
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 import { DeleteProductUseCase } from '@repository/product/case/DeleteProductUseCase';
 import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductForNameUseCase';
+import { ReadProductFilterServicePipe } from './implement/read-product-filter-service.pipe';
 
 const createProductsUseCaseFactory = (productRepository: ProductRepository) => new CreateProductsUseCase(productRepository);
 export const createProductsUseCaseProvider = {

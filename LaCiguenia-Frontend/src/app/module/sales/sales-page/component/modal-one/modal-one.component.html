@@ -38,8 +38,8 @@
                     </tr>
                 </thead>
             </table>
-            <div class="col_17 h_25 scroll py_1" *ngFor="let invoiceItem of detailProductInvoice; let i = index">
-                <div class="col_17 col_between item_center py">
+            <div class="col_17 h_25 scroll py_1">
+                <div class="col_17 col_between item_center py" *ngFor="let invoiceItem of detailProductInvoice; let i = index">
                     <div class="col_2 size_1 text_center text_color_two">{{i + 1}}</div>
                     <div class="col_5 size_1 text_center text_color_two">{{invoiceItem.productName}}</div>
                     <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.productPrice}}</div>

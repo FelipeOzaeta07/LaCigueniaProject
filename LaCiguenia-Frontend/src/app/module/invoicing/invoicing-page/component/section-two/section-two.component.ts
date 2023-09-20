@@ -8,10 +8,12 @@ import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCas
   templateUrl: './section-two.component.html',
   styleUrls: ['./section-two.component.scss']
 })
+
 export class SectionTwoComponent implements OnInit, OnChanges{
   
   @Output() selectProducts = new EventEmitter<ProductModel>();
-  @Input() productGroupsSelector!: ProductModel [][];
+  @Input() productSelector!: string;
+
 
   product!: ProductModel [];
   productGroups: ProductModel[][] = [];
@@ -20,7 +22,7 @@ export class SectionTwoComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['productSelector']){
-      console.log("Entro el Valor y es el Siguiente: " + this.productGroupsSelector[0][0].productName)
+      
     }
   }
 
@@ -47,9 +49,4 @@ export class SectionTwoComponent implements OnInit, OnChanges{
   selecProduct(n: number, i: number) {
     this.selectProducts.emit(this.productGroups[n][i]);
   }
-
-  selecProductSearch(n: number, i: number){
-    this.selectProducts.emit(this.productGroupsSelector[n][i]);
-  }
-
 }

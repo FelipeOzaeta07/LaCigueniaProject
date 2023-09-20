@@ -6,7 +6,7 @@
     <section class="col_10 h_100">
         <div class="col_17">
             <app-section-one (sendProductSelector)="sendProductSelector($event)" class="h_30"></app-section-one>
-            <app-section-two [productGroupsSelector]="productGroupsSelector" (selectProducts)="selectProducts($event)" class="h_70"></app-section-two>
+            <app-section-two [productSelector]="productSelector" (selectProducts)="selectProducts($event)" class="h_70"></app-section-two>
         </div>
     </section>
     <section class="col_5">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -13,7 +13,7 @@ import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductF
 
 export class SectionOneComponent implements OnInit{
 
-  @Output() sendProductSelector = new EventEmitter<ProductModel[][]>();
+  @Output() sendProductSelector = new EventEmitter<string>();
   @ViewChild('productInput') productInput!: ElementRef;
 
   product!: ProductModel [];
@@ -21,8 +21,8 @@ export class SectionOneComponent implements OnInit{
   category!: CategoryModel [];
   productGroupsSelector: ProductModel[][] = [];
 
-  constructor(private readCategoriesUseCase: ReadCategoriesUseCase, 
-    private readProductForNameUseCase: ReadProductForNameUseCase){}
+  constructor(private readCategoriesUseCase: ReadCategoriesUseCase){}
+
 
   ngOnInit(): void {
     this.getCategory();
@@ -30,25 +30,7 @@ export class SectionOneComponent implements OnInit{
 
   readProductForName(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      this.readProductForNameUseCase.execute(this.productSelection).subscribe(
-        (res: GenericResponse) => {
-          if (res.statusCode == 200){
-            this.product = res.objectResponse;
-            const productsPerGroup = 5;
-            let currentIndex = 0;
-            
-            while (currentIndex < this.product.length) {
-              const productGroup = this.product.slice(currentIndex, currentIndex + productsPerGroup);
-              this.productGroupsSelector.push(productGroup);
-              currentIndex += productsPerGroup;
-            }
-            this.sendProductSelector.emit(this.productGroupsSelector);
-            this.productGroupsSelector = [];
-          }
-        }, (error) => {
-          console.log("Es Nulo")
-        }
-      )
+      this.sendProductSelector.emit(this.productSelection);
     }
   }
 
