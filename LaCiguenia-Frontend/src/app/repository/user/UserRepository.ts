@@ -5,4 +5,5 @@ import { Observable } from "rxjs";
 export abstract class UserRepository {
     abstract serviceUser(params: {userEmail: string, userPassword: string}): Observable<GenericResponse>;
     abstract createUser(userModel: UserModel): Observable<GenericResponse>;
+    abstract closeSesionUser(): void;
 }

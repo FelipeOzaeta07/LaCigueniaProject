@@ -11,6 +11,7 @@ import { ServiceUserUseCase } from '@repository/user/case/ServiceUserUseCase';
   styleUrls: ['./section-two.component.scss']
 })
 export class SectionTwoComponent {
+
   textSignIn = SIGN_IN;
   textForgotPassword = FORGOT_PASSWORD;
   textCreateAccount = CREATE_ACCOUNT;
@@ -18,6 +19,9 @@ export class SectionTwoComponent {
   textHere = HERE;
 
   userService!: FormGroup;
+
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
 
   constructor(public formulary: FormBuilder, private serviceUserUseCase: ServiceUserUseCase, public router: Router){
     this.userService = formulary.group({
@@ -53,5 +57,13 @@ export class SectionTwoComponent {
         this.userService.reset();
       }
     );
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 }

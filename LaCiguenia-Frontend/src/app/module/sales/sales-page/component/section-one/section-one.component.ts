@@ -13,6 +13,7 @@ import { ReadInvoiciesUseCase } from '@repository/invoice/case/ReadInvoiciesUseC
 export class SectionOneComponent implements OnInit {
 
   @Output() modalActivateOne = new EventEmitter<boolean>();
+  @Output() modalActivateTwo = new EventEmitter<boolean>();
   @Output() sendInvoiceModel = new EventEmitter<number>();
 
   textTitle = TITLE;
@@ -41,6 +42,11 @@ export class SectionOneComponent implements OnInit {
         }
       }
     )
+  }
+
+  modalDelete(index: number){
+    this.sendInvoiceModel.emit(index + 1)
+    this.modalActivateTwo.emit(true);
   }
 
   modalEvent(index: number){

@@ -29,6 +29,9 @@ public class InvoiceEntity {
     @Column(name = "invoice_iva")
     private Integer invoiceIva;
 
+    @Column(name = "invoice_pay")
+    private String invoicePay;
+
     @Column(name = "invoice_total")
     private Integer invoiceTotal;
 

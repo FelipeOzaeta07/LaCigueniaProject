@@ -9,14 +9,21 @@ import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 export class SalesPageComponent {
 
   modalOne!: boolean;
+  modalTwo!: boolean;
   invoiceId!: number;
 
   modalActivateOne(datos: boolean){
     this.modalOne = datos;
   }
 
+  modalActivateTwo(datos: boolean){
+    this.modalTwo = datos;
+    if(datos === false){
+      window.location.reload();
+    }
+  }
+
   sendInvoiceModel(invoiceId: number){
-    console.log("Prueba Datos: " + invoiceId)
     this.invoiceId = invoiceId;
   }
 }

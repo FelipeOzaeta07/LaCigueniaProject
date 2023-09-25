@@ -26,9 +26,9 @@ export class InvoiceService extends InvoiceRepository {
             }));
     }
 
-    override readInvoice(params: { invoiceTotal: number; }): Observable<GenericResponse> {
+    override readInvoice(invoiceTotal: number): Observable<GenericResponse> {
         return this.http
-            .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICE, {params})
+            .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICE + invoiceTotal)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
@@ -51,9 +51,9 @@ export class InvoiceService extends InvoiceRepository {
             }));
     }
 
-    override deleteInvoice(params: { invoiceTotal: number; }): Observable<GenericResponse> {
+    override deleteInvoice(invoiceTotal: number): Observable<GenericResponse> {
         return this.http
-            .post<GenericResponse>(BASE_URL_INVOICE + DELETE_INVOICE, params)
+            .delete<GenericResponse>(BASE_URL_INVOICE + DELETE_INVOICE + invoiceTotal)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));

@@ -4,11 +4,11 @@ import { InvoiceRepository } from "@repository/invoice/InvoiceRepository";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class InvoiceReadUseCase implements UseCase<InvoiceModel, GenericResponse>{
+export class InvoiceReadUseCase implements UseCase<number, GenericResponse>{
 
     constructor(private invoiceRepository: InvoiceRepository){}
 
-    execute(params: {invoiceTotal: number}) : Observable<GenericResponse>{
-        return this.invoiceRepository.readInvoice(params);
+    execute(invoiceTotal: number) : Observable<GenericResponse>{
+        return this.invoiceRepository.readInvoice(invoiceTotal);
     }
 }

@@ -37,7 +37,7 @@
                 <div class="col_8">
                     <p class="size_1 py_1">{{textPassword}}</p>
                     <div class="col_center border">
-                        <input type="{{showPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" placeholder="Password" formControlName="password"/>
+                        <input type="{{showPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" formControlName="password"/>
                         <span class="item_center p_1" (click)="togglePasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showPassword" class="svg_icon" fill="currentColor" class="{{showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
@@ -54,7 +54,7 @@
                 <div class="col_8">
                     <p class="size_1 py_1">{{textConfirmPassword}}</p>
                     <div class="col_center border">
-                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" placeholder="Confirmar" formControlName="confirmPassword"/>
+                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" formControlName="confirmPassword"/>
                         <span class="item_center p_1" (click)="toggleConfirmPasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showConfirmPassword" class="svg_icon" fill="currentColor" class="{{showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
@@ -76,7 +76,7 @@
     </div>
     <div class="h_8 col_center item_center">
         <div class="col_17">
-            <p class="text_center size_1 text_color_two">{{textText}}<a routerLink="/login-laciguenia" class="text_a">{{textHere}}</a></p>
+            <p class="text_center size_1 text_color_two">{{textText}} <a routerLink="/login-laciguenia" class="text_a">{{textHere}}</a></p>
         </div>
     </div>
 </section>

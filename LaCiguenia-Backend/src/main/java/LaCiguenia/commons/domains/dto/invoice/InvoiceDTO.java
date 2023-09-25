@@ -23,6 +23,7 @@ public class InvoiceDTO implements Serializable {
     private Integer invoiceId;
     private LocalDate invoiceDate;
     private Integer invoiceIva;
+    private String invoicePay;
     private Integer invoiceTotal;
     private String invoiceStatus;
     @JsonIdentityReference(alwaysAsId = true)

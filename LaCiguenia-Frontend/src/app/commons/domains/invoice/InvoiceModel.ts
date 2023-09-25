@@ -5,6 +5,7 @@ export interface InvoiceModel{
     invoiceId: number;
     invoiceDate: string;
     invoiceIva: number;
+    invoicePay: string;
     invoiceTotal: number;
     invoiceStatus: string;
     customerEntity: CustomerModel;

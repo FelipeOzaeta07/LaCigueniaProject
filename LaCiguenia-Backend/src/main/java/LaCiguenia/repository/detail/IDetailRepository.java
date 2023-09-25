@@ -19,7 +19,7 @@ public interface IDetailRepository  extends JpaRepository<DetailEntity, Integer>
                     "LEFT JOIN category_ciguenia ct ON p.category_id = ct.category_id\n" +
                     "LEFT JOIN (SELECT product_id, SUM(inventory_amount) AS inventory_amount FROM inventory_ciguenia\n" +
                     "GROUP BY product_id ) AS iq ON p.product_id = iq.product_id\n" +
-                    "WHERE p.product_status = 'Habilitado' AND i.invoice_status = 'Habilitado'\n" +
+                    "WHERE p.product_status = 'Habilitado' AND i.invoice_status = 'Pagado'\n" +
                     "GROUP BY p.product_id, p.product_name, p.product_price, p.product_iva, p.product_cost,\n" +
                     "p.product_description, p.product_status, p.category_id\n" +
                     "ORDER BY totalDetailAmount DESC\n" +

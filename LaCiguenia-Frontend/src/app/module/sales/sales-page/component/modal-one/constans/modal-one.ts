@@ -13,3 +13,4 @@ export const METHOD_PAY = "Método Pago";
 export const TOTAL_IVA = "Total IVA";
 export const TOTAL_PAY = "Total Pagado";
 export const SYMBOL = "$";
+export const DONE = "CONFIRMAR"

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { WHATSAPP } from '@component/component/section-header/constans/section-header';
+import { WHATSAPP, SING_UP } from '@component/component/section-header/constans/section-header';
+import { CloseSesionUserUseCase } from '@repository/user/case/CloseSesionUserUseCase';
 
 @Component({
   selector: 'app-section-header',
@@ -7,5 +8,20 @@ import { WHATSAPP } from '@component/component/section-header/constans/section-h
   styleUrls: ['./section-header.component.scss']
 })
 export class SectionHeaderComponent {
-  whatsApp = WHATSAPP;
+
+  textWhatsApp = WHATSAPP;
+  textSingUp = SING_UP;
+
+  active: boolean = false;
+
+  constructor(private closeSesionUserUseCase: CloseSesionUserUseCase){}
+
+  delete(){
+    this.active = !this.active
+  }
+
+  deleteLocalStorage(){
+    this.closeSesionUserUseCase.execute();
+    window.location.reload();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -11,7 +11,7 @@ import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseC
   templateUrl: './modal-two.component.html',
   styleUrls: ['./modal-two.component.scss']
 })
-export class ModalTwoComponent {
+export class ModalTwoComponent{
 
   @Input() invoiceEnd!: InvoiceModel;
   @Input() detailInvoice!: DetailModel [];
@@ -30,12 +30,16 @@ export class ModalTwoComponent {
   textPay = PAY;
 
   detail!: DetailModel;
+  selectedPaymentMethod!:string;
+
 
   constructor(private invoiceCreateUseCase: InvoiceCreateUseCase, private detailCreateUseCase: DetailCreateUseCase){
 
   }
 
   generalInvoicePay(){
+    this.invoiceEnd.invoicePay = this.selectedPaymentMethod;
+
     this.invoiceCreateUseCase.execute(this.invoiceEnd).subscribe(
       (res: GenericResponse) => {
 

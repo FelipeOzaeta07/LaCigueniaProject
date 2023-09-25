@@ -26,7 +26,7 @@ public class InvoiceComponent implements IInvoiceComponent {
             LocalDate today = LocalDate.now();
             for (InvoiceEntity invoiceEntity : listInvoice) {
                 LocalDate invoiceDate = invoiceEntity.getInvoiceDate();
-                if (invoiceDate.equals(today)) {
+                if (invoiceDate.equals(today) && invoiceEntity.getInvoiceStatus().equals("Pagado")) {
                     invoicesDaily += invoiceEntity.getInvoiceTotal();
                 }
             }
@@ -45,7 +45,7 @@ public class InvoiceComponent implements IInvoiceComponent {
             Month currentMonth = now.getMonth();
             for (InvoiceEntity invoiceEntity : listInvoice) {
                 LocalDate invoiceDate = invoiceEntity.getInvoiceDate();
-                if (invoiceDate.getMonth() == currentMonth) {
+                if (invoiceDate.getMonth() == currentMonth && invoiceEntity.getInvoiceStatus().equals("Pagado")) {
                     invoicesTotal += invoiceEntity.getInvoiceTotal();
                 }
             }
@@ -61,17 +61,16 @@ public class InvoiceComponent implements IInvoiceComponent {
         Integer invoiceCount = 0;
         try {
             Integer monthCurrent = Calendar.getInstance().get(Calendar.MONTH);
+            for (InvoiceEntity invoiceEntity : listInvoice) {
+                LocalDate invoiceDate = invoiceEntity.getInvoiceDate();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(Date.from(invoiceDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-            Long invoicesTotal = listInvoice.stream()
-                    .map(InvoiceEntity::getInvoiceDate)
-                    .filter(invoiceDate -> {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(Date.from(invoiceDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                        return calendar.get(Calendar.MONTH) == monthCurrent;
-                    })
-                    .count();
-
-            return Math.toIntExact(invoicesTotal);
+                if (calendar.get(Calendar.MONTH) == monthCurrent && invoiceEntity.getInvoiceStatus().equals("Pagado")) {
+                    invoiceCount++;
+                }
+            }
+            return invoiceCount;
         }catch (Exception e) {
             log.error(GeneralResponse.INTERNAL_SERVER, e);
             return invoiceCount;
@@ -85,7 +84,7 @@ public class InvoiceComponent implements IInvoiceComponent {
             LocalDate currentDate = LocalDate.now();
             for (InvoiceEntity invoiceEntity : listInvoice) {
                 LocalDate invoiceLocalDate = invoiceEntity.getInvoiceDate();
-                if (invoiceLocalDate.isEqual(currentDate)) {
+                if (invoiceLocalDate.isEqual(currentDate) && invoiceEntity.getInvoiceStatus().equals("Pagado")) {
                     invoiceCount++;
                 }
             }

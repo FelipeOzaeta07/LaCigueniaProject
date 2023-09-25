@@ -6,6 +6,7 @@ import { GenericResponse } from "@commons/response/GenericResponse";
 import { BASE_URL_USER, CREATE_USER, SERVICE_USER } from "@commons/endpoint/user/UserEndPoint";
 import { AccessTokenService } from "./AccessTokenService";
 import { UserModel } from "@commons/domains/user/UserModel";
+import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAccessTokenService";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,8 @@ import { UserModel } from "@commons/domains/user/UserModel";
 
 export class UserService extends UserRepository{
 
-    constructor(private http: HttpClient, private accessTokenService: AccessTokenService ){
+    constructor(private http: HttpClient, private accessTokenService: AccessTokenService,
+        private openingAccessTokenService: OpeningAccessTokenService ){
         super();
     }
 
@@ -31,5 +33,10 @@ export class UserService extends UserRepository{
         return this.http
         .post<GenericResponse>(BASE_URL_USER + CREATE_USER, userModel)
         .pipe();
+    }
+
+    override closeSesionUser(): void {
+        this.openingAccessTokenService.openingAccessTokenRemove();
+        this.accessTokenService.accessTokenRemove();
     }
 }

@@ -6,9 +6,9 @@ import { InformationGeneralInvoice } from "@commons/domains/invoice/InformationG
 
 export abstract class InvoiceRepository {
     abstract createInvoice(invoiceModel :InvoiceModel): Observable<GenericResponse>;
-    abstract readInvoice(params: {invoiceTotal: number}): Observable<GenericResponse>;
+    abstract readInvoice(invoiceTotal: number): Observable<GenericResponse>;
     abstract readInvoicies (): Observable<GenericResponse>;
     abstract updateInvoice (invoiceModel :InvoiceModel): Observable<GenericResponse>;
-    abstract deleteInvoice (params: {invoiceTotal: number}): Observable<GenericResponse>;
+    abstract deleteInvoice (invoiceTotal: number): Observable<GenericResponse>;
     abstract readInformationGeneralInvoices (): Observable<GenericResponse>;
 }

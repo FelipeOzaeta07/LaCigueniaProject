@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DetailProductInvoice } from '@commons/domains/detail/DetailProductInvoice';
-import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { NUMBER, TITLE, DATE, CUSTOMER_NAME, IDENTIFICATION, NUMBER_DETAIL, PRODUCT_NAME,
-        PRODUCT_PRICE, AMOUNT, IVA, TOTAL, METHOD_PAY, TOTAL_IVA,TOTAL_PAY, SYMBOL } 
+        PRODUCT_PRICE, AMOUNT, IVA, TOTAL, METHOD_PAY, TOTAL_IVA,TOTAL_PAY, SYMBOL, DONE } 
         from '@module/sales/sales-page/component/modal-one/constans/modal-one';
 import { DetailReadUseCase } from '@repository/detail/case/DetailReadUseCase';
 
@@ -33,6 +32,7 @@ export class ModalOneComponent implements OnInit{
   textTotalIva = TOTAL_IVA;
   textTotalPay = TOTAL_PAY;
   textSymbol = SYMBOL;
+  textDone = DONE;
 
   detailProductInvoice: DetailProductInvoice [] = [];
 

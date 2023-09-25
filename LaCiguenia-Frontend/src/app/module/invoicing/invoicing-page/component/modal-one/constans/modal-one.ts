@@ -4,5 +4,5 @@ export const NUMBER_ID = "Cédula o NIT";
 export const NUMBER_PHONE = "Número de Teléfono";
 export const EMAIL = "Correo Electrónico";
 export const ADDRESS = "Dirección";
-export const DONE = "ACEPTAR";
+export const DONE = "CONFIRMAR";
 export const FAIL = "CANCELAR";

@@ -115,7 +115,7 @@ public class InvoiceApi implements IInvoiceApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @DeleteMapping(IInvoiceEndPoint.DELETE_INVOICE)
-    public ResponseEntity<GenericResponseDTO> deleteInvoice(Integer invoiceId) {
+    public ResponseEntity<GenericResponseDTO> deleteInvoice(@PathVariable Integer invoiceId) {
         return this.invoiceService.deleteInvoice(invoiceId);
     }
 }

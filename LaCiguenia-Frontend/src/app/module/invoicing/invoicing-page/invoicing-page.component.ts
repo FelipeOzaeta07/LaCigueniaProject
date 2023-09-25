@@ -23,7 +23,7 @@ export class InvoicingPageComponent {
   invoiceEnd!: InvoiceModel;
   currentDate: string;
   productSelector: string = '';
-
+  
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
   productGroupsSelector!: ProductModel [][];
@@ -95,8 +95,9 @@ export class InvoicingPageComponent {
       invoiceId: 0,
       invoiceDate: this.currentDate,
       invoiceIva: (this.totalPriceProducts * 16) / 100,
+      invoicePay: '',
       invoiceTotal: this.totalPriceProducts,
-      invoiceStatus: "Habilitado",
+      invoiceStatus: "Pagado",
       customerEntity: this.customer != null
         ? this.customer
         : { customerId: 1,

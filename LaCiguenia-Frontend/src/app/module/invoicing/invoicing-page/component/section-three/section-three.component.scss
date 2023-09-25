@@ -20,6 +20,10 @@
 }
 .bg_color{
     background-color: var(--color_seven);
+    color: var(--color_fourteen);
+}
+.bg_color:hover{
+    color: var(--color_fifteen);
 }
 th{
     padding-top: calc(0.6vh);

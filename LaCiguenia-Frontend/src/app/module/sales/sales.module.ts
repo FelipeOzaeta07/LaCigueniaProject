@@ -9,6 +9,7 @@ import { ComponentModule } from '@component/component.module';
 import { InvoiceModule } from '@service/invoice/invoice.module';
 import { ModalOneComponent } from './sales-page/component/modal-one/modal-one.component';
 import { DetailModule } from '@service/detail/detail.module';
+import { ModalTwoComponent } from './sales-page/component/modal-two/modal-two.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DetailModule } from '@service/detail/detail.module';
     SalesPageComponent,
     SectionOneComponent,
     SectionTwoComponent,
-    ModalOneComponent
+    ModalOneComponent,
+    ModalTwoComponent
   ],
   imports: [
     CommonModule,
