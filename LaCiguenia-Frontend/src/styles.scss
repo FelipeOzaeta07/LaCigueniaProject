@@ -1381,7 +1381,7 @@ td {
         width: calc(var(--size) * 17);
     }
 }
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 400px){
     .room_l{
         padding-left: calc(2vh + 2vw);
         padding-right: calc(2vh + 2vw);

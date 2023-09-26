@@ -37,3 +37,64 @@ th{
 .scroll::-webkit-scrollbar {
     width: 0px;
 }
+
+.size_1{
+    border-radius: 15px;
+}
+
+.button-test {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+  .button-test > span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .bg {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s linear;
+  }
+  .bg::before, .bg::after {
+    position: absolute;
+    top: -4.75rem;
+    left: -4.75rem;
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: "";
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  .button-test:hover .bg {
+    background-color: rgba(255, 255, 255, 0.3)
+  }
+  .bg:target {
+    animation: push 1s ease-out;
+    transition: all 1s linear;
+  }
+  #plus:target {
+    background-color: #def186;
+  }
+  #minus:target {
+    background-color: #515676;
+  }
+  .bg:target::before, .bg:target::after {
+    animation: wave 1s ease-in-out;
+  }
+  .bg:target::before {
+    animation-delay: 0.2s;
+  }
+  .bg:target::after {
+    animation-delay: 0.3s;
+  }
+
+  

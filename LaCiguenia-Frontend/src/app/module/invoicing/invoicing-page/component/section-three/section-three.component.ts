@@ -35,8 +35,26 @@ export class SectionThreeComponent{
   textCustomer = CUSTOMER;
 
   updateCalculatedValue(detailItem: DetailModel): number{
-    return detailItem.detailSubTotal * detailItem.detailAmount;
+     return detailItem.detailSubTotal * detailItem.detailAmount;
+    
   }
+
+
+getTotal(): number {
+  let total = 0;
+  for (const detailItem of this.detailInvoice) {
+    total += this.updateCalculatedValue(detailItem);
+  }
+  return total;
+}
+
+getIva() : number {
+  let total = 0;
+  for (const detailItem of this.detailInvoice) {
+    
+  }
+  return total;
+}
 
   modalEventOne(){
     this.modalActivateOne.emit(true);
@@ -45,4 +63,16 @@ export class SectionThreeComponent{
   modalEventTwo(){
     this.modalActivateTwo.emit(true);
   }
+  modalEventTwoSum(detailItem: DetailModel){
+      detailItem.detailAmount += 1
+      this.updateCalculatedValue(detailItem);
+  }
+
+  modalEventTwoSub(detailItem: DetailModel){
+    if( detailItem.detailAmount > 0)
+    {
+        detailItem.detailAmount -= 1
+        this.updateCalculatedValue(detailItem);
+    }
+}
 }

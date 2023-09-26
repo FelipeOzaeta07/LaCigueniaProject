@@ -22,11 +22,14 @@
             </table>
             <div class="col_17 h_51 scroll">
                 <div class="col_center py_1" *ngFor="let detailItem of detailInvoice; let i = index">
-                    <div class="col_8 text_color_two">{{detailItem.productEntity.productName}}</div>
+                    <div class="col_7 text_color_two">{{detailItem.productEntity.productName}}</div>
+                    <button (click)="modalEventTwoSub(detailItem)" class="col_1 size_1 button-test minus bg"> - </button>
                     <div class="col_3 text_center text_color_two">{{detailItem.detailAmount}}</div>
+                    <button (click)="modalEventTwoSum(detailItem)" class="col_1 size_1 button-test plus bg"> + </button>&nbsp;
                     <div class="col_3 text_center text_color_two">{{updateCalculatedValue(detailItem)}}</div>
                     <div class="col_3 text_end text_color_two">{{detailItem.detailSubTotal}}</div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -41,13 +44,13 @@
             <div class="col_17 px_1 border_y">
                 <div class="col_between col_17">
                     <p class="size_1">{{textIva}}</p>
-                    <p class="size_1 text_color_two">{{textSymbol}} {{(totalPriceProducts * textCoinIva)/100}}</p>
+                    <p class="size_1 text_color_two">{{textSymbol}} {{getIva()}}</p>
                 </div>
             </div>
             <div class="col_17 px_1">
                 <div class="col_between col_17">
                     <p class="size_1">{{textTotal}}</p>
-                    <p class="size_1">{{textSymbol}} {{totalPriceProducts}}</p>
+                    <p class="size_1">{{textSymbol}} {{getTotal()}}</p>
                 </div>
             </div>
         </div>
