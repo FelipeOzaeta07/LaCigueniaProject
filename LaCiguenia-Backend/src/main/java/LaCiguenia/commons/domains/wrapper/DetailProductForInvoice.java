@@ -14,4 +14,5 @@ public interface DetailProductForInvoice {
     Double getDetailSubtotal();
     Double getInvoiceIva();
     Double getInvoiceTotal();
+    String getInvoicePay();
 }

@@ -10,4 +10,5 @@ export interface DetailProductInvoice {
     productName: string;
     productIva: number;
     detailSubtotal: number;
+    invoicePay: string;
 }

@@ -2,7 +2,6 @@ import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
-import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { SendOpeningService } from '@service/opening/implement/SendOpeningService';
 
@@ -113,5 +112,31 @@ export class InvoicingPageComponent {
 
   sendProductSelector(productSelector: string){
     this.productSelector = productSelector;
+  }
+
+  addition(eventData: { index: number; valor: number }){
+    this.detailInvoice[eventData.index].detailAmount += eventData.valor;
+    this.selectProducts(this.detailInvoice[eventData.index].productEntity)
+  }
+
+  subtract(eventData: { index: number; valor: number }) {
+    const product = this.detailInvoice[eventData.index].productEntity;
+    const productName = product.productName;
+  
+    if (this.hashMap.hasOwnProperty(productName) && this.hashMap[productName] > 0) {
+      this.hashMap[productName] -= eventData.valor;
+      this.detailInvoice[eventData.index].detailAmount -= eventData.valor;
+      this.totalPriceProducts -= this.detailInvoice[eventData.index].detailSubTotal;
+  
+      if (this.hashMap[productName] === 0) {
+        const existingIndex = this.detailInvoice.findIndex(
+          (detail) => detail.productEntity.productName === productName
+        );
+  
+        if (existingIndex !== -1) {
+          this.detailInvoice.splice(existingIndex, 1);
+        }
+      }
+    }
   }
 }

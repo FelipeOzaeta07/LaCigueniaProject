@@ -1,5 +1,5 @@
 <section  class="col_center item_center inherit bg_color_black z_index">
-    <div class="col_8 room border h_70 row_evenly bg_color_white">
+    <div class="col_8 room border h_67 row_evenly bg_color_white">
         <div class="col_17 bg_color_one title">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
         </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col_between pt_1">
                     <select class="select col_8 size_2 text_weight" [(ngModel)]="selectedPaymentMethod">
-                        <option value="Efectivo" selected>Efectivo</option>
+                        <option value="Efectivo">Efectivo</option>
                         <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
                         <option value="Tarjeta de Débito">Tarjeta de Débito</option>
                     </select>
@@ -38,8 +38,8 @@
             </div>
         </div>
         <div class="col_17 col_between">
-            <button class="col_5 btn_two size_2" (click)="modalEventTwo()">{{textFail}}</button>
-            <button type="submit" (click)="generalInvoicePay()" class="col_5 btn_one size_2">{{textPay}}</button>
+            <button class="col_8 btn_two size_2" (click)="modalEventTwo()">{{textFail}}</button>
+            <button type="submit" (click)="generalInvoicePay()" class="col_8 btn_one size_2">{{textPay}}</button>
         </div>
     </div>
 </section>

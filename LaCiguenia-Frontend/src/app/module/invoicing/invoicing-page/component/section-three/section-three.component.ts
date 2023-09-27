@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
@@ -17,10 +17,10 @@ export class SectionThreeComponent{
   @Input() customer!: CustomerModel;
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Output() addition = new EventEmitter<{index: number, valor: number}>();
+  @Output() subtract = new EventEmitter<{index: number, valor: number}>();
 
   invoice!: InvoiceModel;
-
-
 
   textTotal = TOTAL;
   textSubTotal = SUBTOTAL;
@@ -44,5 +44,20 @@ export class SectionThreeComponent{
 
   modalEventTwo(){
     this.modalActivateTwo.emit(true);
+  }
+
+  eventAddition(i: number){
+    let valor = 1;
+    let index = i;
+    this.addition.emit({index, valor});
+  }
+
+  eventSubtract(i: number){
+    if( this.detailInvoice[i].detailAmount > 0)
+    {
+      let valor = 1;
+      let index = i;
+      this.subtract.emit({index, valor});
+    }
   }
 }
