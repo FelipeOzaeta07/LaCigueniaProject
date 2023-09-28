@@ -12,6 +12,8 @@ import { SendOpeningService } from '@service/opening/implement/SendOpeningServic
 })
 export class InvoicingPageComponent {
 
+  totalIVA: number = 0;
+
   modalOne!: boolean;
   modalTwo!: boolean;
   modalThree!: boolean;
@@ -71,6 +73,9 @@ export class InvoicingPageComponent {
     if (existingIndex !== -1) {
       this.detailInvoice[existingIndex].detailAmount = this.hashMap[productName];
       this.totalPriceProducts += this.detailInvoice[existingIndex].detailSubTotal;
+      this.totalIVA += (
+        this.detailInvoice[existingIndex].productEntity.productPrice 
+        * this.detailInvoice[existingIndex].productEntity.productIva)/100
     } 
     else {
       this.detail = {
@@ -82,7 +87,11 @@ export class InvoicingPageComponent {
       };
       this.totalPriceProducts += this.detail.detailSubTotal;
       this.setDetailModel(this.detail);
+      this.totalIVA += this.detail.detailAmount * (
+        this.detail.productEntity.productPrice 
+        * this.detail.productEntity.productIva)/100
     }
+    
   }
 
   setDetailModel(detail: DetailModel) {
@@ -93,7 +102,7 @@ export class InvoicingPageComponent {
     this.invoiceEnd = {
       invoiceId: 0,
       invoiceDate: this.currentDate,
-      invoiceIva: (this.totalPriceProducts * 16) / 100,
+      invoiceIva: this.totalIVA,
       invoicePay: '',
       invoiceTotal: this.totalPriceProducts,
       invoiceStatus: "Pagado",
@@ -117,6 +126,9 @@ export class InvoicingPageComponent {
   addition(eventData: { index: number; valor: number }){
     this.detailInvoice[eventData.index].detailAmount += eventData.valor;
     this.selectProducts(this.detailInvoice[eventData.index].productEntity)
+    this.totalIVA += this.detailInvoice[eventData.index].detailAmount * (
+      this.detailInvoice[eventData.index].productEntity.productPrice 
+      * this.detailInvoice[eventData.index].productEntity.productIva)/100
   }
 
   subtract(eventData: { index: number; valor: number }) {
@@ -127,12 +139,13 @@ export class InvoicingPageComponent {
       this.hashMap[productName] -= eventData.valor;
       this.detailInvoice[eventData.index].detailAmount -= eventData.valor;
       this.totalPriceProducts -= this.detailInvoice[eventData.index].detailSubTotal;
-  
+      this.totalIVA -=  (
+        this.detailInvoice[eventData.index].productEntity.productPrice 
+        * this.detailInvoice[eventData.index].productEntity.productIva)/100
       if (this.hashMap[productName] === 0) {
         const existingIndex = this.detailInvoice.findIndex(
           (detail) => detail.productEntity.productName === productName
         );
-  
         if (existingIndex !== -1) {
           this.detailInvoice.splice(existingIndex, 1);
         }

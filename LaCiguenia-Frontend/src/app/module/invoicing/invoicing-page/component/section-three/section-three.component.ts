@@ -12,6 +12,9 @@ import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_
 })
 export class SectionThreeComponent{
 
+  @Input() totalIVA: number = 0;
+
+
   @Input() totalPriceProducts: number = 0;
   @Input() detailInvoice: DetailModel [] = [];
   @Input() customer!: CustomerModel;
