@@ -160,12 +160,25 @@ FROM customer_ciguenia c
 JOIN invoice_ciguenia i ON c.customer_id = i.customer_id
 ORDER BY c.customer_id, i.invoice_id;
 
+-------------------- Query Total Ventas de la Facturacion del Dia Anterior
+---------------------------------------------------------------------------------------------------
+SELECT SUM(invoice_total) AS totalInvoice
+FROM invoice_ciguenia
+WHERE invoice_date = DATE_SUB(CURDATE(), INTERVAL 1 DAY);
+
 -------------------- Query Seleccionar Los Productos Habilitados de un Inventario
 ---------------------------------------------------------------------------------------------------
 SELECT i.*
 FROM inventory_ciguenia i
 INNER JOIN product_ciguenia p ON i.product_id = p.product_id
 WHERE p.product_status = 'habilitado';
+
+-------------------- Query Seleccionar La ultima Apertura de Caja
+---------------------------------------------------------------------------------------------------
+SELECT *
+FROM opening_ciguenia
+ORDER BY opening_id DESC
+LIMIT 1;
 
 -------------------- Query Seleccionar Maximo 3 Productos Habilitados
 ---------------------------------------------------------------------------------------------------

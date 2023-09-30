@@ -5,4 +5,5 @@ import { Observable } from "rxjs";
 
 export abstract class OpeningRepository {
     abstract createOpening(openingModel : OpeningModel): Observable<GenericResponse>;
+    abstract readLastOpening(): Observable<GenericResponse>;
 }

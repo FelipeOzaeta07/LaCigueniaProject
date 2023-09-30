@@ -3,9 +3,16 @@
         <div *ngIf="!customer" class="bg_color_one row_center col_17 px_1">
             <a type="submit" (click)="modalEventOne()" class="input col_10 size_1 bg_color">{{textCustomer}}</a>
         </div>
-        <div *ngIf="customer" class="bg_color_one col_between item_center col_17 px_1">
-            <label class="input col_9 size_1 bg_color">{{customer.customerName}}</label>
-            <label class="input col_7 size_1 bg_color">{{customer.customerIdentification}}</label>
+        <div *ngIf="customer" class="bg_color_one item_center col_17 px_1">
+            <div class="input col_17 col_evenly bg_color input_special">
+                <label class="col_15 size_1 text_color_two input_special">{{customer.customerName}}</label>
+                <div class="col_2 col_center">
+                    <svg xmlns="http://www.w3.org/2000/svg" (click)="modalEdit()" class="svg_width" fill="" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col_17 h_60 border_end">
@@ -26,8 +33,8 @@
                     <a type="submit" (click)="eventSubtract(i)" class="col_1 addition text_center"> - </a>
                     <div class="col_2 text_center text_color_two">{{detailItem.detailAmount}}</div>
                     <a type="submit" (click)="eventAddition(i)" class="col_1 addition text_center"> + </a>
-                    <div class="col_3 text_center text_color_two">{{updateCalculatedValue(detailItem)}}</div>
-                    <div class="col_3 text_end text_color_two">{{detailItem.detailSubTotal}}</div>
+                    <div class="col_3 text_center text_color_two">{{textSymbol}} {{updateCalculatedValue(detailItem) | number}}</div>
+                    <div class="col_3 text_end text_color_two">{{textSymbol}} {{detailItem.detailSubTotal | number}}</div>
                 </div>
             </div>
         </div>
@@ -37,19 +44,19 @@
             <div class="col_17 px_1">
                 <div class="col_between col_17">
                     <p class="size_1">{{textSubTotal}}</p>
-                    <p class="size_1 text_color_two">{{textSymbol}} {{totalPriceProducts}}</p>
+                    <p class="size_1 text_color_two">{{textSymbol}} {{totalPriceProducts | number}}</p>
                 </div>
             </div>
             <div class="col_17 px_1 border_y">
                 <div class="col_between col_17">
                     <p class="size_1">{{textIva}}</p>
-                    <p class="size_1 text_color_two">{{textSymbol}} {{totalIVA}}</p>
+                    <p class="size_1 text_color_two">{{textSymbol}} {{totalIVA | number}}</p>
                 </div>
             </div>
             <div class="col_17 px_1">
                 <div class="col_between col_17">
                     <p class="size_1">{{textTotal}}</p>
-                    <p class="size_1">{{textSymbol}} {{totalPriceProducts}}</p>
+                    <p class="size_1">{{textSymbol}} {{totalPriceProducts | number}}</p>
                 </div>
             </div>
         </div>

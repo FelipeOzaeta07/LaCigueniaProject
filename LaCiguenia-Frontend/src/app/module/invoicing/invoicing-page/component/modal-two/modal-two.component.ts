@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { SYMBOL_PRICE, TITLE, SUBTOTAL, IVA, TOTAL, DISCOUNT, ADD_PAY, CHANGE, FAIL, PAY} 
+import { SYMBOL_PRICE, TITLE, SUBTOTAL, IVA, TOTAL, DISCOUNT, ADD_PAY, CHANGE, FAIL, PAY, METHOD_PAY} 
 from '@module/invoicing/invoicing-page/component/modal-two/constans/modal-two';
 import { DetailCreateUseCase } from '@repository/detail/case/DetailCreateUseCase';
 import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseCase';
@@ -29,14 +29,21 @@ export class ModalTwoComponent{
   textChange = CHANGE;
   textFail = FAIL;
   textPay = PAY;
+  textMethodPay = METHOD_PAY;
 
   detail!: DetailModel;
-  selectedPaymentMethod!:string;
+  selectedPaymentMethod: string = '';
+
+  metodosDePago = ['Efectivo', 'Tarjeta de Crédito', 'Tarjeta de Débito'];
 
   constructor(private invoiceCreateUseCase: InvoiceCreateUseCase, private detailCreateUseCase: DetailCreateUseCase){
   }
 
   generalInvoicePay(){
+    
+    if(this.selectedPaymentMethod == ''){
+      this.selectedPaymentMethod = 'Efectivo';
+    }
 
     this.invoiceEnd.invoicePay = this.selectedPaymentMethod;
 

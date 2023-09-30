@@ -56,4 +56,24 @@ public class InvoiceComplementService implements IInvoiceComplementService {
                             .build());
         }
     }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> totalSalesPreviousDay() {
+        try{
+            Integer totalSalesPreviousDay = this.iInvoiceRepository.totalSalesPreviousDay();
+            return ResponseEntity.ok(GenericResponseDTO.builder()
+                    .message(GeneralResponse.OPERATION_SUCCESS)
+                    .objectResponse(totalSalesPreviousDay)
+                    .statusCode(HttpStatus.OK.value())
+                    .build());
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
 }

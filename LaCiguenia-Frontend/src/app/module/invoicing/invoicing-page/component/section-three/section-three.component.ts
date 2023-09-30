@@ -63,4 +63,8 @@ export class SectionThreeComponent{
       this.subtract.emit({index, valor});
     }
   }
+
+  modalEdit(){
+    this.modalActivateOne.emit(true);
+  }
 }

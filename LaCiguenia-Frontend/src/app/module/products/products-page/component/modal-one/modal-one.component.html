@@ -11,11 +11,11 @@
                 </div>
                 <div class="col_4">
                     <label for="" class="size_2">{{textPrice}}</label>
-                    <input type="number" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productPrice}}" formControlName="priceProduct">
+                    <input type="number" class="input col_17 size_1" placeholder="{{textSymbol}} {{inventoryModel.productEntity.productPrice | number}}" formControlName="priceProduct">
                 </div>
                 <div class="col_4">
                     <label for="" class="size_2">{{textCost}}</label>
-                    <input type="number" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productCost}}" formControlName="costProduct">
+                    <input type="number" class="input col_17 size_1" placeholder="{{textSymbol}} {{inventoryModel.productEntity.productCost | number}}" formControlName="costProduct">
                 </div>
             </div>
             <div class="col_17 py_1 col_between">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col_4">
                     <label for="" class="size_2">{{textIva}}</label>
-                    <input type="number" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productIva}}" formControlName="ivaProduct">
+                    <input type="number" class="input col_17 size_1" placeholder="{{inventoryModel.productEntity.productIva}} {{textPercentage}}" formControlName="ivaProduct">
                 </div>
             </div>
             <div class="col_17 col_between">

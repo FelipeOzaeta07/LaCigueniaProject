@@ -33,7 +33,10 @@ export class InvoicingPageComponent {
 
   constructor(private sendOpeningService: SendOpeningService){
     const today = new Date();
-    this.currentDate = today.toISOString().slice(0, 10);
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    this.currentDate = year + '-' + month + '-' + day;
   }
 
   modalActivateOne(datos: boolean) {
@@ -126,7 +129,7 @@ export class InvoicingPageComponent {
   addition(eventData: { index: number; valor: number }){
     this.detailInvoice[eventData.index].detailAmount += eventData.valor;
     this.selectProducts(this.detailInvoice[eventData.index].productEntity)
-    this.totalIVA += this.detailInvoice[eventData.index].detailAmount * (
+    this.totalIVA = this.detailInvoice[eventData.index].detailAmount * (
       this.detailInvoice[eventData.index].productEntity.productPrice 
       * this.detailInvoice[eventData.index].productEntity.productIva)/100
   }

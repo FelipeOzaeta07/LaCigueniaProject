@@ -4,7 +4,8 @@ import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { TITLE, NAME_PRODUCT, PRICE, IVA, DESCRIPTION, CATEGORY, COST, CODE, AMOUNT, FAIL, DONE } from '@module/products/products-page/component/modal-one/constans/modal-one'
+import { TITLE, NAME_PRODUCT, PRICE, IVA, DESCRIPTION, CATEGORY, COST, CODE, AMOUNT, FAIL, DONE, SYMBOL_PAY, SYMBOL_PERCENTAGE } 
+from '@module/products/products-page/component/modal-one/constans/modal-one'
 import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
 import { UpdateInventoryUseCase } from '@repository/inventory/case/UpdateInventoryUseCase';
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
@@ -30,6 +31,8 @@ export class ModalOneComponent {
   textFail = FAIL;
   textDone = DONE;
   textCategory = CATEGORY;
+  textSymbol = SYMBOL_PAY;
+  textPercentage = SYMBOL_PERCENTAGE;
 
   category!: CategoryModel [];
   productForm!: FormGroup;
@@ -40,7 +43,13 @@ export class ModalOneComponent {
 
   constructor(private readCategoriesUseCase: ReadCategoriesUseCase, public formulary: FormBuilder,
               private updateProductUseCase: UpdateProductUseCase, private updateInventoryUseCase: UpdateInventoryUseCase){
-    this.productForm = formulary.group({
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      this.currentDate = year + '-' + month + '-' + day;
+
+      this.productForm = formulary.group({
       nameProduct: ['', [Validators.required]],
       priceProduct: ['', [Validators.required]],
       costProduct: ['', [Validators.required]],
@@ -49,8 +58,6 @@ export class ModalOneComponent {
       categoryProduct: ['', [Validators.required]],
       descriptionProduct: ['', [Validators.required]],
     });
-    const TODAY = new Date();
-    this.currentDate = TODAY.toISOString().slice(0, 10);
   }
 
   ngOnInit(): void {

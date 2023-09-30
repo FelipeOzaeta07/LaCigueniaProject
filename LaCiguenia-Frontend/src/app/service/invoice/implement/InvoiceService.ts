@@ -1,9 +1,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { InformationGeneralInvoice } from "@commons/domains/invoice/InformationGeneralInvoice";
 import { InvoiceModel } from "@commons/domains/invoice/InvoiceModel";
 import {    BASE_URL_INVOICE, CREATE_INVOICE, DELETE_INVOICE, READ_INVOICE, 
-            READ_INVOICIES, UPDATE_INVOICE, READ_INVOICES_MONTH_DAY } 
+            READ_INVOICIES, UPDATE_INVOICE, READ_INVOICES_MONTH_DAY, READ_TOTAL_INVOICES_PREVIOUS_DAY } 
         from "@commons/endpoint/invoice/InvoiceEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { InvoiceRepository } from "@repository/invoice/InvoiceRepository";
@@ -62,6 +61,14 @@ export class InvoiceService extends InvoiceRepository {
     override readInformationGeneralInvoices(): Observable<GenericResponse> {
         return this.http
         .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICES_MONTH_DAY)
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
+    }
+
+    override totalPreviousDayInvoice(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_INVOICE + READ_TOTAL_INVOICES_PREVIOUS_DAY)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));

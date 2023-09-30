@@ -4,7 +4,6 @@ import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, DATE, NAME_PRODUCT, AMOUNT, FAIL, EDIT } from '@module/inventory/inventory-page/component/modal-one/constans/modal-one';
 import { UpdateInventoryUseCase } from '@repository/inventory/case/UpdateInventoryUseCase';
-import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 
 @Component({
   selector: 'app-modal-one',
@@ -27,14 +26,19 @@ export class ModalOneComponent {
   inventoryForm!: FormGroup;
 
   constructor(public formulary: FormBuilder, private updateInventoryUseCase: UpdateInventoryUseCase){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    this.currentDate = year + '-' + month + '-' + day;
+
     this.inventoryForm = formulary.group({
       nameProduct: ['', [Validators.required]],
       amountProduct: ['', [Validators.required]],
       currentDate: ['', [Validators.required]],
 
     }); 
-    const today = new Date();
-    this.currentDate = today.toISOString().slice(0, 10);
+
   }
 
   updateInventory(){

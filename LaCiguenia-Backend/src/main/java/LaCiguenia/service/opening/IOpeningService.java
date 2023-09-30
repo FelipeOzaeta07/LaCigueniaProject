@@ -6,4 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface IOpeningService {
     ResponseEntity<GenericResponseDTO> createOpening(OpeningDTO openingDTO);
+    ResponseEntity<GenericResponseDTO> readLastOpening();
 }

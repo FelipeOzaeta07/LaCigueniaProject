@@ -40,7 +40,6 @@ export class ModalOneComponent implements OnInit{
 
   ngOnInit(): void {
     this.detailRead();
-    console.log("Tamaño del arreglo: " + this.detailProductInvoice.length)
   }
 
   detailRead(){

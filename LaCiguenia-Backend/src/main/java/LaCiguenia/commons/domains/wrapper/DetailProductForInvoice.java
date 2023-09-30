@@ -10,7 +10,7 @@ public interface DetailProductForInvoice {
     String getProductName();
     Double getProductPrice();
     Integer getDetailAmount();
-    Integer getProductIva();
+    Double getProductIva();
     Double getDetailSubtotal();
     Double getInvoiceIva();
     Double getInvoiceTotal();

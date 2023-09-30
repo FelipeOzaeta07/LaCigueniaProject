@@ -10,3 +10,4 @@ export const EXIST = "Existencias";
 export const EDIT = "EDITAR";
 export const FAIL = "CANCELAR";
 export const INFORMATION = "Información General del Inventario";
+export const SYMBOL = "$";

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
-import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { NAME_PRODUCT, TITLE, SALES_PRICE, AMOUNT, OPTION } from '@module/products/products-page/component/section-two/constans/section-two';
 import { ReadInventoriesRecentlyCreateUseCase } from '@repository/inventory/case/ReadInventoriesRecentlyCreateUseCase';

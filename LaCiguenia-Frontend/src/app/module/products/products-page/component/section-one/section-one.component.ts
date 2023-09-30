@@ -15,6 +15,7 @@ import { CreateProductsUseCase } from '@repository/product/case/CreateProductsUs
   templateUrl: './section-one.component.html',
   styleUrls: ['./section-one.component.scss']
 })
+
 export class SectionOneComponent implements OnInit {
 
   @Output() modalActivateThree = new EventEmitter<boolean>();
@@ -37,9 +38,14 @@ export class SectionOneComponent implements OnInit {
 
   currentDate: string;
 
-
   constructor(public formulary: FormBuilder, public router: Router, private createProductsUseCase: CreateProductsUseCase,
               private readCategoriesUseCase: ReadCategoriesUseCase, private createInventoryUseCase: CreateInventoryUseCase){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    this.currentDate = year + '-' + month + '-' + day;
+    
     this.productForm = formulary.group({
       nameProduct: ['', [Validators.required]],
       priceProduct: ['', [Validators.required]],
@@ -49,8 +55,6 @@ export class SectionOneComponent implements OnInit {
       categoryProduct: ['', [Validators.required]],
       descriptionProduct: ['', [Validators.required]],
     });
-    const TODAY = new Date();
-    this.currentDate = TODAY.toISOString().slice(0, 10);
   }
 
   ngOnInit(): void {

@@ -24,12 +24,18 @@ export class SectionOneComponent {
   openingBox!: number;
   store: string = "General";
   total!: number;
-  date: string = new Date().toISOString().slice(0, 10);
+  date: string;
   boxOpeningForm!: FormGroup;
   
 
   constructor(private formulario: FormBuilder, private router: Router, private createOpeningUseCase: CreateOpeningUseCase,
               private sendOpeningService: SendOpeningService){
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    this.date = year + '-' + month + '-' + day;
+
     this.boxOpeningForm = this.formulario.group({
       date: [this.date, [Validators.required]],
       store: [this.store, [Validators.required]],

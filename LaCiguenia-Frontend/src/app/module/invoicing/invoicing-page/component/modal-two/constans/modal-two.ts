@@ -8,3 +8,4 @@ export const ADD_PAY = "Agregar Forma de Pago";
 export const CHANGE = "Cambio";
 export const FAIL = "CANCELAR";
 export const PAY = "PAGAR";
+export const METHOD_PAY = "Seleccione Pago";

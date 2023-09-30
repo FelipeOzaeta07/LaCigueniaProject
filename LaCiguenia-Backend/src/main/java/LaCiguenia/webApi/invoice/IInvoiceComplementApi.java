@@ -7,4 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface IInvoiceComplementApi {
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> totalSalesPreviousDay();
 }

@@ -9,6 +9,7 @@ import { InvoiceDeleteUseCase } from '@repository/invoice/case/InvoiceDeleteUseC
 import { InvoiceService } from '@service/invoice/implement/InvoiceService';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadInformationGeneralInvoicesUseCase } from '@repository/invoice/case/ReadInformationGeneralInvoicesUseCase';
+import { TotalPreviousDayInvoiceUseCase } from '@repository/invoice/case/TotalPreviousDayInvoiceUseCase';
 
 const invoiceCreateUseCaseFactory = (invoiceRepository: InvoiceRepository) => new InvoiceCreateUseCase(invoiceRepository);
 export const invoiceCreateUseCaseProvider = {
@@ -52,6 +53,13 @@ export const readInformationGeneralUseCaseProvider = {
     deps: [InvoiceRepository],
 };
 
+const totalPreviousDayInvoiceUseCaseFactory = (invoiceRepository: InvoiceRepository) => new TotalPreviousDayInvoiceUseCase(invoiceRepository);
+export const totalPreviousDayInvoiceUseCaseProvider = {
+    provide: TotalPreviousDayInvoiceUseCase,
+    useFactory: totalPreviousDayInvoiceUseCaseFactory,
+    deps: [InvoiceRepository],
+};
+
 @NgModule({
   providers: [
     invoiceCreateUseCaseProvider,
@@ -60,6 +68,7 @@ export const readInformationGeneralUseCaseProvider = {
     invoiceUpdateUseCaseProvider,
     invoiceDeleteUseCaseProvider,
     readInformationGeneralUseCaseProvider,
+    totalPreviousDayInvoiceUseCaseProvider,
     {provide: InvoiceRepository, useClass: InvoiceService}
   ],
   imports: [

@@ -14,10 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IOpeningEndPoint.BASE_URL_OPENING)
@@ -47,5 +44,23 @@ public class OpeningApi implements IOpeningApi {
     @PostMapping(IOpeningEndPoint.CREATE_OPENING)
     public ResponseEntity<GenericResponseDTO> createOpening(@RequestBody OpeningDTO openingDTO) {
         return this.openingService.createOpening(openingDTO);
+    }
+
+    @Override
+    @Operation(summary = "Leer la ultima Apertura")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IOpeningEndPoint.READ_LAST_OPENING)
+    public ResponseEntity<GenericResponseDTO> readLastOpening() {
+        return this.openingService.readLastOpening();
     }
 }

@@ -11,4 +11,5 @@ export abstract class InvoiceRepository {
     abstract updateInvoice (invoiceModel :InvoiceModel): Observable<GenericResponse>;
     abstract deleteInvoice (invoiceTotal: number): Observable<GenericResponse>;
     abstract readInformationGeneralInvoices (): Observable<GenericResponse>;
+    abstract totalPreviousDayInvoice(): Observable<GenericResponse>;
 }

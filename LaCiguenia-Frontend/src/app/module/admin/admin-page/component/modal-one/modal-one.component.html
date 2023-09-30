@@ -18,7 +18,7 @@
                 </div>
                 <div class="col_7 row_evenly">
                   <label class="size_2 text_end">{{textPriceSale}}</label>
-                  <label class="col_17 size_1 text_end py_1 text_color_one" readonly>{{product.productPrice}}</label>
+                  <label class="col_17 size_1 text_end py_1 text_color_one" readonly>{{textSymbol}} {{product.productPrice | number}}</label>
                 </div>
               </div>
           </div>
@@ -48,7 +48,7 @@
       </div>
       <div class="col_8 row_evenly">
         <label class="size_2 text_center">{{textDate}}</label>
-        <label class="col_17 size_1 py_1 text_center text_color_one" readonly>{{date}}</label>
+        <label class="col_17 size_1 py_1 text_center text_color_one" readonly>{{currentDate}}</label>
       </div>
       <div class="col_13 row_evenly">
         <label class="size_2 text_center">{{textAmount}}</label>

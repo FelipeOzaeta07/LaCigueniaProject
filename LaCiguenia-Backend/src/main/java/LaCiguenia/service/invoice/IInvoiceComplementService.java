@@ -5,4 +5,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface IInvoiceComplementService {
     ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices();
+    ResponseEntity<GenericResponseDTO> totalSalesPreviousDay();
 }

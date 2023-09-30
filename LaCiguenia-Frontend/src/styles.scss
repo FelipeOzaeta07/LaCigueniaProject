@@ -52,6 +52,11 @@ td {
 .ng-invalid:not(form).ng-touched  {
     border-bottom: 0.4vh solid #a94442;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 /* Implement for mobile */
 @media screen and (min-width: 0px) and (max-width: 499px){}

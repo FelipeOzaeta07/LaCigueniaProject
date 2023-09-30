@@ -46,3 +46,10 @@ th{
     border: none;
     cursor: pointer;
 }
+.svg_width{
+    width: calc(1.5vh + 0.8vw);
+    fill: var(--color_two);
+}
+.svg_width:hover{
+    fill: var(--color_fifteen);
+}

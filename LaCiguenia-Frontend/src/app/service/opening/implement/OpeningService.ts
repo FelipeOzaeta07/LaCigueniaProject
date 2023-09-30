@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { OpeningModel } from "@commons/domains/opening/OpeningModel";
-import { BASE_URL_OPENING, CREATE_OPENING } from "@commons/endpoint/opening/OpeningEndPoint";
+import { BASE_URL_OPENING, CREATE_OPENING, READ_LAST_OPENING } from "@commons/endpoint/opening/OpeningEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { OpeningRepository } from "@repository/opening/OpeningRepository";
 import { Observable, catchError, tap, throwError } from "rxjs";
@@ -24,5 +24,9 @@ export class OpeningService extends OpeningRepository {
                     this.openingAccessTokenService.openingAccessTokenSave(genericResponse.message);
                 })
             );
+    }
+
+    override readLastOpening(): Observable<GenericResponse> {
+        return this.http.get<GenericResponse>(BASE_URL_OPENING + READ_LAST_OPENING)
     }
 }

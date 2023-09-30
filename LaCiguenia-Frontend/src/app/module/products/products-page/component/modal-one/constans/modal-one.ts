@@ -9,3 +9,5 @@ export const CODE = "Código";
 export const AMOUNT = "Cantidad";
 export const FAIL = "CANCELAR";
 export const DONE = "CONFIRMAR";
+export const SYMBOL_PAY = "$";
+export const SYMBOL_PERCENTAGE = "%";

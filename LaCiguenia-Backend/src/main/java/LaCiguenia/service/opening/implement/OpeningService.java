@@ -55,4 +55,34 @@ public class OpeningService implements IOpeningService {
                             .build());
         }
     }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readLastOpening() {
+        try {
+            Optional<OpeningEntity> openingExist =
+                    this.iOpeningRepository.findByLastOpening();
+            if (openingExist.isPresent()){
+                OpeningDTO openingDTO = this.openingConverter.convertOpeningEntityToOpeningDTO(openingExist.get());
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(openingDTO)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IOpeningResponse.OPENING_SUCCESS)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
 }

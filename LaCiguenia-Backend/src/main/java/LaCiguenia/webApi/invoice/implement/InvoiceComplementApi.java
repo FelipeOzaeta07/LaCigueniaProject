@@ -4,6 +4,7 @@ import LaCiguenia.commons.constans.endpoints.invoice.IInvoiceEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.service.invoice.IInvoiceComplementService;
+import LaCiguenia.service.invoice.implement.InvoiceComplementService;
 import LaCiguenia.webApi.invoice.IInvoiceComplementApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Log4j2
 public class InvoiceComplementApi implements IInvoiceComplementApi {
 
-    private final IInvoiceComplementService iInvoiceComplementService;
+    private final InvoiceComplementService invoiceComplementService;
 
-    public InvoiceComplementApi(IInvoiceComplementService iInvoiceComplementService) {
-        this.iInvoiceComplementService = iInvoiceComplementService;
+    public InvoiceComplementApi(InvoiceComplementService invoiceComplementService) {
+        this.invoiceComplementService = invoiceComplementService;
     }
 
     @Override
@@ -44,6 +45,24 @@ public class InvoiceComplementApi implements IInvoiceComplementApi {
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IInvoiceEndPoint.READ_INVOICES_MONTH_DAY)
     public ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices() {
-        return this.iInvoiceComplementService.readInformationGeneralInvoices();
+        return this.invoiceComplementService.readInformationGeneralInvoices();
+    }
+
+    @Override
+    @Operation(summary = "leer total ventas de las Facturas del dia anterior")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IInvoiceEndPoint.READ_TOTAL_INVOICES_PREVIOUS_DAY)
+    public ResponseEntity<GenericResponseDTO> totalSalesPreviousDay() {
+        return this.invoiceComplementService.totalSalesPreviousDay();
     }
 }

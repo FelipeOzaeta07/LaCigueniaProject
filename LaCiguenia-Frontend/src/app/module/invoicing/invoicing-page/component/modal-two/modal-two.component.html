@@ -7,15 +7,15 @@
             <div class="col_17">
                 <div class="col_between py_1 border_top">
                     <p class="size_1">{{textSubtotal}}</p>
-                    <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal}}</p>
+                    <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}</p>
                 </div>
                 <div class="col_between py_1 border_y">
                     <p class="size_1">{{textIva}}</p>
-                    <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceIva}}</p>
+                    <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceIva | number}}</p>
                 </div>
                 <div class="col_between py_1 border_bottom">
                     <p class="size_2 item_center">{{textTotal}}</p>
-                    <p class="size_3 text_color_one">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal}}</p>
+                    <p class="size_3 text_color_one">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}</p>
                 </div>
             </div>
             <div class="col_17">
@@ -24,17 +24,16 @@
                     <button type="submit" class="col_8 btn_one size_1">{{textAddPay}}</button>
                 </div>
                 <div class="col_between pt_1">
-                    <select class="select col_8 size_2 text_weight" [(ngModel)]="selectedPaymentMethod">
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-                        <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+                    <select [(ngModel)]="selectedPaymentMethod" name="selectedPaymentMethod" class="select col_8 size_2 text_weight">
+                        <option class="size_1" value="" disabled selected>{{textMethodPay}}</option>
+                        <option class="size_1" *ngFor="let metodo of metodosDePago" [value]="metodo">{{ metodo }}</option>
                     </select>
-                    <input type="text" class="input col_8 size_2 text_color_two text_end" value="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal}}">
+                    <input type="number" class="input col_8 size_2 text_color_two text_end" placeholder="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}">
                 </div>
             </div>
             <div class="col_17 py_1 col_between border_y">
                 <p class="size_1">{{textChange}}</p>
-                <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal}}</p>
+                <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}</p>
             </div>
         </div>
         <div class="col_17 col_between">
