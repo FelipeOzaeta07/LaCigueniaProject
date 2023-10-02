@@ -3,7 +3,6 @@ package LaCiguenia.service.product.implement;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.product.ProductConverter;
-import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

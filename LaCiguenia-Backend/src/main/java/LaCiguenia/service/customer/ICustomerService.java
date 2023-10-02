@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface ICustomerService {
     ResponseEntity<GenericResponseDTO> createCustomer(CustomerDTO customerDTO);
-    ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO);
+    ResponseEntity<GenericResponseDTO> readCustomer(String customerIdentification);
     ResponseEntity<GenericResponseDTO> readCustomers();
     ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO);
     ResponseEntity<GenericResponseDTO> deleteCustomer(Integer customerId);

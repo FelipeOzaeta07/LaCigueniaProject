@@ -1,48 +1,47 @@
-package LaCiguenia.service.customer.implement;
+package LaCiguenia.service.store.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.customer.ICustomerResponse;
-import LaCiguenia.commons.converter.customer.CustomerConverter;
-import LaCiguenia.commons.domains.dto.customer.CustomerDTO;
-import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
+import LaCiguenia.commons.constans.response.product.IProductResponse;
+import LaCiguenia.commons.converter.store.StoreConverter;
+import LaCiguenia.commons.domains.dto.store.StoreDTO;
+import LaCiguenia.commons.domains.entity.store.StoreEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
-import LaCiguenia.repository.customer.ICustomerRepository;
-import LaCiguenia.service.customer.ICustomerService;
+import LaCiguenia.repository.store.IStoreRepository;
+import LaCiguenia.service.store.IStoreService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import java.util.List;
+import org.springframework.stereotype.Component;
+
 import java.util.Optional;
-
-@Service
+import java.util.List;
+@Component
 @Log4j2
-public class CustomerService implements ICustomerService {
-
+public class StoreService implements IStoreService {
     @Autowired
-    private ICustomerRepository iCustomerRepository;
+    private IStoreRepository iStoreRepository;
     @Autowired
-    private CustomerConverter customerConverter;
+    private StoreConverter storeConverter;
 
     @Override
-    public ResponseEntity<GenericResponseDTO> createCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<GenericResponseDTO> createStore(StoreDTO storeDTO) {
         try {
-            Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findByCustomerIdentification(customerDTO.getCustomerIdentification());
-            if (!customerExist.isPresent()){
-                CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
-                this.iCustomerRepository.save(customerEntity);
+            Optional<StoreEntity> storeExist = this.iStoreRepository
+                    .findById(storeDTO.getStoreId());
+            if(!storeExist.isPresent()){
+                StoreEntity storeEntity = this.storeConverter.convertStoreDTOToStoreEntity(storeDTO);
+                this.iStoreRepository.save(storeEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
-                        .objectId(this.iCustomerRepository.lastCustomerId())
+                        .objectId(this.iStoreRepository.lastStoreId())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(ICustomerResponse.CUSTOMER_SUCCESS)
+                        .objectResponse(IProductResponse.PRODUCT_SUCCESS)
                         .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
@@ -52,27 +51,27 @@ public class CustomerService implements ICustomerService {
                     .body(GenericResponseDTO.builder()
                             .message(GeneralResponse.INTERNAL_SERVER)
                             .objectResponse(null)
-                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
         }
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readCustomer(String customerIdentification) {
+    public ResponseEntity<GenericResponseDTO> readStore(StoreDTO storeDTO) {
         try {
-            Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findByCustomerIdentification(customerIdentification);
-            if (customerExist.isPresent()){
+            Optional<StoreEntity> storeExist = this.iStoreRepository
+                    .findById(storeDTO.getStoreId());
+            if(storeExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(customerExist)
+                        .objectResponse(storeExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(ICustomerResponse.CUSTOMER_FAIL)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .objectResponse(IProductResponse.PRODUCT_SUCCESS)
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
         }catch (Exception e) {
@@ -87,20 +86,20 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readCustomers() {
+    public ResponseEntity<GenericResponseDTO> readStores() {
         try {
-            List<CustomerEntity> listCustomerExist = this.iCustomerRepository.findAll();
-            if (!listCustomerExist.isEmpty()){
+            List<StoreEntity> listStoreEntity = this.iStoreRepository.findStoreEnabled();
+            if(!listStoreEntity.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listCustomerExist)
+                        .objectResponse(listStoreEntity)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(ICustomerResponse.CUSTOMER_FAIL)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .objectResponse(IProductResponse.PRODUCT_SUCCESS)
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
         }catch (Exception e) {
@@ -115,22 +114,23 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<GenericResponseDTO> updateStore(StoreDTO storeDTO) {
         try {
-            Optional<CustomerEntity> customerExist = this.iCustomerRepository.findById(customerDTO.getCustomerId());
-            if (customerExist.isPresent()){
-                CustomerEntity customerEntity = this.customerConverter.convertCustomerDTOToCustomerEntity(customerDTO);
-                this.iCustomerRepository.save(customerEntity);
+            Optional<StoreEntity> storeExist = this.iStoreRepository
+                    .findById(storeDTO.getStoreId());
+            if(storeExist.isPresent()){
+                StoreEntity storeEntity = this.storeConverter.convertStoreDTOToStoreEntity(storeDTO);
+                this.iStoreRepository.save(storeEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.UPDATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(ICustomerResponse.CUSTOMER_FAIL)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .objectResponse(null)
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
         }catch (Exception e) {
@@ -145,21 +145,22 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deleteCustomer(Integer customerId) {
+    public ResponseEntity<GenericResponseDTO> deleteStore(Integer storeId) {
         try {
-            Optional<CustomerEntity> customerExist = this.iCustomerRepository.findById(customerId);
-            if (customerExist.isPresent()){
-                this.iCustomerRepository.deleteById(customerId);
+            Optional<StoreEntity> storeExist = this.iStoreRepository.findById(storeId);
+            if(storeExist.isPresent()){
+                storeExist.get().setStoreStatus("Borrado");
+                this.iStoreRepository.save(storeExist.get());
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(ICustomerResponse.CUSTOMER_FAIL)
-                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .objectResponse(null)
+                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .build());
             }
         }catch (Exception e) {

@@ -1,9 +1,8 @@
 package LaCiguenia.commons.domains.entity.opening;
 
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import LaCiguenia.commons.domains.entity.store.StoreEntity;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -36,4 +35,10 @@ public class OpeningEntity {
     @JsonManagedReference
     @JsonIgnore
     private List<InvoiceEntity> listInvoice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "storeId")
+    @JsonIgnore
+    private StoreEntity storeEntity;
 }
