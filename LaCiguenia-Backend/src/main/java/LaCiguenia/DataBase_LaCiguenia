@@ -82,7 +82,7 @@ VALUES
 	('Juguetes Jovenes', 'Juguetes para niños y niñas'),
 	('Ropa Infantil ', 'Ropa Infantil para bebés'),
 	('Alimentación', 'Alimentación Infantil con nutrientes'),
-	('Salud Infantil', 'Salud Infantil para el cuidado de los bebes'),
+	('Salud y Cuidado', 'Salud Infantil para el cuidado de los bebes'),
 	('Accesorios Hogar', 'Mobiliario Infantil para adecuar el hogar');
 
 -- Registro Cliente

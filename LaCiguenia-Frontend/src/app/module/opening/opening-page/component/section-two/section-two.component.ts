@@ -30,7 +30,13 @@ export class SectionTwoComponent implements OnInit{
   totalPreviousDayInvoice(){
     this.totalPreviousDayInvoiceUseCase.execute().subscribe(
       (res: GenericResponse) => {
-        this.totalPreviousDay = res.objectResponse;
+        this.totalPreviousDay = 0;
+        if(res.objectResponse > 0){
+          this.totalPreviousDay = res.objectResponse;
+        }
+      },
+      (error) => {
+        this.totalPreviousDay = 0;
       }
     )
   }
