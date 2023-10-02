@@ -22,4 +22,6 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
     Integer lastProductId();
     @Query(value = "SELECT * FROM product_ciguenia WHERE product_name LIKE CONCAT('%', :product_name, '%');", nativeQuery = true)
     List<ProductEntity> readProductForName(@Param("product_name") String productName);
+    @Query(value = "SELECT * FROM product_ciguenia WHERE category_id = :category_id AND product_status = 'Habilitado'", nativeQuery = true)
+    List<ProductEntity> findProductsForCategory(@Param("category_id") Integer categoryId);
 }

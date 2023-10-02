@@ -121,6 +121,35 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public ResponseEntity<GenericResponseDTO> readProductsForCategory(Integer categoryId) {
+        try {
+            List<ProductEntity> listProducts = this.iProductRepository.findProductsForCategory(categoryId);
+            if (!listProducts.isEmpty()){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(listProducts)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }
+            else {
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IProductResponse.PRODUCT_FAIL)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
     public ResponseEntity<GenericResponseDTO> readProducts() {
         try {
             List<ProductEntity> listProductsEntity =this.iProductRepository.findProductsEnabled();

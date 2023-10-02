@@ -12,6 +12,8 @@ public interface IProductApi {
     ResponseEntity<GenericResponseDTO> readProductId(@PathVariable Integer productId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readProduct(@PathVariable String productName);
+    @GetMapping
+    ResponseEntity<GenericResponseDTO> readProductsForCategory(@PathVariable Integer categoryId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readProducts();
     @GetMapping()
