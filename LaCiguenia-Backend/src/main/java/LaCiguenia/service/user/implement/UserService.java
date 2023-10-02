@@ -9,7 +9,6 @@ import LaCiguenia.commons.domains.entity.user.UserEntity;
 import LaCiguenia.repository.user.IUserRepository;
 import LaCiguenia.service.user.IUserService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -20,10 +19,14 @@ import java.util.Optional;
 @Log4j2
 public class UserService implements IUserService {
 
-    @Autowired
-    private IUserRepository iUserRepository;
-    @Autowired
-    private UserConverter userConverter;
+    private final IUserRepository iUserRepository;
+
+    private final UserConverter userConverter;
+
+    public UserService(IUserRepository iUserRepository, UserConverter userConverter) {
+        this.iUserRepository = iUserRepository;
+        this.userConverter = userConverter;
+    }
 
     @Override
     public ResponseEntity<GenericResponseDTO> userService(UserDTO userDTO) {
