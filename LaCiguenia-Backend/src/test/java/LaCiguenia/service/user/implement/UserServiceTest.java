@@ -74,6 +74,7 @@ class UserServiceTest {
         assertEquals(GeneralResponse.OPERATION_SUCCESS, response.getBody().getMessage());
         assertEquals(GeneralResponse.CREATE_SUCCESS, response.getBody().getObjectResponse());
 
+        //Es Importante cuando retorna vacio - o los datos se corrieron correctamente - sin un OutPut
         verify(iUserRepository, times(1)).findById(userDTO.getUserId());
         verify(userConverter, times(1)).convertLoginDTOToLoginEntity(userDTO);
         verify(iUserRepository, times(1)).save(any(UserEntity.class));

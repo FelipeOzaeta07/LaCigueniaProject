@@ -1,4 +1,4 @@
-<section  class="col_center item_center inherit bg_color_black z_index">
+<section *ngIf="!customerUpdate" class="col_center item_center inherit bg_color_black z_index">
     <form (ngSubmit)="customerService()" [formGroup]="customerForm" class="col_8 room border h_70 row_evenly bg_color_white">
         <div class="col_17 bg_color_one title">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
@@ -29,6 +29,46 @@
             <div class="col_17">
                 <label for="" class="size_2">{{textAddress}}</label>
                 <input type="text" class="input col_17 size_1" placeholder="Ingrese su direccion" formControlName="address">
+            </div>
+        </div>
+        <div class="col_17 col_between">
+            <button class="col_8 btn_two size_2" (click)="modalEventOne()">{{textFail}}</button>
+            <button type="submit" class="col_8 btn_one size_2">{{textDone}}</button>
+        </div>
+    </form>
+</section>
+
+<section *ngIf="customerUpdate" class="col_center item_center inherit bg_color_black z_index">
+    <form (ngSubmit)="editCustomerService()" [formGroup]="customerForm" class="col_8 room border h_70 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitleEdit}}</h1>
+        </div>
+        <div class="col_17 col_between">
+            <div class="col_17">
+                <label for="" class="size_2">{{textName}}</label>
+                <input type="text" class="input col_17 size_1 input_update" placeholder="{{customerUpdate.customerName}}" formControlName="nameProduct">
+            </div>
+        </div>
+        <div class="col_17 col_between">
+            <div class="col_8">
+                <label for="" class="size_2">{{textNumberId}}</label>
+                <input type="number" class="input col_17 size_1 input_update" placeholder="{{customerUpdate.customerIdentification}}" formControlName="numberId">
+            </div>
+            <div class="col_8">
+                <label for="" class="size_2">{{textNumberPhone}}</label>
+                <input type="number" class="input col_17 size_1 input_update" placeholder="{{customerUpdate.customerPhoneNumber}}" formControlName="numberPhone">
+            </div>
+        </div>
+        <div class="col_17 col_between">
+            <div class="col_17">
+                <label for="" class="size_2">{{textEmail}}</label>
+                <input type="text" class="input col_17 size_1 input_update" placeholder="{{customerUpdate.customerEmail}}" formControlName="email">
+            </div>
+        </div>
+        <div class="col_17 col_between">
+            <div class="col_17">
+                <label for="" class="size_2">{{textAddress}}</label>
+                <input type="text" class="input col_17 size_1 input_update" placeholder="{{customerUpdate.customerAddress}}" formControlName="address">
             </div>
         </div>
         <div class="col_17 col_between">

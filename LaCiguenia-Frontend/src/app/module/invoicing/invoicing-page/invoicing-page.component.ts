@@ -3,6 +3,8 @@ import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
+import { GenericResponse } from '@commons/response/GenericResponse';
+import { CustomerReadUseCase } from '@repository/customer/case/CustomerReadUseCase';
 import { SendOpeningService } from '@service/opening/implement/SendOpeningService';
 
 @Component({
@@ -18,6 +20,7 @@ export class InvoicingPageComponent {
   modalTwo!: boolean;
   modalThree!: boolean;
 
+  customerUpdate!: CustomerModel;
   customer!: CustomerModel;
   numberAmount: number = 1;
   totalPriceProducts: number = 0;
@@ -31,7 +34,7 @@ export class InvoicingPageComponent {
   hashMap: { [productItem: string]: number } = {};
 
 
-  constructor(private sendOpeningService: SendOpeningService){
+  constructor(private sendOpeningService: SendOpeningService, private customerReadUseCase: CustomerReadUseCase){
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -48,6 +51,26 @@ export class InvoicingPageComponent {
     this.builderInvoice();
   }
 
+  sendCustomerUpdate(customer: CustomerModel){
+    this.customerReadUseCase.execute(customer.customerIdentification).subscribe(
+      (res: GenericResponse) => {
+        this.customer = res.objectResponse
+      }
+    )
+  }
+
+  sendCustomerId(id: string){
+    this.customerReadUseCase.execute(id).subscribe(
+      (res: GenericResponse) => {
+        this.customer = res.objectResponse;
+      }
+    )
+  }
+
+  sendCustomer(customer: CustomerModel){
+    this.customerUpdate = customer;
+  }
+
   modalActivateThree(datos: boolean) {
     this.modalThree = datos;
     if(datos === false){
@@ -56,7 +79,11 @@ export class InvoicingPageComponent {
   }
 
   getCustomerId(lastCustomerId: CustomerModel){
-    this.customer = lastCustomerId;
+    this.customerReadUseCase.execute(lastCustomerId.customerIdentification).subscribe(
+      (res: GenericResponse) => {
+        this.customer = res.objectResponse;
+      }
+    )
   }
 
   selectProducts(product: ProductModel) {

@@ -58,10 +58,10 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<GenericResponseDTO> readCustomer(String customerId) {
         try {
             Optional<CustomerEntity> customerExist =
-                    this.iCustomerRepository.findById(customerDTO.getCustomerId());
+                    this.iCustomerRepository.findByCustomerIdentification(customerId);
             if (customerExist.isPresent()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

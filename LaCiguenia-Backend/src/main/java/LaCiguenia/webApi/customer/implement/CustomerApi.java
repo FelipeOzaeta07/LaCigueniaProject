@@ -60,8 +60,8 @@ public class CustomerApi implements ICustomerApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(ICustomerEndPoint.READ_CUSTOMER)
-    public ResponseEntity<GenericResponseDTO> readCustomer(CustomerDTO customerDTO) {
-        return this.customerService.readCustomer(customerDTO);
+    public ResponseEntity<GenericResponseDTO> readCustomer(@PathVariable String customerId) {
+        return this.customerService.readCustomer(customerId);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CustomerApi implements ICustomerApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @PutMapping(ICustomerEndPoint.UPDATE_CUSTOMER)
-    public ResponseEntity<GenericResponseDTO> updateCustomer(CustomerDTO customerDTO) {
+    public ResponseEntity<GenericResponseDTO> updateCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.updateCustomer(customerDTO);
     }
 

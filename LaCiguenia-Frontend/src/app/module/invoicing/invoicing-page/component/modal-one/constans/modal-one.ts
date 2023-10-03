@@ -1,4 +1,5 @@
 export const TITLE = "Registrar Cliente";
+export const TITLE_EDIT = "Editar Cliente"
 export const NAME_CUSTOMER = "Nombre Completo";
 export const NUMBER_ID = "Cédula o NIT";
 export const NUMBER_PHONE = "Número de Teléfono";

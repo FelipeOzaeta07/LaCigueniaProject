@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
+import { GenericResponse } from '@commons/response/GenericResponse';
 import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
+import { CustomerReadUseCase } from '@repository/customer/case/CustomerReadUseCase';
 
 
 @Component({
@@ -13,13 +15,13 @@ import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_
 export class SectionThreeComponent{
 
   @Input() totalIVA: number = 0;
-
-
   @Input() totalPriceProducts: number = 0;
   @Input() detailInvoice: DetailModel [] = [];
   @Input() customer!: CustomerModel;
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Output() sendCustomer = new EventEmitter<CustomerModel>();
+  @Output() sendCustomerId = new EventEmitter<string>();
   @Output() addition = new EventEmitter<{index: number, valor: number}>();
   @Output() subtract = new EventEmitter<{index: number, valor: number}>();
 
@@ -37,8 +39,17 @@ export class SectionThreeComponent{
   textCoinIva: number = 16;
   textCustomer = CUSTOMER;
 
+  identificationCustomer!: string;
+
+
+  constructor(){ }
+
   updateCalculatedValue(detailItem: DetailModel): number{
     return detailItem.detailSubTotal * detailItem.detailAmount;
+  }
+
+  getCustomer() {
+    this.sendCustomerId.emit(this.identificationCustomer);
   }
 
   modalEventOne(){
@@ -65,6 +76,7 @@ export class SectionThreeComponent{
   }
 
   modalEdit(){
+    this.sendCustomer.emit(this.customer);
     this.modalActivateOne.emit(true);
   }
 }

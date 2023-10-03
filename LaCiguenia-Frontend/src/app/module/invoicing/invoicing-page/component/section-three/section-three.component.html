@@ -1,9 +1,10 @@
 <section class="row_evenly inherit border_start">
-    <div class="col_start col_17 h_10 border_end">
-        <div *ngIf="!customer" class="bg_color_one row_center col_17 px_1">
+    <div class="bg_color_one item_center col_17 h_10 border_end">
+        <div *ngIf="!customer" class="col_between col_17 px_1">
             <a type="submit" (click)="modalEventOne()" class="input col_10 size_1 bg_color">{{textCustomer}}</a>
+            <input type="text" [(ngModel)]="identificationCustomer" name="identificationCustomer" (keyup.enter)="getCustomer()" placeholder="Buscar Cliente" class="input col_6 size_1 bg_color">
         </div>
-        <div *ngIf="customer" class="bg_color_one item_center col_17 px_1">
+        <div *ngIf="customer" class="item_center col_17 px_1">
             <div class="input col_17 col_evenly bg_color input_special">
                 <label class="col_15 size_1 text_color_two input_special">{{customer.customerName}}</label>
                 <div class="col_2 col_center">
@@ -20,21 +21,21 @@
             <table class="size_1 col_17">
                 <thead>
                     <tr>
-                        <th class="col_7 col_start">{{textProduct}}</th>
-                        <th class="col_4">{{textAmount}}</th>
-                        <th class="col_3">{{textTotalTable}}</th>
-                        <th class="col_3">{{textSubTotalTable}}</th>
+                        <th class="col_6 col_start">{{textProduct}}</th>
+                        <th class="col_3">{{textAmount}}</th>
+                        <th class="col_4">{{textTotalTable}}</th>
+                        <th class="col_4 text_end">{{textSubTotalTable}}</th>
                     </tr>
                 </thead>
             </table>
             <div class="col_17 h_51 scroll">
                 <div class="col_center py_1" *ngFor="let detailItem of detailInvoice; let i = index">
-                    <div class="col_7 text_color_two">{{detailItem.productEntity.productName}}</div>
+                    <div class="col_6 text_color_two">{{detailItem.productEntity.productName}}</div>
                     <a type="submit" (click)="eventSubtract(i)" class="col_1 addition text_center"> - </a>
-                    <div class="col_2 text_center text_color_two">{{detailItem.detailAmount}}</div>
+                    <div class="col_1 text_center text_color_two">{{detailItem.detailAmount}}</div>
                     <a type="submit" (click)="eventAddition(i)" class="col_1 addition text_center"> + </a>
-                    <div class="col_3 text_center text_color_two">{{textSymbol}} {{updateCalculatedValue(detailItem) | number}}</div>
-                    <div class="col_3 text_end text_color_two">{{textSymbol}} {{detailItem.detailSubTotal | number}}</div>
+                    <div class="col_4 text_center text_color_two">{{textSymbol}} {{updateCalculatedValue(detailItem) | number}}</div>
+                    <div class="col_4 text_end text_color_two">{{textSymbol}} {{detailItem.detailSubTotal | number}}</div>
                 </div>
             </div>
         </div>

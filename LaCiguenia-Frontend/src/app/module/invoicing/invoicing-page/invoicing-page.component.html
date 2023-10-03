@@ -1,15 +1,15 @@
 <main class="h_100 col_start">
-    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" (customerId)="getCustomerId($event)" class="h_100"></app-modal-one>
+    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" (customerId)="getCustomerId($event)" [customerUpdate]="customerUpdate" class="h_100"></app-modal-one>
     <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)" (modalActivateThree)="modalActivateThree($event)" [invoiceEnd]="invoiceEnd" [detailInvoice]="detailInvoice" class="h_100"></app-modal-two>
     <app-modal-three *ngIf="modalThree" class="h_100" (modalActivateThree)="modalActivateThree($event)" ></app-modal-three>
     <app-section-navbar class="col_2"></app-section-navbar>
-    <section class="col_10 h_100">
+    <section class="col_9 h_100">
         <div class="col_17">
             <app-section-one (sendProductSelector)="sendProductSelector($event)" class="h_30"></app-section-one>
             <app-section-two [productSelector]="productSelector" (selectProducts)="selectProducts($event)" class="h_70"></app-section-two>
         </div>
     </section>
-    <section class="col_5">
-        <app-section-three [totalIVA]="totalIVA" (addition)="addition($event)" (subtract)="subtract($event)" (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" [detailInvoice]="detailInvoice" [totalPriceProducts]="totalPriceProducts" [customer]="customer" class="h_100"></app-section-three>
+    <section class="col_6">
+        <app-section-three [totalIVA]="totalIVA" (sendCustomerId)="sendCustomerId($event)" (sendCustomer)="sendCustomer($event)" (addition)="addition($event)" (subtract)="subtract($event)" (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" [detailInvoice]="detailInvoice" [totalPriceProducts]="totalPriceProducts" [customer]="customer" class="h_100"></app-section-three>
     </section>
 </main>

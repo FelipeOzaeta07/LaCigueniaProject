@@ -4,11 +4,11 @@ import { CustomerRepository } from "@repository/customer/CustomerRepository";
 import { Observable } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
 
-export class CustomerReadUseCase implements UseCase<CustomerModel, GenericResponse>{
+export class CustomerReadUseCase implements UseCase<string, GenericResponse>{
 
     constructor(private customerRepository: CustomerRepository){}
 
-    execute(params: {customerId: number}) : Observable<GenericResponse>{
-        return this.customerRepository.readCustomer(params);
+    execute(customerId: string) : Observable<GenericResponse>{
+        return this.customerRepository.readCustomer(customerId);
     }
 }

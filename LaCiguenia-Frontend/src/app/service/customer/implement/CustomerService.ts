@@ -25,9 +25,9 @@ export class CustomerService extends CustomerRepository {
     }
 
 
-    override readCustomer(params: { customerId: number; }): Observable<GenericResponse> {
+    override readCustomer(customerId: string): Observable<GenericResponse> {
         return this.http
-            .get<GenericResponse>(BASE_URL_CUSTOMER + READ_CUSTOMER, {params})
+            .get<GenericResponse>(BASE_URL_CUSTOMER + READ_CUSTOMER + customerId)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
@@ -50,9 +50,9 @@ export class CustomerService extends CustomerRepository {
             }));
     }
 
-    override deleteCustomer(params: { customerId: number; }): Observable<GenericResponse> {
+    override deleteCustomer(customerId: number): Observable<GenericResponse> {
         return this.http
-            .delete<GenericResponse>(BASE_URL_CUSTOMER + DELETE_CUSTOMER, {params})
+            .delete<GenericResponse>(BASE_URL_CUSTOMER + DELETE_CUSTOMER + customerId)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));

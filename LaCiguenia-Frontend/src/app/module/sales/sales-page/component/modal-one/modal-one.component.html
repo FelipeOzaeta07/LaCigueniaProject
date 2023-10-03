@@ -29,10 +29,10 @@
             <table class="size_1 col_17">
                 <thead>
                     <tr>
-                        <th class="col_2">{{textNumberDetail}}</th>
+                        <th class="col_1">{{textNumberDetail}}</th>
                         <th class="col_5">{{textProductName}}</th>
                         <th class="col_2">{{textAmount}}</th>
-                        <th class="col_2">{{textIva}}</th>
+                        <th class="col_3">{{textIva}}</th>
                         <th class="col_3">{{textProductPrice}}</th>
                         <th class="col_3">{{textTotal}}</th>
                     </tr>
@@ -40,10 +40,10 @@
             </table>
             <div class="col_17 h_25 scroll py_1">
                 <div class="col_17 col_between item_center py" *ngFor="let invoiceItem of detailProductInvoice; let i = index">
-                    <div class="col_2 size_1 text_center text_color_two">{{i + 1}}</div>
+                    <div class="col_1 size_1 text_center text_color_two">{{i + 1}}</div>
                     <div class="col_5 size_1 text_center text_color_two">{{invoiceItem.productName}}</div>
                     <div class="col_2 size_1 text_center text_color_two">{{invoiceItem.detailAmount}}</div>
-                    <div class="col_2 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.detailSubtotal * invoiceItem.productIva/100 | number}}</div>
+                    <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.detailSubtotal * invoiceItem.productIva/100 | number}}</div>
                     <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.productPrice | number}}</div>
                     <div class="col_3 size_1 text_center text_color_two">{{textSymbol}} {{invoiceItem.detailSubtotal | number}}</div>
                 </div>

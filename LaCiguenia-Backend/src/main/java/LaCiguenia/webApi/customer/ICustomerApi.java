@@ -9,7 +9,7 @@ public interface ICustomerApi {
     @PostMapping()
     ResponseEntity<GenericResponseDTO> createCustomer(@RequestBody CustomerDTO customerDTO);
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readCustomer(@RequestBody CustomerDTO customerDTO);
+    ResponseEntity<GenericResponseDTO> readCustomer(@PathVariable String customerId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readCustomers();
     @PutMapping()
