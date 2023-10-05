@@ -11,4 +11,10 @@ export class SectionNavbarComponent {
   sales = SALES;
   products = PRODUCTS;
   inventory = INVENTORY;
+
+  accessMenu: boolean = false;
+
+  activedMenu(){
+    this.accessMenu = !this.accessMenu;
+  }
 }

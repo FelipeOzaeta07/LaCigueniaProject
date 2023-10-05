@@ -16,7 +16,7 @@ export class SectionTwoComponent implements OnInit, OnChanges{
 
 
   product!: ProductModel [];
-  productGroups: ProductModel[][] = [];
+  productGroups: ProductModel[] = [];
 
   constructor(private readProductsUseCase: ReadProductsUseCase){}
 
@@ -33,20 +33,14 @@ export class SectionTwoComponent implements OnInit, OnChanges{
   readProducts() {
     this.readProductsUseCase.execute().subscribe(
       (res: GenericResponse) => {
-        this.product = res.objectResponse;
-        const productsPerGroup = 5;
-        let currentIndex = 0;
-        
-        while (currentIndex < this.product.length) {
-          const productGroup = this.product.slice(currentIndex, currentIndex + productsPerGroup);
-          this.productGroups.push(productGroup);
-          currentIndex += productsPerGroup;
+        for(let item of res.objectResponse){
+          this.productGroups.push(item)
         }
       }
     )
   }
 
-  selecProduct(n: number, i: number) {
-    this.selectProducts.emit(this.productGroups[n][i]);
+  selecProduct(i: number) {
+    this.selectProducts.emit(this.productGroups[i]);
   }
 }

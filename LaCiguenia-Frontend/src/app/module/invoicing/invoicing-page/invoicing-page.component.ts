@@ -30,7 +30,6 @@ export class InvoicingPageComponent {
   
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
-  productGroupsSelector!: ProductModel [][];
   hashMap: { [productItem: string]: number } = {};
 
 

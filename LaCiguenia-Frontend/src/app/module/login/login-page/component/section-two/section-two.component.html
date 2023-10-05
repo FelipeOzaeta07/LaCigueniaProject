@@ -1,6 +1,6 @@
-<section class="h_100 px_3">
-    <div class="h_40 col_center item_center">
-        <div class="col_17 text_center items_center p_1">
+<section class="h_100 h_100_mv px_3 px_3_mv">
+    <div class="h_40 h_40_mv col_center col_center_mv item_center item_center_mv">
+        <div class="col_17 col_17_mv text_center text_center_mv items_center items_center_mv p_1 p_1_mv">
             <svg xmlns="http://www.w3.org/2000/svg" class="svg_width" viewBox="0 0 315 260" fill="none">
                 <g clip-path="url(#clip0_1487_762)">
                 <ellipse cx="157.5" cy="130" rx="157.5" ry="130" fill="#FDE8EA"/>
@@ -19,18 +19,18 @@
             </svg>
         </div>
     </div>
-    <div class="h_50 col_center item_center">
-        <form (ngSubmit)="userServices()" [formGroup]="userService" class="col_17">
+    <div class="h_50 h_50_mv col_center col_center_mv item_center item_center_mv">
+        <form (ngSubmit)="userServices()" [formGroup]="userService" class="col_17 col_17_mv">
             <div class="pb_2">
-                <h3 class="size_4 text_center">{{textSignIn}}</h3>
+                <h3 class="size_4 size_4_mv text_center text_center_mv">{{textSignIn}}</h3>
             </div>
             <div>
-                <input type="text" class="input col_17 size_1" placeholder="Ingresar el Correo Electrónico" formControlName="email">
+                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingresar el Correo Electrónico" formControlName="email">
             </div>
-            <div class="py_1">
-                <div class="col_center border">
-                    <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" placeholder="Ingresar Contraseña" formControlName="password"/>
-                    <span class="item_center p_1" (click)="toggleConfirmPasswordVisibility()">
+            <div class="py_1 py_1_mv">
+                <div class="col_center col_center_mv border border_mv">
+                    <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" placeholder="Ingresar Contraseña" formControlName="password"/>
+                    <span class="item_center item_center_mv p_1 p_1_mv" (click)="toggleConfirmPasswordVisibility()">
                         <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showConfirmPassword" class="svg_icon" fill="currentColor" class="{{showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                             <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
                             <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
@@ -43,24 +43,24 @@
                     </span>
                 </div>
             </div>
-            <div class="py_1 col_between">
+            <div class="py_1 py_1_mv col_between col_between_mv">
                 <div>
-                    <p class="size_1">{{textForgotPassword}}</p>
+                    <p class="size_1 size_mv">{{textForgotPassword}}</p>
                 </div>
                 <div>
-                    <a class="size_1 font_color" type="submit" routerLink="/registro-laciguenia">{{textCreateAccount}}</a>
+                    <a class="size_1 size_mv font_color" type="submit" routerLink="/registro-laciguenia">{{textCreateAccount}}</a>
                 </div>
             </div>
-            <div class="py_1">
-                <button class="col_17 size_3 btn_one">{{textSignIn}}</button>
+            <div class="py_1 py_1_mv">
+                <button class="col_17 col_17_mv size_3 size_2_mv btn_one btn_one_mv">{{textSignIn}}</button>
             </div>
         </form>
     </div>
 
                     
-    <div class="h_10 col_center item_center">
-        <div class="col_17">
-            <p class="text_center size_1 text_color_two">{{textNeedHelp}}<a href="https://api.whatsapp.com/send?phone=573226640119" target="_blank" class="text_a">{{textHere}}</a></p>
+    <div class="h_10 h_10_mv col_center col_center_mv item_center item_center_mv">
+        <div class="col_17 col_17_mv">
+            <p class="text_center text_center_mv size_1 size_mv text_color_two">{{textNeedHelp}}<a href="https://api.whatsapp.com/send?phone=573226640119" target="_blank" class="text_a">{{textHere}}</a></p>
         </div>
     </div>
 </section>

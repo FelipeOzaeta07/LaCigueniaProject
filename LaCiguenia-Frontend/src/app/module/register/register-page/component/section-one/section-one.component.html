@@ -1,7 +1,7 @@
-<section class="h_100 px_3">
-    <div class="h_27 col_center item_center">
-        <div class="col_17 text_center items_center p_1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="svg_width" viewBox="0 0 315 260" fill="none">
+<section class="h_100 h_100_mv px_3 px_3_mv">
+    <div class="h_27 h_27_mv col_center col_center_mv item_center item_center_mv">
+        <div class="col_17 col_17_mv text_center text_center_mv items_center items_center_mv p_1 p_1_mv">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg_width svg_width_mv" viewBox="0 0 315 260" fill="none">
                 <g clip-path="url(#clip0_1487_762)">
                 <ellipse cx="157.5" cy="130" rx="157.5" ry="130" fill="#FDE8EA"/>
                 <ellipse cx="97" cy="107" rx="24" ry="27" fill="#F2ACB2"/>
@@ -19,26 +19,26 @@
             </svg>
         </div>
     </div>
-    <div class="h_65 col_center item_center">
-        <form (ngSubmit)="createUser()" [formGroup]="registerForm" class="col_17">
+    <div class="h_65 h_65_mv col_center col_center_mv item_center item_center_mv">
+        <form (ngSubmit)="createUser()" [formGroup]="registerForm" class="col_17 col_17_mv">
             <div>
-                <h3 class="size_4 text_center">{{textTitle}}</h3>
+                <h3 class="size_4 size_3_mv text_center text_center_mv">{{textTitle}}</h3>
             </div>
             <div>
-                <p class="size_1 py_1">{{textName}}</p>
-                <input type="text" class="input col_17 size_1" placeholder="Ingrese el Nombre Completo" formControlName="name">
+                <p class="size_1 size_mv py_1 py_1_mv">{{textName}}</p>
+                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingrese el Nombre Completo" formControlName="name">
             </div>
             <div>
-                <p class="size_1 py_1">{{textEmail}}</p>
-                <input type="email" class="input col_17 size_1" placeholder="Ingresar Correo Electronico" formControlName="email">
+                <p class="size_1 size_mv py_1 py_1_mv">{{textEmail}}</p>
+                <input type="email" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingresar Correo Electronico" formControlName="email">
             </div>
             
-            <div class="col_17 col_between">
-                <div class="col_8">
-                    <p class="size_1 py_1">{{textPassword}}</p>
-                    <div class="col_center border">
-                        <input type="{{showPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" formControlName="password"/>
-                        <span class="item_center p_1" (click)="togglePasswordVisibility()">
+            <div class="col_17 col_17_mv col_between col_between_mv">
+                <div class="col_8 col_8_mv">
+                    <p class="size_1 size_mv py_1 py_1_mv">{{textPassword}}</p>
+                    <div class="col_center col_center_mv border border_mv">
+                        <input type="{{showPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" formControlName="password"/>
+                        <span class="item_center item_center_mv p_1 p_1_mv" (click)="togglePasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showPassword" class="svg_icon" fill="currentColor" class="{{showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
                                 <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
@@ -51,11 +51,11 @@
                         </span>
                     </div>
                 </div>
-                <div class="col_8">
-                    <p class="size_1 py_1">{{textConfirmPassword}}</p>
-                    <div class="col_center border">
-                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input border_special col_17 size_1" formControlName="confirmPassword"/>
-                        <span class="item_center p_1" (click)="toggleConfirmPasswordVisibility()">
+                <div class="col_8 col_8_mv">
+                    <p class="size_1 size_mv py_1 py_1_mv">{{textConfirmPassword}}</p>
+                    <div class="col_center col_center_mv border border_mv">
+                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" formControlName="confirmPassword"/>
+                        <span class="item_center item_center_mv p_1 p_1_mv" (click)="toggleConfirmPasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showConfirmPassword" class="svg_icon" fill="currentColor" class="{{showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
                                 <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
@@ -69,14 +69,14 @@
                     </div>
                 </div>
             </div>
-            <div class="py_2 col_between">
-                <button type="submit" class="col_17 size_3 btn_one">{{textTitle}}</button>
+            <div class="py_2 py_2_mv col_between col_between_mv">
+                <button type="submit" class="col_17 col_17_mv size_3 size_2_mv btn_one btn_one_mv">{{textTitle}}</button>
             </div>
         </form>
     </div>
-    <div class="h_8 col_center item_center">
-        <div class="col_17">
-            <p class="text_center size_1 text_color_two">{{textText}} <a routerLink="/login-laciguenia" class="text_a">{{textHere}}</a></p>
+    <div class="h_8 h_8_mv col_center col_center_mv item_center item_center_mv">
+        <div class="col_17 col_17_mv">
+            <p class="text_center text_center_mv size_1 size_mv text_color_two text_color_two_mv">{{textText}} <a routerLink="/login-laciguenia" class="text_a">{{textHere}}</a></p>
         </div>
     </div>
 </section>
