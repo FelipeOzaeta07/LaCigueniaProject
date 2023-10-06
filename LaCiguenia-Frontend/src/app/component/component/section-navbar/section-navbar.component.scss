@@ -12,11 +12,11 @@
     fill: var(--color_one);
 }
 .svg_width_logo{
-    width: calc(6vw + 5.5vh);
+    width: calc(9vw);
     transition: width 0.3s ease;
 }
 .svg_width_logo:hover{
-    width: calc(6.5vw + 5.5vh);;
+    width: calc(10vw);
 }
 .border_bottom{
     border-bottom: 1px solid;

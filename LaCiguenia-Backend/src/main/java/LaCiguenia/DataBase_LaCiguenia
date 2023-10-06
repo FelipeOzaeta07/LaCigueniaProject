@@ -89,6 +89,9 @@ VALUES
 INSERT INTO customer_ciguenia (customer_name, customer_identification, customer_phone_number, customer_email, customer_address)
 VALUES ('Cliente General', '123456789', '3001101010', 'general@example.com', 'Calle Principal 123');
 
+-- Registro Usuario
+INSERT INTO user_ciguenia (user_name, user_email, user_password, user_status)
+VALUES ('United National Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habilitado');
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------
 ---------------------------------------------------------------------------------------------------

@@ -29,13 +29,13 @@
                 </thead>
             </table>
             <div class="col_17 h_51 scroll">
-                <div class="col_center py_1" *ngFor="let detailItem of detailInvoice; let i = index">
-                    <div class="col_6 text_color_two">{{detailItem.productEntity.productName}}</div>
-                    <a type="submit" (click)="eventSubtract(i)" class="col_1 addition text_center"> - </a>
-                    <div class="col_1 text_center text_color_two">{{detailItem.detailAmount}}</div>
-                    <a type="submit" (click)="eventAddition(i)" class="col_1 addition text_center"> + </a>
-                    <div class="col_4 text_center text_color_two">{{textSymbol}} {{updateCalculatedValue(detailItem) | number}}</div>
-                    <div class="col_4 text_end text_color_two">{{textSymbol}} {{detailItem.detailSubTotal | number}}</div>
+                <div class="col_center py_1 item_center" *ngFor="let detailItem of detailInvoice; let i = index">
+                    <div class="size col_6 text_color_two">{{detailItem.productEntity.productName}}</div>
+                    <a type="submit" (click)="eventSubtract(i)" class="size col_1 addition text_center"> - </a>
+                    <div class="size col_1 text_center text_color_two">{{detailItem.detailAmount}}</div>
+                    <a type="submit" (click)="eventAddition(i)" class="size col_1 addition text_center"> + </a>
+                    <div class="size col_4 text_center text_color_two">{{textSymbol}} {{updateCalculatedValue(detailItem) | number}}</div>
+                    <div class="size col_4 text_end text_color_two">{{textSymbol}} {{detailItem.detailSubTotal | number}}</div>
                 </div>
             </div>
         </div>
