@@ -10,10 +10,11 @@ import { TEXT_ONE, TEXT_THREE, TEXT_TWO, SYMBOL, TEXT_TITLE  } from '@module/inv
   styleUrls: ['./section-two.component.scss']
 })
 
-export class SectionTwoComponent implements OnInit, OnChanges{
+export class SectionTwoComponent implements OnInit{
   
   @Output() selectProducts = new EventEmitter<ProductModel>();
   @Input() productSelector!: string;
+  @Input() sendProductCategory!: ProductModel[];
 
   textTitle = TEXT_TITLE;
   textItemOne = TEXT_ONE;
@@ -27,11 +28,6 @@ export class SectionTwoComponent implements OnInit, OnChanges{
 
   constructor(private readProductsUseCase: ReadProductsUseCase){}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['productSelector']){
-      
-    }
-  }
 
   ngOnInit(): void {
     this.readProducts();

@@ -7,3 +7,4 @@ export const READ_PRODUCTS_RECENTLY_CREATE = "/leer-productos-creados";
 export const UPDATE_PRODUCT = "/actualizar-producto";
 export const DELETE_PRODUCT = "/eliminar-producto/";
 export const READ_PRODUCT_NAME = "/leer-producto-por-nombre/";
+export const READ_PRODUCT_CATEGORY = "/leer-productos-por-categoria"

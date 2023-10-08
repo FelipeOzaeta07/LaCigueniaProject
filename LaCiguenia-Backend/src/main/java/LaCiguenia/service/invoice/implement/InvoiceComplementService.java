@@ -9,7 +9,6 @@ import LaCiguenia.component.invoice.implement.InvoiceComponent;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.service.invoice.IInvoiceComplementService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,15 @@ import java.util.List;
 @Service
 @Log4j2
 public class InvoiceComplementService implements IInvoiceComplementService {
-    @Autowired
-    private IInvoiceRepository iInvoiceRepository;
-    @Autowired
-    private InvoiceComponent invoiceComponent;
+
+    private final IInvoiceRepository iInvoiceRepository;
+    private final InvoiceComponent invoiceComponent;
+
+    public InvoiceComplementService(IInvoiceRepository iInvoiceRepository, InvoiceComponent invoiceComponent) {
+        this.iInvoiceRepository = iInvoiceRepository;
+        this.invoiceComponent = invoiceComponent;
+    }
+
 
     @Override
     public ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices() {

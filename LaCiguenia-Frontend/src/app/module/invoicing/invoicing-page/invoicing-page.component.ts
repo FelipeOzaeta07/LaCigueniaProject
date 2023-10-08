@@ -20,6 +20,7 @@ export class InvoicingPageComponent {
   modalTwo!: boolean;
   modalThree!: boolean;
 
+  sendProductCategory: ProductModel[] = [];
   customerUpdate!: CustomerModel;
   customer!: CustomerModel;
   numberAmount: number = 1;
@@ -150,6 +151,10 @@ export class InvoicingPageComponent {
 
   sendProductSelector(productSelector: string){
     this.productSelector = productSelector;
+  }
+
+  sendProduct(product: ProductModel[]){
+    this.sendProductCategory = product;
   }
 
   addition(eventData: { index: number; valor: number }){

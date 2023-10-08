@@ -10,4 +10,5 @@ public interface IProductEndPoint {
     String UPDATE_PRODUCT = "/actualizar-producto";
     String DELETE_PRODUCT = "/eliminar-producto/{productId}";
     String READ_PRODUCT_NAME = "/leer-producto-por-nombre/{productName}";
+    String READ_PRODUCT_CATEGORY = "/leer-productos-por-categoria{categoryId}";
 }

@@ -9,7 +9,6 @@ import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.opening.IOpeningRepository;
 import LaCiguenia.service.opening.IOpeningService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,15 @@ import java.util.Optional;
 @Log4j2
 public class OpeningService implements IOpeningService {
 
-    @Autowired
-    private IOpeningRepository iOpeningRepository;
-    @Autowired
-    private OpeningConverter openingConverter;
+
+    private final IOpeningRepository iOpeningRepository;
+    private final OpeningConverter openingConverter;
+
+    public OpeningService(IOpeningRepository iOpeningRepository, OpeningConverter openingConverter) {
+        this.iOpeningRepository = iOpeningRepository;
+        this.openingConverter = openingConverter;
+    }
+
     @Override
     public ResponseEntity<GenericResponseDTO> createOpening(OpeningDTO openingDTO) {
         try {

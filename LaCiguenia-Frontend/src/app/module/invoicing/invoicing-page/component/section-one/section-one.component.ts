@@ -3,6 +3,7 @@ import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
+import { ReadProductForCategoryUseCase } from '@repository/product/case/ReadProductForCategoryUseCase';
 import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductForNameUseCase';
 
 @Component({
@@ -14,6 +15,7 @@ import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductF
 export class SectionOneComponent implements OnInit{
 
   @Output() sendProductSelector = new EventEmitter<string>();
+  @Output() sendProduct = new EventEmitter<ProductModel[]>();
   @ViewChild('productInput') productInput!: ElementRef;
 
   product!: ProductModel [];
@@ -21,7 +23,7 @@ export class SectionOneComponent implements OnInit{
   category!: CategoryModel [];
   productGroupsSelector: ProductModel[][] = [];
 
-  constructor(private readCategoriesUseCase: ReadCategoriesUseCase){}
+  constructor(private readCategoriesUseCase: ReadCategoriesUseCase, private readProductForCategoryUseCase: ReadProductForCategoryUseCase){}
 
 
   ngOnInit(): void {
@@ -48,5 +50,32 @@ export class SectionOneComponent implements OnInit{
       error => {
         console.error("Error en la solicitud: " + error);
       });
+  }
+
+
+
+  readProductForCategory(index: number){
+    if(index !== 0){
+      this.readProductForCategoryUseCase.execute(index).subscribe(
+        (res: GenericResponse) => {
+          if(res.message != "Operación fallida"){
+            this.product = res.objectResponse;
+            this.sendProduct.emit(this.product);
+          }else{
+            //Aqui activar el mensaje
+            this.product = [];
+            this.sendProduct.emit(this.product);
+          }
+        }
+      )
+    }else{
+      this.product = [];
+      this.sendProduct.emit(this.product);
+    }
+  }
+  
+  readProductAllProduct(){
+    this.product = [];
+    this.sendProduct.emit(this.product);
   }
 }

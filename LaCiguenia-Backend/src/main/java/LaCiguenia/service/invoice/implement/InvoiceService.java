@@ -11,7 +11,6 @@ import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.repository.opening.IOpeningRepository;
 import LaCiguenia.service.invoice.IInvoiceService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,12 +22,16 @@ import java.util.Optional;
 @Log4j2
 public class InvoiceService implements IInvoiceService {
 
-    @Autowired
-    private IInvoiceRepository iInvoiceRepository;
-    @Autowired
-    private IOpeningRepository iOpeningRepository;
-    @Autowired
-    private InvoiceConverter invoiceConverter;
+
+    private final IInvoiceRepository iInvoiceRepository;
+    private final IOpeningRepository iOpeningRepository;
+    private final InvoiceConverter invoiceConverter;
+
+    public InvoiceService(IInvoiceRepository iInvoiceRepository, IOpeningRepository iOpeningRepository, InvoiceConverter invoiceConverter) {
+        this.iInvoiceRepository = iInvoiceRepository;
+        this.iOpeningRepository = iOpeningRepository;
+        this.invoiceConverter = invoiceConverter;
+    }
 
     @Override
     public ResponseEntity<GenericResponseDTO> createInvoice(InvoiceDTO invoiceDTO) {

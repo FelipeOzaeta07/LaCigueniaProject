@@ -11,7 +11,7 @@ import { ReadProductsRecentlyCreateUseCase } from '@repository/product/case/Read
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 import { DeleteProductUseCase } from '@repository/product/case/DeleteProductUseCase';
 import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductForNameUseCase';
-import { ReadProductFilterServicePipe } from './implement/read-product-filter-service.pipe';
+import { ReadProductForCategoryUseCase } from '@repository/product/case/ReadProductForCategoryUseCase';
 
 const createProductsUseCaseFactory = (productRepository: ProductRepository) => new CreateProductsUseCase(productRepository);
 export const createProductsUseCaseProvider = {
@@ -68,6 +68,14 @@ export const readProductForNameUseCaseProvider = {
     useFactory: readProductForNameUseCaseFactory,
     deps: [ProductRepository]
 };
+
+const readProductForCategoryUseCaseFactory = (productRepository: ProductRepository) => new ReadProductForCategoryUseCase(productRepository);
+export const readProductForCategoryUseCaseProvider = {
+    provide: ReadProductForCategoryUseCase,
+    useFactory: readProductForCategoryUseCaseFactory,
+    deps: [ProductRepository]
+};
+
 @NgModule({
     providers: [
         createProductsUseCaseProvider,
@@ -78,6 +86,7 @@ export const readProductForNameUseCaseProvider = {
         updateProductUseCaseProvider,
         deleteProductUseCaseProvider,
         readProductForNameUseCaseProvider,
+        readProductForCategoryUseCaseProvider,
         {provide: ProductRepository, useClass: ProductService}
     ],
     imports: [

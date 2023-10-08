@@ -13,4 +13,5 @@ public interface IProductService {
     ResponseEntity<GenericResponseDTO> updateProduct(ProductDTO productDTO);
     ResponseEntity<GenericResponseDTO> deleteProducts(Integer  productId);
     ResponseEntity<GenericResponseDTO> readProductForName(String  productName);
+    ResponseEntity<GenericResponseDTO> readProductForCategory(Integer categoryId);
 }

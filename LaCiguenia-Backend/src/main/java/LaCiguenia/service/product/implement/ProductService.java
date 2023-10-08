@@ -3,7 +3,6 @@ package LaCiguenia.service.product.implement;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.converter.product.ProductConverter;
-import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.dto.product.ProductDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.commons.domains.entity.product.ProductEntity;
@@ -11,12 +10,10 @@ import LaCiguenia.repository.product.IProductRepository;
 import LaCiguenia.service.product.IProductService;
 import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +21,14 @@ import java.util.Optional;
 @Log4j2
 public class ProductService implements IProductService {
 
-    @Autowired
-    private IProductRepository iProductRepository;
-    @Autowired
-    private ProductConverter productConverter;
+
+    private final IProductRepository iProductRepository;
+    private final ProductConverter productConverter;
+
+    public ProductService(IProductRepository iProductRepository, ProductConverter productConverter) {
+        this.iProductRepository = iProductRepository;
+        this.productConverter = productConverter;
+    }
 
     @Override
     @Transactional
@@ -243,6 +244,35 @@ public class ProductService implements IProductService {
     public ResponseEntity<GenericResponseDTO> readProductForName(String productName) {
         try {
             List<ProductEntity> listProductsEntity = this.iProductRepository.readProductForName(productName);
+            if (!listProductsEntity.isEmpty()){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(listProductsEntity)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }
+            else {
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IProductResponse.PRODUCT_FAIL)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readProductForCategory(Integer categoryId) {
+        try {
+            List<ProductEntity> listProductsEntity = this.iProductRepository.readProductForCategory(categoryId);
             if (!listProductsEntity.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

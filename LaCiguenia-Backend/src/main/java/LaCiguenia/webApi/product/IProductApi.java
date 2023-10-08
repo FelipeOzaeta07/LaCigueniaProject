@@ -22,4 +22,6 @@ public interface IProductApi {
     ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readProductForName(@PathVariable String productName);
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readProductForCategory(@PathVariable Integer categoryId);
 }
