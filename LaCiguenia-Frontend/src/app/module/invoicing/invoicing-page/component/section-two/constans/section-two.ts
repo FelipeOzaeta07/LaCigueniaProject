@@ -3,3 +3,4 @@ export const TEXT_ONE = "¡Haz clic ";
 export const TEXT_TWO = "aquí";
 export const TEXT_THREE = " para crearlos ahora mismo y comenzar a impulsar tu negocio!";
 export const SYMBOL = "$";
+export const TEXT_CATEGORY = "No tienes productos en esta categoría"

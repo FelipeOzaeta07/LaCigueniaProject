@@ -16,7 +16,7 @@ export class SectionHeaderComponent {
 
   constructor(private closeSesionUserUseCase: CloseSesionUserUseCase){}
 
-  delete(){
+  singUp(){
     this.active = !this.active
   }
 

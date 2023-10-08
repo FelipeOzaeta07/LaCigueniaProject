@@ -7,11 +7,11 @@
         <div class="col_3 cursor note border border_radius_div text_center col_center item_center"
             *ngFor="let categoryItem of category; let i = index" (click)="readProductForCategory(i + 1)">
             <div class="py_1">
-                <h5 class="size">{{ categoryItem.categoryName }}</h5>
+                <h5 class="size">{{categoryItem.categoryName}}</h5>
             </div>
         </div>
     </div>
     <div class="col_17">
-        <h1 class="title note cursor bg_color text_center size" (click)="readProductAllProduct()">Todos Los Productos</h1>
+        <h1 class="title cursor bg_color text_center size" (click)="readProductAllProduct()">{{textAllProduct}}</h1>
     </div>
 </section>

@@ -28,6 +28,7 @@ export class InvoicingPageComponent {
   invoiceEnd!: InvoiceModel;
   currentDate: string;
   productSelector: string = '';
+  messageCategory!: boolean;
   
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
@@ -49,6 +50,10 @@ export class InvoicingPageComponent {
   modalActivateTwo(datos: boolean) {
     this.modalTwo = datos;
     this.builderInvoice();
+  }
+
+  activeMessageCategory(datos: boolean){
+    this.messageCategory = datos;
   }
 
   sendCustomerUpdate(customer: CustomerModel){

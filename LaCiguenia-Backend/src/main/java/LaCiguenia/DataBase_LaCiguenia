@@ -156,6 +156,14 @@ WHERE product_status = 'Habilitado'
 ORDER BY product_id DESC
 LIMIT 3;
 
+-------------------- Query Lista de Productos por Categoria
+---------------------------------------------------------------------------------------------------
+SELECT pc.*
+FROM product_ciguenia pc
+JOIN category_ciguenia cc ON pc.category_id = cc.category_id
+WHERE cc.category_id = 6
+AND pc.product_status = 'Habilitado';
+
 -------------------- Query Seleccionar Todas las Facturas y Clientes
 ---------------------------------------------------------------------------------------------------
 SELECT c.*, i.*

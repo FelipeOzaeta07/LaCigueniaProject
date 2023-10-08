@@ -54,7 +54,9 @@ export class SectionOneComponent {
       openingId: 0,
       openingDate: this.boxOpeningForm.controls['date'].value,
       openingStore: this.boxOpeningForm.controls['store'].value,
-      openingTotal: this.boxOpeningForm.controls['openingBox'].value,
+      openingTotal: this.boxOpeningForm.controls['openingBox'].value != null
+        ? this.boxOpeningForm.controls['openingBox'].value
+        : 0,
     }
 
     this.createOpeningUseCase.execute(this.openingModel).subscribe(

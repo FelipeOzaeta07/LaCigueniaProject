@@ -98,7 +98,9 @@ export class ModalOneComponent {
         ? this.productForm.controls['descriptionProduct'].value
         : this.inventoryModel.productEntity.productDescription,
       productStatus: "Habilitado",
-      categoryEntity: this.productForm.controls['categoryProduct'].value
+      categoryEntity: this.productForm.controls['categoryProduct'].value != ''
+        ? this.productForm.controls['categoryProduct'].value
+        : this.category[0]
     }
 
     this.updateProductUseCase.execute(this.productModel).subscribe(
