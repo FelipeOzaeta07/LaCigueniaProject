@@ -5,3 +5,7 @@ export const SALES_PRICE = "Precio Venta";
 export const AMOUNT = "Cantidad";
 export const OPTIONS = "Opciones";
 export const PAGING = "Facturas por Página";
+export const TEXT_TITLE = "Tu inventario físico no está disponible en este momento, ya que no se han registrado productos en tu sistema";
+export const TEXT_ONE = "¡Haz clic ";
+export const TEXT_TWO = "aquí";
+export const TEXT_THREE = " para crearlos ahora mismo y comenzar a impulsar tu negocio!";

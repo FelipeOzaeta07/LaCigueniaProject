@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { AMOUNT, CODE, NAME_PRODUCT, OPTIONS, PAGING, SALES_PRICE, TITLE } from '@module/inventory/inventory-page/component/section-one/constans/section-one'
+import { AMOUNT, CODE, NAME_PRODUCT, OPTIONS, PAGING, SALES_PRICE, TITLE, TEXT_TITLE, TEXT_ONE, TEXT_TWO, TEXT_THREE } 
+from '@module/inventory/inventory-page/component/section-one/constans/section-one'
 import { ReadInventoriesUseCase } from '@repository/inventory/case/ReadInventoriesUseCase';
 import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
 
@@ -25,11 +26,16 @@ export class SectionOneComponent implements OnInit{
   textAmount = AMOUNT;
   textOptions = OPTIONS;
   textPaging = PAGING;
+  textSubTitle = TEXT_TITLE;
+  textItemOne =TEXT_ONE;
+  textItemTwo = TEXT_TWO;
+  textItemThree = TEXT_THREE;
 
   products!: ProductModel [];
   inventory!: InventoryModel;
   inventoryModel: InventoryModel[] = [];
 
+  message: boolean = true;
 
   constructor(private readProductsUseCase: ReadProductsUseCase, private readInventoriesUseCase: ReadInventoriesUseCase){
 
@@ -43,7 +49,9 @@ export class SectionOneComponent implements OnInit{
   getInventoryProduct(){
     this.readInventoriesUseCase.execute().subscribe(
       (res: GenericResponse) => {
-        console.log("Prueba Valores Inventario: " + res.objectResponse);
+        if(res.message != "Operación fallida"){
+          this.message = false;
+        }
         for(const resItem of res.objectResponse){
           this.inventory = resItem;
           this.inventoryModel.push(this.inventory);

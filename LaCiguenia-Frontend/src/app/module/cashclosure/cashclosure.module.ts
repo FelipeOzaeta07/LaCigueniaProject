@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentModule } from '@component/component.module';
 import { OpenModule } from '@service/opening/opening.module';
 import { CashClosureModule } from '@service/cashclosure/cashClosure.module';
+import { ModalOneComponent } from './cashclosure-page/component/modal-one/modal-one.component';
 
 
 @NgModule({
   declarations: [
     CashclosurePageComponent,
     SectionOneComponent,
-    SectionTwoComponent
+    SectionTwoComponent,
+    ModalOneComponent
   ],
   imports: [
     CommonModule,

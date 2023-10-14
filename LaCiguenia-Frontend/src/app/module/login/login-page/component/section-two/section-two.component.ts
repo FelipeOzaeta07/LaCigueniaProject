@@ -18,43 +18,43 @@ export class SectionTwoComponent {
   textNeedHelp = NEED_HELP;
   textHere = HERE;
 
-  userService!: FormGroup;
+  userForm!: FormGroup;
+  errorMessage: string = '';
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
   constructor(public formulary: FormBuilder, private serviceUserUseCase: ServiceUserUseCase, public router: Router){
-    this.userService = formulary.group({
+    this.userForm = formulary.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
   }
 
   userServices() {
-    if (!this.userService.valid) {
-      this.userService.markAllAsTouched();
+    if (!this.userForm.valid) {
+      this.userForm.markAllAsTouched();
       return;
     }
   
     const params = {
-      userEmail: this.userService.controls['email'].value,
-      userPassword: this.userService.controls['password'].value,
+      userEmail: this.userForm.controls['email'].value,
+      userPassword: this.userForm.controls['password'].value,
     };
   
     this.serviceUserUseCase.execute(params).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
           this.router.navigateByUrl('login-laciguenia/admin-page-principal');
-          this.userService.reset();
+          this.userForm.reset();
         } else {
           alert("Verificar Contraseña o Email");
-          this.userService.reset();
+          this.userForm.reset();
         }
       },
       (error) => {
-        console.error('Error en la suscripción:', error);
-        alert("Ocurrió un error al procesar la solicitud");
-        this.userService.reset();
+        this.userForm.reset();
+        this.errorMessage = "Correo Electronico o Contraseña incorrecta. verificar";
       }
     );
   }

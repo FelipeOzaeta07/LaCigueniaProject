@@ -1,5 +1,10 @@
-@import url(/src/styles.scss);
-
+.border_top{
+    border-top: 1px solid;
+    border-color: var(--color_two);
+}
+.pb_1{
+    padding-bottom: calc(0.5vw);
+}
 .z_index{
     position: fixed;
     z-index: 1;
@@ -29,4 +34,11 @@
 .input:focus::placeholder{
     border-color: var(--color_twelve);
     color: var(--color_one);
+}
+.placeholder::placeholder{
+    color: var(--color_two);
+}
+.placeholder:hover::placeholder{
+    border-color: var(--color_twelve);
+    color: var(--color_thirteen);
 }

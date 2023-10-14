@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class CashclosurePageComponent {
 
+  modal!: boolean;
+
+  modalActivate(datos: boolean){
+    this.modal = datos;
+  }
 }

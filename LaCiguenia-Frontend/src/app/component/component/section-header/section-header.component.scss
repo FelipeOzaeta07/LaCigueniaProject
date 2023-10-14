@@ -1,5 +1,11 @@
-@import url(/src/styles.scss);
-
+.hover:hover svg{
+    fill: var(--color_one);
+    transition: fill 0.5s;
+}
+.hover:hover p{
+    color: var(--color_one);
+    transition: color 0.5s;
+}
 .svg_width{
     width: calc(4vh);
     fill: var(--color_two);

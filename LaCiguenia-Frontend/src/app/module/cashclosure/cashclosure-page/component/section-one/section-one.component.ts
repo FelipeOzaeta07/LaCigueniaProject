@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { CashClosureInformationModel } from '@commons/domains/cashclosure/CashClosureInformationModel';
 import { CashClosureModel } from '@commons/domains/cashclosure/CashClosureModel';
 import { OpeningModel } from '@commons/domains/opening/OpeningModel';
@@ -16,7 +17,10 @@ import { OpeningAccessTokenService } from '@service/opening/implement/OpeningAcc
   templateUrl: './section-one.component.html',
   styleUrls: ['./section-one.component.scss']
 })
-export class SectionOneComponent implements OnInit{
+export class SectionOneComponent implements OnInit, OnChanges{
+
+  @Input() modal!: boolean;
+  @Output() modalActivate = new EventEmitter<boolean>();
 
   textTitle = TITLE;
   textDate = DATE;
@@ -52,7 +56,7 @@ export class SectionOneComponent implements OnInit{
 
   constructor(private createCashClosureUseCase: CreateCashClosureUseCase, private readLastCashClosureUseCase: ReadLastCashClosureUseCase,
       private informationForCashClosuresUseCase : InformationForCashClosuresUseCase, private readLastOpeningUseCase: ReadLastOpeningUseCase,
-      private openingAccessTokenService: OpeningAccessTokenService ){
+      private router: Router ){
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -64,6 +68,12 @@ export class SectionOneComponent implements OnInit{
     this.readLastCashClosure();
     this.informationForCashClosure();
     this.readLastOpening();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.modal == false){
+      this.router.navigateByUrl('login-laciguenia/admin-page-principal');
+    }
   }
 
   readLastOpening(){
@@ -121,8 +131,6 @@ export class SectionOneComponent implements OnInit{
     }
   }
 
-
-
   createCashClosure(){
     this.cashClosure = {
       cashClosureId : 0,
@@ -140,11 +148,15 @@ export class SectionOneComponent implements OnInit{
 
     this.createCashClosureUseCase.execute(this.cashClosure).subscribe(
       (res: GenericResponse) => {
-        
+        this.modalEvent();
       },
       (error) => {
 
       }
     )
+  }
+
+  modalEvent() {
+    this.modalActivate.emit(true);
   }
 }

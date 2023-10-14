@@ -20,16 +20,19 @@
         </div>
     </div>
     <div class="h_50 h_50_mv col_center col_center_mv item_center item_center_mv">
-        <form (ngSubmit)="userServices()" [formGroup]="userService" class="col_17 col_17_mv">
+        <form (ngSubmit)="userServices()" [formGroup]="userForm" class="col_17 col_17_mv">
             <div class="pb_2">
                 <h3 class="size_4 size_4_mv text_center text_center_mv">{{textSignIn}}</h3>
             </div>
             <div>
-                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingresar el Correo Electrónico" formControlName="email">
+                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" [placeholder]="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched ? 'Introduce un correo electrónico válida' : 'Ingresar el Correo Electrónico'"
+                [ngClass]="{'error_placeholder': userForm.get('email')?.hasError('required') && userForm.get('email')?.touched}" formControlName="email">
             </div>
             <div class="py_1 py_1_mv">
                 <div class="col_center col_center_mv border border_mv">
-                    <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" placeholder="Ingresar Contraseña" formControlName="password"/>
+                    <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv"
+                    [placeholder]="userForm.get('password')?.hasError('required') && userForm.get('password')?.touched ? 'Introduce una contraseña válida' : 'Ingresar Contraseña'"
+                    [ngClass]="{'error_placeholder': userForm.get('password')?.hasError('required') && userForm.get('password')?.touched}" formControlName="password"/>
                     <span class="item_center item_center_mv p_1 p_1_mv" (click)="toggleConfirmPasswordVisibility()">
                         <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showConfirmPassword" class="svg_icon" fill="currentColor" class="{{showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                             <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
@@ -42,6 +45,9 @@
                         </svg>
                     </span>
                 </div>
+            </div>
+            <div *ngIf="errorMessage" class="text_color size_1 text_center">
+                {{errorMessage}}
             </div>
             <div class="py_1 py_1_mv col_between col_between_mv">
                 <div>

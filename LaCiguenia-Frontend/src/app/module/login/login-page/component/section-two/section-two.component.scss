@@ -1,5 +1,9 @@
-@import url(/src/styles.scss);
-
+.error_placeholder::placeholder{
+    color: var(--color_ten);
+}
+.text_color{
+    color: var(--color_ten);
+}
 .text_a{
     text-decoration: underline;
     color: var(--color_fifteen);
@@ -17,14 +21,12 @@
 .font_color:focus{
     color: var(--color_fifteen);
 }
-
 .border_special{
     border: none;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
 .border_special:hover{
-    border: none;
     box-shadow: none;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;

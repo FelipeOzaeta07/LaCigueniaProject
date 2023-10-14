@@ -27,6 +27,7 @@ export class SectionOneComponent implements OnChanges {
 
   registerForm!: FormGroup;
   userModel!: UserModel;
+  errorPassword: string = '';
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -35,10 +36,11 @@ export class SectionOneComponent implements OnChanges {
     this.registerForm = formulary.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     if(this.modal == false){
       this.router.navigateByUrl('login-laciguenia');
@@ -73,19 +75,14 @@ export class SectionOneComponent implements OnChanges {
         (genericResponse: GenericResponse) => {
           if (genericResponse.statusCode === 200) {
             this.modalEvent();
-          } else {
-            alert("Verificar Contraseña o Email");
-            this.registerForm.reset();
           }
         },
         (error) => {
-          console.error('Error en la suscripción:', error);
-          alert("Ocurrió un error al procesar la solicitud");
           this.registerForm.reset();
         }
       );
     }else{
-      alert("Verificar Contraseña");
+      this.errorPassword = "Verificar Contraseña";
     }
   }
 

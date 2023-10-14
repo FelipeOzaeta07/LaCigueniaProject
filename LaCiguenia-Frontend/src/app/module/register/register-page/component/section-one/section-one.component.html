@@ -26,18 +26,20 @@
             </div>
             <div>
                 <p class="size_1 size_mv py_1 py_1_mv">{{textName}}</p>
-                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingrese el Nombre Completo" formControlName="name">
+                <input type="text" class="input input_mv col_17 col_17_mv size_1 size_mv" [placeholder]="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched ? 'Ingrese el Nombre Completo' : 'Ingrese el Nombre Completo'"
+                [ngClass]="{'error_placeholder': registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched}" formControlName="name">
             </div>
             <div>
                 <p class="size_1 size_mv py_1 py_1_mv">{{textEmail}}</p>
-                <input type="email" class="input input_mv col_17 col_17_mv size_1 size_mv" placeholder="Ingresar Correo Electronico" formControlName="email">
+                <input type="email" class="input input_mv col_17 col_17_mv size_1 size_mv" [placeholder]="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched ? 'Ingresar Correo Electronico' : 'Ingresar Correo Electronico'"
+                [ngClass]="{'error_placeholder': registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched}" formControlName="email">
             </div>
-            
             <div class="col_17 col_17_mv col_between col_between_mv">
                 <div class="col_8 col_8_mv">
                     <p class="size_1 size_mv py_1 py_1_mv">{{textPassword}}</p>
                     <div class="col_center col_center_mv border border_mv">
-                        <input type="{{showPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" formControlName="password"/>
+                        <input type="{{showPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" [placeholder]="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched ? 'Contraseña' : ''"
+                        [ngClass]="{'error_placeholder': registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched}" formControlName="password"/>
                         <span class="item_center item_center_mv p_1 p_1_mv" (click)="togglePasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showPassword" class="svg_icon" fill="currentColor" class="{{showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
@@ -54,7 +56,8 @@
                 <div class="col_8 col_8_mv">
                     <p class="size_1 size_mv py_1 py_1_mv">{{textConfirmPassword}}</p>
                     <div class="col_center col_center_mv border border_mv">
-                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" formControlName="confirmPassword"/>
+                        <input type="{{showConfirmPassword ? 'text' : 'password'}}" class="input input_mv border_special col_17 col_17_mv size_1 size_mv" [placeholder]="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched ? 'Contraseña' : ''"
+                        [ngClass]="{'error_placeholder': registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched}" formControlName="confirmPassword"/>
                         <span class="item_center item_center_mv p_1 p_1_mv" (click)="toggleConfirmPasswordVisibility()">
                             <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!showConfirmPassword" class="svg_icon" fill="currentColor" class="{{showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}}" viewBox="0 0 16 16">
                                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
@@ -69,7 +72,10 @@
                     </div>
                 </div>
             </div>
-            <div class="py_2 py_2_mv col_between col_between_mv">
+            <div *ngIf="errorPassword" class="text_color size_1 text_center py_1">
+                {{errorPassword}}
+            </div>
+            <div class="py_2_mv col_between col_between_mv" [ngClass]="{'py_2': !errorPassword, '': errorPassword}">
                 <button type="submit" class="col_17 col_17_mv size_3 size_2_mv btn_one btn_one_mv">{{textTitle}}</button>
             </div>
         </form>

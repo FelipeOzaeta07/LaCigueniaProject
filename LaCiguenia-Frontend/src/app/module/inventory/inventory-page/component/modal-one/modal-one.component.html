@@ -5,17 +5,21 @@
         </div>
         <form (ngSubmit)="updateInventory()" [formGroup]="inventoryForm" class="h_35 row_evenly">
             <div class="col_17 col_center item_center">
-                <h1 class="col_12 size_2">{{textDate}}</h1>
-                <input type="text" class="col_5 bg_color_four input size_1" [value]="currentDate" readonly>
+                <h1 class="col_12 text_color_two size_2">{{textDate}}</h1>
+                <label class="col_9 text_color_one text_end size_2">{{currentDate}}</label>
             </div>
-            <div class="col_17 col_between">
-                <div class="col_11">
-                    <h1 class="col_17 size_2">{{textNameProduct}}</h1>
-                    <input type="text" class="col_17 bg_color_four input size_1" [value]="inventoryModel.productEntity.productName" readonly>
-                </div>
+            <div class="col_17 col_center item_center">
+                <h1 class="col_8 text_color_two size_2">{{textNameProduct}}</h1>
+                <label class="col_9 text_color_one text_end size_2">{{inventoryModel.productEntity.productName}}</label>
+            </div>
+            <div class="col_17 col_between border_top py_1">
                 <div class="col_5">
-                    <h1 class="col_12 size_2">{{textAmount}}</h1>
+                    <h1 class="col_12 size_2 pb_1">{{textAmount}}</h1>
                     <input type="number" class="col_17 input size_1" placeholder="{{inventoryModel.inventoryAmount}}" formControlName="amountProduct">
+                </div>
+                <div class="col_11">
+                    <h1 class="col_12 size_2 pb_1">{{textReason}}</h1>
+                    <input type="text" class="col_17 input size_1 placeholder" placeholder="Ingresar la causa del movimiento.">
                 </div>
             </div>
             <div class="col_17 col_between">
