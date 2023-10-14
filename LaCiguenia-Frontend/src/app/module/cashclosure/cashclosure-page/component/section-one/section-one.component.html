@@ -1,0 +1,81 @@
+<section class="py_2 room row_between inherit col_17">
+    <div class="row_between item_center col_17">
+        <div class="col_17 col_start">
+            <h1 class="size_2 col_17 title bg_color_one col_17 text_center">{{textTitle}}</h1>
+        </div>
+        <div class="col_between col_15 py_1">
+            <div class="col_7 col_start">
+                <p class="size_1 col_5 text_color_two">{{textDate}}</p>
+                <p class="size_1 col_12 text_color_one">{{date}}</p>
+            </div>
+            <div class="col_7 col_start">
+                <p class="size_1 col_5 text_color_two">{{textStore}}</p>
+                <p class="size_1 col_12 text_color_one">{{informationCashClosure.cashClosureInformationStore}}</p>
+            </div>
+            <div class="col_3 col_start">
+                <p class="size_1 col_8 text_color_two">{{textNumberCashClosure}}</p>
+                <p class="size_1 col_9 text_color_one text_end">{{nextCashClosure}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row_between h_75">
+        <div class="col_17 col_between">
+            <a routerLink="cash-closure-page-principal" class="col_6 cursor title col_evenly item_center color_hover">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="col_5 svg_width" viewBox="0 0 16 16">
+                    <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                <h1 class="col_12 size_1 text_center">{{textFindExpense}}</h1>
+            </a>
+        </div>
+        <div class="text_center border_bottom">
+            <p class="size_1 text_color">{{textSubTitle}}</p>
+        </div>
+        <div class="col_between">
+            <div class="col_7 row_center">
+                <div class="col_17 col_evenly item_center" *ngFor="let item of colombianPesos; let i = index">
+                    <p class="size_1 col_6">{{textSymbol}} {{item | number}}</p>
+                    <p class="col_4"><input type="number" class="col_17" [(ngModel)]="inputValues[i]" (input)="updateResult(i)" min="1" max="9999"></p>
+                    <p class="col_7 text_color_two text_end">{{textSymbol}} {{ results[i] | number }}</p>
+                </div>
+            </div>
+            <div class="col_9 row_evenly">
+                <div class="">
+                    <div class="col_17 col_center">
+                        <p class="size_1 col_10">{{textOpeningBox}}</p>
+                        <p class="size_2 col_1 text_color_two text_start">{{textSymbol}} </p><span class="size_2 col_6 text_color_two text_end">{{informationCashClosure.cashClosureInformationOpeningBox | number}}</span>
+                    </div>
+                    <div class="col_17 col_center item_center">
+                        <p class="size_1 col_10">{{textTotalSales}}</p>
+                        <p class="size_2 col_1 text_color_two text_start">{{textSymbol}} </p><span class="size_2 col_6 text_color_two text_end">{{informationCashClosure.cashClosureInformationTotalCash | number}}</span>
+                    </div>
+                    <div class="col_17 col_center item_center">
+                        <p class="size_1 col_10">{{textExpense}}</p>
+                        <p class="size_2 col_1 text_color_two text_start">{{textSymbol}} </p><span class="size_2 col_6 text_color_two text_end">{{expense | number}}</span>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="col_17 col_center item_center">
+                        <p class="size_1 col_10">{{textTotalBox}}</p>
+                        <p class="size_2 col_1 text_color_one text_start">{{textSymbol}} </p><span class="size_2 col_6 text_color_one text_end">{{totalCashBox | number}}</span>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="col_17 col_center item_center">
+                        <p class="size_1 col_10">{{textTotalCash}}</p>
+                        <p class="size_2 col_1 text_color_two text_start">{{textSymbol}} </p><span class="size_2 col_6 text_color_two text_end">{{totalPhysicalCash | number}}</span>
+                    </div>
+                    <div class="col_17 col_center item_center">
+                        <p class="size_1 col_10">{{textStatus}}</p>
+                        <p class="size_2 col_1 text_color_two text_start">{{textSymbol}} </p>
+                        <span class="size_2 col_6 text_color_two text_end" [ngClass]="getColorClass()">
+                          {{totalCashBox - totalPhysicalCash | number}}
+                        </span>
+                      </div>
+                </div>
+            </div>
+        </div>       
+        <div class="col_17 col_center">
+            <button class="col_10 size_2 btn_one" (click)="createCashClosure()">{{textCloseBox}}</button>
+        </div>
+    </div>
+</section>

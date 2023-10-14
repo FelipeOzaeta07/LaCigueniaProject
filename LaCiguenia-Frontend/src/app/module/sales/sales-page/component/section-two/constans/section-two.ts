@@ -1,0 +1,1 @@
+export const CASH_CLOSURE = "Arqueo de Caja";

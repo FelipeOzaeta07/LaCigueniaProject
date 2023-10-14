@@ -1,15 +1,12 @@
 <section class="col_center item_center inherit bg_color_black z_index">
-  <div class="col_9 room border h_70 row_evenly bg_color_white">
+  <div class="col_9 room border h_60 row_evenly bg_color_white">
     <div class="col_17 bg_color_one title col_5">
       <div class="col_17 size_2">
         <h1 class="size_3 text_center">{{textTitle}}</h1>
       </div>
     </div>
     <div class="col_17 col_between">
-      <div class="col_4 h_20 border">
-          <img src="" alt="">
-      </div>
-      <div class="col_12 row_evenly">
+      <div class="col_17 row_evenly">
           <div class="col_17">
               <div class="col_17 col_between">
                 <div class="col_10 row_evenly">
@@ -18,7 +15,7 @@
                 </div>
                 <div class="col_7 row_evenly">
                   <label class="size_2 text_end">{{textPriceSale}}</label>
-                  <label class="col_17 size_1 text_end py_1 text_color_one" readonly>{{textSymbol}} {{product.productPrice | number}}</label>
+                  <label class="col_17 size_1 text_end text_color_one py_1" readonly>{{textSymbol}} {{product.productPrice | number}}</label>
                 </div>
               </div>
           </div>
@@ -30,7 +27,7 @@
               </div>
               <div class="col_7 row_evenly">
                 <label class="size_2 text_end">{{textCategory}}</label>
-                <label class="col_17 size_1 text_end py_1 text_color_one" readonly>{{product.categoryName}}</label>
+                <label class="col_17 size_1 text_end text_color_one py_1" readonly>{{product.categoryName}}</label>
               </div>
             </div>
           </div>

@@ -1,0 +1,15 @@
+export const TITLE = "Informe Detallado de Cierre de Caja";
+export const FORMAT_METHOD_PAY = "Formas de Pago";
+export const AMOUNT = "Cantidad";
+export const METHOD_PAY = "Metodo de Pago";
+export const VALUE = "Valor";
+export const TOTAL = "Total";
+export const EXPENSE = "Gastos";
+export const DESCRIPTION = "Descripccion";
+export const TOTAL_CASH_CLOSURE = "Total Cierre de Caja";
+export const CONCEPT = "Concepto";
+export const TOTAL_OPENING_BOX = "(+) Total de apertura";
+export const TOTAL_SALES = "(+) Total de ventas";
+export const TOTAL_EXPENSE = "(-) Gastos";
+export const TOTAL_CLOSURE = "Total Cierre";
+export const SYMBOL = "$";

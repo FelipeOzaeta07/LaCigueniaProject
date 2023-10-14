@@ -191,6 +191,13 @@ FROM opening_ciguenia
 ORDER BY opening_id DESC
 LIMIT 1;
 
+-------------------- Query Seleccionar el Ultimo Cierre de Caja
+---------------------------------------------------------------------------------------------------
+SELECT *
+FROM cash_closure_ciguenia
+ORDER BY cash_closure_id DESC
+LIMIT 1;
+
 -------------------- Query Seleccionar Maximo 3 Productos Habilitados
 ---------------------------------------------------------------------------------------------------
 SELECT *

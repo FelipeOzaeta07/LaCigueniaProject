@@ -15,5 +15,5 @@ public class OpeningDTO implements Serializable {
     private Integer openingId;
     private LocalDate openingDate;
     private String openingStore;
-    private Integer openingTotal;
+    private Double openingTotal;
 }

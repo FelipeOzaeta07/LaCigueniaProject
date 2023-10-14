@@ -1,4 +1,4 @@
-import { UserRepository } from "../UserRepository";
+import { UserRepository } from "@repository/user/UserRepository";
 
 
 export class CloseSesionUserUseCase {

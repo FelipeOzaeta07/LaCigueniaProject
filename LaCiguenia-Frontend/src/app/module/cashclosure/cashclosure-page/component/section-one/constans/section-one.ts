@@ -1,0 +1,15 @@
+export const TITLE = "Arqueo de Caja: Optimizando tus Recursos Financieros";
+export const DATE = "Fecha: ";
+export const STORE = "Almacén: ";
+export const STORE_NAME = "General";
+export const CASH_CLOSURE = "No: ";
+export const OPENING_BOX = "Valor de Apertura de Caja: ";
+export const TOTAL_SALES = "Total de Ventas en Efectivo: ";
+export const TOTAL_EXPENSE = "Total de Gastos: ";
+export const TOTAL_CASH = "Total de Efectivo en Caja: ";
+export const TOTAL_BOX = "Total en Caja Físico: ";
+export const CLOSE_BOX = "CERRAR CAJA";
+export const TOTAL_STATUS = "Total Cierre";
+export const SUB_TITLE = "Realizar el Cálculo del Efectivo en Caja";
+export const FIND_EXPENSE = "Consultar Gastos";
+export const SYMBOL = "$";

@@ -1,0 +1,81 @@
+<section  class="py_2 row_between inherit col_17">
+    <div class="row_between item_center col_17">
+        <div class="col_17 col_start">
+            <h1 class="size_2 col_17 title bg_color_one col_17 text_center">{{textTitle}}</h1>
+        </div>
+    </div>
+    <div class="row_evenly h_75">
+        <div class="col_17 row_center">
+            <div class="col_center border_bottom">
+                <h1 class="size_1 text_center text_color_one">{{textFormatMethodPay}}</h1>
+            </div>
+            <div class="col_17 col_between text_center py_1">
+                <p class="size_1 col_4">{{textAmount}}</p>
+                <p class="size_1 col_7">{{textMethodPay}}</p>
+                <p class="size_1 col_5">{{textValue}}</p>
+            </div>
+            <div class="col_17 col_between text_center">
+                <p class="size_1 text_color_two col_4">1</p>
+                <p class="size_1 text_color_two col_7">Efectivo</p>
+                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalCash | number}}</p>
+            </div>
+            <div class="col_17 col_between text_center">
+                <p class="size_1 text_color_two col_4">2</p>
+                <p class="size_1 text_color_two col_7">Tarjeta de Credito</p>
+                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalCredit | number}}</p>
+            </div>
+            <div class="col_17 col_between text_center">
+                <p class="size_1 text_color_two col_4">3</p>
+                <p class="size_1 text_color_two col_7">Tarjeta de Debito</p>
+                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalDebit | number}}</p>
+            </div>
+            <div class="col_17 col_between text_center py_1">
+                <p class="size_1 col_8">{{textTotal}}</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalSalesMethodPay | number}}</p>
+            </div>
+        </div>
+        <div class="col_17 row_center">
+            <div class="col_center border_bottom">
+                <h1 class="size_1 text_center text_color_one">{{textExpense}}</h1>
+            </div>
+            <div class="col_17 col_between text_center py_1">
+                <p class="size_1 col_12">{{textDescription}}</p>
+                <p class="size_1 col_5">{{textValue}}</p>
+            </div>
+            <!--<div class="col_17 col_between text_center">
+                <p class="size_1 text_color_two col_12">Pago a proveedor de pañales</p>
+                <p class="size_1 text_color_two col_5">$10.000</p>
+            </div>-->
+            <div class="col_17 col_between text_center py_1">
+                <p class="size_1 col_8">{{textTotal}}</p>
+                <p class="size_1 col_9 text_color">$ 0</p>
+            </div>
+        </div>
+    
+        <div class="col_17 row_center">
+            <div class="col_center border_bottom">
+                <h1 class="size_1 text_center text_color_one">{{textTotalCashClosure}}</h1>
+            </div>
+            <div class="col_17 col_between py_1">
+                <p class="size_1 col_10">{{textConcept}}</p>
+                <p class="size_1 col_7 text_end">{{textValue}}</p>
+            </div>
+            <div class="col_17 col_between">
+                <p class="size_1 text_color_two col_10">{{textTotalOpeningBox}}</p>
+                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} {{informationCashClosure.cashClosureInformationOpeningBox | number}}</p>
+            </div>
+            <div class="col_17 col_between">
+                <p class="size_1 text_color_two col_10">{{textTotalSales}}</p>
+                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalSalesMethodPay | number}}</p>
+            </div>
+            <div class="col_17 col_between">
+                <p class="size_1 text_color_two col_10">{{textTotalExpense}}</p>
+                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} 0</p>
+            </div>
+            <div class="col_17 col_between text_center py_1">
+                <p class="size_1 col_8">{{textTotalClosure}}</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalClosure + informationCashClosure.cashClosureInformationOpeningBox | number}}</p>
+            </div>
+        </div>
+    </div>
+</section>

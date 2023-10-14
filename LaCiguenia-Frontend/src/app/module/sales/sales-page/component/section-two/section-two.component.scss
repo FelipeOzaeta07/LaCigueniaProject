@@ -1,0 +1,11 @@
+.svg_width{
+    width: calc(4vh);
+}
+.color_hover {
+    transition: background-color 0.8s ease;
+    transition: border-color 1s ease;
+}
+.color_hover:hover {
+    border-color: var(--color_one);
+    background-color: var(--color_eight);
+}

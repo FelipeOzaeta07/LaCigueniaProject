@@ -8,7 +8,7 @@ public class LaCigueniaApplication {
 
 	/**                    UNSC
 	        United National the Security Code
-	Intructor:
+	Instructor:
 	 		Andres Mauricio Arciniegas - ADSO
 	Integrantes:
 	        Diego Esteban Vera Enciso     Leader Project

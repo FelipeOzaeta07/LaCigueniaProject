@@ -1,5 +1,7 @@
 package LaCiguenia.commons.domains.entity.opening;
 
+import LaCiguenia.commons.domains.entity.cashclosure.CashClosureEntity;
+import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +32,11 @@ public class OpeningEntity {
     private String openingStore;
 
     @Column(name = "opening_total")
-    private Integer openingTotal;
+    private Double openingTotal;
+    //Agregar Arreglo
+    @OneToOne(mappedBy = "openingEntity", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private CashClosureEntity cashClosureEntity;
 
     @OneToMany(mappedBy = "openingEntity")
     @JsonManagedReference

@@ -10,6 +10,7 @@ import { InvoiceModule } from '@service/invoice/invoice.module';
 import { ModalOneComponent } from './sales-page/component/modal-one/modal-one.component';
 import { DetailModule } from '@service/detail/detail.module';
 import { ModalTwoComponent } from './sales-page/component/modal-two/modal-two.component';
+import { SalesAccessTokenGetUseCase } from '@repository/sales/case/SalesAccessTokenGetUseCase';
 
 
 @NgModule({

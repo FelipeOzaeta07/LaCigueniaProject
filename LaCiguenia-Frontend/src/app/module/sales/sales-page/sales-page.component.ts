@@ -10,6 +10,7 @@ export class SalesPageComponent {
 
   modalOne!: boolean;
   modalTwo!: boolean;
+  activeMessage: boolean = false;
   invoiceId!: number;
 
   modalActivateOne(datos: boolean){
@@ -25,5 +26,9 @@ export class SalesPageComponent {
 
   sendInvoiceModel(invoiceId: number){
     this.invoiceId = invoiceId;
+  }
+
+  sendMessageOpeningBox(datos: boolean){
+    this.activeMessage = datos;
   }
 }

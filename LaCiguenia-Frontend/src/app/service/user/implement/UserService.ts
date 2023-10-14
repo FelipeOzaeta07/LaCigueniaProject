@@ -7,6 +7,8 @@ import { BASE_URL_USER, CREATE_USER, SERVICE_USER } from "@commons/endpoint/user
 import { AccessTokenService } from "./AccessTokenService";
 import { UserModel } from "@commons/domains/user/UserModel";
 import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAccessTokenService";
+import { SalesAccessTokenService } from "@service/sales/SalesAccessTokenService";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +17,7 @@ import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAcc
 export class UserService extends UserRepository{
 
     constructor(private http: HttpClient, private accessTokenService: AccessTokenService,
-        private openingAccessTokenService: OpeningAccessTokenService ){
+        private openingAccessTokenService: OpeningAccessTokenService, private salesAccessTokenService: SalesAccessTokenService ){
         super();
     }
 
@@ -38,5 +40,7 @@ export class UserService extends UserRepository{
     override closeSesionUser(): void {
         this.openingAccessTokenService.openingAccessTokenRemove();
         this.accessTokenService.accessTokenRemove();
+        this.salesAccessTokenService.salesAccessTokenRemove();
+        window.location.reload();
     }
 }

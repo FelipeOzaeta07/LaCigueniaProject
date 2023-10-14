@@ -1,0 +1,62 @@
+.ng-valid:not(form).ng-touched   {
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+.ng-invalid:not(form).ng-touched  {
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+p{
+    padding-top: calc(0.4vh);
+    padding-bottom: calc(0.4vh);
+}
+input{
+    border: none;
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+    padding-top: calc(0.4vh);
+    padding-bottom: calc(0.4vh);
+    text-align: center;
+}
+input:hover{
+    border: none;
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+    padding-top: calc(0.4vh);
+    padding-bottom: calc(0.4vh);
+    text-align: center;
+}
+input:focus{
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+}
+.border_bottom{
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+    padding-bottom: calc(2vh);
+}
+.text_red {
+    color: #ff0000;
+}
+.text_green {
+    color: #008000;
+}
+.text_color{
+    font-weight: 600;
+    color: var(--color_fifteen);
+}
+.svg_width{
+    width: calc(4vh);
+}
+.color_hover {
+    transition: background-color 0.6s ease;
+}
+.color_hover:hover {
+    background-color: #ecedff;
+}
