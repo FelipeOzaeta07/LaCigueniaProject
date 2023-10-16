@@ -1,5 +1,6 @@
-@import url(/src/styles.scss);
-
+.text_center{
+    color: var(--color_fifteen);
+}
 .border_start{
     border-left: 1px solid;
     border-color: var(--color_three);
@@ -51,5 +52,8 @@ th{
     fill: var(--color_two);
 }
 .svg_width:hover{
+    fill: var(--color_fifteen);
+}
+.width:hover .svg_width{
     fill: var(--color_fifteen);
 }

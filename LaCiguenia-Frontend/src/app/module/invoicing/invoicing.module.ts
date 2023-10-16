@@ -18,6 +18,7 @@ import { InvoiceModule } from '@service/invoice/invoice.module';
 import { DetailModule } from '@service/detail/detail.module';
 import { ModalThreeComponent } from './invoicing-page/component/modal-three/modal-three.component';
 import { ReadProductFilterServicePipe } from '@service/product/implement/read-product-filter-service.pipe';
+import { ModalFourComponent } from './invoicing-page/component/modal-four/modal-four.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReadProductFilterServicePipe } from '@service/product/implement/read-pr
     ModalOneComponent,
     ModalTwoComponent,
     ModalThreeComponent,
-    ReadProductFilterServicePipe
+    ReadProductFilterServicePipe,
+    ModalFourComponent
   ],
   imports: [
     CommonModule,

@@ -18,6 +18,8 @@ export class ModalOneComponent {
   @Input() customerUpdate!: CustomerModel;
   @Output() modalActivateOne = new EventEmitter<boolean>();
   @Output() customerId = new EventEmitter<CustomerModel>();
+  @Output() modalActivateFour = new EventEmitter<boolean>();
+  @Output() modalActivateFive = new EventEmitter<boolean>();
 
   textTitleEdit = TITLE_EDIT;
   textTitle = TITLE;
@@ -69,12 +71,13 @@ export class ModalOneComponent {
         if(res.statusCode == 200){
           this.getCustomerId();
           this.modalEventOne();
+          this.modalEventFive();
         }
       }
     )
   }
 
-  customerService(){
+  createCustomer(){
     if (!this.customerForm.valid) {
       this.customerForm.markAllAsTouched();
       return;
@@ -94,6 +97,7 @@ export class ModalOneComponent {
         this.customer.customerId = res.objectId;
         this.getCustomerId();
         this.modalEventOne();
+        this.modalEventFour();
       }
     )
   }
@@ -104,5 +108,13 @@ export class ModalOneComponent {
 
   modalEventOne() {
     this.modalActivateOne.emit(false);
+  }
+
+  modalEventFour() {
+    this.modalActivateFour.emit(true);
+  }
+
+  modalEventFive() {
+    this.modalActivateFive.emit(true);
   }
 }

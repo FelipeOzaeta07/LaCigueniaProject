@@ -1,11 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
-import { GenericResponse } from '@commons/response/GenericResponse';
-import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
-import { CustomerReadUseCase } from '@repository/customer/case/CustomerReadUseCase';
-
+import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } 
+from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 @Component({
   selector: 'app-section-three',
@@ -14,6 +12,7 @@ import { CustomerReadUseCase } from '@repository/customer/case/CustomerReadUseCa
 })
 export class SectionThreeComponent{
 
+  @Input() errorCustomer!: boolean;
   @Input() totalIVA: number = 0;
   @Input() totalPriceProducts: number = 0;
   @Input() detailInvoice: DetailModel [] = [];
@@ -40,6 +39,7 @@ export class SectionThreeComponent{
   textCustomer = CUSTOMER;
 
   identificationCustomer!: string;
+  errorMessage: string = "No se ha encontrado el cliente que estás buscando";
 
 
   constructor(){ }

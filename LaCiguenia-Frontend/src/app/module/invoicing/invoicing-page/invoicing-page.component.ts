@@ -19,6 +19,7 @@ export class InvoicingPageComponent {
   modalOne!: boolean;
   modalTwo!: boolean;
   modalThree!: boolean;
+  modalFour!: boolean;
 
   sendProductCategory: ProductModel[] = [];
   customerUpdate!: CustomerModel;
@@ -29,6 +30,8 @@ export class InvoicingPageComponent {
   currentDate: string;
   productSelector: string = '';
   messageCategory!: boolean;
+  updateCustomer: boolean = false;
+  errorCustomer: boolean = false;
   
   detail!: DetailModel;
   detailInvoice: DetailModel [] = [];
@@ -67,7 +70,10 @@ export class InvoicingPageComponent {
   sendCustomerId(id: string){
     this.customerReadUseCase.execute(id).subscribe(
       (res: GenericResponse) => {
+        this.errorCustomer = false;
         this.customer = res.objectResponse;
+      },(error) => {
+        this.errorCustomer = true;
       }
     )
   }
@@ -81,6 +87,15 @@ export class InvoicingPageComponent {
     if(datos === false){
       window.location.reload();
     }
+  }
+
+  modalActivateFour(datos: boolean){
+    this.modalFour = datos;
+  }
+
+  modalActivateFive(datos: boolean){
+    this.modalFour = datos;
+    this.updateCustomer = true;
   }
 
   getCustomerId(lastCustomerId: CustomerModel){

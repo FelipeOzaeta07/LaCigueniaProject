@@ -1,7 +1,8 @@
 <main class="h_100 col_start">
-    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" (customerId)="getCustomerId($event)" [customerUpdate]="customerUpdate" class="h_100"></app-modal-one>
+    <app-modal-one *ngIf="modalOne" (modalActivateOne)="modalActivateOne($event)" (customerId)="getCustomerId($event)" (modalActivateFour)="modalActivateFour($event)" (modalActivateFive)="modalActivateFive($event)" [customerUpdate]="customerUpdate" class="h_100"></app-modal-one>
     <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)" (modalActivateThree)="modalActivateThree($event)" [invoiceEnd]="invoiceEnd" [detailInvoice]="detailInvoice" class="h_100"></app-modal-two>
     <app-modal-three *ngIf="modalThree" class="h_100" (modalActivateThree)="modalActivateThree($event)" ></app-modal-three>
+    <app-modal-four *ngIf="modalFour" (modalActivateFour)="modalActivateFour($event)" (modalActivateFive)="modalActivateFive($event)" [updateCustomer]="updateCustomer"></app-modal-four>
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_9 h_100">
         <div class="col_17">
@@ -10,6 +11,6 @@
         </div>
     </section>
     <section class="col_6">
-        <app-section-three [totalIVA]="totalIVA" (sendCustomerId)="sendCustomerId($event)" (sendCustomer)="sendCustomer($event)" (addition)="addition($event)" (subtract)="subtract($event)" (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" [detailInvoice]="detailInvoice" [totalPriceProducts]="totalPriceProducts" [customer]="customer" class="h_100"></app-section-three>
+        <app-section-three [totalIVA]="totalIVA" (sendCustomerId)="sendCustomerId($event)" (sendCustomer)="sendCustomer($event)" (addition)="addition($event)" (subtract)="subtract($event)" (modalActivateOne)="modalActivateOne($event)" (modalActivateTwo)="modalActivateTwo($event)" [detailInvoice]="detailInvoice" [errorCustomer]="errorCustomer" [totalPriceProducts]="totalPriceProducts" [customer]="customer" class="h_100"></app-section-three>
     </section>
 </main>

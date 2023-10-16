@@ -1,17 +1,22 @@
 <section class="row_evenly inherit border_start">
-    <div class="bg_color_one item_center col_17 h_10 border_end">
-        <div *ngIf="!customer" class="col_between col_17 px_1">
-            <a type="submit" (click)="modalEventOne()" class="input col_10 size_1 bg_color">{{textCustomer}}</a>
-            <input type="text" [(ngModel)]="identificationCustomer" name="identificationCustomer" (keyup.enter)="getCustomer()" placeholder="Buscar Cliente" class="input col_6 size_1 bg_color">
+    <div class="bg_color_one row_center item_center col_17 h_10 border_end">
+        <div *ngIf="errorCustomer" class="text_color size text_center">
+            {{errorMessage}}
         </div>
-        <div *ngIf="customer" class="item_center col_17 px_1">
-            <div class="input col_17 col_evenly bg_color input_special">
-                <label class="col_15 size_1 text_color_two input_special">{{customer.customerName}}</label>
-                <div class="col_2 col_center">
-                    <svg xmlns="http://www.w3.org/2000/svg" (click)="modalEdit()" class="svg_width" fill="" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg>
+        <div class="col_17">
+            <div *ngIf="!customer" class="col_between col_17 px_1">
+                <a type="submit" (click)="modalEventOne()" class="input col_10 size_1 bg_color">{{textCustomer}}</a>
+                <input type="text" [(ngModel)]="identificationCustomer" name="identificationCustomer" (keyup.enter)="getCustomer()" placeholder="Buscar Cliente" class="input col_6 size_1 bg_color">
+            </div>
+            <div *ngIf="customer" class="item_center col_17 px_1">
+                <div class="input col_17 col_evenly bg_color input_special">
+                    <label class="col_15 size_1 text_color_two input_special">{{customer.customerName}}</label>
+                    <div class="col_2 col_center">
+                        <svg xmlns="http://www.w3.org/2000/svg" (click)="modalEdit()" class="svg_width" fill="" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>

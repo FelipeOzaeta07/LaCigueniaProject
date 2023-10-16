@@ -1,5 +1,5 @@
 <section *ngIf="!customerUpdate" class="col_center item_center inherit bg_color_black z_index">
-    <form (ngSubmit)="customerService()" [formGroup]="customerForm" class="col_8 room border h_70 row_evenly bg_color_white">
+    <form (ngSubmit)="createCustomer()" [formGroup]="customerForm" class="col_8 room border h_70 row_evenly bg_color_white">
         <div class="col_17 bg_color_one title">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
         </div>
