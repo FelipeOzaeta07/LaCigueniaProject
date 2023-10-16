@@ -55,10 +55,11 @@ input:focus{
     width: calc(4vh);
 }
 .color_hover {
-    transition: background-color 0.6s ease;
+    transition: background-color, border-color 0.6s ease;
 }
 .color_hover:hover {
     background-color: #ecedff;
+    border-color: var(--color_one);
 }
 .text_color_error{
     color: var(--color_ten);
