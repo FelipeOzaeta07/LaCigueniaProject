@@ -13,3 +13,4 @@ export const TOTAL_STATUS = "Total Cierre";
 export const SUB_TITLE = "Realizar el Cálculo del Efectivo en Caja";
 export const FIND_EXPENSE = "Consultar Gastos";
 export const SYMBOL = "$";
+export const MESSAGE_ERROR = "Por favor, introduce el dinero en efectivo en la caja";

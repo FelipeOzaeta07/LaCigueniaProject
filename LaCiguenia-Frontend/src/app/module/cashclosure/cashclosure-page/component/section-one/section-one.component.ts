@@ -4,13 +4,12 @@ import { CashClosureInformationModel } from '@commons/domains/cashclosure/CashCl
 import { CashClosureModel } from '@commons/domains/cashclosure/CashClosureModel';
 import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { DATE, TITLE, STORE, SYMBOL, STORE_NAME, CASH_CLOSURE, FIND_EXPENSE, SUB_TITLE, OPENING_BOX, TOTAL_SALES, TOTAL_EXPENSE, TOTAL_CASH, TOTAL_BOX, CLOSE_BOX, TOTAL_STATUS } 
+import { DATE, TITLE, STORE, SYMBOL, STORE_NAME, CASH_CLOSURE, FIND_EXPENSE, SUB_TITLE, OPENING_BOX, TOTAL_SALES, TOTAL_EXPENSE, TOTAL_CASH, TOTAL_BOX, CLOSE_BOX, TOTAL_STATUS, MESSAGE_ERROR } 
 from '@module/cashclosure/cashclosure-page/component/section-one/constans/section-one';
 import { CreateCashClosureUseCase } from '@repository/cashclosure/case/CreateCashClosureUseCase';
 import { InformationForCashClosuresUseCase } from '@repository/cashclosure/case/InformationForCashClosuresUseCase';
 import { ReadLastCashClosureUseCase } from '@repository/cashclosure/case/ReadLastCashClosureUseCase';
 import { ReadLastOpeningUseCase } from '@repository/opening/case/ReadLastOpeningUseCase';
-import { OpeningAccessTokenService } from '@service/opening/implement/OpeningAccessTokenService';
 
 @Component({
   selector: 'app-section-one',
@@ -43,6 +42,7 @@ export class SectionOneComponent implements OnInit, OnChanges{
   nextCashClosure!: string;
   openingBox!: OpeningModel;
   nextValue!: number
+  errorMessage!: string;
 
   colombianPesos: number[] = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
   inputValues: number[] = new Array(this.colombianPesos.length).fill('');
@@ -132,28 +132,32 @@ export class SectionOneComponent implements OnInit, OnChanges{
   }
 
   createCashClosure(){
-    this.cashClosure = {
-      cashClosureId : 0,
-      cashClosureDate: this.date,
-      cashCloseStore: this.informationCashClosure.cashClosureInformationStore,
-      cashClosureNumber: this.nextValue,
-      cashClosureTotalClosure: this.informationCashClosure.cashClosureInformationTotalClosure + this.informationCashClosure.cashClosureInformationOpeningBox,
-      cashClosureTotalOpeningBox: this.informationCashClosure.cashClosureInformationOpeningBox,
-      cashClosureTotalMethodPay: this.informationCashClosure.cashClosureInformationTotalSalesMethodPay,
-      cashClosureTotalExpense: this.expense,
-      cashClosureTotalCashBox: this.totalCashBox,
-      cashClosureDifference: this.totalCashBox - this.totalPhysicalCash,
-      openingEntity: this.openingBox,
-    }
-
-    this.createCashClosureUseCase.execute(this.cashClosure).subscribe(
-      (res: GenericResponse) => {
-        this.modalEvent();
-      },
-      (error) => {
-
+    if(this.totalCashBox == 0){
+      this.errorMessage = MESSAGE_ERROR;
+    }else{
+      this.cashClosure = {
+        cashClosureId : 0,
+        cashClosureDate: this.date,
+        cashCloseStore: this.informationCashClosure.cashClosureInformationStore,
+        cashClosureNumber: this.nextValue,
+        cashClosureTotalClosure: this.informationCashClosure.cashClosureInformationTotalClosure + this.informationCashClosure.cashClosureInformationOpeningBox,
+        cashClosureTotalOpeningBox: this.informationCashClosure.cashClosureInformationOpeningBox,
+        cashClosureTotalMethodPay: this.informationCashClosure.cashClosureInformationTotalSalesMethodPay,
+        cashClosureTotalExpense: this.expense,
+        cashClosureTotalCashBox: this.totalCashBox,
+        cashClosureDifference: this.totalCashBox - this.totalPhysicalCash,
+        openingEntity: this.openingBox,
       }
-    )
+  
+      this.createCashClosureUseCase.execute(this.cashClosure).subscribe(
+        (res: GenericResponse) => {
+          this.modalEvent();
+        },
+        (error) => {
+  
+        }
+      )
+    }
   }
 
   modalEvent() {

@@ -73,7 +73,10 @@
                       </div>
                 </div>
             </div>
-        </div>       
+        </div>
+        <div *ngIf="errorMessage" class="text_color_error size_1 text_center">
+            {{errorMessage}}
+        </div>
         <div class="col_17 col_center">
             <button class="col_10 size_2 btn_one" (click)="createCashClosure()">{{textCloseBox}}</button>
         </div>
