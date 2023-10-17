@@ -13,7 +13,7 @@ CREATE TABLE opening_ciguenia (
     opening_id INT AUTO_INCREMENT PRIMARY KEY,
     opening_date DATE,
     opening_store VARCHAR(50),
-    opening_total INT
+    opening_total DOUBLE
 );
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -74,13 +74,28 @@ CREATE TABLE detail_invoice_ciguenia (
     FOREIGN KEY (product_id) REFERENCES product_ciguenia (product_id),
     FOREIGN KEY (invoice_id) REFERENCES invoice_ciguenia (invoice_id)
 );
+CREATE TABLE cash_closure_ciguenia (
+    cash_closure_id INT PRIMARY KEY AUTO_INCREMENT,
+    cash_closure_date DATE,
+    cash_closure_store VARCHAR(50),
+    cash_closure_number INT,
+    cash_closure_total_closure DOUBLE,
+    cash_closure_total_opening_box DOUBLE,
+    cash_closure_total_method_pay DOUBLE,
+    cash_closure_total_expense DOUBLE,
+    cash_closure_total_cash_box DOUBLE,
+    cash_closure_difference DOUBLE,
+    opening_id INT,
+    FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
+);
+
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
 VALUES
 	('Trajes Tipicos', 'Trajes Tipicos para alquiler'),
-	('Juguetes Jovenes', 'Juguetes para niños y niñas'),
 	('Ropa Infantil ', 'Ropa Infantil para bebés'),
+	('Juguete Infantil', 'Juguete Infantil para niños'),
 	('Alimentación', 'Alimentación Infantil con nutrientes'),
 	('Salud y Cuidado', 'Salud Infantil para el cuidado de los bebes'),
 	('Accesorios Hogar', 'Mobiliario Infantil para adecuar el hogar');
@@ -92,6 +107,8 @@ VALUES ('Cliente General', '123456789', '3001101010', 'general@example.com', 'Ca
 -- Registro Usuario
 INSERT INTO user_ciguenia (user_name, user_email, user_password, user_status)
 VALUES ('United National Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habilitado');
+
+
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------
 ---------------------------------------------------------------------------------------------------
