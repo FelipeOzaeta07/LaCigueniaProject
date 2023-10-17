@@ -1,9 +1,9 @@
 <section  class="col_center item_center inherit bg_color_black z_index">
-    <div class="col_8 room border h_67 row_evenly bg_color_white">
+    <div class="col_8 room border h_58 row_evenly bg_color_white">
         <div class="col_17 bg_color_one title">
             <h1 class="size_3 text_center">{{textTitle}}</h1>
         </div>
-        <div class="h_45 row_evenly">
+        <div class="h_35 row_evenly">
             <div class="col_17">
                 <div class="col_between py_1 border_top">
                     <p class="size_1">{{textSubtotal}}</p>
@@ -20,20 +20,16 @@
             </div>
             <div class="col_17">
                 <div class="col_between">
-                    <button type="submit" class="col_8 btn_one size_1">{{textDiscount}}</button>
-                    <button type="submit" class="col_8 btn_one size_1">{{textAddPay}}</button>
-                </div>
-                <div class="col_between pt_1">
                     <select [(ngModel)]="selectedPaymentMethod" name="selectedPaymentMethod" class="select col_8 size_2 text_weight">
                         <option class="size_1" value="" disabled selected>{{textMethodPay}}</option>
                         <option class="size_1" *ngFor="let metodo of metodosDePago" [value]="metodo">{{ metodo }}</option>
                     </select>
-                    <input type="number" class="input col_8 size_2 text_color_two text_end" placeholder="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}">
+                    <input type="number" [(ngModel)]="changesInvoice" class="input col_8 size_2 text_color_two text_end" placeholder="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}" (input)="substractChanges()">
                 </div>
             </div>
             <div class="col_17 py_1 col_between border_y">
                 <p class="size_1">{{textChange}}</p>
-                <p class="size_1">{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}</p>
+                <p class="size_1">{{textSymbolPrice}} {{changesTotal | number}}</p>
             </div>
         </div>
         <div class="col_17 col_between">

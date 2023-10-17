@@ -33,6 +33,8 @@ export class ModalTwoComponent{
 
   detail!: DetailModel;
   selectedPaymentMethod: string = '';
+  changesInvoice!: number;
+  changesTotal: number = 0;
 
   metodosDePago = ['Efectivo', 'Tarjeta de Crédito', 'Tarjeta de Débito'];
 
@@ -72,6 +74,14 @@ export class ModalTwoComponent{
         }
       }
     )
+  }
+
+  substractChanges(){
+    if(this.invoiceEnd.invoiceTotal < this.changesInvoice){
+      this.changesTotal = this.changesInvoice - this.invoiceEnd.invoiceTotal;
+    }else{
+      this.changesTotal = 0;
+    }
   }
 
   modalEventTwo() {

@@ -101,6 +101,7 @@ export class InvoicingPageComponent {
   getCustomerId(lastCustomerId: CustomerModel){
     this.customerReadUseCase.execute(lastCustomerId.customerIdentification).subscribe(
       (res: GenericResponse) => {
+        this.errorCustomer = false;
         this.customer = res.objectResponse;
       }
     )

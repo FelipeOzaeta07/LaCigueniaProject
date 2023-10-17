@@ -66,8 +66,8 @@ export class SectionTwoComponent implements OnInit{
     }
   }
 
-  sendAmount(index: number){
-    let product = this.productGroups[index];
+  sendAmount(productItem: ProductModel, index: number){
+    let product = productItem;
     let number = this.amountArray[index]
     let i = index;
     this.emitAmount.emit({product, number, i});

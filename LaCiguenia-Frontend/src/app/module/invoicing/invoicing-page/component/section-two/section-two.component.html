@@ -25,7 +25,7 @@
                 </svg>
             </a>
             <div *ngIf="showBooleanArray[i]" class="col_2">
-                <input class="col_15 input" type="number" [(ngModel)]="amountArray[i]" (keyup.enter)="sendAmount(i)" (click)="$event.stopPropagation()"> 
+                <input class="col_15 input" type="number" [(ngModel)]="amountArray[i]" (keyup.enter)="sendAmount(productItem, i)" (click)="$event.stopPropagation()"> 
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
                 </svg>
             </a>
             <div *ngIf="showBooleanArray[i]" class="col_2">
-                <input class="col_15 input" type="number" [(ngModel)]="amountArray[i]" (keyup.enter)="sendAmount(i)" (click)="$event.stopPropagation()"> 
+                <input class="col_15 input" type="number" [(ngModel)]="amountArray[i]" (keyup.enter)="sendAmount(productItem, i)" (click)="$event.stopPropagation()"> 
             </div>
         </div>
     </div>
