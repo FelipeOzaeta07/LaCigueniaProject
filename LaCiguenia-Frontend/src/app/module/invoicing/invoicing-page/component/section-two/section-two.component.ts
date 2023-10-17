@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
@@ -13,6 +13,7 @@ import { TEXT_ONE, TEXT_THREE, TEXT_TWO, SYMBOL, TEXT_TITLE, TEXT_CATEGORY  } fr
 export class SectionTwoComponent implements OnInit{
   
   @Output() selectProducts = new EventEmitter<ProductModel>();
+  @Output() emitAmount = new EventEmitter<{product: ProductModel, number: number, i: number}>();
   @Input() productSelector!: string;
   @Input() sendProductCategory!: ProductModel[];
   @Input() messageCategory!: boolean;
@@ -27,12 +28,15 @@ export class SectionTwoComponent implements OnInit{
   product!: ProductModel [];
   productGroups: ProductModel[] = [];
   message: boolean = true;
+  showBooleanArray: boolean[] = [];
+  amountArray: number [] = [];
 
   constructor(private readProductsUseCase: ReadProductsUseCase){}
 
 
   ngOnInit(): void {
     this.readProducts();
+    this.showBooleanArray = new Array(this.productGroups.length).fill(false);
   }
 
   readProducts() {
@@ -54,5 +58,20 @@ export class SectionTwoComponent implements OnInit{
     if (index !== -1) {
       this.selectProducts.emit(this.productGroups[index]);
     }
+  }
+
+  toggleInput(index: number){
+    if(index >= 0 && index < this.productGroups.length){
+      this.showBooleanArray[index] = !this.showBooleanArray[index];
+    }
+  }
+
+  sendAmount(index: number){
+    let product = this.productGroups[index];
+    let number = this.amountArray[index]
+    let i = index;
+    this.emitAmount.emit({product, number, i});
+    this.showBooleanArray[index] = !this.showBooleanArray[index];
+    this.amountArray = [];
   }
 }

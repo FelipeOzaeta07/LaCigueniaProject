@@ -1,5 +1,26 @@
-@import url(/src/styles.scss);
-
+.ng-valid:not(form).ng-touched   {
+    text-align: center;
+    border: 1px solid;
+    border-color: var(--color_fifteen);
+    border-radius: 10px;
+    padding-top: calc(1vh);
+    padding-bottom: calc(1vh);
+}
+.ng-valid:hover.ng-touched   {
+    text-align: center;
+    border: 1px solid;
+    border-color: var(--color_fifteen);
+    border-radius: 10px;
+    padding-top: calc(1vh);
+    padding-bottom: calc(1vh);
+}
+.ng-valid:focus.ng-touched   {
+    text-align: center;
+    text-indent: 0%;
+    border: 1px solid var(--color_thirteen);
+    box-shadow: 0 0 4px var(--color_thirteen);
+    outline: none;
+}
 .img_width{
     width: calc(4vw);
     height: calc(8vh);
@@ -35,4 +56,21 @@
 }
 .cursor{
     cursor: pointer;
+}
+.input{
+    text-indent: 0%;
+    text-align: center;
+    border: 1px solid;
+    border-color: var(--color_fifteen);
+    border-radius: 10px;
+    padding-top: calc(1vh);
+    padding-bottom: calc(1vh);
+}
+.input:hover{
+    border-color: var(--color_thirteen);
+}
+.input:focus{
+    border: 1px solid var(--color_thirteen);
+    box-shadow: 0 0 4px var(--color_thirteen);
+    outline: none;
 }

@@ -107,6 +107,7 @@ export class InvoicingPageComponent {
   }
 
   selectProducts(product: ProductModel) {
+
     const productName = product.productName;
 
     if (this.hashMap.hasOwnProperty(productName)) {
@@ -203,6 +204,20 @@ export class InvoicingPageComponent {
         if (existingIndex !== -1) {
           this.detailInvoice.splice(existingIndex, 1);
         }
+      }
+    }
+  }
+
+  emitAmount(eventData: { product: ProductModel; number: number, i: number }){
+
+    if(this.detailInvoice.length != 0){
+      this.hashMap[eventData.product.productName] = 0;
+      for(let i = 0; i < eventData.number; i++){
+        this.selectProducts(eventData.product)
+      }
+    }else{
+      for(let i = 0; i < eventData.number; i++){
+        this.selectProducts(eventData.product)
       }
     }
   }
