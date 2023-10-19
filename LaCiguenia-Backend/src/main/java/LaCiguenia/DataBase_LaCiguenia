@@ -88,6 +88,11 @@ CREATE TABLE cash_closure_ciguenia (
     opening_id INT,
     FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
 );
+CREATE TABLE `payment_method_ciguenia`(
+    `payment_method_id` INT NOT NULL AUTO_INCREMENT ,
+    `payment_method_name` VARCHAR(50) NOT NULL ,
+    `payment_method_status` VARCHAR(20) NOT NULL ,
+    PRIMARY KEY (`payment_method_id`)) ENGINE = InnoDB;
 
 
 -- Registro Categorias
