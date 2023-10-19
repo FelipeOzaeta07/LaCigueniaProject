@@ -159,7 +159,7 @@ public class InvoiceService implements IInvoiceService {
     @Override
     public ResponseEntity<GenericResponseDTO> deleteInvoice(Integer invoiceId) {
         try {
-            Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findById(invoiceId);
+            Optional<InvoiceEntity> invoiceExist = this.iInvoiceRepository.findInvoiceForOpening(invoiceId);
             if (invoiceExist.isPresent()){
                 invoiceExist.get().setInvoiceStatus("Anulado");
                 this.iInvoiceRepository.save(invoiceExist.get());

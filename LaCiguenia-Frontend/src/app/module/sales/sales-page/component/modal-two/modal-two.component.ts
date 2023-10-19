@@ -27,6 +27,9 @@ export class ModalTwoComponent {
     this.invoiceDeleteUseCase.execute(this.invoiceId).subscribe(
       (res: GenericResponse) => {
         console.log("Respuesta Correcta: " + res.message);
+      },
+      (error) => {
+        alert("No se puede eliminar porque ya se hizo el cierre de caja")
       }
     )
     this.modalActivateTwo.emit(false);
