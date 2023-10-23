@@ -1,0 +1,26 @@
+.svg_width{
+    width: calc(2vh);
+}
+.border_special{
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: var(--color_three);
+}
+.input{
+    border-radius: 10px;
+    padding-top: calc(0.7vw);
+    padding-bottom: calc(0.7vw);
+}
+.border{
+    border-radius: 20px;
+}
+.py_1{
+    padding-top: 0%;
+    padding-bottom: calc(0.7vw);
+}
+.pb_2{
+    padding-bottom: calc(0.7vw);
+}
+.note:hover .text_color_one{
+    color: var(--color_fifteen);
+}

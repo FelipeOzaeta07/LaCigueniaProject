@@ -24,7 +24,7 @@ public class UserConverter {
         return userDTO;
     }
 
-    public UserEntity convertLoginDTOToLoginEntity(UserDTO userDTO) {
+    public UserEntity convertUserDTOToUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
         try {
             userEntity = HelperMapper.modelMapper().map(userDTO, UserEntity.class);

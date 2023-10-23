@@ -88,7 +88,11 @@ CREATE TABLE cash_closure_ciguenia (
     opening_id INT,
     FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
 );
-
+CREATE TABLE payment_method_ciguenia(
+    payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
+    payment_method_name VARCHAR(50),
+    payment_method_status VARCHAR(10)
+);
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
@@ -106,8 +110,11 @@ VALUES ('Cliente General', '123456789', '3001101010', 'general@example.com', 'Ca
 
 -- Registro Usuario
 INSERT INTO user_ciguenia (user_name, user_email, user_password, user_status)
-VALUES ('United National Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habilitado');
+VALUES ('United Nations Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habilitado');
 
+-- Registro Metodo de Pago
+INSERT INTO payment_method_ciguenia (payment_method_name, payment_method_status)
+VALUES ('Efectivo', 'Activo');
 
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------

@@ -3,12 +3,11 @@ import { Observable, tap } from "rxjs";
 import { UserRepository } from "@repository/user/UserRepository";
 import { Injectable } from "@angular/core";
 import { GenericResponse } from "@commons/response/GenericResponse";
-import { BASE_URL_USER, CREATE_USER, SERVICE_USER } from "@commons/endpoint/user/UserEndPoint";
+import { BASE_URL_USER, CREATE_USER, SERVICE_USER, USER_READ } from "@commons/endpoint/user/UserEndPoint";
 import { AccessTokenService } from "./AccessTokenService";
 import { UserModel } from "@commons/domains/user/UserModel";
 import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAccessTokenService";
 import { SalesAccessTokenService } from "@service/sales/SalesAccessTokenService";
-import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -42,5 +41,11 @@ export class UserService extends UserRepository{
         this.accessTokenService.accessTokenRemove();
         this.salesAccessTokenService.salesAccessTokenRemove();
         window.location.reload();
+    }
+
+    override readUser(userId: number): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_USER + USER_READ + userId)
+        .pipe();
     }
 }

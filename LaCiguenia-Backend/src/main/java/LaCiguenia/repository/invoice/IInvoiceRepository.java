@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IInvoiceRepository extends JpaRepository<InvoiceEntity, Integer> {
     @Query(value = "SELECT MAX(invoice_id) AS end_id FROM invoice_ciguenia;", nativeQuery = true)
@@ -30,4 +31,9 @@ public interface IInvoiceRepository extends JpaRepository<InvoiceEntity, Integer
                     "WHERE invoice_pay = 'Tarjeta de Débito' AND invoice_status = 'Pagado' " +
                     "AND opening_id = :lastOpening", nativeQuery = true)
     List<InvoiceEntity> findAllSalesForDebit(@Param("lastOpening") Integer lastOpening);
+
+    @Query(value =  "SELECT i.* FROM invoice_ciguenia i LEFT JOIN cash_closure_ciguenia c " +
+            "ON i.opening_id = c.opening_id WHERE c.opening_id IS NULL " +
+            "AND i.invoice_id = :invoiceId", nativeQuery = true)
+    Optional<InvoiceEntity> findInvoiceForOpening(@Param("invoiceId") Integer invoiceId);
 }

@@ -19,6 +19,9 @@
 .note:hover h1{
     color: var(--color_fifteen);
 }
+.svg_icon{
+    width: calc(7vh);
+}
 
 @media screen and (min-width: 0px) and (max-width: 500px){
     .svg_width_mv{

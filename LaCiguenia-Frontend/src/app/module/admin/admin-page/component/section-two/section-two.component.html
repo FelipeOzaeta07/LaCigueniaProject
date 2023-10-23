@@ -2,8 +2,8 @@
     <div class="col_17 col_17_mv bg_color_one bg_color_one_mv title title_mv">
         <h1 class="size_3 size_2_mv text_center text_center_mv">{{textTitle}}</h1>
     </div>
-    <div class="col_between col_between_mv">
-        <div class="col_8 col_17_mv py_1" *ngFor="let productGroup of productMoreSold; let n = index">
+    <div class="col_between col_between_mv h_18">
+        <div class="col_8 col_17_mv" *ngFor="let productGroup of productMoreSold; let n = index">
             <div class="space" *ngFor="let productItem of productGroup; let i = index">
                 <a (click)="modalEvent(n, i)" class="col_17 col_center item_center p_1 note">
                     <div class="col_center item_center">

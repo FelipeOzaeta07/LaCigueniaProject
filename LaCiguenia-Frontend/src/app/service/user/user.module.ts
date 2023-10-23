@@ -6,6 +6,11 @@ import { ServiceUserUseCase } from '@repository/user/case/ServiceUserUseCase';
 import { UserService } from '@service/user/implement/UserService';
 import { HttpClientModule } from '@angular/common/http';
 import { CloseSesionUserUseCase } from '@repository/user/case/CloseSesionUserUseCase';
+import { ReadUserUseCase } from '@repository/user/case/ReadUserUseCase';
+import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDataUseCase';
+import { UserSharedRepository } from '@repository/user/UserSharedRepository';
+import { UserSharedService } from './implement/UserSharedService';
+import { UserSharedSetDataUserCase } from '@repository/user/case/UserSharedSetDataUserCase';
 
 
 const createUserUseCaseFactory = (userRepository: UserRepository) => new CreateUserUseCase(userRepository);
@@ -29,13 +34,37 @@ export const closeSesionUserCaseProvider = {
     deps: [UserRepository]
 };
 
+const readUserCaseFactory = (userRepository: UserRepository) => new ReadUserUseCase(userRepository);
+export const readUserCaseProvider = {
+    provide: ReadUserUseCase,
+    useFactory: readUserCaseFactory,
+    deps: [UserRepository]
+};
+
+const userSharedGetDataFactory = (userSharedRepository: UserSharedRepository) => new UserSharedGetDataUseCase(userSharedRepository);
+export const userSharedGetDataProvider = {
+    provide: UserSharedGetDataUseCase,
+    useFactory: userSharedGetDataFactory,
+    deps: [UserSharedRepository]
+};
+
+const userSharedSetDataFactory = (userSharedRepository: UserSharedRepository) => new UserSharedSetDataUserCase(userSharedRepository);
+export const userSharedSetDataProvider = {
+    provide: UserSharedSetDataUserCase,
+    useFactory: userSharedSetDataFactory,
+    deps: [UserSharedRepository]
+};
 
 @NgModule({
     providers: [
         createUserUseCaseProvider,
         serviceUserUseCaseProvider,
         closeSesionUserCaseProvider,
-        {provide: UserRepository, useClass: UserService}
+        readUserCaseProvider,
+        {provide: UserRepository, useClass: UserService},
+        userSharedGetDataProvider,
+        userSharedSetDataProvider,
+        {provide: UserSharedRepository, useClass: UserSharedService}
     ],
     imports: [
         CommonModule,

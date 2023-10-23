@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CREATE_ACCOUNT, FORGOT_PASSWORD, HERE, NEED_HELP, SIGN_IN } from '@module/login/login-page/component/section-two/constans/section-two';
+import { CREATE_ACCOUNT, FORGOT_PASSWORD, HERE, NEED_HELP, SIGN_IN, MESSAGE_ERROR } 
+from '@module/login/login-page/component/section-two/constans/section-two';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { ServiceUserUseCase } from '@repository/user/case/ServiceUserUseCase';
+import { UserSharedSetDataUserCase } from '@repository/user/case/UserSharedSetDataUserCase';
 
 @Component({
   selector: 'app-section-two',
@@ -24,7 +26,9 @@ export class SectionTwoComponent {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
-  constructor(public formulary: FormBuilder, private serviceUserUseCase: ServiceUserUseCase, public router: Router){
+  constructor(public formulary: FormBuilder, private serviceUserUseCase: ServiceUserUseCase, 
+    public router: Router, private userSharedSetDataUserCase: UserSharedSetDataUserCase){
+
     this.userForm = formulary.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -45,16 +49,14 @@ export class SectionTwoComponent {
     this.serviceUserUseCase.execute(params).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
+          this.userSharedSetDataUserCase.execute(genericResponse.objectId);
           this.router.navigateByUrl('login-laciguenia/admin-page-principal');
-          this.userForm.reset();
-        } else {
-          alert("Verificar Contraseña o Email");
           this.userForm.reset();
         }
       },
       (error) => {
         this.userForm.reset();
-        this.errorMessage = "Correo Electronico o Contraseña incorrecta. verificar";
+        this.errorMessage = MESSAGE_ERROR;
       }
     );
   }

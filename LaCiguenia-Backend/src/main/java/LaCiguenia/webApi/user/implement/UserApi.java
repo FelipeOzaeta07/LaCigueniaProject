@@ -6,6 +6,7 @@ import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.domains.dto.user.UserDTO;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.service.user.IUserService;
+import LaCiguenia.service.user.implement.UserService;
 import LaCiguenia.webApi.user.IUserApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,10 +24,10 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 public class UserApi implements IUserApi {
 
-    private final IUserService iUserService;
+    private final UserService userService;
 
-    public UserApi(IUserService iUserService) {
-        this.iUserService = iUserService;
+    public UserApi(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class UserApi implements IUserApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IUserEndPoint.USER_SERVICE)
     public ResponseEntity<GenericResponseDTO> serviceUser(@RequestBody UserDTO userDTO) {
-        return this.iUserService.userService(userDTO);
+        return this.userService.serviceUser(userDTO);
     }
 
     @Override
@@ -62,6 +63,24 @@ public class UserApi implements IUserApi {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IUserEndPoint.USER_CRATE)
     public ResponseEntity<GenericResponseDTO> createUser(@RequestBody UserDTO userDTO) {
-        return iUserService.userCreate(userDTO);
+        return userService.createUser(userDTO);
+    }
+
+    @Override
+    @Operation(summary = "Leer un nuevo Usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IUserEndPoint.USER_READ)
+    public ResponseEntity<GenericResponseDTO> readUser(Integer userId) {
+        return this.userService.readUser(userId);
     }
 }
