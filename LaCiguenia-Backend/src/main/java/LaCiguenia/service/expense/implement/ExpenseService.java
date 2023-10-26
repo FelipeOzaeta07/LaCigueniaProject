@@ -1,47 +1,55 @@
-package LaCiguenia.service.payment.implement;
-
+package LaCiguenia.service.expense.implement;
 import LaCiguenia.commons.constans.response.GeneralResponse;
-import LaCiguenia.commons.constans.response.payment.IPaymentMethodResponse;
-import LaCiguenia.commons.converter.payment.PaymentMethodConverter;
-import LaCiguenia.commons.domains.dto.payment.PaymentMethodDTO;
-import LaCiguenia.commons.domains.entity.payment.PaymentMethodEntity;
+import LaCiguenia.commons.constans.response.expense.IExpenseResponse;
+import LaCiguenia.commons.converter.expense.ExpenseConverter;
+import LaCiguenia.commons.domains.dto.expense.ExpenseDTO;
+import LaCiguenia.commons.domains.entity.expense.ExpenseEntity;
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
-import LaCiguenia.commons.domains.wrapper.DetailExpenseForPayment;
-import LaCiguenia.repository.payment.IPaymentMethodRepository;
-import LaCiguenia.service.payment.IPaymentMethodService;
+import LaCiguenia.repository.expense.IExpenseRepository;
+import LaCiguenia.repository.opening.IOpeningRepository;
+import LaCiguenia.service.expense.IExpenseService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
-
 @Service
 @Log4j2
-public class PaymentMethodService implements IPaymentMethodService {
-    @Autowired
-    private IPaymentMethodRepository iPaymentMethodRepository;
-    @Autowired
-    private PaymentMethodConverter paymentMethodConverter;
+public class ExpenseService implements IExpenseService {
+    private final IOpeningRepository iOpeningRepository;
+    private final IExpenseRepository iExpenseRepository;
+    private final ExpenseConverter expenseConverter;
+
+    public ExpenseService(IOpeningRepository iOpeningRepository, IExpenseRepository iExpenseRepository, ExpenseConverter expenseConverter) {
+        this.iOpeningRepository = iOpeningRepository;
+        this.iExpenseRepository = iExpenseRepository;
+        this.expenseConverter = expenseConverter;
+    }
     @Override
-    public ResponseEntity<GenericResponseDTO> createPaymentMethod(PaymentMethodDTO paymentMethodDTO) {
+    public ResponseEntity<GenericResponseDTO> createExpense(ExpenseDTO expenseDTO) {
         try {
-            Optional<PaymentMethodEntity> paymentMethodExist = this.iPaymentMethodRepository.findById(paymentMethodDTO.getPaymentMethodId());
-            if (!paymentMethodExist.isPresent()){
-                PaymentMethodEntity paymentMethodEntity = this.paymentMethodConverter.convertPaymentMethodDTOToPaymentMethodEntity(paymentMethodDTO);
-                paymentMethodEntity.setPaymentMethodStatus("Activo");
-                this.iPaymentMethodRepository.save(paymentMethodEntity);
+            Optional<ExpenseEntity> expenseExist = this.iExpenseRepository.findById(expenseDTO.getExpenseId());
+            if (!expenseExist.isPresent()){
+                ExpenseEntity expenseEntity = this.expenseConverter.convertExpenseDTOToExpenseEntity(expenseDTO);
+                Optional<OpeningEntity> openingEntity =
+                        this.iOpeningRepository.findById(this.iOpeningRepository.lastOpeningId());
+                expenseEntity.setOpeningEntity(openingEntity.get());
+                expenseEntity.setExpenseStatus("Activo");
+                this.iExpenseRepository.save(expenseEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
+                        .objectId(this.iExpenseRepository.lastIdExpense())
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(IPaymentMethodResponse.PAYMENT_METHOD_FAIL)
-                        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        .objectResponse(IExpenseResponse.EXPENSE_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
         }catch (Exception e) {
@@ -56,21 +64,20 @@ public class PaymentMethodService implements IPaymentMethodService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readPaymentMethods() {
+    public ResponseEntity<GenericResponseDTO> readExpenses() {
         try {
-            List<DetailExpenseForPayment> listPaymentMethodEntity =this.iPaymentMethodRepository.valueExpenseForPaymentMethod();
-            if (!listPaymentMethodEntity.isEmpty()){
+            List<ExpenseEntity> listExpenseExist = this.iExpenseRepository.findAll();
+            if (!listExpenseExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
-                        .objectResponse(listPaymentMethodEntity)
+                        .objectResponse(listExpenseExist)
                         .statusCode(HttpStatus.OK.value())
                         .build());
-            }
-            else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(IPaymentMethodResponse.PAYMENT_METHOD_NO_FIND)
-                        .statusCode(HttpStatus.OK.value())
+                        .objectResponse(IExpenseResponse.EXPENSE_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
         }catch (Exception e) {
@@ -85,12 +92,13 @@ public class PaymentMethodService implements IPaymentMethodService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> deletePaymentMethod(Integer PaymentMethodId) {
+    public ResponseEntity<GenericResponseDTO> deleteExpenses(Integer expenseId) {
         try {
-            Optional<PaymentMethodEntity> paymentMethodExist = this.iPaymentMethodRepository.findById(PaymentMethodId);
-            if (paymentMethodExist.isPresent()){
-                paymentMethodExist.get().setPaymentMethodStatus("Inactivo");
-                this.iPaymentMethodRepository.save(paymentMethodExist.get());
+            Optional<ExpenseEntity> expenseExist =
+                    this.iExpenseRepository.findExpenseForOpening(expenseId);
+            if (expenseExist.isPresent()){
+                expenseExist.get().setExpenseStatus("Anulado");
+                this.iExpenseRepository.save(expenseExist.get());
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.DELETE_SUCCESS)
@@ -99,7 +107,7 @@ public class PaymentMethodService implements IPaymentMethodService {
             }else {
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(null)
+                        .objectResponse(IExpenseResponse.EXPENSE_NO_FIND)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }

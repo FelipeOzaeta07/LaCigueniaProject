@@ -1,6 +1,7 @@
 package LaCiguenia.commons.domains.entity.opening;
 
 import LaCiguenia.commons.domains.entity.cashclosure.CashClosureEntity;
+import LaCiguenia.commons.domains.entity.expense.ExpenseEntity;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -42,4 +43,9 @@ public class OpeningEntity {
     @JsonManagedReference
     @JsonIgnore
     private List<InvoiceEntity> listInvoice;
+
+    @OneToMany(mappedBy = "openingEntity")
+    @JsonManagedReference
+    @JsonIgnore
+    private List<ExpenseEntity> listExpense;
 }

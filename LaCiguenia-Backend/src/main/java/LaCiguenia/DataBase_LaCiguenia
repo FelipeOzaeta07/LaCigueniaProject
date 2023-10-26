@@ -93,6 +93,26 @@ CREATE TABLE payment_method_ciguenia(
     payment_method_name VARCHAR(50),
     payment_method_status VARCHAR(10)
 );
+CREATE TABLE expense_ciguenia (
+    expense_id INT AUTO_INCREMENT,
+    expense_number_invoice INT,
+    expense_supplier_location VARCHAR(255),
+    expense_valor INT,
+    expense_description VARCHAR(255),
+    expense_status VARCHAR(50),
+    opening_id INT,
+    PRIMARY KEY (expense_id),
+    FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
+);
+CREATE TABLE detail_expense_ciguenia (
+    detail_expense_id INT AUTO_INCREMENT,
+    expense_id INT,
+    payment_method_id INT,
+    PRIMARY KEY (detail_expense_id),
+    FOREIGN KEY (expense_id) REFERENCES expense_ciguenia(expense_id),
+    FOREIGN KEY (payment_method_id) REFERENCES payment_method_ciguenia(payment_method_id)
+);
+
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
