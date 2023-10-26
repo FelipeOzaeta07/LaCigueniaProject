@@ -1,22 +1,20 @@
 import { Injectable } from "@angular/core";
 import { UserSharedRepository } from "@repository/user/UserSharedRepository";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserSharedService extends UserSharedRepository{
 
-    data: number;
+    private key = 'user-login';
 
-    constructor() {
-        super();
-        this.data = 0;
+    override setUser(userId: string): void {
+        localStorage.setItem(this.key, userId.toString());
     }
 
-    override setUser(userId: number): void {
-        this.data = userId;
-    }
     override getUser() {
-        return this.data;
+        const VALUE = localStorage.getItem(this.key);
+        return VALUE ? parseFloat(VALUE) : 0;
     }
 }

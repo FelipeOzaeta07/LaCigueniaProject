@@ -3,9 +3,8 @@ package LaCiguenia.commons.domains.entity.opening;
 import LaCiguenia.commons.domains.entity.cashclosure.CashClosureEntity;
 import LaCiguenia.commons.domains.entity.inventory.InventoryEntity;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import LaCiguenia.commons.domains.entity.store.StoreEntity;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -28,12 +27,9 @@ public class OpeningEntity {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate openingDate;
 
-    @Column(name = "opening_store")
-    private String openingStore;
-
     @Column(name = "opening_total")
     private Double openingTotal;
-    //Agregar Arreglo
+
     @OneToOne(mappedBy = "openingEntity", fetch = FetchType.LAZY)
     @JsonIgnore
     private CashClosureEntity cashClosureEntity;
@@ -42,4 +38,10 @@ public class OpeningEntity {
     @JsonManagedReference
     @JsonIgnore
     private List<InvoiceEntity> listInvoice;
+
+    @ManyToOne()
+    @JoinColumn(name = "store_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "storeId")
+    @JsonIgnore
+    private StoreEntity storeEntity;
 }

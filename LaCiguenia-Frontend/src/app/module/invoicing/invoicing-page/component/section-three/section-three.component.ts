@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { CustomerModel } from '@commons/domains/customer/CustomerModel';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
-import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL } 
+import { IVA, SUBTOTAL, TOTAL, PRODUCT, AMOUNT, CUSTOMER, TOTAL_TABLE, SUBTOTAL_TABLE, PAY, SYMBOL, FIND_NOT_FOUND } 
 from '@module/invoicing/invoicing-page/component/section-three/constans/section-three'
 
 @Component({
@@ -39,7 +39,7 @@ export class SectionThreeComponent{
   textCustomer = CUSTOMER;
 
   identificationCustomer!: string;
-  errorMessage: string = "No se ha encontrado el cliente que estás buscando";
+  errorMessage: string = FIND_NOT_FOUND;
 
 
   constructor(){ }

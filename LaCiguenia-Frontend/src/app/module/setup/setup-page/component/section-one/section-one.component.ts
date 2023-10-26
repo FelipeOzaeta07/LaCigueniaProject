@@ -30,9 +30,8 @@ export class SectionOneComponent implements OnInit{
   }
 
   userSharedGetData(){
-    let number = this.userSharedGetDataUseCase.execute();
-    console.log("Prueba Datos Desde el sservicio compartido: " + number)
-    this.readUserUseCase.execute(number).subscribe(
+    const NUMBER = this.userSharedGetDataUseCase.execute();
+    this.readUserUseCase.execute(NUMBER).subscribe(
       (res: GenericResponse) => {
         this.userModel = res.objectResponse;
       }

@@ -20,10 +20,12 @@
             </div>
             <div class="col_17">
                 <div class="col_between">
-                    <select [(ngModel)]="selectedPaymentMethod" name="selectedPaymentMethod" class="select col_8 size_2 text_weight">
-                        <option class="size_1" value="" disabled selected>{{textMethodPay}}</option>
-                        <option class="size_1" *ngFor="let metodo of metodosDePago" [value]="metodo">{{ metodo }}</option>
-                    </select>
+                    <form [formGroup]="methodPaymentForm" class="col_8">
+                        <select formControlName="selectedPaymentMethod" class="col_17 select text_weight size_2">
+                            <option class="size_1" value="" disabled selected>{{textMethodPay}}</option>
+                            <option class="size_1" *ngFor="let methodItem of methodPaymentModel" [ngValue]="methodItem">{{methodItem.paymentMethodName}}</option>
+                        </select>
+                    </form>
                     <input type="number" [(ngModel)]="changesInvoice" class="input col_8 size_2 text_color_two text_end" placeholder="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}" (input)="substractChanges()">
                 </div>
             </div>

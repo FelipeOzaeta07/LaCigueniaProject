@@ -6,6 +6,6 @@ export class UserSharedGetDataUseCase implements UseCaseVoid<number>{
     constructor(private userSharedRepository: UserSharedRepository){}
 
     execute(): any {
-         this.userSharedRepository.getUser();
+         return this.userSharedRepository.getUser();
     }
 }

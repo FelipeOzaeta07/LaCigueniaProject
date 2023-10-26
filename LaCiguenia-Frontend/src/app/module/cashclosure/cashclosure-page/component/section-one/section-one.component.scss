@@ -16,24 +16,25 @@ p{
     padding-bottom: calc(0.4vh);
 }
 input{
-    border: none;
-    border-bottom: 1px solid;
+    border: 1px solid;
+    border-radius: 5px;
     border-color: var(--color_three);
     padding-top: calc(0.4vh);
     padding-bottom: calc(0.4vh);
     text-align: center;
 }
 input:hover{
-    border: none;
-    border-bottom: 1px solid;
-    border-color: var(--color_three);
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: var(--color_thirteen);
     padding-top: calc(0.4vh);
     padding-bottom: calc(0.4vh);
     text-align: center;
 }
 input:focus{
-    border: none;
-    border-bottom: 1px solid;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: var(--color_thirteen);
     outline: none;
 }
 .border_bottom{

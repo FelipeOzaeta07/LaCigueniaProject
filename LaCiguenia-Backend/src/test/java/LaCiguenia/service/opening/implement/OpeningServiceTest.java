@@ -3,6 +3,7 @@ package LaCiguenia.service.opening.implement;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.opening.IOpeningResponse;
 import LaCiguenia.commons.converter.opening.OpeningConverter;
+import LaCiguenia.commons.converter.store.StoreConverter;
 import LaCiguenia.commons.domains.dto.opening.OpeningDTO;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
@@ -29,12 +30,14 @@ class OpeningServiceTest {
     private IOpeningRepository iOpeningRepository;
     @Mock
     private OpeningConverter openingConverter;
+    @Mock
+    private StoreConverter storeConverter;
     private OpeningService openingService;
 
     @BeforeEach
     void setUp() throws Exception{
         MockitoAnnotations.openMocks(this).close();
-        openingService = new OpeningService(iOpeningRepository, openingConverter);
+        openingService = new OpeningService(iOpeningRepository, openingConverter, storeConverter);
     }
 
     @Test

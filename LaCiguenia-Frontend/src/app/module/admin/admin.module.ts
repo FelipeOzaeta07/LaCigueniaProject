@@ -11,6 +11,8 @@ import { SectionFourComponent } from '@module/admin/admin-page/component/section
 import { ModalOneComponent } from '@module/admin/admin-page/component/modal-one/modal-one.component';
 import { InvoiceModule } from '@service/invoice/invoice.module';
 import { DetailModule } from '@service/detail/detail.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@service/store/store.module';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import { DetailModule } from '@service/detail/detail.module';
     HttpClientModule,
     ComponentModule,
     InvoiceModule,
-    DetailModule
+    DetailModule,
+    ReactiveFormsModule,
+    FormsModule,
+    StoreModule
   ]
 })
 export class AdminModule { }

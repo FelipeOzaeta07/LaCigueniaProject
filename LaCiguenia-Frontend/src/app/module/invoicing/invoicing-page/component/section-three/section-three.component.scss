@@ -1,3 +1,19 @@
+.ng-valid:not(form).ng-touched   {
+    padding-top: calc(0.3vw);
+    padding-bottom: calc(0.3vw);
+    text-indent: 3vh;
+    border: 1px solid;
+    border-color: var(--color_three);
+}
+.ng-valid:hover.ng-touched   {
+    border-color: var(--color_twelve);
+    box-shadow: 0 0 1px var(--color_thirteen);
+}
+.ng-valid:focus.ng-touched   {
+    border: 1px solid var(--color_thirteen);
+    box-shadow: 0 0 4px var(--color_thirteen);
+    outline: none;
+}
 .text_center{
     color: var(--color_fifteen);
 }

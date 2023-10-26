@@ -49,7 +49,9 @@ export class SectionTwoComponent {
     this.serviceUserUseCase.execute(params).subscribe(
       (genericResponse: GenericResponse) => {
         if (genericResponse.statusCode === 200) {
-          this.userSharedSetDataUserCase.execute(genericResponse.objectId);
+          const VALUE_NUMBER = genericResponse.objectId;
+          const VALUE_STRING = VALUE_NUMBER.toString();
+          this.userSharedSetDataUserCase.execute(VALUE_STRING);
           this.router.navigateByUrl('login-laciguenia/admin-page-principal');
           this.userForm.reset();
         }

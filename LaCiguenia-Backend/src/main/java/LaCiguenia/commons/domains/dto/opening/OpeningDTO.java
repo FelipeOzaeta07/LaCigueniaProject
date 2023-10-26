@@ -1,5 +1,7 @@
 package LaCiguenia.commons.domains.dto.opening;
 
+import LaCiguenia.commons.domains.entity.store.StoreEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 public class OpeningDTO implements Serializable {
     private Integer openingId;
     private LocalDate openingDate;
-    private String openingStore;
     private Double openingTotal;
+    @JsonIdentityReference(alwaysAsId = true)
+    private StoreEntity storeEntity;
 }

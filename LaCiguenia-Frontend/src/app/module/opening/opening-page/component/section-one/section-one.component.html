@@ -3,21 +3,26 @@
         <h1 class="size_3 text_center">{{textTitle}}</h1>
     </div>
     <div class="border room py_1">
-        <form action="" class="col_17 room">
-            <div class="col_center">
+        <div class="col_17 room">
+            <form [formGroup]="storeForm">
+                <div class="col_center">
+                    <div class="col_6 item_center">
+                        <p class="size_2">{{textStore}}</p>
+                    </div>
+                    <div class="col_17 col_start">
+                        <select formControlName="store" class="col_12 select size_2">
+                            <option class="size_2" value="" disabled selected>Seleccionar el Almacén</option>
+                            <option class="size_2" *ngFor="let storeItem of storeModel" [ngValue]="storeItem">{{ storeItem.storeName }}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="col_center py_1">
                 <div class="col_6 item_center">
                     <p class="size_2">{{textDate}}</p>
                 </div>
                 <div class="col_17">
                     <input type="text" class="input col_12 size_2" [(ngModel)]="date" placeholder="{{date}}" name="date">
-                </div>
-            </div>
-            <div class="col_center py_1">
-                <div class="col_6 item_center">
-                    <p class="size_2">{{textStore}}</p>
-                </div>
-                <div class="col_17">
-                    <input type="text" class="input col_12 size_2" [(ngModel)]="store" placeholder="General" name="store">
                 </div>
             </div>
             <div class="col_center">
@@ -41,6 +46,6 @@
                     <button (click)="createOpening()" class="col_15 btn_one cursor size_2">{{textTitle}}</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </section>

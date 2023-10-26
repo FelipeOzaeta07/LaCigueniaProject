@@ -170,7 +170,7 @@ public class CashClosureService implements ICashClosureService {
 
     @Override
     public ResponseEntity<GenericResponseDTO> informationForCashClosures() {
-        try {
+        /*try {
             Integer lastOpeningId = this.iOpeningRepository.lastOpeningId();
             Optional<OpeningEntity> openingEntityExist = this.iOpeningRepository.findById(lastOpeningId);
 
@@ -190,7 +190,7 @@ public class CashClosureService implements ICashClosureService {
                 Double totalCashClosure = totalMethodPay;
 
                 CashClosureInformationDTO cashClosureInformationDTO = new CashClosureInformationDTO();
-                cashClosureInformationDTO.setCashClosureInformationStore(openingEntity.getOpeningStore());
+                cashClosureInformationDTO.setCashClosureInformationStore(openingEntity.getStoreEntity().getStoreName());
                 cashClosureInformationDTO.setCashClosureInformationOpeningBox(totalOpeningBox);
                 cashClosureInformationDTO.setCashClosureInformationTotalCash(totalCash);
                 cashClosureInformationDTO.setCashClosureInformationTotalCredit(totalCredit);
@@ -219,6 +219,7 @@ public class CashClosureService implements ICashClosureService {
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
-        }
+        }*/
+        return null;
     }
 }

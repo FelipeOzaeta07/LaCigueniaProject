@@ -5,27 +5,27 @@
                 <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
                 <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
             </svg>
-            <h1 class="size_1 text_color_one">Agregar Nuevo Almacen</h1>
-            <p class="size_1 text_color_two">Podrás tener más métodos de Pago para las compras que vayan a realizar tus clientes</p>
-            <button class="btn_one col_17 size_1">AGREGAR METODO</button>
+            <h1 class="size_1 text_color_one">{{textStoreAdd}}</h1>
+            <p class="size_1 text_color_two">{{textStoreMessage}}</p>
+            <button (click)="eventStoreAdd()" class="btn_one col_17 size_1 cursor">{{textStoreButton}}</button>
         </div>
         <div class="col_4 row_evenly item_center text_center border h_50 border_bottom px_1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="svg_width" viewBox="0 0 16 16">
                 <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                 <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
             </svg>
-            <h1 class="size_1 text_color_one">Agregar Metodo de Pago</h1>
-            <p class="size_1 text_color_two">Podrás tener más métodos de Pago para las compras que vayan a realizar tus clientes</p>
-            <button class="btn_one col_17 size_1">AGREGAR METODO</button>
+            <h1 class="size_1 text_color_one">{{textPaymentAdd}}</h1>
+            <p class="size_1 text_color_two">{{textPaymentMessage}}</p>
+            <button (click)="eventMethodPaymentAdd()" class="btn_one col_17 size_1 cursor">{{textPaymentButton}}</button>
         </div>
         <div class="col_4 row_evenly item_center text_center border h_50 border_bottom px_1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="svg_width" viewBox="0 0 16 16">
                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                 <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
             </svg>
-            <h1 class="size_1 text_color_one">Agregar Categoria Productos</h1>
-            <p class="size_1 text_color_two">Podrás tener más métodos de Pago para las compras que vayan a realizar tus clientes</p>
-            <button class="btn_one col_17 size_1">AGREGAR METODO</button>
+            <h1 class="size_1 text_color_one">{{textCategoryAdd}}</h1>
+            <p class="size_1 text_color_two">{{textCategoryMessage}}</p>
+            <button (click)="eventCategoryAdd()" class="btn_one col_17 size_1 cursor">{{textCategoryButton}}</button>
         </div>
         <div class="col_4 row_evenly item_center text_center border h_50 border_bottom px_1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="svg_width" viewBox="0 0 16 16">
@@ -34,7 +34,7 @@
             </svg>
             <h1 class="size_1 text_color_one">Agregar Tipo Facturacion</h1>
             <p class="size_1 text_color_two">Podrás tener más métodos de Pago para las compras que vayan a realizar tus clientes</p>
-            <button class="btn_one col_17 size_1">AGREGAR METODO</button>
+            <button class="btn_one col_17 size_1 cursor">AGREGAR METODO</button>
         </div>
     </div>
 </section>

@@ -31,10 +31,11 @@ public interface IDetailRepository  extends JpaRepository<DetailEntity, Integer>
                     "cc.customer_phone_number AS customerPhone, cc.customer_email AS customerEmail,\n" +
                     "pc.product_name AS productName, pc.product_price AS productPrice, di.detail_amount AS detailAmount,\n" +
                     "di.detail_subtotal AS detailSubtotal, pc.product_iva AS productIva,\n" +
-                    "ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal, ic.invoice_pay AS invoicePay\n" +
+                    "ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal, pmc.payment_method_name AS invoicePay\n" +
                     "FROM invoice_ciguenia ic JOIN customer_ciguenia cc ON ic.customer_id = cc.customer_id\n" +
                     "JOIN detail_invoice_ciguenia di ON ic.invoice_id = di.invoice_id\n" +
                     "JOIN product_ciguenia pc ON di.product_id = pc.product_id\n" +
+                    "JOIN payment_method_ciguenia pmc ON pmc.payment_method_id = ic.payment_method_id\n" +
                     "WHERE ic.invoice_id = :invoiceId", nativeQuery = true)
     List<DetailProductForInvoice> detailProductForInvoices(@Param("invoiceId") Integer invoiceId);
 }

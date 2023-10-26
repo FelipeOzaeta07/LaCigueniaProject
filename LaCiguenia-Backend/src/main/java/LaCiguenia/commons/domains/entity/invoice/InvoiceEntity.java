@@ -1,8 +1,10 @@
 package LaCiguenia.commons.domains.entity.invoice;
 
+import LaCiguenia.commons.domains.dto.payment.PaymentMethodDTO;
 import LaCiguenia.commons.domains.entity.customer.CustomerEntity;
 import LaCiguenia.commons.domains.entity.detail.DetailEntity;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
+import LaCiguenia.commons.domains.entity.payment.PaymentMethodEntity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,9 +31,6 @@ public class InvoiceEntity {
     @Column(name = "invoice_iva")
     private Integer invoiceIva;
 
-    @Column(name = "invoice_pay")
-    private String invoicePay;
-
     @Column(name = "invoice_total")
     private Integer invoiceTotal;
 
@@ -53,4 +52,10 @@ public class InvoiceEntity {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
     @JsonIgnore
     private OpeningEntity openingEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_method_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "paymentMethodId")
+    @JsonIgnore
+    private PaymentMethodEntity paymentMethodEntity;
 }

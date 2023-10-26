@@ -1,11 +1,11 @@
 import { UseCaseVoid } from "@commons/helpers/UseCaseVoid";
 import { UserSharedRepository } from "@repository/user/UserSharedRepository";
 
-export class UserSharedSetDataUserCase implements UseCaseVoid<number>{
+export class UserSharedSetDataUserCase implements UseCaseVoid<string>{
 
     constructor(private userSharedRepository: UserSharedRepository){}
 
-    execute(userId: number): any {
+    execute(userId: string): any {
          this.userSharedRepository.setUser(userId);
     }
 }

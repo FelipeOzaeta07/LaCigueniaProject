@@ -1,18 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DetailModel } from '@commons/domains/detail/DetailModel';
 import { InvoiceModel } from '@commons/domains/invoice/InvoiceModel';
+import { MethodPaymentModel } from '@commons/domains/payment/MethodPaymentModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { SYMBOL_PRICE, TITLE, SUBTOTAL, IVA, TOTAL, DISCOUNT, ADD_PAY, CHANGE, FAIL, PAY, METHOD_PAY} 
 from '@module/invoicing/invoicing-page/component/modal-two/constans/modal-two';
 import { DetailCreateUseCase } from '@repository/detail/case/DetailCreateUseCase';
 import { InvoiceCreateUseCase } from '@repository/invoice/case/InvoiceCreateUseCase';
+import { ReadMethodsPaymentUseCase } from '@repository/payment/case/ReadMethodsPaymentUseCase';
 
 @Component({
   selector: 'app-modal-two',
   templateUrl: './modal-two.component.html',
   styleUrls: ['./modal-two.component.scss']
 })
-export class ModalTwoComponent{
+export class ModalTwoComponent implements OnInit{
 
   @Input() invoiceEnd!: InvoiceModel;
   @Input() detailInvoice!: DetailModel [];
@@ -32,22 +35,43 @@ export class ModalTwoComponent{
   textMethodPay = METHOD_PAY;
 
   detail!: DetailModel;
-  selectedPaymentMethod: string = '';
+  methodPaymentForm!: FormGroup;
   changesInvoice!: number;
   changesTotal: number = 0;
 
-  metodosDePago = ['Efectivo', 'Tarjeta de Crédito', 'Tarjeta de Débito'];
+  methodPaymentModel: MethodPaymentModel [] = [];
 
-  constructor(private invoiceCreateUseCase: InvoiceCreateUseCase, private detailCreateUseCase: DetailCreateUseCase){
+  constructor(private formulary: FormBuilder, private invoiceCreateUseCase: InvoiceCreateUseCase, 
+    private detailCreateUseCase: DetailCreateUseCase, private readMethodsPaymentUseCase: ReadMethodsPaymentUseCase){
+      this.methodPaymentForm = this.formulary.group({
+        selectedPaymentMethod: ['', [Validators.required]]
+      });
   }
 
-  generalInvoicePay(){
-    
-    if(this.selectedPaymentMethod == ''){
-      this.selectedPaymentMethod = 'Efectivo';
-    }
+  ngOnInit(): void {
+    this.readMethodsPayment();
+  }
 
-    this.invoiceEnd.invoicePay = this.selectedPaymentMethod;
+  readMethodsPayment(){
+    this.readMethodsPaymentUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        for(let item of res.objectResponse){
+          this.methodPaymentModel.push(item);
+        }
+      }
+    );
+  }
+
+  payment!: MethodPaymentModel;
+
+  generalInvoicePay(){
+
+    this.invoiceEnd.paymentMethodEntity = this.methodPaymentForm.controls['selectedPaymentMethod'].value;
+
+    if(this.invoiceEnd.paymentMethodEntity.paymentMethodName == null){
+      console.log("Entramos al if")
+      this.invoiceEnd.paymentMethodEntity = this.methodPaymentModel[0];
+    }
 
     this.invoiceCreateUseCase.execute(this.invoiceEnd).subscribe(
       (res: GenericResponse) => {

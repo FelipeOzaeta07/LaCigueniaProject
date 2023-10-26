@@ -9,11 +9,24 @@ CREATE TABLE user_ciguenia (
     user_password VARCHAR(100),
     user_status VARCHAR(20)
 );
+CREATE TABLE store_ciguenia (
+    store_id INT PRIMARY KEY AUTO_INCREMENT,
+    store_name VARCHAR(100),
+    store_number_nit VARCHAR(15),
+    store_type VARCHAR(50),
+    store_phone_number VARCHAR(20),
+    store_email VARCHAR(100),
+    store_code_ciiu VARCHAR(10),
+    store_city VARCHAR(20),
+    store_address VARCHAR(100),
+    store_status VARCHAR(20)
+);
 CREATE TABLE opening_ciguenia (
     opening_id INT AUTO_INCREMENT PRIMARY KEY,
     opening_date DATE,
-    opening_store VARCHAR(50),
-    opening_total DOUBLE
+    opening_total DOUBLE,
+    store_id INT,
+	FOREIGN KEY (store_id) REFERENCES store_ciguenia (store_id)
 );
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,17 +66,23 @@ CREATE TABLE customer_ciguenia (
     customer_email VARCHAR(100),
     customer_address VARCHAR(100)
 );
+CREATE TABLE payment_method_ciguenia(
+    payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
+    payment_method_name VARCHAR(50),
+    payment_method_status VARCHAR(10)
+);
 CREATE TABLE invoice_ciguenia (
     invoice_id INT PRIMARY KEY AUTO_INCREMENT,
     invoice_date DATE,
     invoice_iva INT,
-    invoice_pay VARCHAR(30),
     invoice_total DOUBLE,
     invoice_status VARCHAR(20),
     customer_id INT,
     opening_id INT,
+    payment_method_id INT,
     FOREIGN KEY (customer_id) REFERENCES customer_ciguenia (customer_id),
-	FOREIGN KEY (opening_id) REFERENCES opening_ciguenia (opening_id)
+	FOREIGN KEY (opening_id) REFERENCES opening_ciguenia (opening_id),
+	FOREIGN KEY (payment_method_id) REFERENCES payment_method_ciguenia (payment_method_id)
 );
 CREATE TABLE detail_invoice_ciguenia (
     detail_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -88,21 +107,11 @@ CREATE TABLE cash_closure_ciguenia (
     opening_id INT,
     FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
 );
-CREATE TABLE payment_method_ciguenia(
-    payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
-    payment_method_name VARCHAR(50),
-    payment_method_status VARCHAR(10)
-);
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
 VALUES
-	('Trajes Tipicos', 'Trajes Tipicos para alquiler'),
-	('Ropa Infantil ', 'Ropa Infantil para bebés'),
-	('Juguete Infantil', 'Juguete Infantil para niños'),
-	('Alimentación', 'Alimentación Infantil con nutrientes'),
-	('Salud y Cuidado', 'Salud Infantil para el cuidado de los bebes'),
-	('Accesorios Hogar', 'Mobiliario Infantil para adecuar el hogar');
+	('General', 'Categoria Especial para todos los productos');
 
 -- Registro Cliente
 INSERT INTO customer_ciguenia (customer_name, customer_identification, customer_phone_number, customer_email, customer_address)
@@ -115,6 +124,10 @@ VALUES ('United Nations Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habil
 -- Registro Metodo de Pago
 INSERT INTO payment_method_ciguenia (payment_method_name, payment_method_status)
 VALUES ('Efectivo', 'Activo');
+
+-- Registro Almacen
+INSERT INTO store_ciguenia (store_name, store_number_nit, store_type, store_phone_number, store_email, store_code_ciiu, store_city, store_address, store_status)
+VALUES ('General', '123456789', 'General', '3003003030', 'general@example.com', '0000', 'Ibague', 'Calle Principal 123', 'Habilitado');
 
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------
@@ -254,8 +267,9 @@ cc.customer_name AS customerName, cc.customer_identification AS customerIdentifi
 cc.customer_phone_number AS customerPhone, cc.customer_email AS customerEmail,
 pc.product_name AS productName, pc.product_price AS productPrice, di.detail_amount AS detailAmount,
 di.detail_subtotal AS detailSubtotal, pc.product_iva AS productIva,
-ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal
+ic.invoice_iva AS invoiceIva, ic.invoice_total AS invoiceTotal, pmc.payment_method_name AS invoicePay
 FROM invoice_ciguenia ic JOIN customer_ciguenia cc ON ic.customer_id = cc.customer_id
 JOIN detail_invoice_ciguenia di ON ic.invoice_id = di.invoice_id
 JOIN product_ciguenia pc ON di.product_id = pc.product_id
-WHERE ic.invoice_id = 2;
+JOIN payment_method_ciguenia pmc ON pmc.payment_method_id = ic.payment_method_id
+WHERE ic.invoice_id = 1;

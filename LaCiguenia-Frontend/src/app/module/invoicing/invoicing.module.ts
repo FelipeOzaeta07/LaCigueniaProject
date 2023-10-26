@@ -19,6 +19,7 @@ import { DetailModule } from '@service/detail/detail.module';
 import { ModalThreeComponent } from './invoicing-page/component/modal-three/modal-three.component';
 import { ReadProductFilterServicePipe } from '@service/product/implement/read-product-filter-service.pipe';
 import { ModalFourComponent } from './invoicing-page/component/modal-four/modal-four.component';
+import { PaymentModule } from '@service/payment/payment.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ModalFourComponent } from './invoicing-page/component/modal-four/modal-
     ProductModule,
     CustomerModule,
     InvoiceModule,
-    DetailModule
+    DetailModule,
+    PaymentModule
   ]
 })
 

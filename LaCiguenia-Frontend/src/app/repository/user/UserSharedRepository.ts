@@ -1,4 +1,4 @@
 export abstract class UserSharedRepository {
-    abstract setUser(userId: number): void;
+    abstract setUser(userId: string): void;
     abstract getUser(): any;
 }

@@ -155,7 +155,6 @@ export class InvoicingPageComponent {
       invoiceId: 0,
       invoiceDate: this.currentDate,
       invoiceIva: this.totalIVA,
-      invoicePay: '',
       invoiceTotal: this.totalPriceProducts,
       invoiceStatus: "Pagado",
       customerEntity: this.customer != null
@@ -167,7 +166,11 @@ export class InvoicingPageComponent {
             customerEmail: "general@example.com",
             customerAddress: "Calle Principal 123",
         },
-      openingEntity: this.sendOpeningService.getOpeningModel()
+      openingEntity: this.sendOpeningService.getOpeningModel(),
+      paymentMethodEntity: {
+        paymentMethodId: 0, 
+        paymentMethodName: ''
+      }
     }
   }
 

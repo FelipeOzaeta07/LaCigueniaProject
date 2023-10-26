@@ -3,7 +3,9 @@ package LaCiguenia.service.opening.implement;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.opening.IOpeningResponse;
 import LaCiguenia.commons.converter.opening.OpeningConverter;
+import LaCiguenia.commons.converter.store.StoreConverter;
 import LaCiguenia.commons.domains.dto.opening.OpeningDTO;
+import LaCiguenia.commons.domains.dto.store.StoreDTO;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.repository.opening.IOpeningRepository;
@@ -21,10 +23,12 @@ public class OpeningService implements IOpeningService {
 
     private final IOpeningRepository iOpeningRepository;
     private final OpeningConverter openingConverter;
+    private final StoreConverter storeConverter;
 
-    public OpeningService(IOpeningRepository iOpeningRepository, OpeningConverter openingConverter) {
+    public OpeningService(IOpeningRepository iOpeningRepository, OpeningConverter openingConverter, StoreConverter storeConverter) {
         this.iOpeningRepository = iOpeningRepository;
         this.openingConverter = openingConverter;
+        this.storeConverter = storeConverter;
     }
 
     @Override

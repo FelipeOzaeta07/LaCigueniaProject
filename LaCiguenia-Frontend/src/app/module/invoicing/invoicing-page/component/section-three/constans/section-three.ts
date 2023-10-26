@@ -8,3 +8,4 @@ export const SUBTOTAL_TABLE = "Subtotal";
 export const PAY = "Pagar";
 export const SYMBOL = "$ ";
 export const CUSTOMER = "Registrar Cliente";
+export const FIND_NOT_FOUND = "No se ha encontrado el cliente que estás buscando";
