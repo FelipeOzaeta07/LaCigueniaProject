@@ -69,7 +69,6 @@ export class ModalTwoComponent implements OnInit{
     this.invoiceEnd.paymentMethodEntity = this.methodPaymentForm.controls['selectedPaymentMethod'].value;
 
     if(this.invoiceEnd.paymentMethodEntity.paymentMethodName == null){
-      console.log("Entramos al if")
       this.invoiceEnd.paymentMethodEntity = this.methodPaymentModel[0];
     }
 

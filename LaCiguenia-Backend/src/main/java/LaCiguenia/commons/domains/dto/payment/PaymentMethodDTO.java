@@ -14,5 +14,6 @@ import java.io.Serializable;
 public class PaymentMethodDTO implements Serializable {
     private Integer paymentMethodId;
     private String paymentMethodName;
+    private String paymentMethodDescription;
     private String paymentMethodStatus;
 }

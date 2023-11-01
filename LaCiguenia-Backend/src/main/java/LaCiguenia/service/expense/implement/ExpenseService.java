@@ -78,7 +78,7 @@ public class ExpenseService implements IExpenseService {
             }else {
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(IExpenseResponse.EXPENSE_FAIL)
+                        .objectResponse(IExpenseResponse.EXPENSE_NO_FIND)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }

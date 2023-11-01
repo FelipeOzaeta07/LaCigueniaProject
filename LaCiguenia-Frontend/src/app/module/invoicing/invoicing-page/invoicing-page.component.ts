@@ -169,7 +169,8 @@ export class InvoicingPageComponent {
       openingEntity: this.sendOpeningService.getOpeningModel(),
       paymentMethodEntity: {
         paymentMethodId: 0, 
-        paymentMethodName: ''
+        paymentMethodName: '',
+        paymentMethodDescription: ''
       }
     }
   }

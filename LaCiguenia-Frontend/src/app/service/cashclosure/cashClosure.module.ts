@@ -8,6 +8,7 @@ import { ReadCashClosureUseCase } from '@repository/cashclosure/case/ReadCashClo
 import { ReadCashClosuresUseCase } from '@repository/cashclosure/case/ReadCashClosuresUseCase';
 import { ReadLastCashClosureUseCase } from '@repository/cashclosure/case/ReadLastCashClosureUseCase';
 import { InformationForCashClosuresUseCase } from '@repository/cashclosure/case/InformationForCashClosuresUseCase';
+import { DetailMethodPaymentForCashClosuresUseCase } from '@repository/cashclosure/case/DetailMethodPaymentForCashClosuresUseCase';
 
 
 const createCashClosureUseCaseFactory = (cashClosureRepository: CashClosureRepository) => new CreateCashClosureUseCase(cashClosureRepository);
@@ -45,6 +46,14 @@ export const informationForClosuresUseCaseProvider = {
     deps: [CashClosureRepository],
 };
 
+
+const detailMethodPaymentForCashClosuresUseCaseFactory = (cashClosureRepository: CashClosureRepository) => new DetailMethodPaymentForCashClosuresUseCase(cashClosureRepository);
+export const detailMethodPaymentForCashClosuresUseCaseProvider = {
+    provide: DetailMethodPaymentForCashClosuresUseCase,
+    useFactory: detailMethodPaymentForCashClosuresUseCaseFactory,
+    deps: [CashClosureRepository],
+};
+
 @NgModule({
   providers: [
     createCashClosureUseCaseProvider,
@@ -52,6 +61,7 @@ export const informationForClosuresUseCaseProvider = {
     readCashClosuresUseCaseProvider,
     readLastCashClosuresUseCaseProvider,
     informationForClosuresUseCaseProvider,
+    detailMethodPaymentForCashClosuresUseCaseProvider,
     {provide: CashClosureRepository, useClass: CashClosureService}
   ],
   imports: [

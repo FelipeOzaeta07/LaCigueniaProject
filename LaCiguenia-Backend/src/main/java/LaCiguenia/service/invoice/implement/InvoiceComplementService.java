@@ -5,6 +5,7 @@ import LaCiguenia.commons.constans.response.invoice.IInvoiceResponse;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.responseDTO.InformationGeneralInvoice;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
+import LaCiguenia.commons.domains.wrapper.IDetailExpenseForPayment;
 import LaCiguenia.component.invoice.implement.InvoiceComponent;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.service.invoice.IInvoiceComplementService;
@@ -41,6 +42,34 @@ public class InvoiceComplementService implements IInvoiceComplementService {
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(informationGeneralInvoice)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else{
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IInvoiceResponse.INVOICES_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readInvoicesForMethodPaymentOpeningBox() {
+        try{
+            List<IDetailExpenseForPayment> listInvoice = this.iInvoiceRepository.valueSalesForPaymentMethod();
+            if (!listInvoice.isEmpty()){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(null)
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else{

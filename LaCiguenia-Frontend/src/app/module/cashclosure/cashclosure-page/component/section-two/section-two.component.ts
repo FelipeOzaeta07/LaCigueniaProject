@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CashClosureInformationModel } from '@commons/domains/cashclosure/CashClosureInformationModel';
+import { MethodPaymentSales } from '@commons/domains/payment/MethodPaymentSales';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, FORMAT_METHOD_PAY, TOTAL_CLOSURE, TOTAL_EXPENSE, TOTAL_SALES, TOTAL_OPENING_BOX,
    CONCEPT, TOTAL_CASH_CLOSURE, DESCRIPTION, SYMBOL, EXPENSE, METHOD_PAY, TOTAL, VALUE, AMOUNT } 
 from '@module/cashclosure/cashclosure-page/component/section-two/constans/section-two';
+import { DetailMethodPaymentForCashClosuresUseCase } from '@repository/cashclosure/case/DetailMethodPaymentForCashClosuresUseCase';
 import { InformationForCashClosuresUseCase } from '@repository/cashclosure/case/InformationForCashClosuresUseCase';
 
 @Component({
@@ -30,11 +32,14 @@ export class SectionTwoComponent implements OnInit{
   textSymbol = SYMBOL;
 
   informationCashClosure!: CashClosureInformationModel;
+  methodPaymentSales: MethodPaymentSales [] = [];
+  totalSales: number = 0;
 
-  constructor(private informationForCashClosuresUseCase: InformationForCashClosuresUseCase){}
+  constructor(private informationForCashClosuresUseCase: InformationForCashClosuresUseCase, private detailMethodPaymentForCashClosuresUseCase: DetailMethodPaymentForCashClosuresUseCase){}
 
   ngOnInit(): void {
     this.informationForCashClosures();
+    this.detailMethodPaymentForCashClosures();
   }
 
   informationForCashClosures(){
@@ -43,5 +48,16 @@ export class SectionTwoComponent implements OnInit{
         this.informationCashClosure = res.objectResponse;
       }
     )
+  }
+
+  detailMethodPaymentForCashClosures(){
+    this.detailMethodPaymentForCashClosuresUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        for(let item of res.objectResponse){
+          this.methodPaymentSales.push(item)
+          this.totalSales += item.totalSales;
+        }
+      }
+    );
   }
 }

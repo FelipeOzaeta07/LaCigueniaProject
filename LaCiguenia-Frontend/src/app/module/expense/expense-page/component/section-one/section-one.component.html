@@ -1,0 +1,62 @@
+<section  class="room row_evenly inherit col_17">
+    <div class="h_10 row_center">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitle}}</h1>
+        </div>
+    </div>
+    <form (ngSubmit)="createExpense()" [formGroup]="expenseForm" class="col_17 border row_between room">
+        <div class="col_17 col_between pt_1">
+            <div class="col_3 row_center">
+                <label class="size_2 pb_1">{{textInvoice}}</label>
+                <input type="text" class="input size_1" placeholder="Ingresa No. Factura" formControlName="numberExpense">
+            </div>
+            <div class="col_7 row_center">
+                <label class="size_2 pb_1">{{textPlace}}</label>
+                <input type="text" class="input size_1" placeholder="Ingresa el nombre del lugar o proovedor" formControlName="placeExpense">
+            </div>
+            <div class="col_3 row_center">
+                <label class="size_2 pb_1">{{textMethodPay}}</label>
+                <select formControlName="methodPayExpense" class="col_17 select text_weight size_1">
+                    <option class="size_1" value="" disabled selected>{{textMethodPay}}</option>
+                    <option class="size_1" *ngFor="let methodItem of methodPayment" [ngValue]="methodItem">{{methodItem.paymentMethodName}}</option>
+                </select>
+            </div>
+            <div class="col_3 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textValue}}</label>
+                    <input type="number" class="col_17 input size_1" placeholder="$" formControlName="valueExpense">
+                </div>
+            </div>  
+        </div>
+        <div class="col_17 col_between pt_1">
+            <div class="col_3 row_center">
+                <label class="size_2 pb_1">Categoria Producto</label>
+                <select formControlName="categoryExpense" class="col_17 select text_weight size_1">
+                    <option class="size_1" value="" disabled selected>Ingresa Categoria</option>
+                    <option class="size_1" *ngFor="let categoryItem of categoryArray" [ngValue]="categoryItem">{{categoryItem.categoryName}}</option>
+                </select>
+            </div>
+            <div class="col_4 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">Producto</label>
+                    <input type="text" class="input size_1" placeholder="Buscar Producto" formControlName="productExpense">
+                </div>
+            </div>
+            <div class="col_2 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">Cantidad</label>
+                    <input type="number" class="input size_1" placeholder="Unidades" formControlName="amountExpense">
+                </div>
+            </div>
+            <div class="col_7 col_between">    
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textDescription}}</label>
+                    <input type="text" class="input size_1 " placeholder="Ingresa la descripcion" formControlName="descriptionExpense">           
+                </div>
+            </div>
+        </div>
+        <div class="col_17 col_center py_1">
+            <button type="submit" class="btn_one size_2 col_5">{{textSave}}</button>
+        </div>
+    </form>
+</section>

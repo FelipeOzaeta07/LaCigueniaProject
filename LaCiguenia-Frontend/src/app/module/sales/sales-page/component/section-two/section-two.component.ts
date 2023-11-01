@@ -18,10 +18,19 @@ export class SectionTwoComponent {
 
   constructor(private salesAccessTokenService: SalesAccessTokenService, private router: Router){}
 
-  navigateBy(){
+  navigateByCashClosure(){
     const MESSAGE = this.salesAccessTokenService.salesAccessTokenGet();
     if(MESSAGE == 'Operación exitosa'){
       this.router.navigateByUrl('login-laciguenia/sales-page-principal/cash-closure-page-principal');
+    }else{
+      this.sendMessageOpeningBox.emit(true);
+    }
+  }
+
+  navigateByExpense(){
+    const MESSAGE = this.salesAccessTokenService.salesAccessTokenGet();
+    if(MESSAGE == 'Operación exitosa'){
+      this.router.navigateByUrl('login-laciguenia/sales-page-principal/expense-page-principal');
     }else{
       this.sendMessageOpeningBox.emit(true);
     }

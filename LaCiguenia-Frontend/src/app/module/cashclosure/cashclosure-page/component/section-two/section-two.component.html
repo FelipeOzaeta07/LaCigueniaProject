@@ -14,24 +14,14 @@
                 <p class="size_1 col_7">{{textMethodPay}}</p>
                 <p class="size_1 col_5">{{textValue}}</p>
             </div>
-            <div class="col_17 col_between text_center">
-                <p class="size_1 text_color_two col_4">1</p>
-                <p class="size_1 text_color_two col_7">Efectivo</p>
-                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalCash | number}}</p>
-            </div>
-            <div class="col_17 col_between text_center">
-                <p class="size_1 text_color_two col_4">2</p>
-                <p class="size_1 text_color_two col_7">Tarjeta de Credito</p>
-                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalCredit | number}}</p>
-            </div>
-            <div class="col_17 col_between text_center">
-                <p class="size_1 text_color_two col_4">3</p>
-                <p class="size_1 text_color_two col_7">Tarjeta de Debito</p>
-                <p class="size_1 text_color_two col_5">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalDebit | number}}</p>
+            <div *ngFor="let item of methodPaymentSales; let i = index" class="col_17 col_between text_center">
+                <p class="size_1 text_color_two col_4">{{i + 1}}</p>
+                <p class="size_1 text_color_two col_7">{{item.paymentMethodName}}</p>
+                <p class="size_1 text_color_two col_5">{{textSymbol}} {{item.totalSales | number}}</p>
             </div>
             <div class="col_17 col_between text_center py_1">
                 <p class="size_1 col_8">{{textTotal}}</p>
-                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalSalesMethodPay | number}}</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{totalSales  | number}}</p>
             </div>
         </div>
         <div class="col_17 row_center">
@@ -66,7 +56,7 @@
             </div>
             <div class="col_17 col_between">
                 <p class="size_1 text_color_two col_10">{{textTotalSales}}</p>
-                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalSalesMethodPay | number}}</p>
+                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} {{totalSales | number}}</p>
             </div>
             <div class="col_17 col_between">
                 <p class="size_1 text_color_two col_10">{{textTotalExpense}}</p>
@@ -74,7 +64,7 @@
             </div>
             <div class="col_17 col_between text_center py_1">
                 <p class="size_1 col_8">{{textTotalClosure}}</p>
-                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationTotalClosure + informationCashClosure.cashClosureInformationOpeningBox | number}}</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationOpeningBox + totalSales - 0 | number }}</p>
             </div>
         </div>
     </div>

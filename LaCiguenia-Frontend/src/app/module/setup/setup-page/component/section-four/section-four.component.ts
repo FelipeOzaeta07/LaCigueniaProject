@@ -40,7 +40,8 @@ export class SectionFourComponent {
 
     this.methodPaymentModel = {
       paymentMethodId: 0,  
-      paymentMethodName: this.paymentForm.controls['nameMethodPayment'].value
+      paymentMethodName: this.paymentForm.controls['nameMethodPayment'].value,
+      paymentMethodDescription: this.paymentForm.controls['descriptionMethodPayment'].value,
     }
 
     this.createMethodPaymentUseCase.execute(this.methodPaymentModel).subscribe(

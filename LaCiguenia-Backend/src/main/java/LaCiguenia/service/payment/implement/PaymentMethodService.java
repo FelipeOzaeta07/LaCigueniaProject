@@ -6,6 +6,7 @@ import LaCiguenia.commons.converter.payment.PaymentMethodConverter;
 import LaCiguenia.commons.domains.dto.payment.PaymentMethodDTO;
 import LaCiguenia.commons.domains.entity.payment.PaymentMethodEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
+import LaCiguenia.commons.domains.wrapper.IDetailExpenseForPayment;
 import LaCiguenia.repository.payment.IPaymentMethodRepository;
 import LaCiguenia.service.payment.IPaymentMethodService;
 import lombok.extern.log4j.Log4j2;
@@ -23,12 +24,15 @@ public class PaymentMethodService implements IPaymentMethodService {
     private IPaymentMethodRepository iPaymentMethodRepository;
     @Autowired
     private PaymentMethodConverter paymentMethodConverter;
+
     @Override
     public ResponseEntity<GenericResponseDTO> createPaymentMethod(PaymentMethodDTO paymentMethodDTO) {
         try {
-            Optional<PaymentMethodEntity> paymentMethodExist = this.iPaymentMethodRepository.findById(paymentMethodDTO.getPaymentMethodId());
+            Optional<PaymentMethodEntity> paymentMethodExist =
+                    this.iPaymentMethodRepository.findById(paymentMethodDTO.getPaymentMethodId());
             if (!paymentMethodExist.isPresent()){
-                PaymentMethodEntity paymentMethodEntity = this.paymentMethodConverter.convertPaymentMethodDTOToPaymentMethodEntity(paymentMethodDTO);
+                PaymentMethodEntity paymentMethodEntity =
+                        this.paymentMethodConverter.convertPaymentMethodDTOToPaymentMethodEntity(paymentMethodDTO);
                 paymentMethodEntity.setPaymentMethodStatus("Activo");
                 this.iPaymentMethodRepository.save(paymentMethodEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
@@ -57,7 +61,8 @@ public class PaymentMethodService implements IPaymentMethodService {
     @Override
     public ResponseEntity<GenericResponseDTO> readPaymentMethods() {
         try {
-            List<PaymentMethodEntity> listPaymentMethodEntity =this.iPaymentMethodRepository.findPaymentMethodEnabled();
+            List<PaymentMethodEntity> listPaymentMethodEntity =
+                    this.iPaymentMethodRepository.findPaymentMethodEnabled();
             if (!listPaymentMethodEntity.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -86,7 +91,8 @@ public class PaymentMethodService implements IPaymentMethodService {
     @Override
     public ResponseEntity<GenericResponseDTO> deletePaymentMethod(Integer PaymentMethodId) {
         try {
-            Optional<PaymentMethodEntity> paymentMethodExist = this.iPaymentMethodRepository.findById(PaymentMethodId);
+            Optional<PaymentMethodEntity> paymentMethodExist =
+                    this.iPaymentMethodRepository.findById(PaymentMethodId);
             if (paymentMethodExist.isPresent()){
                 paymentMethodExist.get().setPaymentMethodStatus("Inactivo");
                 this.iPaymentMethodRepository.save(paymentMethodExist.get());

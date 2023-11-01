@@ -31,9 +31,11 @@ public class DetailExpenseService  implements IDetailExpenseService {
     @Override
     public ResponseEntity<GenericResponseDTO> createDetailExpense(DetailExpenseDTO detailExpenseDTO) {
         try {
-            Optional<DetailExpenseEntity> detailExpenseExist = this.iDetailExpenseRepository.findById(detailExpenseDTO.getDetailExpenseId());
+            Optional<DetailExpenseEntity> detailExpenseExist =
+                    this.iDetailExpenseRepository.findById(detailExpenseDTO.getDetailExpenseId());
             if (!detailExpenseExist.isPresent()){
-                DetailExpenseEntity detailExpenseEntity = this.detailExpenseConverter.convertDetailDTOToDetailEntity(detailExpenseDTO);
+                DetailExpenseEntity detailExpenseEntity =
+                        this.detailExpenseConverter.convertDetailDTOToDetailEntity(detailExpenseDTO);
                 this.iDetailExpenseRepository.save(detailExpenseEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

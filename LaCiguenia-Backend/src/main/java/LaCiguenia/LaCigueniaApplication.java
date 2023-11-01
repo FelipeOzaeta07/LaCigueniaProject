@@ -15,6 +15,7 @@ public class LaCigueniaApplication {
 	        Laura Valentina Trujillo      UX Designer
 	        Luis Eduardo Sanchez          Develop Frontend
 	        Heiler Felipe Ozaeta          Develop Backend
+	 		Yesica Paola Martinez		  QC Quality Control
 	        Jesus David Rodriguez         QC Quality Control
 	Contacto:
 	        +57 3103302209 - +57 3226640119					**/

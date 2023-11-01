@@ -69,6 +69,7 @@ CREATE TABLE customer_ciguenia (
 CREATE TABLE payment_method_ciguenia(
     payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
     payment_method_name VARCHAR(50),
+    payment_method_description VARCHAR(100),
     payment_method_status VARCHAR(10)
 );
 CREATE TABLE invoice_ciguenia (
@@ -107,6 +108,25 @@ CREATE TABLE cash_closure_ciguenia (
     opening_id INT,
     FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
 );
+CREATE TABLE expense_ciguenia (
+    expense_id INT AUTO_INCREMENT,
+    expense_number_invoice INT,
+    expense_supplier_location VARCHAR(255),
+    expense_valor INT,
+    expense_description VARCHAR(255),
+    expense_status VARCHAR(50),
+    opening_id INT,
+    PRIMARY KEY (expense_id),
+    FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
+);
+CREATE TABLE detail_expense_ciguenia (
+    detail_expense_id INT AUTO_INCREMENT,
+    expense_id INT,
+    payment_method_id INT,
+    PRIMARY KEY (detail_expense_id),
+    FOREIGN KEY (expense_id) REFERENCES expense_ciguenia(expense_id),
+    FOREIGN KEY (payment_method_id) REFERENCES payment_method_ciguenia(payment_method_id)
+);
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
@@ -122,8 +142,8 @@ INSERT INTO user_ciguenia (user_name, user_email, user_password, user_status)
 VALUES ('United Nations Security Code', 'unsc@gmail.com', 'dW5zYzEyMw==', 'Habilitado');
 
 -- Registro Metodo de Pago
-INSERT INTO payment_method_ciguenia (payment_method_name, payment_method_status)
-VALUES ('Efectivo', 'Activo');
+INSERT INTO payment_method_ciguenia (payment_method_name, payment_method_description, payment_method_status)
+VALUES ('Efectivo', 'Metodo de pago General', 'Activo');
 
 -- Registro Almacen
 INSERT INTO store_ciguenia (store_name, store_number_nit, store_type, store_phone_number, store_email, store_code_ciiu, store_city, store_address, store_status)

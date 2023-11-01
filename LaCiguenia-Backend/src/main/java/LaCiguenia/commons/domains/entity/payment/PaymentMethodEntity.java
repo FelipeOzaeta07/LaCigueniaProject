@@ -24,6 +24,9 @@ public class PaymentMethodEntity {
     @Column(name = "payment_method_name")
     private String paymentMethodName;
 
+    @Column(name = "payment_method_description")
+    private String paymentMethodDescription;
+
     @Column(name = "payment_method_status")
     private String paymentMethodStatus;
 

@@ -8,4 +8,5 @@ export abstract class CashClosureRepository {
     abstract readCashClosures (): Observable<GenericResponse>;
     abstract readLastCashClosure (): Observable<GenericResponse>;
     abstract informationForCashClosures(): Observable<GenericResponse>;
+    abstract detailMethodPaymentForCashClosuresUseCase(): Observable<GenericResponse>;
 }

@@ -7,4 +7,5 @@ public interface ICashClosureEndPoint {
     String READ_CASH_CLOSURES = "/leer-cerrar-cajas";
     String READ_LAST_CASH_CLOSURES = "/leer-ultimo-cerrar-caja";
     String READ_INFORMATION_CASH_CLOSURE ="/informacion-para-cierre-caja";
+    String READ_DETAIL_INFORMATION_CASH_CLOSURE ="/detalle-informacion-para-cierre-caja";
 }

@@ -6,10 +6,9 @@ import LaCiguenia.commons.converter.cashclosure.CashClosureConverter;
 import LaCiguenia.commons.domains.dto.cashclosure.CashClosureDTO;
 import LaCiguenia.commons.domains.dto.cashclosure.CashClosureInformationDTO;
 import LaCiguenia.commons.domains.entity.cashclosure.CashClosureEntity;
-import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
-import LaCiguenia.component.cashclosure.implement.CashClosureComponent;
+import LaCiguenia.commons.domains.wrapper.ISalesMethodPaymentWrapper;
 import LaCiguenia.repository.cashclosure.ICashClosureRepository;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.repository.opening.IOpeningRepository;
@@ -30,12 +29,11 @@ public class CashClosureService implements ICashClosureService {
     private final IInvoiceRepository iInvoiceRepository;
     private final IOpeningRepository iOpeningRepository;
     private final CashClosureConverter cashClosureConverter;
-    private final CashClosureComponent cashClosureComponent;
 
-    public CashClosureService(ICashClosureRepository iCashClosureRepository, CashClosureConverter cashClosureConverter, CashClosureComponent cashClosureComponent, IInvoiceRepository iInvoiceRepository, IOpeningRepository iOpeningRepository) {
+    public CashClosureService(ICashClosureRepository iCashClosureRepository, CashClosureConverter cashClosureConverter,
+                              IInvoiceRepository iInvoiceRepository, IOpeningRepository iOpeningRepository) {
         this.iCashClosureRepository = iCashClosureRepository;
         this.cashClosureConverter = cashClosureConverter;
-        this.cashClosureComponent = cashClosureComponent;
         this.iInvoiceRepository = iInvoiceRepository;
         this.iOpeningRepository = iOpeningRepository;
     }
@@ -170,36 +168,21 @@ public class CashClosureService implements ICashClosureService {
 
     @Override
     public ResponseEntity<GenericResponseDTO> informationForCashClosures() {
-        /*try {
+        try {
             Integer lastOpeningId = this.iOpeningRepository.lastOpeningId();
             Optional<OpeningEntity> openingEntityExist = this.iOpeningRepository.findById(lastOpeningId);
 
             if (openingEntityExist.isPresent()) {
-                List<InvoiceEntity> salesForCash = this.iInvoiceRepository.findAllSalesForCash(lastOpeningId);
-                List<InvoiceEntity> salesForCredit = this.iInvoiceRepository.findAllSalesForCredit(lastOpeningId);
-                List<InvoiceEntity> salesForDebit = this.iInvoiceRepository.findAllSalesForDebit(lastOpeningId);
-
-                Double totalCash = this.cashClosureComponent.totalSalesCashForDay(salesForCash);
-                Double totalCredit = this.cashClosureComponent.totalSalesCreditForDay(salesForCredit);
-                Double totalDebit = this.cashClosureComponent.totalSalesDebitForDay(salesForDebit);
-
-                OpeningEntity openingEntity = openingEntityExist.get();
-                Double totalOpeningBox = openingEntity.getOpeningTotal();
-                Double totalCashBox = totalOpeningBox + totalCash;
-                Double totalMethodPay = totalCredit + totalCash + totalDebit;
-                Double totalCashClosure = totalMethodPay;
 
                 CashClosureInformationDTO cashClosureInformationDTO = new CashClosureInformationDTO();
-                cashClosureInformationDTO.setCashClosureInformationStore(openingEntity.getStoreEntity().getStoreName());
-                cashClosureInformationDTO.setCashClosureInformationOpeningBox(totalOpeningBox);
-                cashClosureInformationDTO.setCashClosureInformationTotalCash(totalCash);
-                cashClosureInformationDTO.setCashClosureInformationTotalCredit(totalCredit);
-                cashClosureInformationDTO.setCashClosureInformationTotalDebit(totalDebit);
-                cashClosureInformationDTO.setCashClosureInformationTotalIva(this.cashClosureComponent.getTotalIva());
-                cashClosureInformationDTO.setCashClosureInformationTotalCashBox(totalCashBox);
-                cashClosureInformationDTO.setCashClosureInformationTotalSalesMethodPay(totalMethodPay);
-                cashClosureInformationDTO.setCashClosureInformationTotalClosure(totalCashClosure);
-
+                cashClosureInformationDTO.setCashClosureInformationStore(openingEntityExist.get().getStoreEntity().getStoreName());
+                cashClosureInformationDTO.setCashClosureInformationOpeningBox(openingEntityExist.get().getOpeningTotal());
+                cashClosureInformationDTO.setCashClosureInformationTotalCash(
+                        this.iInvoiceRepository.totalSalesCash()
+                );
+                if(cashClosureInformationDTO.getCashClosureInformationTotalCash() == null){
+                    cashClosureInformationDTO.setCashClosureInformationTotalCash(0.0);
+                }
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(cashClosureInformationDTO)
@@ -207,7 +190,7 @@ public class CashClosureService implements ICashClosureService {
                         .build());
             }
             return ResponseEntity.ok(GenericResponseDTO.builder()
-                    .message(GeneralResponse.OPERATION_SUCCESS)
+                    .message(GeneralResponse.OPERATION_FAIL)
                     .objectResponse(null)
                     .statusCode(HttpStatus.OK.value())
                     .build());
@@ -219,7 +202,37 @@ public class CashClosureService implements ICashClosureService {
                             .objectResponse(null)
                             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .build());
-        }*/
-        return null;
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> detailMethodPaymentForCashClosures() {
+        try {
+            Integer lastOpeningId = this.iOpeningRepository.lastOpeningId();
+            Optional<OpeningEntity> openingEntityExist = this.iOpeningRepository.findById(lastOpeningId);
+
+            if (openingEntityExist.isPresent()) {
+                List<ISalesMethodPaymentWrapper> listSalesForMethodPayment =
+                        this.iInvoiceRepository.salesInvoicesForMethodPayment();
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(listSalesForMethodPayment)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }
+            return ResponseEntity.ok(GenericResponseDTO.builder()
+                    .message(GeneralResponse.OPERATION_FAIL)
+                    .objectResponse(null)
+                    .statusCode(HttpStatus.OK.value())
+                    .build());
+        } catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER_ERROR, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
     }
 }

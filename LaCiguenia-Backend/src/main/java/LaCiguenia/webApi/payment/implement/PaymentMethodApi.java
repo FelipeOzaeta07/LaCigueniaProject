@@ -1,6 +1,5 @@
 package LaCiguenia.webApi.payment.implement;
 
-
 import LaCiguenia.commons.constans.endpoints.payment.IPaymentMethodEndPoint;
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.domains.dto.payment.PaymentMethodDTO;

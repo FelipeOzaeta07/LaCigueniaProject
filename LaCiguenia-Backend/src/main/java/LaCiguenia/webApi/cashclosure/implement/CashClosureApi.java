@@ -120,4 +120,22 @@ public class CashClosureApi implements ICashClosureApi {
     public ResponseEntity<GenericResponseDTO> informationForCashClosures() {
         return this.cashClosureService.informationForCashClosures();
     }
+
+    @Override
+    @Operation(summary = "Detalle de informacion Metodo de Pago para realizar Cierre de Caja")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(ICashClosureEndPoint.READ_DETAIL_INFORMATION_CASH_CLOSURE)
+    public ResponseEntity<GenericResponseDTO> detailMethodPaymentForCashClosures() {
+        return this.cashClosureService.detailMethodPaymentForCashClosures();
+    }
 }

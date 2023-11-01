@@ -16,4 +16,6 @@ public interface ICashClosureApi {
     ResponseEntity<GenericResponseDTO> readLastCashClosures ();
     @GetMapping()
     ResponseEntity<GenericResponseDTO> informationForCashClosures ();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> detailMethodPaymentForCashClosures();
 }

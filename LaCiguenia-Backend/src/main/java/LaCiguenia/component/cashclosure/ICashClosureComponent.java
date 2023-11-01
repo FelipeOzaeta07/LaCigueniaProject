@@ -1,10 +1,10 @@
 package LaCiguenia.component.cashclosure;
 
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
+import LaCiguenia.commons.domains.wrapper.ISalesMethodPaymentWrapper;
+
 import java.util.List;
 
 public interface ICashClosureComponent {
-    Double totalSalesCashForDay(List<InvoiceEntity> listInvoiceEntityCash);
-    Double totalSalesCreditForDay(List<InvoiceEntity> listInvoiceEntityCredit);
-    Double totalSalesDebitForDay(List<InvoiceEntity> listInvoiceEntityDebit);
+    public Double totalSalesCashForDay(List<ISalesMethodPaymentWrapper> listSalesForMethodPayment);
 }

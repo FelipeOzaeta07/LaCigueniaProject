@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CashClosureModel } from "@commons/domains/cashclosure/CashClosureModel";
-import { BASE_URL_CASH_CLOSURE, CREATE_CASH_CLOSURE, READ_CASH_CLOSURE, READ_CASH_CLOSURES, READ_INFORMATION_CASH_CLOSURE, READ_LAST_CASH_CLOSURES } from "@commons/endpoint/cashclosure/CashClosure";
+import { BASE_URL_CASH_CLOSURE, CREATE_CASH_CLOSURE, READ_CASH_CLOSURE, READ_CASH_CLOSURES, READ_DETAIL_INFORMATION_CASH_CLOSURE, READ_INFORMATION_CASH_CLOSURE, READ_LAST_CASH_CLOSURES } from "@commons/endpoint/cashclosure/CashClosure";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { CashClosureRepository } from "@repository/cashclosure/CashClosureRepository";
 import { Observable, catchError, throwError } from "rxjs";
@@ -52,6 +52,14 @@ export class CashClosureService extends CashClosureRepository {
     override informationForCashClosures(): Observable<GenericResponse> {
         return this.http
         .get<GenericResponse>(BASE_URL_CASH_CLOSURE + READ_INFORMATION_CASH_CLOSURE)
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
+    }
+
+    override detailMethodPaymentForCashClosuresUseCase(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_CASH_CLOSURE + READ_DETAIL_INFORMATION_CASH_CLOSURE)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));
