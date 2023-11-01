@@ -1,9 +1,11 @@
 package LaCiguenia.commons.domains.dto.expense;
 
+import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.entity.payment.PaymentMethodEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @Getter
@@ -14,11 +16,15 @@ import java.io.Serializable;
 @Builder
 public class ExpenseDTO implements Serializable {
     private Integer expenseId;
-    private Integer expenseNumberInvoice;
+    private LocalDate expenseDate;
+    private String expenseNumberInvoice;
     private String expenseSupplierLocation;
-    private Integer expenseValor;
+    private Integer expenseValue;
+    private Integer expenseAmount;
     private String expenseDescription;
     private String expenseStatus;
+    @JsonIdentityReference(alwaysAsId = true)
+    private OpeningEntity openingEntity;
     @JsonIdentityReference(alwaysAsId = true)
     private PaymentMethodEntity paymentMethodEntity;
 }

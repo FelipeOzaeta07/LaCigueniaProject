@@ -1,16 +1,13 @@
 package LaCiguenia.commons.domains.entity.expense;
 
-import LaCiguenia.commons.domains.entity.detailExpense.DetailExpenseEntity;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
+import LaCiguenia.commons.domains.entity.payment.PaymentMethodEntity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
-import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -29,7 +26,7 @@ public class ExpenseEntity {
     private LocalDate expenseDate;
 
     @Column(name = "expense_number_invoice")
-    private Integer expenseNumberInvoice;
+    private String expenseNumberInvoice;
 
     @Column(name = "expense_supplier_location")
     private String expenseSupplierLocation;
@@ -52,14 +49,9 @@ public class ExpenseEntity {
     @JsonIgnore
     private OpeningEntity openingEntity;
 
-
-
-
-
-
-
-    @OneToMany(mappedBy = "expenseEntity")
-    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_method_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "paymentMethodId")
     @JsonIgnore
-    private List<DetailExpenseEntity> listDetail;
+    private PaymentMethodEntity paymentMethodEntity;
 }

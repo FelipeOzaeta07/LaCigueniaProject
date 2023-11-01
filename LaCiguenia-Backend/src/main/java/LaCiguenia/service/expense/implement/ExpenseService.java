@@ -36,10 +36,6 @@ public class ExpenseService implements IExpenseService {
             Optional<ExpenseEntity> expenseExist = this.iExpenseRepository.findById(expenseDTO.getExpenseId());
             if (!expenseExist.isPresent()){
                 ExpenseEntity expenseEntity = this.expenseConverter.convertExpenseDTOToExpenseEntity(expenseDTO);
-                Optional<OpeningEntity> openingEntity =
-                        this.iOpeningRepository.findById(this.iOpeningRepository.lastOpeningId());
-                expenseEntity.setOpeningEntity(openingEntity.get());
-                expenseEntity.setExpenseStatus("Activo");
                 this.iExpenseRepository.save(expenseEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

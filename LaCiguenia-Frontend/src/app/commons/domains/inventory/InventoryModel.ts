@@ -1,4 +1,4 @@
-import { ProductModel } from "../product/ProductModel";
+import { ProductModel } from "@commons/domains/product/ProductModel";
 
 export interface InventoryModel{
     inventoryId: number;
