@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ExpenseRoutingModule } from './expense-routing.module';
 import { ExpensePageComponent } from './expense-page/expense-page.component';
 import { SectionOneComponent } from './expense-page/component/section-one/section-one.component';
-import { SectionTwoComponent } from './expense-page/component/section-two/section-two.component';
 import { ModalOneComponent } from './expense-page/component/modal-one/modal-one.component';
 import { ModalTwoComponent } from './expense-page/component/modal-two/modal-two.component';
 import { ModalThreeComponent } from './expense-page/component/modal-three/modal-three.component';
@@ -22,7 +21,6 @@ import { CategoryModule } from '@service/category/category.module';
   declarations: [
     ExpensePageComponent,
     SectionOneComponent,
-    SectionTwoComponent,
     ModalOneComponent,
     ModalTwoComponent,
     ModalThreeComponent,

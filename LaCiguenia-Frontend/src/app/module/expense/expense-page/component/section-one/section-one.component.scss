@@ -1,3 +1,8 @@
+input[type="date"] {
+    color: #333;
+    text-indent: 6%;
+    text-align: start;
+}
 .input{
     padding-top: calc(0.8vw);
     padding-bottom: calc(0.8vw);
@@ -15,4 +20,24 @@
     padding-top: calc(0.8vw);
     padding-bottom: calc(0.8vw);
     border-radius: 15px;
+}
+.svg_width{
+    width: calc(2vh + 2vh);
+}
+.svg_width:hover{
+    fill: var(--color_fourteen);
+}
+.hover:hover{
+    color: var(--color_fifteen);
+}
+.svg_width_draw{
+    width: calc(10vh + 10vw);
+}
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
 }

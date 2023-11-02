@@ -7,11 +7,10 @@ import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { MethodPaymentModel } from '@commons/domains/payment/MethodPaymentModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { METHOD_PAY, TITLE, INVOICE, PLACE, VALUE, DESCRIPTION, SAVE } 
+import { METHOD_PAY, TITLE, INVOICE, PLACE, VALUE, DESCRIPTION, SAVE, DATE_PAY, SUB_TITLE, CATEGORY, MESSAGE } 
 from '@module/expense/expense-page/component/section-one/constans/section-one';
 import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
 import { CreateExpenseUseCase } from '@repository/expense/case/CreateExpenseUseCase';
-import { ReadLastExpenseUseCase } from '@repository/expense/case/ReadLastExpenseUseCase';
 import { ReadLastOpeningUseCase } from '@repository/opening/case/ReadLastOpeningUseCase';
 import { ReadMethodsPaymentUseCase } from '@repository/payment/case/ReadMethodsPaymentUseCase';
 import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
@@ -32,6 +31,10 @@ export class SectionOneComponent implements OnInit{
   textValue = VALUE;
   textDescription = DESCRIPTION;
   textSave = SAVE;
+  textDate = DATE_PAY;
+  textSubTitle = SUB_TITLE;
+  textCategory = CATEGORY;
+  textMessage = MESSAGE;
 
   selectedPaymentMethod: string = '';
   expenseForm!: FormGroup;
@@ -41,6 +44,7 @@ export class SectionOneComponent implements OnInit{
   openingModel!: OpeningModel;
   productArray: ProductModel [] = [];
   categoryArray: CategoryModel [] = [];
+  products!: string [];
 
   constructor(public formulary: FormBuilder, public router: Router, private createExpenseUseCase: CreateExpenseUseCase, 
     private readMethodsPaymentUseCase: ReadMethodsPaymentUseCase, private readProductsUseCase: ReadProductsUseCase, 
@@ -143,10 +147,20 @@ export class SectionOneComponent implements OnInit{
       },(error: GenericResponse) => {
         this.expenseForm.reset();
     });
-  } 
+  }
+
   modalEvent() {
     this.modalActivate.emit(true);
   }
 
-
+  addProduct(){
+    if(this.products == null){
+      this.products = [];
+      this.products.push( this.expenseForm.controls['productExpense'].value);
+    }else{
+      for(let i = 0; i < 20; i++){
+        this.products.push( this.expenseForm.controls['productExpense'].value);
+      }
+    }
+  }
 }
