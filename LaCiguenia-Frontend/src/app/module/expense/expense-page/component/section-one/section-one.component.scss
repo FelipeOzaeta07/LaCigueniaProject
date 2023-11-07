@@ -3,9 +3,15 @@ input[type="date"] {
     text-indent: 6%;
     text-align: start;
 }
+th{
+    padding-bottom: calc(2vh);
+}
 .input{
     padding-top: calc(0.8vw);
     padding-bottom: calc(0.8vw);
+}
+.text_color{
+    color: var(--color_ten);
 }
 .pt_1{
     padding-top: calc(0.5vw);

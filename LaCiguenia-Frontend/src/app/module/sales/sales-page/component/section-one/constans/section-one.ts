@@ -9,4 +9,4 @@ export const TEXT_TITLE = "Tu historial de facturación está vacío en este mom
 export const TEXT_ONE = "¡Haz clic ";
 export const TEXT_TWO = "aquí";
 export const TEXT_THREE = " para comenzar a impulsar tu negocio!";
-export const TEXT_OPENING_BOX = "Antes de abrir el arqueo de caja, debes realizar la apertura de caja";
+export const TEXT_OPENING_BOX = "Antes de Ingresar, debes realizar la apertura de caja";

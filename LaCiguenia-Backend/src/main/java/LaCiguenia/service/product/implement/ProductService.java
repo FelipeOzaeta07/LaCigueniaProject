@@ -243,7 +243,7 @@ public class ProductService implements IProductService {
     @Override
     public ResponseEntity<GenericResponseDTO> readProductForName(String productName) {
         try {
-            List<ProductEntity> listProductsEntity = this.iProductRepository.readProductForName(productName);
+            Optional<ProductEntity> listProductsEntity = this.iProductRepository.readProductForName(productName);
             if (!listProductsEntity.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

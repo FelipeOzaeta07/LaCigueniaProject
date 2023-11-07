@@ -32,10 +32,7 @@ public class ExpenseEntity {
     private String expenseSupplierLocation;
 
     @Column(name = "expense_value")
-    private Integer expenseValue;
-
-    @Column(name = "expense_amount")
-    private Integer expenseAmount;
+    private Double expenseValue;
 
     @Column(name = "expense_description")
     private String expenseDescription;
@@ -43,15 +40,15 @@ public class ExpenseEntity {
     @Column(name = "expense_status")
     private String expenseStatus;
 
-    @ManyToOne()
-    @JoinColumn(name = "opening_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
-    @JsonIgnore
-    private OpeningEntity openingEntity;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_method_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "paymentMethodId")
     @JsonIgnore
     private PaymentMethodEntity paymentMethodEntity;
+
+    @ManyToOne()
+    @JoinColumn(name = "opening_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "openingId")
+    @JsonIgnore
+    private OpeningEntity openingEntity;
 }

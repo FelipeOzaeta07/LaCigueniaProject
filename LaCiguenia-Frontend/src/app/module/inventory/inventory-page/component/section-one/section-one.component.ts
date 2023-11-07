@@ -37,7 +37,8 @@ export class SectionOneComponent implements OnInit{
 
   message: boolean = true;
 
-  constructor(private readProductsUseCase: ReadProductsUseCase, private readInventoriesUseCase: ReadInventoriesUseCase){
+  constructor(private readProductsUseCase: ReadProductsUseCase, 
+    private readInventoriesUseCase: ReadInventoriesUseCase){
 
   }
 

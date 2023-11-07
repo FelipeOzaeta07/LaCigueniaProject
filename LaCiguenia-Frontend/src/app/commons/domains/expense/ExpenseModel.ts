@@ -9,11 +9,8 @@ export interface ExpenseModel{
     expenseNumberInvoice: string;
     expenseSupplierLocation: string;
     expenseValue: number;
-    expenseAmount: number;
     expenseDescription: string;
     expenseStatus: string;
     paymentMethodEntity: MethodPaymentModel;
-    productEntity: ProductModel;
-    categoryEntity: CategoryModel;
     openingEntity: OpeningModel
 }

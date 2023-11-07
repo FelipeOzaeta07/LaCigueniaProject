@@ -20,8 +20,8 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
     List<ProductEntity> findProductsEnabled();
     @Query(value = "SELECT MAX(product_id) AS end_id FROM product_ciguenia;", nativeQuery = true)
     Integer lastProductId();
-    @Query(value = "SELECT * FROM product_ciguenia WHERE product_name LIKE CONCAT('%', :product_name, '%');", nativeQuery = true)
-    List<ProductEntity> readProductForName(@Param("product_name") String productName);
+    @Query(value = "SELECT * FROM product_ciguenia WHERE product_name LIKE CONCAT(:product_name);", nativeQuery = true)
+    Optional<ProductEntity> readProductForName(@Param("product_name") String productName);
 
     @Query(value =  "SELECT pc.*\n" +
                     "FROM product_ciguenia pc\n" +

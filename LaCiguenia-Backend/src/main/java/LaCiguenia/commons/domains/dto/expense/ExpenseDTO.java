@@ -19,12 +19,11 @@ public class ExpenseDTO implements Serializable {
     private LocalDate expenseDate;
     private String expenseNumberInvoice;
     private String expenseSupplierLocation;
-    private Integer expenseValue;
-    private Integer expenseAmount;
+    private Double expenseValue;
     private String expenseDescription;
     private String expenseStatus;
     @JsonIdentityReference(alwaysAsId = true)
-    private OpeningEntity openingEntity;
-    @JsonIdentityReference(alwaysAsId = true)
     private PaymentMethodEntity paymentMethodEntity;
+    @JsonIdentityReference(alwaysAsId = true)
+    private OpeningEntity openingEntity;
 }
