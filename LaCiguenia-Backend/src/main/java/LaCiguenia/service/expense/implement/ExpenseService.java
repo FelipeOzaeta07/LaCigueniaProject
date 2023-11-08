@@ -90,6 +90,34 @@ public class ExpenseService implements IExpenseService {
     }
 
     @Override
+    public ResponseEntity<GenericResponseDTO> readExpensesForOpening() {
+        try {
+            Double totalExpense = this.iExpenseRepository.findTotalExpenseForDay();
+            if (!totalExpense.isNaN()){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(totalExpense)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IExpenseResponse.EXPENSE_FOR_DAY_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
     public ResponseEntity<GenericResponseDTO> deleteExpenses(Integer expenseId) {
         try {
             Optional<ExpenseEntity> expenseExist =

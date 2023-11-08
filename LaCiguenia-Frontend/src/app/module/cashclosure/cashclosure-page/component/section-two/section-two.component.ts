@@ -7,6 +7,7 @@ import { TITLE, FORMAT_METHOD_PAY, TOTAL_CLOSURE, TOTAL_EXPENSE, TOTAL_SALES, TO
 from '@module/cashclosure/cashclosure-page/component/section-two/constans/section-two';
 import { DetailMethodPaymentForCashClosuresUseCase } from '@repository/cashclosure/case/DetailMethodPaymentForCashClosuresUseCase';
 import { InformationForCashClosuresUseCase } from '@repository/cashclosure/case/InformationForCashClosuresUseCase';
+import { ReadExpensesForOpeningUseCase } from '@repository/expense/case/ReadExpensesForOpeningUseCase';
 
 @Component({
   selector: 'app-section-two',
@@ -34,12 +35,16 @@ export class SectionTwoComponent implements OnInit{
   informationCashClosure!: CashClosureInformationModel;
   methodPaymentSales: MethodPaymentSales [] = [];
   totalSales: number = 0;
+  totalExpense : number = 0;
 
-  constructor(private informationForCashClosuresUseCase: InformationForCashClosuresUseCase, private detailMethodPaymentForCashClosuresUseCase: DetailMethodPaymentForCashClosuresUseCase){}
+  constructor(private informationForCashClosuresUseCase: InformationForCashClosuresUseCase, 
+    private detailMethodPaymentForCashClosuresUseCase: DetailMethodPaymentForCashClosuresUseCase,
+    private readExpensesForOpeningUseCase: ReadExpensesForOpeningUseCase){}
 
   ngOnInit(): void {
     this.informationForCashClosures();
     this.detailMethodPaymentForCashClosures();
+    this.readExpensesForOpening();
   }
 
   informationForCashClosures(){
@@ -57,6 +62,14 @@ export class SectionTwoComponent implements OnInit{
           this.methodPaymentSales.push(item)
           this.totalSales += item.totalSales;
         }
+      }
+    );
+  }
+
+  readExpensesForOpening(){
+    this.readExpensesForOpeningUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.totalExpense = res.objectResponse;
       }
     );
   }

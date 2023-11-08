@@ -3,7 +3,7 @@
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_15 h_100">
         <app-section-header class="col_17 h_8 d_none_mv"></app-section-header>
-        <app-section-one [countInvoiceDay]="countInvoiceDay" [salesTotalDay]="salesTotalDay" class="col_17 col_17_mv h_22"></app-section-one>
+        <app-section-one [countInvoiceDay]="countInvoiceDay" [salesTotalDay]="salesTotalDay" [expenseTotalDay]="expenseTotalDay" class="col_17 col_17_mv h_22"></app-section-one>
         <section class="room col_17 col_17_mv col_start h_67">
             <div class="col_13 col_17_mv">
                 <app-section-two (sendDetailProductMoreSold)="sendDetailProductMoreSold($event)" [productMoreSold]="productMoreSold" (modalActivateOne)="modalActivateOne($event)" class="h_30"></app-section-two>

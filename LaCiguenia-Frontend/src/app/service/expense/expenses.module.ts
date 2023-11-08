@@ -8,6 +8,7 @@ import { DeleteExpenseUseCase } from '@repository/expense/case/DeleteExpenseUseC
 import { UpdateExpenseUseCase } from '@repository/expense/case/UpdateExpenseUseCase';
 import { ReadLastExpenseUseCase } from '@repository/expense/case/ReadLastExpenseUseCase';
 import { ExpenseService } from '@service/expense/implement/ExpenseService';
+import { ReadExpensesForOpeningUseCase } from '@repository/expense/case/ReadExpensesForOpeningUseCase';
 
 const createExpenseUseCaseFactory = (expenseRepository: ExpenseRepository) => new CreateExpenseUseCase(expenseRepository);
 export const createExpenseUseCaseProvider = {
@@ -37,12 +38,20 @@ export const deleteExpenseUseCaseProvider = {
     deps: [ExpenseRepository],
 };
 
+const readExpensesForOpeningUseCaseFactory = (expenseRepository: ExpenseRepository) => new ReadExpensesForOpeningUseCase(expenseRepository);
+export const readExpensesForOpeningUseCaseProvider = {
+    provide: ReadExpensesForOpeningUseCase,
+    useFactory: readExpensesForOpeningUseCaseFactory,
+    deps: [ExpenseRepository],
+};
+
 @NgModule({
   providers: [
     createExpenseUseCaseProvider,
     readLastExpenseUseCaseProvider,
     updateExpenseUseCaseProvider,
     deleteExpenseUseCaseProvider,
+    readExpensesForOpeningUseCaseProvider,
     {provide: ExpenseRepository, useClass: ExpenseService}
   ],
   imports: [

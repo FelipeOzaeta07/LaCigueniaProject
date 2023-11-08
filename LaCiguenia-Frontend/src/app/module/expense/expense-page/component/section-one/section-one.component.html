@@ -45,7 +45,7 @@
         <div class="col_17">
             <div class="col_17 py_1">
                 <h1 *ngIf="!message" class="size_1 text_center text_color_one hover">{{textSubTitle}}</h1>
-                <h1 *ngIf="message" class="size_1 text_center text_color">Producto no encontrado Verifica que sea el nombre correcto</h1>
+                <h1 *ngIf="message" class="size_1 text_center text_color">{{textMessageProduct}}</h1>
             </div>
             <div class="col_17 col_between">
                 <div class="col_8 col_between">
@@ -87,10 +87,10 @@
                     <thead>
                         <tr>
                             <th class="col_1"></th>
-                            <th class="col_6">Nombre Producto</th>
-                            <th class="col_2">Cantidad</th>
-                            <th class="col_4">Precio de Costo</th>
-                            <th class="col_4">Precio de Venta</th>
+                            <th class="col_6">{{textNameProduct}}</th>
+                            <th class="col_2">{{textAmount}}</th>
+                            <th class="col_4">{{textPriceCost}}</th>
+                            <th class="col_4">{{textPriceSale}}</th>
                         </tr>
                     </thead>
                 </table>
@@ -104,8 +104,8 @@
                         </div>
                         <div class="col_6 size_1 text_center text_color_two">{{item.productEntity.productName}}</div>
                         <div class="col_2 size_1 text_center text_color_two">{{item.inventoryAmount}}</div>
-                        <div class="col_4 size_1 text_center text_color_two">{{item.productEntity.productCost | number}}</div>
-                        <div class="col_4 size_1 text_center text_color_two">{{item.productEntity.productPrice | number}}</div>
+                        <div class="col_4 size_1 text_center text_color_two">{{textSymbol}} {{item.productEntity.productCost | number}}</div>
+                        <div class="col_4 size_1 text_center text_color_two">{{textSymbol}} {{item.productEntity.productPrice | number}}</div>
                     </div>
                 </div>
             </div>

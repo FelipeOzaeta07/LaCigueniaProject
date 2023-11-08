@@ -29,16 +29,8 @@
                 <h1 class="size_1 text_center text_color_one">{{textExpense}}</h1>
             </div>
             <div class="col_17 col_between text_center py_1">
-                <p class="size_1 col_12">{{textDescription}}</p>
-                <p class="size_1 col_5">{{textValue}}</p>
-            </div>
-            <!--<div class="col_17 col_between text_center">
-                <p class="size_1 text_color_two col_12">Pago a proveedor de pañales</p>
-                <p class="size_1 text_color_two col_5">$10.000</p>
-            </div>-->
-            <div class="col_17 col_between text_center py_1">
                 <p class="size_1 col_8">{{textTotal}}</p>
-                <p class="size_1 col_9 text_color">$ 0</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{totalExpense | number}}</p>
             </div>
         </div>
     
@@ -60,11 +52,11 @@
             </div>
             <div class="col_17 col_between">
                 <p class="size_1 text_color_two col_10">{{textTotalExpense}}</p>
-                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} 0</p>
+                <p class="size_1 text_color_two col_7 text_end">{{textSymbol}} {{totalExpense | number}}</p>
             </div>
             <div class="col_17 col_between text_center py_1">
                 <p class="size_1 col_8">{{textTotalClosure}}</p>
-                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationOpeningBox + totalSales - 0 | number }}</p>
+                <p class="size_1 col_9 text_color">{{textSymbol}} {{informationCashClosure.cashClosureInformationOpeningBox + totalSales - totalExpense | number }}</p>
             </div>
         </div>
     </div>

@@ -61,6 +61,24 @@ public class ExpenseApi implements IExpenseApi {
     }
 
     @Override
+    @Operation(summary = "leer el total de gastos por apertura de caja")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IExpenseEndPoint.READ_TOTAL_EXPENSE)
+    public ResponseEntity<GenericResponseDTO> readExpensesForOpening() {
+        return this.expenseService.readExpensesForOpening();
+    }
+
+    @Override
     @Operation(summary = "Eliminar un gasto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,

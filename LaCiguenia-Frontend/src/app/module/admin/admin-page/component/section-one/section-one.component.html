@@ -40,7 +40,7 @@
             </svg>
             <div class="col_17 col_13_mv text_center py_2_mv">
                 <h1 class="size_2 size_1_mv text_color_two text_color_two_mv">{{textExpensesDay}}</h1>
-                <h3 class="size_2 size_1_mv">{{textSymbol}} 0</h3>
+                <h3 class="size_2 size_1_mv">{{textSymbol}} {{expenseTotalDay}}</h3>
             </div>
         </div>
         <div class="note col_center col_4 p_1 note_mv my_2_mv col_center_mv text_center_mv">
@@ -49,7 +49,7 @@
             </svg>
             <div class="col_17 col_13_mv text_center py_2_mv">
                 <h1 class="size_2 size_1_mv text_color_two text_color_two_mv">{{textUtilityDay}}</h1>
-                <h3 class="size_2 size_1_mv">{{textSymbol}} {{salesTotalDay | number}}</h3>
+                <h3 class="size_2 size_1_mv">{{textSymbol}} {{salesTotalDay - expenseTotalDay| number}}</h3>
             </div>
         </div>
     </div>

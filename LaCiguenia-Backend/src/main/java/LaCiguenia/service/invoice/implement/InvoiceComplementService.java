@@ -7,6 +7,7 @@ import LaCiguenia.commons.domains.responseDTO.InformationGeneralInvoice;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.commons.domains.wrapper.IDetailExpenseForPayment;
 import LaCiguenia.component.invoice.implement.InvoiceComponent;
+import LaCiguenia.repository.expense.IExpenseRepository;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.service.invoice.IInvoiceComplementService;
 import lombok.extern.log4j.Log4j2;
@@ -22,10 +23,12 @@ public class InvoiceComplementService implements IInvoiceComplementService {
 
     private final IInvoiceRepository iInvoiceRepository;
     private final InvoiceComponent invoiceComponent;
+    private final IExpenseRepository iExpenseRepository;
 
-    public InvoiceComplementService(IInvoiceRepository iInvoiceRepository, InvoiceComponent invoiceComponent) {
+    public InvoiceComplementService(IInvoiceRepository iInvoiceRepository, InvoiceComponent invoiceComponent, IExpenseRepository iExpenseRepository) {
         this.iInvoiceRepository = iInvoiceRepository;
         this.invoiceComponent = invoiceComponent;
+        this.iExpenseRepository = iExpenseRepository;
     }
 
 
@@ -39,6 +42,7 @@ public class InvoiceComplementService implements IInvoiceComplementService {
                 informationGeneralInvoice.salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
                 informationGeneralInvoice.countInvoiceMonth = this.invoiceComponent.invoiceCountTotalMonth(listInvoice);
                 informationGeneralInvoice.countInvoiceDay = this.invoiceComponent.invoiceCountTotalToday(listInvoice);
+                informationGeneralInvoice.expenseTotalDay = this.iExpenseRepository.findTotalExpenseForDay();
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(informationGeneralInvoice)

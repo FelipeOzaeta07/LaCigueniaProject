@@ -7,11 +7,10 @@ import { SectionOneComponent } from '@module/sales/sales-page/component/section-
 import { SectionTwoComponent } from '@module/sales/sales-page/component/section-two/section-two.component';
 import { ComponentModule } from '@component/component.module';
 import { InvoiceModule } from '@service/invoice/invoice.module';
-import { ModalOneComponent } from './sales-page/component/modal-one/modal-one.component';
+import { ModalOneComponent } from '@module/sales/sales-page/component/modal-one/modal-one.component';
 import { DetailModule } from '@service/detail/detail.module';
-import { ModalTwoComponent } from './sales-page/component/modal-two/modal-two.component';
-import { SalesAccessTokenGetUseCase } from '@repository/sales/case/SalesAccessTokenGetUseCase';
-
+import { ModalTwoComponent } from '@module/sales/sales-page/component/modal-two/modal-two.component';
+import { ExpensesModule } from '@service/expense/expenses.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,8 @@ import { SalesAccessTokenGetUseCase } from '@repository/sales/case/SalesAccessTo
     SalesRoutingModule,
     ComponentModule,
     InvoiceModule,
-    DetailModule
+    DetailModule,
+    ExpensesModule
   ]
 })
 export class SalesModule { }

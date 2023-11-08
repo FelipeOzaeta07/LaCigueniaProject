@@ -7,5 +7,6 @@ import org.springframework.http.ResponseEntity;
 public interface IExpenseService {
     ResponseEntity<GenericResponseDTO> createExpense(ExpenseDTO expenseDTO);
     ResponseEntity<GenericResponseDTO> readExpenses();
+    ResponseEntity<GenericResponseDTO> readExpensesForOpening();
     ResponseEntity<GenericResponseDTO> deleteExpenses(Integer expenseId);
 }

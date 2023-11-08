@@ -1,24 +1,20 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CategoryModel } from '@commons/domains/category/CategoryModel';
 import { ExpenseModel } from '@commons/domains/expense/ExpenseModel';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { OpeningModel } from '@commons/domains/opening/OpeningModel';
 import { MethodPaymentModel } from '@commons/domains/payment/MethodPaymentModel';
 import { ProductModel } from '@commons/domains/product/ProductModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { METHOD_PAY, TITLE, INVOICE, PLACE, VALUE, DESCRIPTION, SAVE, DATE_PAY, SUB_TITLE, CATEGORY, MESSAGE } 
+import { METHOD_PAY, TITLE, INVOICE, PLACE, VALUE, DESCRIPTION, SAVE, DATE_PAY, SUB_TITLE, CATEGORY, MESSAGE, 
+  MESSAGE_PRODUCT, SYMBOL, NAME_PRODUCT, AMOUNT, PRICE_COST, PRICE_SALE } 
 from '@module/expense/expense-page/component/section-one/constans/section-one';
-import { InventoryModule } from '@module/inventory/inventory.module';
-import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
-import { UpdateCategoryUseCase } from '@repository/category/case/UpdateCategoryUseCase';
 import { CreateExpenseUseCase } from '@repository/expense/case/CreateExpenseUseCase';
 import { UpdateInventoryUseCase } from '@repository/inventory/case/UpdateInventoryUseCase';
 import { ReadLastOpeningUseCase } from '@repository/opening/case/ReadLastOpeningUseCase';
 import { ReadMethodsPaymentUseCase } from '@repository/payment/case/ReadMethodsPaymentUseCase';
 import { ReadProductForNameUseCase } from '@repository/product/case/ReadProductForNameUseCase';
-import { ReadProductsUseCase } from '@repository/product/case/ReadProductsUseCase';
 import { UpdateProductUseCase } from '@repository/product/case/UpdateProductUseCase';
 
 @Component({
@@ -41,6 +37,12 @@ export class SectionOneComponent implements OnInit{
   textSubTitle = SUB_TITLE;
   textCategory = CATEGORY;
   textMessage = MESSAGE;
+  textMessageProduct = MESSAGE_PRODUCT;
+  textSymbol = SYMBOL;
+  textNameProduct = NAME_PRODUCT;
+  textAmount = AMOUNT;
+  textPriceCost = PRICE_COST;
+  textPriceSale = PRICE_SALE;
 
   selectedPaymentMethod: string = '';
   expenseForm!: FormGroup;
@@ -52,9 +54,9 @@ export class SectionOneComponent implements OnInit{
   inventoryModel!: InventoryModel [];
 
   constructor(public formulary: FormBuilder, public router: Router, private createExpenseUseCase: CreateExpenseUseCase, 
-    private readMethodsPaymentUseCase: ReadMethodsPaymentUseCase, private readProductsUseCase: ReadProductsUseCase, 
-    private readLastOpeningUseCase: ReadLastOpeningUseCase, private updateInventoryUseCase: UpdateInventoryUseCase, 
-    private readProductForNameUseCase: ReadProductForNameUseCase, private updateProductUseCase: UpdateProductUseCase){
+    private readMethodsPaymentUseCase: ReadMethodsPaymentUseCase, private readLastOpeningUseCase: ReadLastOpeningUseCase, 
+    private updateInventoryUseCase: UpdateInventoryUseCase, private readProductForNameUseCase: ReadProductForNameUseCase,
+    private updateProductUseCase: UpdateProductUseCase){
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');

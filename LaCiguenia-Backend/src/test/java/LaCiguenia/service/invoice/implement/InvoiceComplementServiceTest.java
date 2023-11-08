@@ -6,6 +6,7 @@ import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
 import LaCiguenia.commons.domains.responseDTO.InformationGeneralInvoice;
 import LaCiguenia.component.invoice.implement.InvoiceComponent;
+import LaCiguenia.repository.expense.IExpenseRepository;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,11 +30,12 @@ class InvoiceComplementServiceTest {
     private IInvoiceRepository iInvoiceRepository;
     @Mock
     private InvoiceComponent invoiceComponent;
+    private IExpenseRepository iExpenseRepository;
     private InvoiceComplementService invoiceComplementService;
     @BeforeEach
     void setUp() throws Exception{
         MockitoAnnotations.openMocks(this).close();
-        invoiceComplementService = new InvoiceComplementService(iInvoiceRepository, invoiceComponent);
+        invoiceComplementService = new InvoiceComplementService(iInvoiceRepository, invoiceComponent, iExpenseRepository);
     }
 
     @Test

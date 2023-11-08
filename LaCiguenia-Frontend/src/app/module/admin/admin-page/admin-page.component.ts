@@ -15,6 +15,7 @@ export class AdminPageComponent implements OnInit{
   modalOne!: boolean;
   salesTotalDay!: number;
   salesTotalMonth!: number;
+  expenseTotalDay!: number;
   countInvoiceDay!: number;
   countInvoiceMonth!: number;
   product!: DetailProductMoreSold;
@@ -36,11 +37,13 @@ export class AdminPageComponent implements OnInit{
           this.salesTotalMonth = res.objectResponse.salesTotalMonth;
           this.countInvoiceDay = res.objectResponse.countInvoiceDay;
           this.countInvoiceMonth = res.objectResponse.countInvoiceMonth;
+          this.expenseTotalDay = res.objectResponse.expenseTotalDay;
       },(error) => {
         this.salesTotalDay = 0;
         this.salesTotalMonth = 0;
         this.countInvoiceDay = 0;
         this.countInvoiceMonth = 0;
+        this.expenseTotalDay = 0;
       }
     )
   }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ExpenseModel } from "@commons/domains/expense/ExpenseModel";
-import { BASE_URL_EXPENSE, CREATE_EXPENSE, DELETE_EXPENSE, READ_LAST_EXPENSE, UPDATE_EXPENSE } from "@commons/endpoint/expense/ExpenseEndPoint";
+import { BASE_URL_EXPENSE, CREATE_EXPENSE, DELETE_EXPENSE, READ_LAST_EXPENSE, READ_TOTAL_EXPENSE, UPDATE_EXPENSE } from "@commons/endpoint/expense/ExpenseEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { ExpenseRepository } from "@repository/expense/ExpenseRepository";
 import { Observable, catchError, throwError } from "rxjs";
@@ -25,6 +25,13 @@ export class ExpenseService extends ExpenseRepository {
     override readLastExpenseForDay(expenseId: number): Observable<GenericResponse> {
         return this.http
         .get<GenericResponse>(BASE_URL_EXPENSE + READ_LAST_EXPENSE)
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
+    }
+    override readExpensesForOpening(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_EXPENSE + READ_TOTAL_EXPENSE)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));

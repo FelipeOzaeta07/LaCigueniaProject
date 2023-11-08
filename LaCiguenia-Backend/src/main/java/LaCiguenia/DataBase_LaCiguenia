@@ -166,6 +166,12 @@ FROM product_ciguenia pc
 INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id
 WHERE pc.product_id = 3;
 
+            -------------------- Query Total Ventas por día
+            ---------------------------------------------------------------------------------------------------
+SELECT SUM(i.expense_value) FROM expense_ciguenia i
+LEFT JOIN cash_closure_ciguenia c ON i.opening_id = c.opening_id
+WHERE c.opening_id IS NULL ORDER BY i.opening_id DESC;
+
             -------------------- Query ListProductos por Categoria
             ---------------------------------------------------------------------------------------------------
 SELECT c.category_name, p.product_id, p.product_name, p.product_price, p.product_description

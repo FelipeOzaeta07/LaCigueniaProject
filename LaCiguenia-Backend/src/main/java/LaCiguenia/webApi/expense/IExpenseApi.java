@@ -10,6 +10,8 @@ public interface IExpenseApi {
     ResponseEntity<GenericResponseDTO> createExpense(@RequestBody ExpenseDTO expenseDTO);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readExpenses();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readExpensesForOpening();
     @DeleteMapping()
     ResponseEntity<GenericResponseDTO> deleteExpenses(@PathVariable Integer expenseId);
 }

@@ -13,6 +13,7 @@ import { InvoiceModule } from '@service/invoice/invoice.module';
 import { DetailModule } from '@service/detail/detail.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@service/store/store.module';
+import { ExpensesModule } from '@service/expense/expenses.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { StoreModule } from '@service/store/store.module';
     DetailModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule
+    StoreModule,
+    ExpensesModule
   ]
 })
 export class AdminModule { }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreModel } from '@commons/domains/store/StoreModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { EXPENSES_DAY, NU_INVOICE, SALES_DAY, STORE, UTILITY_DAY, SYMBOL, SYMBOL_NUMBER } from '@module/admin/admin-page/component/section-one/constans/section-one';
+import { ReadExpensesForOpeningUseCase } from '@repository/expense/case/ReadExpensesForOpeningUseCase';
 import { ReadStoresUseCase } from '@repository/store/case/ReadStoresUseCase';
 
 @Component({
@@ -14,8 +15,8 @@ export class SectionOneComponent implements OnInit{
 
   @Input() salesTotalDay!: number;
   @Input() countInvoiceDay!: number;
+  @Input() expenseTotalDay!: number;
 
-  textGeneral = "General";
   textStore = STORE;
   textSalesDay = SALES_DAY;
   textNumberInvoice = NU_INVOICE;
@@ -46,5 +47,4 @@ export class SectionOneComponent implements OnInit{
       }
     );
   }
-
 }
