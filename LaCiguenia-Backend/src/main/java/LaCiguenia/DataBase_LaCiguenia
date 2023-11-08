@@ -121,6 +121,15 @@ CREATE TABLE expense_ciguenia (
 	FOREIGN KEY (payment_method_id) REFERENCES payment_method_ciguenia(payment_method_id),
     FOREIGN KEY (opening_id) REFERENCES opening_ciguenia(opening_id)
 );
+CREATE TABLE supplier_ciguenia (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(255) NOT NULL,
+    supplier_nit INT NOT NULL,
+    supplier_phone INT NOT NULL,
+    supplier_location VARCHAR(255) NOT NULL,
+    supplier_city VARCHAR(255),
+    supplier_status VARCHAR(255) NOT NULL
+);
 
 -- Registro Categorias
 INSERT INTO category_ciguenia (category_name, category_description)
