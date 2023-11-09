@@ -6,6 +6,8 @@ export abstract class ExpenseRepository {
     abstract createExpense(expensiveModel : ExpenseModel): Observable<GenericResponse>;
     abstract readLastExpenseForDay(expensiveId: number): Observable<GenericResponse>;
     abstract readExpensesForOpening(): Observable<GenericResponse>;
+    abstract readExpensesForCash(): Observable<GenericResponse>;
+    abstract readExpensesForMonth(): Observable<GenericResponse>;
     abstract updateExpense (expensiveModel : ExpenseModel): Observable<GenericResponse>;
     abstract deleteExpense (expensiveId: number): Observable<GenericResponse>;
 }

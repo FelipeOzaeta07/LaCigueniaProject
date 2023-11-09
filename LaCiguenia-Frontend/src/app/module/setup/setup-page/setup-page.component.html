@@ -7,6 +7,6 @@
         <app-section-two *ngIf="!component" (eventCategoryAddComponent)="eventCategoryAddComponent($event)" (eventPaymentAddComponent)="eventPaymentAddComponent($event)" (eventStoreAddComponent)="eventStoreAddComponent($event)" class="col_17 h_62"></app-section-two>
         <app-section-three *ngIf="componentThree" (modalActivate)="modalActivate($event)" (eventStoreAddComponent)="eventStoreAddComponent($event)" class="col_17 h_62"></app-section-three>
         <app-section-four *ngIf="componentFour" (modalActivate)="modalActivate($event)" (eventPaymentAddComponent)="eventPaymentAddComponent($event)" class="col_17 h_62"></app-section-four>
-        <app-section-five *ngIf="componentFive"  (eventCategoryAddComponent)="eventCategoryAddComponent($event)" class="col_17 h_62"></app-section-five>
+        <app-section-five *ngIf="componentFive" (modalActivate)="modalActivate($event)" (eventCategoryAddComponent)="eventCategoryAddComponent($event)" class="col_17 h_62"></app-section-five>
     </section>
 </main>

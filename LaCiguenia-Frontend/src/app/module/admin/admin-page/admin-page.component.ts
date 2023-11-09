@@ -3,6 +3,8 @@ import { DetailProductMoreSold } from '@commons/domains/detail/DetailProductMore
 import { InformationGeneralInvoice } from '@commons/domains/invoice/InformationGeneralInvoice';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { DetailProductoMoreSoldUseCase } from '@repository/detail/case/DetailProductoMoreSoldUseCase';
+import { ReadExpenseForMonthUseCase } from '@repository/expense/case/ReadExpenseForMonthUseCase';
+import { ReadExpensesForOpeningUseCase } from '@repository/expense/case/ReadExpensesForOpeningUseCase';
 import { ReadInformationGeneralInvoicesUseCase } from '@repository/invoice/case/ReadInformationGeneralInvoicesUseCase';
 
 @Component({
@@ -16,6 +18,7 @@ export class AdminPageComponent implements OnInit{
   salesTotalDay!: number;
   salesTotalMonth!: number;
   expenseTotalDay!: number;
+  expenseTotalMonth!: number;
   countInvoiceDay!: number;
   countInvoiceMonth!: number;
   product!: DetailProductMoreSold;
@@ -23,11 +26,14 @@ export class AdminPageComponent implements OnInit{
   productMoreSold: DetailProductMoreSold [][] = [];
 
   constructor(private readInformationGeneralInvoicesUseCase: ReadInformationGeneralInvoicesUseCase,
-              private detailProductoMoreSoldUseCase : DetailProductoMoreSoldUseCase){}
+              private detailProductoMoreSoldUseCase : DetailProductoMoreSoldUseCase, private readExpensesForOpeningUseCase: ReadExpensesForOpeningUseCase,
+              private readExpenseForMonthUseCase: ReadExpenseForMonthUseCase){}
   
   ngOnInit(): void {
     this.readInformationGeneralInvoices();
     this.detailProductoMoreSold();
+    this.readExpensesForOpening();
+    this.readExpenseForMonth();
   }
 
   readInformationGeneralInvoices(){
@@ -37,13 +43,11 @@ export class AdminPageComponent implements OnInit{
           this.salesTotalMonth = res.objectResponse.salesTotalMonth;
           this.countInvoiceDay = res.objectResponse.countInvoiceDay;
           this.countInvoiceMonth = res.objectResponse.countInvoiceMonth;
-          this.expenseTotalDay = res.objectResponse.expenseTotalDay;
       },(error) => {
         this.salesTotalDay = 0;
         this.salesTotalMonth = 0;
         this.countInvoiceDay = 0;
         this.countInvoiceMonth = 0;
-        this.expenseTotalDay = 0;
       }
     )
   }
@@ -62,6 +66,26 @@ export class AdminPageComponent implements OnInit{
         }
       }
     )
+  }
+
+  readExpenseForMonth(){
+    this.readExpenseForMonthUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.expenseTotalMonth = res.objectResponse;
+      },(error) => {
+        this.expenseTotalMonth = 0;
+      }
+    );
+  }
+
+  readExpensesForOpening(){
+    this.readExpensesForOpeningUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.expenseTotalDay = res.objectResponse;
+      },(error) => {
+        this.expenseTotalDay = 0;
+      }
+    );
   }
 
   sendDetailProductMoreSold(detailProduct: DetailProductMoreSold){

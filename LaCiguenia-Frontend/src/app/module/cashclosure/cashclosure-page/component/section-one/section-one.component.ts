@@ -9,6 +9,7 @@ from '@module/cashclosure/cashclosure-page/component/section-one/constans/sectio
 import { CreateCashClosureUseCase } from '@repository/cashclosure/case/CreateCashClosureUseCase';
 import { InformationForCashClosuresUseCase } from '@repository/cashclosure/case/InformationForCashClosuresUseCase';
 import { ReadLastCashClosureUseCase } from '@repository/cashclosure/case/ReadLastCashClosureUseCase';
+import { ReadExpensesForCashUseCase } from '@repository/expense/case/ReadExpensesForCashUseCase';
 import { ReadLastOpeningUseCase } from '@repository/opening/case/ReadLastOpeningUseCase';
 
 @Component({
@@ -49,14 +50,14 @@ export class SectionOneComponent implements OnInit, OnChanges{
   results: number[] = new Array(this.colombianPesos.length).fill(0);
 
   totalCashBox: number = 0;
-  expense: number = 0;
+  totalExpense: number = 0;
   totalPhysicalCash: number = 0;
   date: string;
 
 
   constructor(private createCashClosureUseCase: CreateCashClosureUseCase, private readLastCashClosureUseCase: ReadLastCashClosureUseCase,
       private informationForCashClosuresUseCase : InformationForCashClosuresUseCase, private readLastOpeningUseCase: ReadLastOpeningUseCase,
-      private router: Router ){
+      private readExpensesForCashUseCase: ReadExpensesForCashUseCase, private router: Router ){
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -66,6 +67,7 @@ export class SectionOneComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
     this.readLastCashClosure();
+    this.readExpensesForCash();
     this.informationForCashClosure();
     this.readLastOpening();
   }
@@ -90,9 +92,20 @@ export class SectionOneComponent implements OnInit, OnChanges{
     this.informationForCashClosuresUseCase.execute().subscribe(
       (res: GenericResponse) => {
         this.informationCashClosure = res.objectResponse;
-        this.totalPhysicalCash = (this.informationCashClosure.cashClosureInformationTotalCash + this.informationCashClosure.cashClosureInformationOpeningBox) - this.expense;
+        this.totalPhysicalCash = 
+          (this.informationCashClosure.cashClosureInformationTotalCash + 
+          this.informationCashClosure.cashClosureInformationOpeningBox) 
+            - this.totalExpense;
       },
       (error) =>{
+      }
+    );
+  }
+
+  readExpensesForCash(){
+    this.readExpensesForCashUseCase.execute().subscribe(
+      (res: GenericResponse) => {
+        this.totalExpense = res.objectResponse;
       }
     );
   }
@@ -143,7 +156,7 @@ export class SectionOneComponent implements OnInit, OnChanges{
         cashClosureTotalClosure: 0 + this.informationCashClosure.cashClosureInformationOpeningBox,
         cashClosureTotalOpeningBox: this.informationCashClosure.cashClosureInformationOpeningBox,
         cashClosureTotalMethodPay: 0,
-        cashClosureTotalExpense: this.expense,
+        cashClosureTotalExpense: this.totalExpense,
         cashClosureTotalCashBox: this.totalCashBox,
         cashClosureDifference: this.totalCashBox - this.totalPhysicalCash,
         openingEntity: this.openingBox,

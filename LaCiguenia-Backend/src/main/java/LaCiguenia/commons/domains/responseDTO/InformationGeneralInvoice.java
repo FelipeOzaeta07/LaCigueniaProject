@@ -13,8 +13,4 @@ public class InformationGeneralInvoice implements Serializable {
     public Double salesTotalMonth;
     public Integer countInvoiceDay;
     public Integer countInvoiceMonth;
-    public Double expenseTotalDay;
-    public Double expenseTotalMonth;
-    public Double profitTotalDay;
-    public Double profitTotalMonth;
 }

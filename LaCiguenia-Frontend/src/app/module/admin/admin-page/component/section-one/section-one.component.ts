@@ -17,6 +17,7 @@ export class SectionOneComponent implements OnInit{
   @Input() countInvoiceDay!: number;
   @Input() expenseTotalDay!: number;
 
+
   textStore = STORE;
   textSalesDay = SALES_DAY;
   textNumberInvoice = NU_INVOICE;

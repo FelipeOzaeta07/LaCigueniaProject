@@ -12,6 +12,10 @@ public interface IExpenseApi {
     ResponseEntity<GenericResponseDTO> readExpenses();
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readExpensesForOpening();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readExpensesForCash();
+    @GetMapping()
+    ResponseEntity<GenericResponseDTO> readTotalExpensesMonth();
     @DeleteMapping()
     ResponseEntity<GenericResponseDTO> deleteExpenses(@PathVariable Integer expenseId);
 }

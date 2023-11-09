@@ -11,6 +11,7 @@ import { ComponentModule } from '@component/component.module';
 import { OpenModule } from '@service/opening/opening.module';
 import { CashClosureModule } from '@service/cashclosure/cashClosure.module';
 import { ModalOneComponent } from './cashclosure-page/component/modal-one/modal-one.component';
+import { ExpensesModule } from '@service/expense/expenses.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ModalOneComponent } from './cashclosure-page/component/modal-one/modal-
     HttpClientModule,
     ComponentModule,
     CashClosureModule,
-    OpenModule
+    OpenModule,
+    ExpensesModule
   ]
 })
 export class CashclosureModule { }

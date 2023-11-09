@@ -10,6 +10,7 @@ export class SectionThreeComponent {
 
   @Input() salesTotalMonth!: number;
   @Input() countInvoiceMonth!: number;
+  @Input() expenseTotalMonth!: number;
 
   textTitle = TITLE;
   textSalesMonth = SALES_MONTH;

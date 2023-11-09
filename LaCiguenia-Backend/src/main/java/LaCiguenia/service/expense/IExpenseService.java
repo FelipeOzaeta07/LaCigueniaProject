@@ -8,5 +8,7 @@ public interface IExpenseService {
     ResponseEntity<GenericResponseDTO> createExpense(ExpenseDTO expenseDTO);
     ResponseEntity<GenericResponseDTO> readExpenses();
     ResponseEntity<GenericResponseDTO> readExpensesForOpening();
+    ResponseEntity<GenericResponseDTO> readExpensesForCash();
+    ResponseEntity<GenericResponseDTO> readTotalExpensesMonth();
     ResponseEntity<GenericResponseDTO> deleteExpenses(Integer expenseId);
 }

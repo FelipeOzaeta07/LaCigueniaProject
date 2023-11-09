@@ -42,7 +42,6 @@ public class InvoiceComplementService implements IInvoiceComplementService {
                 informationGeneralInvoice.salesTotalMonth = this.invoiceComponent.invoiceSalesTotalMonth(listInvoice);
                 informationGeneralInvoice.countInvoiceMonth = this.invoiceComponent.invoiceCountTotalMonth(listInvoice);
                 informationGeneralInvoice.countInvoiceDay = this.invoiceComponent.invoiceCountTotalToday(listInvoice);
-                informationGeneralInvoice.expenseTotalDay = this.iExpenseRepository.findTotalExpenseForDay();
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(informationGeneralInvoice)

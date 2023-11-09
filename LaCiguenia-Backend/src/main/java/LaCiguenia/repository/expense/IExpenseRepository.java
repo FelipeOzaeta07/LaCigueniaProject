@@ -21,4 +21,17 @@ public interface IExpenseRepository extends JpaRepository<ExpenseEntity, Integer
                     "LEFT JOIN cash_closure_ciguenia c ON i.opening_id = c.opening_id\n" +
                     "WHERE c.opening_id IS NULL ORDER BY i.opening_id DESC;", nativeQuery = true)
     Double findTotalExpenseForDay();
+
+    @Query(value =  "SELECT SUM(ec.expense_value)\n" +
+                    "FROM expense_ciguenia ec\n" +
+                    "JOIN opening_ciguenia op ON ec.opening_id = op.opening_id\n" +
+                    "WHERE ec.payment_method_id = 1\n" +
+                    "AND op.opening_id = (SELECT MAX(opening_id) FROM opening_ciguenia);", nativeQuery = true)
+    Double findTotalExpenseForCash();
+
+    @Query(value =  "SELECT SUM(expense_value) AS total_gastos\n" +
+                    "FROM expense_ciguenia\n" +
+                    "WHERE YEAR(expense_date) = YEAR(CURRENT_DATE)\n" +
+                    "AND MONTH(expense_date) = MONTH(CURRENT_DATE);", nativeQuery = true)
+    Double findTotalExpenseForMonth();
 }

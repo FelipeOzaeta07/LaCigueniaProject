@@ -166,6 +166,20 @@ FROM product_ciguenia pc
 INNER JOIN inventory_ciguenia ic ON pc.inventory_id = ic.inventory_id
 WHERE pc.product_id = 3;
 
+            -------------------- Query Total Ventas por Mes
+            ---------------------------------------------------------------------------------------------------
+SELECT SUM(expense_value) AS total_gastos
+FROM expense_ciguenia
+WHERE YEAR(expense_date) = YEAR(CURRENT_DATE) AND MONTH(expense_date) = MONTH(CURRENT_DATE);
+
+            -------------------- Query Total Ventas por día en Efectivo
+            ---------------------------------------------------------------------------------------------------
+SELECT SUM(ec.expense_value)
+FROM expense_ciguenia ec
+JOIN opening_ciguenia op ON ec.opening_id = op.opening_id
+WHERE ec.payment_method_id = 1
+AND op.opening_id = (SELECT MAX(opening_id) FROM opening_ciguenia);
+
             -------------------- Query Total Ventas por día
             ---------------------------------------------------------------------------------------------------
 SELECT SUM(i.expense_value) FROM expense_ciguenia i

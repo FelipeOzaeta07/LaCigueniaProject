@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@service/store/store.module';
 import { ModalOneComponent } from './setup-page/component/modal-one/modal-one.component';
 import { PaymentModule } from '@service/payment/payment.module';
+import { CategoryModule } from '@service/category/category.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PaymentModule } from '@service/payment/payment.module';
     FormsModule,
     HttpClientModule,
     StoreModule,
-    PaymentModule
+    PaymentModule,
+    CategoryModule
   ]
 })
 export class SetupModule { }

@@ -93,7 +93,7 @@ public class ExpenseService implements IExpenseService {
     public ResponseEntity<GenericResponseDTO> readExpensesForOpening() {
         try {
             Double totalExpense = this.iExpenseRepository.findTotalExpenseForDay();
-            if (!totalExpense.isNaN()){
+            if (totalExpense != null){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(totalExpense)
@@ -103,6 +103,62 @@ public class ExpenseService implements IExpenseService {
                 return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(IExpenseResponse.EXPENSE_FOR_DAY_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readExpensesForCash() {
+        try{
+            Double totalExpenseCash = this.iExpenseRepository.findTotalExpenseForCash();
+            if (totalExpenseCash != null){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(totalExpenseCash)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IExpenseResponse.EXPENSE_FOR_DAY_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> readTotalExpensesMonth() {
+        try {
+            Double totalExpenseMonth = this.iExpenseRepository.findTotalExpenseForMonth();
+            if (totalExpenseMonth != null){
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(totalExpenseMonth)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IExpenseResponse.EXPENSE_FOR_MONTH_FAIL)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
