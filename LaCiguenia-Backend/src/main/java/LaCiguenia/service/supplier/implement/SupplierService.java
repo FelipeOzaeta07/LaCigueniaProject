@@ -40,7 +40,7 @@ public class SupplierService implements ISupplierService {
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(ISupplierResponse.SUPPLIER_SUCCESS)
                         .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
@@ -70,10 +70,10 @@ public class SupplierService implements ISupplierService {
                         .build());
             }
             else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(ISupplierResponse.SUPPLIER_FAIL)
-                        .statusCode(HttpStatus.OK.value())
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
         }catch (Exception e) {
@@ -129,10 +129,10 @@ public class SupplierService implements ISupplierService {
                         .build());
             }
             else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(ISupplierResponse.SUPPLIER_FAIL)
-                        .statusCode(HttpStatus.OK.value())
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build());
             }
         }catch (Exception e) {

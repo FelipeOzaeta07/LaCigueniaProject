@@ -17,6 +17,6 @@ public interface ISupplierRepository extends JpaRepository<SupplierEntity, Integ
     @Query (value = "SELECT * FROM supplier_ciguenia WHERE supplier_status = 'Habilitado'", nativeQuery = true)
     List<SupplierEntity> findSuppliersEnabled();
 
-    @Query(value = "SELECT * FROM supplier_ciguenia WHERE supplier_name LIKE CONCAT(:supplier_name);", nativeQuery = true)
+    @Query(value = "SELECT * FROM supplier_ciguenia sc WHERE sc.supplier_status = 'Habilitado' AND supplier_name LIKE CONCAT(:supplier_name);", nativeQuery = true)
     Optional<SupplierEntity> readSupplierForName(@Param("supplier_name") String supplierName);
 }
