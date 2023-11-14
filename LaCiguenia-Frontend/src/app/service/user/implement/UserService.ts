@@ -3,7 +3,7 @@ import { Observable, tap } from "rxjs";
 import { UserRepository } from "@repository/user/UserRepository";
 import { Injectable } from "@angular/core";
 import { GenericResponse } from "@commons/response/GenericResponse";
-import { BASE_URL_USER, CREATE_USER, SERVICE_USER, USER_READ } from "@commons/endpoint/user/UserEndPoint";
+import { BASE_URL_USER, CREATE_USER, SERVICE_USER, USER_READ, USER_UPDATE } from "@commons/endpoint/user/UserEndPoint";
 import { AccessTokenService } from "./AccessTokenService";
 import { UserModel } from "@commons/domains/user/UserModel";
 import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAccessTokenService";
@@ -28,6 +28,18 @@ export class UserService extends UserRepository{
                 this.accessTokenService.accessTokenSave(genericResponse.message);
             })
         );
+    }
+
+    override updateUser(userModel: UserModel): Observable<GenericResponse> {
+
+        
+      console.log("Preubas de Datos Service: " + userModel.userName);
+      console.log("Preubas de Datos Service: " + userModel.userEmail);
+      console.log("Preubas de Datos Service: " + userModel.userPassword);
+
+        return this.http
+        .put<GenericResponse>(BASE_URL_USER + USER_UPDATE, userModel)
+        .pipe();
     }
     
     override createUser(userModel: UserModel): Observable<GenericResponse> {

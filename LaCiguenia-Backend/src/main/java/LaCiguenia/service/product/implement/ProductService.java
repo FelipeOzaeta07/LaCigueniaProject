@@ -46,7 +46,7 @@ public class ProductService implements IProductService {
                         .statusCode(HttpStatus.OK.value())
                         .build());
             }else {
-                return ResponseEntity.ok(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(IProductResponse.PRODUCT_SUCCESS)
                         .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())

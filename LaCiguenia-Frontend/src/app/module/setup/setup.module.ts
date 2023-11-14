@@ -16,6 +16,7 @@ import { StoreModule } from '@service/store/store.module';
 import { ModalOneComponent } from './setup-page/component/modal-one/modal-one.component';
 import { PaymentModule } from '@service/payment/payment.module';
 import { CategoryModule } from '@service/category/category.module';
+import { SectionSixComponent } from './setup-page/component/section-six/section-six.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CategoryModule } from '@service/category/category.module';
     SectionThreeComponent,
     SectionFourComponent,
     SectionFiveComponent,
-    ModalOneComponent
+    ModalOneComponent,
+    SectionSixComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,7 @@ import { CategoryModule } from '@service/category/category.module';
     HttpClientModule,
     StoreModule,
     PaymentModule,
-    CategoryModule
+    CategoryModule,
   ]
 })
 export class SetupModule { }

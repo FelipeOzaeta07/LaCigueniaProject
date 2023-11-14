@@ -11,6 +11,7 @@ import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDat
 import { UserSharedRepository } from '@repository/user/UserSharedRepository';
 import { UserSharedService } from './implement/UserSharedService';
 import { UserSharedSetDataUserCase } from '@repository/user/case/UserSharedSetDataUserCase';
+import { UpdateUserUseCase } from '@repository/user/case/UpdateUserUseCase';
 
 
 const createUserUseCaseFactory = (userRepository: UserRepository) => new CreateUserUseCase(userRepository);
@@ -41,6 +42,13 @@ export const readUserCaseProvider = {
     deps: [UserRepository]
 };
 
+const updateUserUseCaseFactory = (userRepository: UserRepository) => new UpdateUserUseCase(userRepository);
+export const updateUserUseCaseProvider = {
+    provide: UpdateUserUseCase,
+    useFactory: updateUserUseCaseFactory,
+    deps: [UserRepository]
+};
+
 const userSharedGetDataFactory = (userSharedRepository: UserSharedRepository) => new UserSharedGetDataUseCase(userSharedRepository);
 export const userSharedGetDataProvider = {
     provide: UserSharedGetDataUseCase,
@@ -61,6 +69,7 @@ export const userSharedSetDataProvider = {
         serviceUserUseCaseProvider,
         closeSesionUserCaseProvider,
         readUserCaseProvider,
+        updateUserUseCaseProvider,
         {provide: UserRepository, useClass: UserService},
         userSharedGetDataProvider,
         userSharedSetDataProvider,

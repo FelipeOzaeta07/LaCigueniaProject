@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { SETUP, SETUP_USER, USER_NAME, EMAIL, UPDATE_USER, CREATE_USER, DELETE_USER } 
@@ -12,6 +12,8 @@ import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDat
   styleUrls: ['./section-one.component.scss']
 })
 export class SectionOneComponent implements OnInit{
+
+  @Output() eventUpdateInformationUser = new EventEmitter<boolean>;
 
   textSetup = SETUP;
   textSetupUser = SETUP_USER;
@@ -36,5 +38,9 @@ export class SectionOneComponent implements OnInit{
         this.userModel = res.objectResponse;
       }
     );
+  }
+
+  eventUpdateUser(){
+    this.eventUpdateInformationUser.emit(true);
   }
 }

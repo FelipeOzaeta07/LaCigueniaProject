@@ -11,21 +11,27 @@ export class SetupPageComponent {
   componentThree!: boolean;
   componentFour!: boolean;
   componentFive!: boolean;
+  componentSix!: boolean;
   modal!: boolean;
 
   eventStoreAddComponent(data: boolean){
-    this.componentThree = data
-    this.component = this.componentThree
+    this.componentThree = data;
+    this.component = this.componentThree;
   }
 
   eventPaymentAddComponent(data: boolean){
-    this.componentFour = data
-    this.component = this.componentFour
+    this.componentFour = data;
+    this.component = this.componentFour;
   }
 
   eventCategoryAddComponent(data: boolean){
-    this.componentFive = data
-    this.component = this.componentFive
+    this.componentFive = data;
+    this.component = this.componentFive;
+  }
+
+  eventUpdateInformationUser(data: boolean){
+    this.componentSix = data;
+    this.component = this.componentSix;
   }
 
   modalActivate(datos: boolean){

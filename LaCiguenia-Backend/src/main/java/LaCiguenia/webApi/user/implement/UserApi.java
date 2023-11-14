@@ -83,4 +83,23 @@ public class UserApi implements IUserApi {
     public ResponseEntity<GenericResponseDTO> readUser(Integer userId) {
         return this.userService.readUser(userId);
     }
+
+    @Override
+    @Operation(summary = "Actualizar un Usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @PutMapping(IUserEndPoint.USER_UPDATE)
+    public ResponseEntity<GenericResponseDTO> updateUser(@RequestBody UserDTO userDTO) {
+        System.out.println("Entrada de datos: " + userDTO.getUserName());
+        return this.userService.updateUser(userDTO);
+    }
 }

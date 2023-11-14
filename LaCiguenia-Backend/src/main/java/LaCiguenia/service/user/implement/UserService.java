@@ -1,6 +1,7 @@
 package LaCiguenia.service.user.implement;
 
 import LaCiguenia.commons.constans.response.GeneralResponse;
+import LaCiguenia.commons.constans.response.product.IProductResponse;
 import LaCiguenia.commons.constans.response.user.IUserResponse;
 import LaCiguenia.commons.converter.user.UserConverter;
 import LaCiguenia.commons.domains.dto.user.UserDTO;
@@ -103,15 +104,45 @@ public class UserService implements IUserService {
             Optional<UserEntity> userEntityExist = this.iUserRepository.findById(userId);
             if (userEntityExist.isPresent()){
                 UserDTO userDTO = this.userConverter.convertUserEntityToUserDTO(userEntityExist.get());
-                return new ResponseEntity<>(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(userDTO)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else{
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IUserResponse.USER_UPDATE_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e){
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GenericResponseDTO> updateUser(UserDTO userDTO) {
+        try {
+            Optional<UserEntity> userEntityExist = this.iUserRepository.findById(userDTO.getUserId());
+            if (userEntityExist.isPresent()){
+                UserEntity userEntity = this.userConverter.convertUserDTOToUserEntity(userDTO);
+                this.iUserRepository.save(userEntity);
+                return new ResponseEntity<>(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(IUserResponse.USER_UPDATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
                         .build(), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
-                        .objectResponse(IUserResponse.USER_FAIL)
+                        .objectResponse(IUserResponse.USER_UPDATE_FAIL)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .build(), HttpStatus.BAD_REQUEST);
             }

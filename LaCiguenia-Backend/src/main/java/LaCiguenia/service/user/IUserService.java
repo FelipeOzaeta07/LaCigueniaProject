@@ -8,4 +8,5 @@ public interface IUserService {
     ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO);
     ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO);
     ResponseEntity<GenericResponseDTO> readUser(Integer userId);
+    ResponseEntity<GenericResponseDTO> updateUser(UserDTO userDTO);
 }
