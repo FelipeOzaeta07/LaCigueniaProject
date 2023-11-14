@@ -72,7 +72,7 @@ public class UserService implements IUserService {
     public ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO) {
         try {
             Optional<UserEntity> existeLogin;
-            existeLogin = iUserRepository.findById(userDTO.getUserId());
+            existeLogin = iUserRepository.findUserForEmail(userDTO.getUserId(), userDTO.getUserEmail());
             if(!existeLogin.isPresent()){
                 UserEntity userEntity = userConverter.convertUserDTOToUserEntity(userDTO);
                 iUserRepository.save(userEntity);
