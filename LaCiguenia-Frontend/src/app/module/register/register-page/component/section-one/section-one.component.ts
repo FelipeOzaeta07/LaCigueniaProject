@@ -28,6 +28,7 @@ export class SectionOneComponent implements OnChanges {
   registerForm!: FormGroup;
   userModel!: UserModel;
   errorPassword: string = '';
+  errorEmail: string = '';
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -78,7 +79,7 @@ export class SectionOneComponent implements OnChanges {
           }
         },
         (error) => {
-          this.registerForm.reset();
+          this.errorEmail = "Lo sentimos, este correo electrónico está registrado";
         }
       );
     }else{

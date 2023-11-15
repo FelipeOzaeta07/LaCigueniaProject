@@ -34,6 +34,9 @@
                 <input type="email" class="input input_mv col_17 col_17_mv size_1 size_mv" [placeholder]="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched ? 'Ingresar Correo Electronico' : 'Ingresar Correo Electronico'"
                 [ngClass]="{'error_placeholder': registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched}" formControlName="email">
             </div>
+            <div *ngIf="errorEmail" class="text_color size_1 text_center py_1">
+                {{errorEmail}}
+            </div>
             <div class="col_17 col_17_mv col_between col_between_mv">
                 <div class="col_8 col_8_mv">
                     <p class="size_1 size_mv py_1 py_1_mv">{{textPassword}}</p>
@@ -70,7 +73,7 @@
                             </svg>
                         </span>
                     </div>
-                </div>
+                </div>
             </div>
             <div *ngIf="errorPassword" class="text_color size_1 text_center py_1">
                 {{errorPassword}}
