@@ -1,0 +1,48 @@
+<section  class="room row_evenly inherit col_17">
+    <div class="h_10 row_center">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitle}}</h1>
+        </div>
+    </div>
+    <form (ngSubmit)="createSupplier()" [formGroup]="supplierForm" class="col_17 border row_between room py_1">
+        <div class="col_17 col_between">
+            <div class="col_6 row_center">
+                <label class="size_2 pb_1">{{textName}}</label>
+                <input type="text" class="input size_1" placeholder="Ingresa El Nombre" formControlName="nameSupplier">
+            </div>
+            <div class="col_5 row_center">
+                <label class="size_2 pb_1">{{textNit}}</label>
+                <input type="text" class="input size_1" placeholder="" formControlName="nitSupplier">
+            </div>
+            <div class="col_5 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textNumberPhone}}</label>
+                    <input type="number" class="col_17 input size_1" placeholder="Ingresa El Numero" formControlName="numberPhoneSupplier">
+                </div>
+            </div>  
+        </div>
+        <div class="col_17 col_between py_1">
+            <div class="col_6 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textEmail}}</label>
+                    <input type="email" class="input size_1" placeholder="Ingresa El Correo" formControlName="emailSupplier">
+                </div>
+            </div>
+            <div class="col_6 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textAddress}}</label>
+                    <input type="text" class="input size_1" placeholder="Ingresa La Direccion" formControlName="addressSupplier">
+                </div>
+            </div>
+            <div class="col_4 col_between">
+                <div class="col_17 row_center">
+                    <label class="size_2 pb_1">{{textCity}}</label>
+                    <input type="text" class="input size_1" placeholder="" formControlName="citySupplier">
+                </div>
+            </div>
+        </div>
+        <div class="col_17 col_center">
+            <button type="submit" class="btn_one size_2 col_5">{{textSave}}</button>
+        </div>
+    </form>
+</section>

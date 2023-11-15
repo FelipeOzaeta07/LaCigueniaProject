@@ -1,0 +1,43 @@
+<section  class="col_center item_center inherit bg_color_black z_index">
+    <div class="col_8 room border h_65 row_evenly bg_color_white">
+        <div class="col_17 bg_color_one title">
+            <h1 class="size_3 text_center">{{textTitle}}</h1>
+        </div> 
+        <form (ngSubmit)="updateSuppliers()" [formGroup]="supplierForm" class="col_17 h_50 row_evenly">
+            <div class="col_17 col_between">
+                <div class="col_11">
+                    <label for="" class="size_2">{{textNameSupplier}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="" formControlName="nameSupplier">
+                </div>
+                <div class="col_5">
+                    <label for="" class="size_2">{{textNit}}</label>
+                    <input type="number" class="input col_17 size_1" placeholder="" formControlName="nitSupplier">
+                </div>
+            </div>
+            <div class="col_17 col_between py_1">
+                <div class="col_11">
+                    <label for="" class="size_2">{{textEmail}}</label>
+                    <input type="email" class="input col_17 size_1" placeholder="" formControlName="emailSupplier">
+                </div>
+                <div class="col_5">
+                    <label for="" class="size_2">{{textNumberPhone}}</label>
+                    <input type="number" class="input col_17 size_1" placeholder="" formControlName="numberPhoneSupplier">
+                </div>
+            </div>
+            <div class="col_17 col_between py_1">
+                <div class="col_11">
+                    <label for="" class="size_2">{{textAddress}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="" formControlName="addressSupplier">
+                </div>
+                <div class="col_5">
+                    <label for="" class="size_2">{{textCity}}</label>
+                    <input type="text" class="input col_17 size_1" placeholder="" formControlName="citySupplier">
+                </div>
+            </div>
+            <div class="col_17 py_1 col_between">
+                <button class="col_8 btn_two size_2" (click)="modalEvent()">{{textFail}}</button>
+                <button type="submit" class="col_8 btn_one size_2">{{textDone}}</button>
+            </div>
+        </form> 
+    </div>
+</section>

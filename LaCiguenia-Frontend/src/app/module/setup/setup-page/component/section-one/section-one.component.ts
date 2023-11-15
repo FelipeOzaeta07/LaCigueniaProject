@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { SETUP, SETUP_USER, USER_NAME, EMAIL, UPDATE_USER, CREATE_USER, DELETE_USER } 
@@ -25,7 +26,8 @@ export class SectionOneComponent implements OnInit{
   
   userModel!: UserModel;
 
-  constructor(private userSharedGetDataUseCase: UserSharedGetDataUseCase, private readUserUseCase: ReadUserUseCase){}
+  constructor(private userSharedGetDataUseCase: UserSharedGetDataUseCase, private readUserUseCase: ReadUserUseCase,
+    private router: Router){}
 
   ngOnInit(): void {
     this.userSharedGetData();
@@ -38,6 +40,10 @@ export class SectionOneComponent implements OnInit{
         this.userModel = res.objectResponse;
       }
     );
+  }
+
+  navegateByRegister(){
+    this.router.navigateByUrl("registro-laciguenia")
   }
 
   eventUpdateUser(){

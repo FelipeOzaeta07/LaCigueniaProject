@@ -99,7 +99,6 @@ public class UserApi implements IUserApi {
                     content = {@Content(mediaType = "application/json")})})
     @PutMapping(IUserEndPoint.USER_UPDATE)
     public ResponseEntity<GenericResponseDTO> updateUser(@RequestBody UserDTO userDTO) {
-        System.out.println("Entrada de datos: " + userDTO.getUserName());
         return this.userService.updateUser(userDTO);
     }
 }

@@ -10,7 +10,8 @@ const routes: Routes = [
   {path:'inventory-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/inventory/inventory.module').then(m => m.InventoryModule) },
   {path:'products-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/products/products.module').then(m => m.ProductsModule)},
   {path:'sales-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/sales/sales.module').then(m => m.SalesModule)},
-  {path:'setup-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/setup/setup.module').then(m => m.SetupModule)}
+  {path:'setup-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/setup/setup.module').then(m => m.SetupModule)},
+  {path:'supplier-page-principal', canActivate: [ValidateTokenService], loadChildren: () => import('@module/supplier/supplier.module').then(m => m.SupplierModule)}
 ];
 
 @NgModule({
