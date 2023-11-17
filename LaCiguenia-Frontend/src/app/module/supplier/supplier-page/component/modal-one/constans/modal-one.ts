@@ -1,2 +1,2 @@
-export const TITTLE = "Proovedor Registrado Correctamente";
+export const TITTLE = "Proveedor Registrado Correctamente";
 export const DONE = "ACEPTAR";

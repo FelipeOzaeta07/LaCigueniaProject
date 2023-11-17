@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupplierModel } from '@commons/domains/suppplier/SupplierModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { TITTLE, NAME_SUPPLIER, NIT, NUMBER_PHONE, ADDRESS, EMAIL, CITY, SAVE } 
+import { TITLE, NAME_SUPPLIER, NIT, NUMBER_PHONE, ADDRESS, EMAIL, CITY, SAVE } 
 from '@module/supplier/supplier-page/component/section-one/constans/section-one';
 import { CreateSupplierUseCase } from '@repository/supplier/case/CreateSupplierUseCase';
 
@@ -16,7 +16,7 @@ export class SectionOneComponent {
   
   @Output() modalActivate = new EventEmitter<boolean>();
 
-  textTitle = TITTLE;
+  textTitle = TITLE;
   textName = NAME_SUPPLIER;
   textNit = NIT;
   textNumberPhone = NUMBER_PHONE;
@@ -54,14 +54,6 @@ export class SectionOneComponent {
       supplierEmail: this.supplierForm.controls['emailSupplier'].value,
       supplierCity: this.supplierForm.controls['citySupplier'].value,
     }
-
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierName)
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierNit)
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierNumberPhone)
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierAddress)
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierEmail)
-    console.log("Prueba de datos del formulario: " + this.supplierModel.supplierCity)
-
 
     this.createSupplierUseCase.execute(this.supplierModel).subscribe(
       (res: GenericResponse) => {

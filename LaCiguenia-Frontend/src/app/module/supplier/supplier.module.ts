@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SuppliersModule } from '@service/suppliers/suppliers.module';
 
-
 @NgModule({
   declarations: [
     SupplierPageComponent,

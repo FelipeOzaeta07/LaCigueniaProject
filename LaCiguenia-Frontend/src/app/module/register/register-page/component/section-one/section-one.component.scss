@@ -35,6 +35,11 @@
 .border{
     border-radius: 15px;
 }
+.error_message {
+    color: var(--color_ten);
+    font-size: 16px;
+    margin-top: 6px;
+}
 @media screen and (min-width: 0px) and (max-width: 500px){
     .svg_width_mv{
         width: calc(30vh);

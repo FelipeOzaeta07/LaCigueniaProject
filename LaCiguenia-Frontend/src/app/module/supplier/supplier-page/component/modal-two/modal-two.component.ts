@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SupplierModel } from '@commons/domains/suppplier/SupplierModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -14,6 +14,7 @@ import { UpdateSupplierUseCase } from '@repository/supplier/case/UpdateSupplierU
 export class ModalTwoComponent {
   
   @Output() modalActivateTwo = new EventEmitter<boolean>();
+  @Input() supplier!: SupplierModel;
 
   textTitle = TITLE;
   textNameSupplier = NAME_SUPPLIER;
@@ -24,12 +25,12 @@ export class ModalTwoComponent {
   textCity = CITY;
   textDone = DONE;
   textFail = FAIL;
- 
+
   supplierForm!: FormGroup;
   supplierModel!: SupplierModel;
- 
+
   constructor(private updateSupplierUseCase: UpdateSupplierUseCase, public formulary: FormBuilder){
- 
+
        this.supplierForm = formulary.group({
        nameSupplier: ['', [Validators.required]],
        nitSupplier: ['', [Validators.required]],
@@ -39,12 +40,12 @@ export class ModalTwoComponent {
        citySupplier: ['', [Validators.required]],
      });
    }
- 
+
   ngOnInit(): void {
-    this.updateSuppliers();
+
   }
- 
- 
+
+
   modalEvent() {
     this.modalActivateTwo.emit(false);
   }
@@ -52,36 +53,33 @@ export class ModalTwoComponent {
   updateSuppliers(){
 
     this.supplierModel = {
-      supplierId: this.supplierModel.supplierId,
+      supplierId: this.supplier.supplierId,
       supplierName: this.supplierForm.controls['nameSupplier'].value != ''
         ? this.supplierForm.controls['nameSupplier'].value
-        : this.supplierModel.supplierName,
+        : this.supplier.supplierName,
       supplierNit: this.supplierForm.controls['nitSupplier'].value != ''
         ? this.supplierForm.controls['nitSupplier'].value
-        : this.supplierModel.supplierNit,
+        : this.supplier.supplierNit,
       supplierEmail: this.supplierForm.controls['emailSupplier'].value != ''
         ? this.supplierForm.controls['emailSupplier'].value
-        : this.supplierModel.supplierEmail,
+        : this.supplier.supplierEmail,
       supplierNumberPhone: this.supplierForm.controls['numberPhoneSupplier'].value != ''
         ? this.supplierForm.controls['numberPhoneSupplier'].value
-        : this.supplierModel.supplierNumberPhone,
+        : this.supplier.supplierNumberPhone,
       supplierAddress: this.supplierForm.controls['addressSupplier'].value != ''
         ? this.supplierForm.controls['addressSupplier'].value
-        : this.supplierModel.supplierAddress,
+        : this.supplier.supplierAddress,
       supplierCity: this.supplierForm.controls['citySupplier'].value != ''
         ? this.supplierForm.controls['citySupplier'].value
-        : this.supplierModel.supplierCity,
+        : this.supplier.supplierCity,
     }
 
     this.updateSupplierUseCase.execute(this.supplierModel).subscribe(
       (res: GenericResponse) => {
-        if (res.statusCode == 200) {
-          this.modalEvent();
           if(res.statusCode == 200){
             window.location.reload();
-          }
         } else {
-          alert("Proovedor NO Existe");
+          alert("Proveedor NO Existe");
           this.supplierForm.reset();
         }
       },

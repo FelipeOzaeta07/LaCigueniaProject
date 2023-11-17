@@ -72,21 +72,21 @@ public class UserService implements IUserService {
     public ResponseEntity<GenericResponseDTO> createUser(UserDTO userDTO) {
         try {
             Optional<UserEntity> existeLogin;
-            existeLogin = iUserRepository.findById(userDTO.getUserId());
+            existeLogin = iUserRepository.findUserForEmail(userDTO.getUserId(), userDTO.getUserEmail());
             if(!existeLogin.isPresent()){
                 UserEntity userEntity = userConverter.convertUserDTOToUserEntity(userDTO);
                 iUserRepository.save(userEntity);
-                return new ResponseEntity<>(GenericResponseDTO.builder()
+                return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
                         .objectResponse(GeneralResponse.CREATE_SUCCESS)
                         .statusCode(HttpStatus.OK.value())
-                        .build(), HttpStatus.OK);
+                        .build());
             }else{
-                return new ResponseEntity<>(GenericResponseDTO.builder()
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_FAIL)
                         .objectResponse(IUserResponse.USER_SUCCESS)
                         .statusCode(HttpStatus.BAD_REQUEST.value())
-                        .build(), HttpStatus.BAD_REQUEST);
+                        .build());
             }
         }catch (Exception e){
             log.error(GeneralResponse.INTERNAL_SERVER + e);

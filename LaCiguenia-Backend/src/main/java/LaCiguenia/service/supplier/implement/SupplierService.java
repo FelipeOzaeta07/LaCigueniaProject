@@ -1,6 +1,5 @@
 package LaCiguenia.service.supplier.implement;
 
-
 import LaCiguenia.commons.constans.response.GeneralResponse;
 import LaCiguenia.commons.constans.response.supplier.ISupplierResponse;
 import LaCiguenia.commons.converter.supplier.SupplierConverter;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -153,6 +151,7 @@ public class SupplierService implements ISupplierService {
             Optional<SupplierEntity> supplierExist = this.iSupplierRepository.findById(supplierDTO.getSupplierId());
             if (supplierExist.isPresent()){
                 SupplierEntity supplierEntity = this.supplierConverter.convertSupplierDTOToSupplierEntity(supplierDTO);
+                supplierEntity.setSupplierStatus("Habilitado");
                 this.iSupplierRepository.save(supplierEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

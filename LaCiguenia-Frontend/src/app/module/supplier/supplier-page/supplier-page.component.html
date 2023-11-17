@@ -1,13 +1,13 @@
 <main class="h_100 col_start">
     <app-modal-one *ngIf="modalOne" class="h_100 h_100_mv" (modalActivate)="modalActivate($event)" ></app-modal-one>
-    <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)"class="h_100"></app-modal-two>
-    <app-modal-three *ngIf="modalThree" class="h_100" (modalActivateThree)="modalActivateThree($event)" ></app-modal-three>
+    <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)"class="h_100" [supplier]="supplierModel"></app-modal-two>
+    <app-modal-three *ngIf="modalThree" class="h_100" (modalActivateThree)="modalActivateThree($event)" [supplierId]="supplierId"></app-modal-three>
     <app-section-navbar class="col_2"></app-section-navbar>
     <section class="col_15 h_100">
         <app-section-header class="col_17 h_8"></app-section-header>
         <div class="row_evenly">
             <app-section-one class="col_17 h_48" (modalActivate)="modalActivate($event)"></app-section-one>
-            <app-section-two class="col_17 h_44" (modalActivateTwo)="modalActivateTwo($event)" (modalActivateThree)="modalActivateThree($event)"></app-section-two>
+            <app-section-two class="col_17 h_44" (modalActivateTwo)="modalActivateTwo($event)" (modalActivateThree)="modalActivateThree($event)" (SendSupplier)="SendSupplier($event)" (SendSupplierId)="SendSupplierId($event)"></app-section-two>
         </div>
     </section>
 </main>

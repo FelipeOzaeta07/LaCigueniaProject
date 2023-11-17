@@ -24,17 +24,19 @@ export class SectionOneComponent implements OnChanges {
   textDoneConditions = DONE_CONDITIONS;
   textText = TEXT;
   textHere = HERE;
+  textLimitPassword = "La contraseña debe tener al menos 8 caracteres.";
 
   registerForm!: FormGroup;
   userModel!: UserModel;
   errorPassword: string = '';
+  errorEmail: string = '';
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
   constructor(public formulary: FormBuilder, public router: Router, private createUserUseCase: CreateUserUseCase){
     this.registerForm = formulary.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
@@ -78,7 +80,7 @@ export class SectionOneComponent implements OnChanges {
           }
         },
         (error) => {
-          this.registerForm.reset();
+          this.errorEmail = "Lo sentimos, este correo electrónico está registrado";
         }
       );
     }else{

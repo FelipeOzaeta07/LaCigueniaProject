@@ -36,7 +36,7 @@ export class SectionTwoComponent {
 
   modalDelete(index: number){
     this.SendSupplierId.emit(this.supplierModel[index].supplierId);
-    this.modalActivateTwo.emit(true);
+    this.modalActivateThree.emit(true);
   }
 
   ngOnInit(): void {
