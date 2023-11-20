@@ -8,4 +8,7 @@ export abstract class UserRepository {
     abstract closeSesionUser(): void;
     abstract updateUser(userModel: UserModel): Observable<GenericResponse>;
     abstract readUser(userId: number): Observable<GenericResponse>;
+    abstract readUsers(): Observable<GenericResponse>;
+    abstract deletUser(userId: number): Observable<GenericResponse>;
+
 }

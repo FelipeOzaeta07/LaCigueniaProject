@@ -85,6 +85,24 @@ public class UserApi implements IUserApi {
     }
 
     @Override
+    @Operation(summary = "Leer todos los Usuarios")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IUserEndPoint.USERS_READ)
+    public ResponseEntity<GenericResponseDTO> readUsers() {
+        return this.userService.readUsers();
+    }
+
+    @Override
     @Operation(summary = "Actualizar un Usuario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
@@ -100,5 +118,23 @@ public class UserApi implements IUserApi {
     @PutMapping(IUserEndPoint.USER_UPDATE)
     public ResponseEntity<GenericResponseDTO> updateUser(@RequestBody UserDTO userDTO) {
         return this.userService.updateUser(userDTO);
+    }
+
+    @Override
+    @Operation(summary = "Eliminar un Usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @DeleteMapping(IUserEndPoint.USER_DELETE)
+    public ResponseEntity<GenericResponseDTO> deleteUser(@PathVariable Integer userId) {
+        return this.userService.deleteUser(userId);
     }
 }

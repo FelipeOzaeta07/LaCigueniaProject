@@ -14,7 +14,8 @@ import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDat
 })
 export class SectionOneComponent implements OnInit{
 
-  @Output() eventUpdateInformationUser = new EventEmitter<boolean>;
+  @Output() eventUpdateInformationUser = new EventEmitter<boolean>();
+  @Output() eventDeleteInformationUser = new EventEmitter<boolean>();
 
   textSetup = SETUP;
   textSetupUser = SETUP_USER;
@@ -48,5 +49,9 @@ export class SectionOneComponent implements OnInit{
 
   eventUpdateUser(){
     this.eventUpdateInformationUser.emit(true);
+  }
+
+  eventDeleteUser(){
+    this.eventDeleteInformationUser.emit(true);
   }
 }

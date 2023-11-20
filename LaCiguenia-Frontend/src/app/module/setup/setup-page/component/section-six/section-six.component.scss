@@ -1,7 +1,9 @@
 .svg_width{
     width: calc(2vh + 2vw);
 }
-.border{
+.border_total{
+    border: 1px solid;
+    border-color: var(--color_three);
     border-radius: 20px;
 }
 .pt_1{

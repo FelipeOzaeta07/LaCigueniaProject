@@ -12,6 +12,8 @@ import { UserSharedRepository } from '@repository/user/UserSharedRepository';
 import { UserSharedService } from './implement/UserSharedService';
 import { UserSharedSetDataUserCase } from '@repository/user/case/UserSharedSetDataUserCase';
 import { UpdateUserUseCase } from '@repository/user/case/UpdateUserUseCase';
+import { ReadUsersUseCase } from '@repository/user/case/ReadUsersUseCase';
+import { DeleteUserUseCase } from '@repository/user/case/DeleteUserUseCase';
 
 
 const createUserUseCaseFactory = (userRepository: UserRepository) => new CreateUserUseCase(userRepository);
@@ -39,6 +41,20 @@ const readUserCaseFactory = (userRepository: UserRepository) => new ReadUserUseC
 export const readUserCaseProvider = {
     provide: ReadUserUseCase,
     useFactory: readUserCaseFactory,
+    deps: [UserRepository]
+};
+
+const readUsersCaseFactory = (userRepository: UserRepository) => new ReadUsersUseCase(userRepository);
+export const readUsersCaseProvider = {
+    provide: ReadUsersUseCase,
+    useFactory: readUsersCaseFactory,
+    deps: [UserRepository]
+};
+
+const deleteUserCaseFactory = (userRepository: UserRepository) => new DeleteUserUseCase(userRepository);
+export const deleteUserCaseProvider = {
+    provide: DeleteUserUseCase,
+    useFactory: deleteUserCaseFactory,
     deps: [UserRepository]
 };
 
@@ -70,6 +86,8 @@ export const userSharedSetDataProvider = {
         closeSesionUserCaseProvider,
         readUserCaseProvider,
         updateUserUseCaseProvider,
+        readUsersCaseProvider,
+        deleteUserCaseProvider,
         {provide: UserRepository, useClass: UserService},
         userSharedGetDataProvider,
         userSharedSetDataProvider,

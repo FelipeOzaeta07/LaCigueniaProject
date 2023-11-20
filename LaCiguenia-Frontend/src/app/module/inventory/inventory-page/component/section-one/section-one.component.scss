@@ -5,6 +5,10 @@ th{
 .border{
     border-radius: 20px;
 }
+.border_bottom{
+    border-bottom: 1px solid;
+    border-color: var(--color_three);
+}
 .btn_one{
     border-radius: 50%;
     fill: var(--color_one);
@@ -35,7 +39,8 @@ th{
     border-radius: 10px;
 }
 .pt_1{
-    padding-top: calc(0.5vh);
+    padding-top: calc(0.25vh);
+    padding-bottom: calc(0.25vh);
 }
 .p_1{
     padding-top: calc(1vh);

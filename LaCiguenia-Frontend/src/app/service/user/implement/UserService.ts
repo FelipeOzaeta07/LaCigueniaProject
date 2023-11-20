@@ -3,7 +3,7 @@ import { Observable, tap } from "rxjs";
 import { UserRepository } from "@repository/user/UserRepository";
 import { Injectable } from "@angular/core";
 import { GenericResponse } from "@commons/response/GenericResponse";
-import { BASE_URL_USER, CREATE_USER, SERVICE_USER, USER_READ, USER_UPDATE } from "@commons/endpoint/user/UserEndPoint";
+import { BASE_URL_USER, CREATE_USER, SERVICE_USER, USERS_READ, USER_DELETE, USER_READ, USER_UPDATE } from "@commons/endpoint/user/UserEndPoint";
 import { AccessTokenService } from "./AccessTokenService";
 import { UserModel } from "@commons/domains/user/UserModel";
 import { OpeningAccessTokenService } from "@service/opening/implement/OpeningAccessTokenService";
@@ -31,12 +31,6 @@ export class UserService extends UserRepository{
     }
 
     override updateUser(userModel: UserModel): Observable<GenericResponse> {
-
-        
-      console.log("Preubas de Datos Service: " + userModel.userName);
-      console.log("Preubas de Datos Service: " + userModel.userEmail);
-      console.log("Preubas de Datos Service: " + userModel.userPassword);
-
         return this.http
         .put<GenericResponse>(BASE_URL_USER + USER_UPDATE, userModel)
         .pipe();
@@ -45,6 +39,12 @@ export class UserService extends UserRepository{
     override createUser(userModel: UserModel): Observable<GenericResponse> {
         return this.http
         .post<GenericResponse>(BASE_URL_USER + CREATE_USER, userModel)
+        .pipe();
+    }
+
+    override readUsers(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_USER + USERS_READ)
         .pipe();
     }
 
@@ -58,6 +58,12 @@ export class UserService extends UserRepository{
     override readUser(userId: number): Observable<GenericResponse> {
         return this.http
         .get<GenericResponse>(BASE_URL_USER + USER_READ + userId)
+        .pipe();
+    }
+
+    override deletUser(userId: number): Observable<GenericResponse> {
+        return this.http
+        .delete<GenericResponse>(BASE_URL_USER + USER_DELETE + userId)
         .pipe();
     }
 }

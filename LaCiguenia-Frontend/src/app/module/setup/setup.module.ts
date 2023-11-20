@@ -17,6 +17,8 @@ import { ModalOneComponent } from './setup-page/component/modal-one/modal-one.co
 import { PaymentModule } from '@service/payment/payment.module';
 import { CategoryModule } from '@service/category/category.module';
 import { SectionSixComponent } from './setup-page/component/section-six/section-six.component';
+import { SectionSevenComponent } from './setup-page/component/section-seven/section-seven.component';
+import { ModalTwoComponent } from './setup-page/component/modal-two/modal-two.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SectionSixComponent } from './setup-page/component/section-six/section-
     SectionFourComponent,
     SectionFiveComponent,
     ModalOneComponent,
-    SectionSixComponent
+    SectionSixComponent,
+    SectionSevenComponent,
+    ModalTwoComponent
   ],
   imports: [
     CommonModule,

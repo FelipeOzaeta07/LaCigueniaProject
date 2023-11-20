@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TITLE, DONE } 
 from '@module/setup/setup-page/component/modal-one/constans/modal-one';
 
@@ -10,6 +10,7 @@ from '@module/setup/setup-page/component/modal-one/constans/modal-one';
 export class ModalOneComponent {
 
   @Output() modalActivate = new EventEmitter<boolean>();
+  @Input() message!: string;
 
   textTitle = TITLE;
   textDone = DONE;

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreModel } from '@commons/domains/store/StoreModel';
 import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
-import { TITLE_USER, NAME_USER, PASSWORD_USER, CONFIRM_PASSWORD_USER, EMAIL_USER, ACCEPT_USER } 
+import { TITLE_USER, NAME_USER, PASSWORD_USER, CONFIRM_PASSWORD_USER, EMAIL_USER, ACCEPT_USER, MESSAGE } 
 from '@module/setup/setup-page/component/section-six/constans/section-six';
 import { UpdateUserUseCase } from '@repository/user/case/UpdateUserUseCase';
 import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDataUseCase';
@@ -17,6 +17,7 @@ export class SectionSixComponent {
 
   @Output() eventUpdateInformationUser = new EventEmitter<boolean>;
   @Output() modalActivate = new EventEmitter<boolean>();
+  @Output() sendMessage = new EventEmitter<string>();
 
   textTitle = TITLE_USER;
   textName = NAME_USER;
@@ -63,10 +64,6 @@ export class SectionSixComponent {
             this.modalEvent();
             this.eventUpdateUser();
           }
-        },
-        (error) => {
-          console.log("Entramos el error: " + error);
-          this.userForm.reset();
         }
       );
     }else{
@@ -75,6 +72,7 @@ export class SectionSixComponent {
   }
 
   modalEvent() {
+    this.sendMessage.emit(MESSAGE)
     this.modalActivate.emit(true);
   }
 

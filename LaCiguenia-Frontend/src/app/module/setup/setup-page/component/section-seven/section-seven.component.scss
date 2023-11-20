@@ -1,0 +1,39 @@
+.svg_width{
+    width: calc(2vh + 2vw);
+}
+th{
+    padding-top: calc(2vh);
+    padding-bottom: calc(2vh);
+}
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
+}
+.svg_width_icon{
+    width: calc(1.5vh + 0.8vw);
+}
+.btn_two{
+    border-radius: 50%;
+    fill: var(--color_one);
+    border-color: var(--color_one);
+    background-color: #FF8686;
+}
+.btn_two:hover{
+    background-color: #fa5c5c;
+}
+.btn_two:focus{
+    background-color: #fd3f3f;
+}
+.border{
+    border-radius: 20px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 500px){
+    .svg_width_mv{
+        width: calc(30vh);
+    }
+}
