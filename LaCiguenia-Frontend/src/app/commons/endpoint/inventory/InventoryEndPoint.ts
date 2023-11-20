@@ -5,3 +5,4 @@ export const READ_INVENTORYS = "/leer-inventarios";
 export const READ_INVENTORIES_RECENTLY_CREATE = "/leer-inventarios-creados";
 export const UPDATE_INVENTORY = "/actualizar-inventario";
 export const DELETE_INVENTORY = "/eliminar-inventario";
+export const UPDATE_PAY_INVENTORY = "/actualizar-inventario-compra";

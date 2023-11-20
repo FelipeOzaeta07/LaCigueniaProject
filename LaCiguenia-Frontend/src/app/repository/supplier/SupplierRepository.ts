@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 export abstract class SupplierRepository {
     abstract createSupplier(supplierModel : SupplierModel): Observable<GenericResponse>;
     abstract readLastSupplier(): Observable<GenericResponse>;
+    abstract readSuppliers(): Observable<GenericResponse>;
     abstract updateSupplier (supplierModel : SupplierModel): Observable<GenericResponse>;
     abstract deleteSupplier (supplierId: number): Observable<GenericResponse>;
 }

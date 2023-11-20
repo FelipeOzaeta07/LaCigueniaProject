@@ -174,6 +174,38 @@ public class InventoryService implements IInventoryService {
     }
 
     @Override
+    public ResponseEntity<GenericResponseDTO> updateInventoryForPay(InventoryDTO inventoryDTO) {
+        try {
+            Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryDTO.getInventoryId());
+            if (inventoryExist.isPresent()){
+                Integer newAmount = inventoryExist.get().getInventoryAmount() + inventoryDTO.getInventoryAmount();
+                InventoryEntity inventoryEntity = this.inventoryConverter.convertInventoryDTOToInventoryEntity(inventoryDTO);
+                inventoryEntity.setInventoryAmount(newAmount);
+                this.iInventoryRepository.save(inventoryEntity);
+                return ResponseEntity.ok(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_SUCCESS)
+                        .objectResponse(GeneralResponse.UPDATE_SUCCESS)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+            }else {
+                return ResponseEntity.badRequest().body(GenericResponseDTO.builder()
+                        .message(GeneralResponse.OPERATION_FAIL)
+                        .objectResponse(IInventoryResponse.INVENTORY_FAIL)
+                        .statusCode(HttpStatus.BAD_REQUEST.value())
+                        .build());
+            }
+        }catch (Exception e) {
+            log.error(GeneralResponse.INTERNAL_SERVER, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(GenericResponseDTO.builder()
+                            .message(GeneralResponse.INTERNAL_SERVER)
+                            .objectResponse(null)
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .build());
+        }
+    }
+
+    @Override
     public ResponseEntity<GenericResponseDTO> deleteInventory(Integer inventoryId) {
         try {
             Optional<InventoryEntity> inventoryExist = this.iInventoryRepository.findById(inventoryId);

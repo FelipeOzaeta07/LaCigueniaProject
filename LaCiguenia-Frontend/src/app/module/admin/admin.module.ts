@@ -14,6 +14,7 @@ import { DetailModule } from '@service/detail/detail.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@service/store/store.module';
 import { ExpensesModule } from '@service/expense/expenses.module';
+import { SuppliersModule } from '@service/suppliers/suppliers.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ExpensesModule } from '@service/expense/expenses.module';
     ReactiveFormsModule,
     FormsModule,
     StoreModule,
-    ExpensesModule
+    ExpensesModule,
+    SuppliersModule
   ]
 })
 export class AdminModule { }

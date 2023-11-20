@@ -1,3 +1,6 @@
+.error_placeholder::placeholder{
+    color: var(--color_ten);
+}
 .svg_width{
     width: calc(2vh + 2vw);
 }
@@ -45,6 +48,9 @@
 }
 .border{
     border-radius: 10px;
+}
+.error_message {
+    color: var(--color_ten);
 }
 @media screen and (min-width: 0px) and (max-width: 500px){
     .svg_width_mv{

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { SupplierModel } from "@commons/domains/suppplier/SupplierModel";
-import { BASE_URL_SUPPLIER, CREATE_SUPPLIER, DELETE_SUPPLIER, READ_THREE_LAST_SUPPLIERS, UPDATE_SUPPLIER } 
+import { BASE_URL_SUPPLIER, CREATE_SUPPLIER, DELETE_SUPPLIER, READ_SUPPLIERS, READ_THREE_LAST_SUPPLIERS, UPDATE_SUPPLIER } 
 from "@commons/endpoint/supplier/SupplierEndPoint";
 import { GenericResponse } from "@commons/response/GenericResponse";
 import { SupplierRepository } from "@repository/supplier/SupplierRepository";
@@ -26,6 +26,13 @@ export class SupplierService extends SupplierRepository {
     override readLastSupplier(): Observable<GenericResponse> {
         return this.http
         .get<GenericResponse>(BASE_URL_SUPPLIER + READ_THREE_LAST_SUPPLIERS)
+        .pipe(catchError((error: HttpErrorResponse) => {
+            return throwError(error);
+        }));
+    }
+    override readSuppliers(): Observable<GenericResponse> {
+        return this.http
+        .get<GenericResponse>(BASE_URL_SUPPLIER + READ_SUPPLIERS)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));

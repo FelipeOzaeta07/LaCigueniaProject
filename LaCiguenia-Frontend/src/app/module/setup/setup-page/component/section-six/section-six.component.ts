@@ -29,6 +29,7 @@ export class SectionSixComponent {
   userForm!: FormGroup;
   userModel!: UserModel;
   errorPassword: string = '';
+  textLimitPassword = "La contraseña debe tener al menos 8 caracteres.";
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;

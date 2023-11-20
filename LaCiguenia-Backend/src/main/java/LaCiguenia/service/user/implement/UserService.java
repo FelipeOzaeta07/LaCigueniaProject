@@ -36,7 +36,8 @@ public class UserService implements IUserService {
             if (!usuarios.isEmpty()) {
                 for (UserEntity usuario : usuarios) {
                     UserDTO usuarioDecode = userConverter.convertUserEntityToUserDTO(usuario);
-                    if (usuarioDecode.getUserPassword().equals(userDTO.getUserPassword())) {
+                    if (usuarioDecode.getUserPassword().equals(userDTO.getUserPassword()) &&
+                            usuarioDecode.getUserEmail().equals(userDTO.getUserEmail())) {
                         return ResponseEntity.ok(GenericResponseDTO.builder()
                                 .message(GeneralResponse.OPERATION_SUCCESS)
                                 .objectResponse(IUserResponse.AUTENTIFICATION_SUCESS)

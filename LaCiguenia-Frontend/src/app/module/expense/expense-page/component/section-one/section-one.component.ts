@@ -11,6 +11,7 @@ import { METHOD_PAY, TITLE, INVOICE, PLACE, VALUE, DESCRIPTION, SAVE, DATE_PAY, 
   MESSAGE_PRODUCT, SYMBOL, NAME_PRODUCT, AMOUNT, PRICE_COST, PRICE_SALE } 
 from '@module/expense/expense-page/component/section-one/constans/section-one';
 import { CreateExpenseUseCase } from '@repository/expense/case/CreateExpenseUseCase';
+import { UpdateInventoryForPayUseCase } from '@repository/inventory/case/UpdateInventoryForPayUseCase';
 import { UpdateInventoryUseCase } from '@repository/inventory/case/UpdateInventoryUseCase';
 import { ReadLastOpeningUseCase } from '@repository/opening/case/ReadLastOpeningUseCase';
 import { ReadMethodsPaymentUseCase } from '@repository/payment/case/ReadMethodsPaymentUseCase';
@@ -55,7 +56,7 @@ export class SectionOneComponent implements OnInit{
 
   constructor(public formulary: FormBuilder, public router: Router, private createExpenseUseCase: CreateExpenseUseCase, 
     private readMethodsPaymentUseCase: ReadMethodsPaymentUseCase, private readLastOpeningUseCase: ReadLastOpeningUseCase, 
-    private updateInventoryUseCase: UpdateInventoryUseCase, private readProductForNameUseCase: ReadProductForNameUseCase,
+    private updateInventoryForPayUseCase: UpdateInventoryForPayUseCase, private readProductForNameUseCase: ReadProductForNameUseCase,
     private updateProductUseCase: UpdateProductUseCase){
     const today = new Date();
     const year = today.getFullYear();
@@ -117,9 +118,8 @@ export class SectionOneComponent implements OnInit{
       openingEntity: this.openingModel,
     }
     if(this.inventoryModel != undefined){
-      console.log("Entramos al if")
       for(let item of this.inventoryModel){
-        this.updateInventoryUseCase.execute(item).subscribe(
+        this.updateInventoryForPayUseCase.execute(item).subscribe(
           (res: GenericResponse) => {
             if(res.statusCode == 200){
               console.log("inventario Actualizado")

@@ -1,10 +1,13 @@
-<section class="row_center inherit">
+<section  class="row_evenly row_evenly_mv inherit">
     <div class="col_17 col_17_mv bg_color_one bg_color_one_mv title title_mv">
-        <h1 class="size_3 size_2_mv text_center text_center_mv">{{suplier}}</h1>
+        <h1 class="size_3 size_2_mv text_center text_center_mv">{{textSuplier}}</h1>
     </div>
-    <div class="py_1 py_3_mv h_60">
+    <div class="h_55">
         <div class="border border_mv text_center text_center_mv py_1 py_3_mv div_width">
             <a class="size_1 size_mv text_color_two" type="submit" routerLink="../supplier-page-principal">Registra a tu <span class="text_color_one">Proveedor</span></a>
+            <div class="pt_1 scroll" *ngFor="let item of supplierArray">
+                <p class="text_center text_color_two size_1">{{item.supplierName}}</p>
+            </div>
         </div>
     </div>
 </section>

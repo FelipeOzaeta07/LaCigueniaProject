@@ -119,6 +119,24 @@ public class InventoryApi implements IInventoryApi {
     }
 
     @Override
+    @Operation(summary = "Actualizar un Inventario por Compra")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = GeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = GeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @PutMapping(IInventoryEndPoint.UPDATE_PAY_INVENTORY)
+    public ResponseEntity<GenericResponseDTO> updateInventoryForPay(InventoryDTO inventoryDTO) {
+        return this.inventoryService.updateInventoryForPay(inventoryDTO);
+    }
+
+    @Override
     @Operation(summary = "Eliminar un Inventario")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = GeneralResponse.CREATE_SUCCESS,

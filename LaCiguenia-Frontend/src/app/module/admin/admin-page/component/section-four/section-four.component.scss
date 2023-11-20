@@ -1,8 +1,23 @@
-@import url(/src/styles.scss);
-
 .border{
     border-radius: 10px;
 }
 .div_width{
     height: 100%;
+}
+.pt_1{
+    padding-top: calc(1vh);
+}
+.text_color_one:hover{
+    color: var(--color_fifteen);
+}
+.text_center:hover{
+    color: var(--color_one);
+}
+.scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll::-webkit-scrollbar {
+    width: 0px;
 }

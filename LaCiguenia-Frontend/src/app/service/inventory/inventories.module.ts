@@ -9,6 +9,7 @@ import { ReadInventoriesUseCase } from '@repository/inventory/case/ReadInventori
 import { InventoryService } from '@service/inventory/implement/InventoryService';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadInventoriesRecentlyCreateUseCase } from '@repository/inventory/case/ReadInventoriesRecentlyCreateUseCase';
+import { UpdateInventoryForPayUseCase } from '@repository/inventory/case/UpdateInventoryForPayUseCase';
 
 const createInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new CreateInventoryUseCase(inventoryRepository);
 export const createInventoryUseCaseProvider = {
@@ -22,6 +23,7 @@ export const readInventoryUseCaseProvider = {
     useFactory: readInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
+
 const ReadInventoriesUseCaseFactory = (inventoryRepository: InventoryRepository) => new ReadInventoriesUseCase(inventoryRepository);
 export const ReadInventoriesUseCaseProvider = {
     provide: ReadInventoriesUseCase,
@@ -42,6 +44,14 @@ export const updateInventoryUseCaseProvider = {
     useFactory: updateInventoryUseCaseFactory,
     deps: [InventoryRepository],
 };
+
+const updateInventoryForPayUseCaseFactory = (inventoryRepository: InventoryRepository) => new UpdateInventoryForPayUseCase(inventoryRepository);
+export const updateInventoryForPayUseCaseProvider = {
+    provide: UpdateInventoryForPayUseCase,
+    useFactory: updateInventoryForPayUseCaseFactory,
+    deps: [InventoryRepository],
+};
+
 const deleteInventoryUseCaseFactory = (inventoryRepository: InventoryRepository) => new DeleteInventoryUseCase(inventoryRepository);
 export const deleteInventoryUseCaseProvider = {
     provide: DeleteInventoryUseCase,
@@ -57,6 +67,7 @@ export const deleteInventoryUseCaseProvider = {
     updateInventoryUseCaseProvider,
     deleteInventoryUseCaseProvider,
     readInventoriesRecentlyUseCaseProvider,
+    updateInventoryForPayUseCaseProvider,
     {provide: InventoryRepository, useClass: InventoryService}
   ],
   imports: [

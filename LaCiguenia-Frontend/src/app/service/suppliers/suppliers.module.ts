@@ -8,6 +8,7 @@ import { UpdateSupplierUseCase } from '@repository/supplier/case/UpdateSupplierU
 import { ReadLastSupplierUseCase } from '@repository/supplier/case/ReadLastSupplierUseCase';
 import { CreateSupplierUseCase } from '@repository/supplier/case/CreateSupplierUseCase';
 import { SupplierService } from './implement/SupplierService';
+import { ReadSuppliersUseCase } from '@repository/supplier/case/ReadSuppliersUseCase';
 
 
 const createSupplierUseCaseFactory = (supplierRepository: SupplierRepository) => new CreateSupplierUseCase(supplierRepository);
@@ -21,6 +22,13 @@ const readLastSupplierUseCaseFactory = (supplierRepository: SupplierRepository) 
 export const readLastSupplierUseCaseProvider = {
     provide: ReadLastSupplierUseCase,
     useFactory: readLastSupplierUseCaseFactory,
+    deps: [SupplierRepository],
+};
+
+const readSuppliersUseCaseFactory = (supplierRepository: SupplierRepository) => new ReadSuppliersUseCase(supplierRepository);
+export const readSuppliersUseCaseProvider = {
+    provide: ReadSuppliersUseCase,
+    useFactory: readSuppliersUseCaseFactory,
     deps: [SupplierRepository],
 };
 
@@ -44,6 +52,7 @@ export const deleteSupplierUseCaseProvider = {
     readLastSupplierUseCaseProvider,
     updateSupplierUseCaseProvider,
     deleteSupplierUseCaseProvider,
+    readSuppliersUseCaseProvider,
     {provide: SupplierRepository, useClass: SupplierService}
   ],
   imports: [

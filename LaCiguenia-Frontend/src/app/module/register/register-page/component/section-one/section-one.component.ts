@@ -45,7 +45,7 @@ export class SectionOneComponent implements OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     if(this.modal == false){
-      this.router.navigateByUrl('login-laciguenia');
+      this.router.navigateByUrl('login-laciguenia/setup-page-principal');
       this.registerForm.reset();
     }
   }

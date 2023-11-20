@@ -13,11 +13,13 @@
         <div class="col_17 col_evenly">
             <div class="col_8 row_center">
                 <label class="size_1 py_1">{{textName}}</label>
-                <input type="text" class="input size_1" placeholder="Ingresar el Nuevo Nombre de Usuario" formControlName="nameUser">
+                <input type="text" class="input size_1" [placeholder]="userForm.get('nameUser')?.hasError('required') && userForm.get('nameUser')?.touched ? 'Ingresar el nuevo nombre de usuario' : ''"
+                [ngClass]="{'error_placeholder': userForm.get('nameUser')?.hasError('required') && userForm.get('nameUser')?.touched}" formControlName="nameUser">
             </div>
             <div class="col_8 row_center">
                 <label class="size_1 py_1">{{textEmail}}</label>
-                <input type="email" class="input size_1" placeholder="Ingresar el Nuevo Correo Electronico" formControlName="userEmail">
+                <input type="email" class="input size_1" [placeholder]="userForm.get('userEmail')?.hasError('required') && userForm.get('userEmail')?.touched ? 'Ingresar el nuevo correo electrónico' : ''"
+                [ngClass]="{'error_placeholder': userForm.get('userEmail')?.hasError('required') && userForm.get('userEmail')?.touched}" formControlName="userEmail">
             </div>
         </div>
         <div class="col_17 col_evenly">
@@ -57,6 +59,9 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div *ngIf="userForm.get('password')?.hasError('minlength') && userForm.get('password')?.touched" class="pt_1">
+            <p class="error_message size_1 text_center">{{textLimitPassword}}</p>
         </div>
         <div *ngIf="errorPassword" class="text_color size_1 text_center pt_1">
             {{errorPassword}}

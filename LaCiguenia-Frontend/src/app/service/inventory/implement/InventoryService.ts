@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { InventoryModel } from "@commons/domains/inventory/InventoryModel";
-import { BASE_URL_INVENTORY, CREATE_INVENTORY, DELETE_INVENTORY, READ_INVENTORIES_RECENTLY_CREATE, READ_INVENTORY, READ_INVENTORYS, UPDATE_INVENTORY } from "@commons/endpoint/inventory/InventoryEndPoint";
+import { BASE_URL_INVENTORY, CREATE_INVENTORY, DELETE_INVENTORY, READ_INVENTORIES_RECENTLY_CREATE, READ_INVENTORY, READ_INVENTORYS, UPDATE_INVENTORY, UPDATE_PAY_INVENTORY } from "@commons/endpoint/inventory/InventoryEndPoint";
 import { InventoryRepository } from "@repository/inventory/InventoryRepository";
 import { Observable, catchError, throwError } from "rxjs";
 import { GenericResponse } from "@commons/response/GenericResponse";
@@ -59,6 +59,14 @@ export class InventoryService extends InventoryRepository {
     override deleteInventory(inventoryId: number): Observable<GenericResponse> {
         return this.http
             .delete<GenericResponse>(BASE_URL_INVENTORY + DELETE_INVENTORY + inventoryId)
+            .pipe(catchError((error: HttpErrorResponse) => {
+                return throwError(error);
+            }));
+    }
+
+    override updateInventoryForPay(inventoryModel: InventoryModel): Observable<GenericResponse> {
+        return this.http
+            .put<GenericResponse>(BASE_URL_INVENTORY + UPDATE_PAY_INVENTORY, inventoryModel)
             .pipe(catchError((error: HttpErrorResponse) => {
                 return throwError(error);
             }));
