@@ -1,4 +1,4 @@
-export const TITLE = "Registro de Proveedores";
+export const TITLE = "Proveedores Registrados Recientemente";
 export const NAME_SUPPLIER = "Nombre del Proveedor";
 export const NIT_RUT = "NIT o RUT";
 export const CITY = "Ciudad";

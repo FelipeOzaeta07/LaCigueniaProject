@@ -32,7 +32,7 @@ public class UserService implements IUserService {
     @Override
     public ResponseEntity<GenericResponseDTO> serviceUser(UserDTO userDTO) {
         try {
-            List<UserEntity> usuarios = iUserRepository.findAll();
+            List<UserEntity> usuarios = iUserRepository.findUsers();
             if (!usuarios.isEmpty()) {
                 for (UserEntity usuario : usuarios) {
                     UserDTO usuarioDecode = userConverter.convertUserEntityToUserDTO(usuario);

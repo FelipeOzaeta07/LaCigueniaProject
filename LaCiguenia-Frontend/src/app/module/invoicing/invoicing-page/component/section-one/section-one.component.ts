@@ -5,6 +5,7 @@ import { GenericResponse } from '@commons/response/GenericResponse';
 import { ReadCategoriesUseCase } from '@repository/category/case/ReadCategoriesUseCase';
 import { ReadProductForCategoryUseCase } from '@repository/product/case/ReadProductForCategoryUseCase';
 import { ALL_PRODUCTS } from '@module/invoicing/invoicing-page/component/section-one/constants/section-one';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-section-one',
@@ -24,9 +25,15 @@ export class SectionOneComponent implements OnInit{
   product!: ProductModel [];
   productSelection!: string;
   category!: CategoryModel [];
-  productGroupsSelector: ProductModel[][] = [];
 
-  constructor(private readCategoriesUseCase: ReadCategoriesUseCase, private readProductForCategoryUseCase: ReadProductForCategoryUseCase){}
+  
+  categoryForm!: FormGroup;
+
+  constructor(public formulary: FormBuilder, private readCategoriesUseCase: ReadCategoriesUseCase, private readProductForCategoryUseCase: ReadProductForCategoryUseCase){
+    this.categoryForm = formulary.group({
+      categoryItem: ['']
+    });
+  }
 
 
   ngOnInit(): void {
@@ -53,9 +60,11 @@ export class SectionOneComponent implements OnInit{
       });
   }
 
-  readProductForCategory(index: number){
-    if(index !== 0){
-      this.readProductForCategoryUseCase.execute(index).subscribe(
+  readProductForCategory(){
+    const CATEGORY = this.categoryForm.controls['categoryItem'].value;
+    console.log("Prueba Datos: " + CATEGORY.categoryId)
+    if(CATEGORY.categoryId !== 0){
+      this.readProductForCategoryUseCase.execute(CATEGORY.categoryId).subscribe(
         (res: GenericResponse) => {
           if(res.message != "Operación fallida"){
             this.activeMessageCategory.emit(false);
@@ -78,4 +87,13 @@ export class SectionOneComponent implements OnInit{
     this.product = [];
     this.sendProduct.emit(this.product);
   }
+
+
+
+
+
+
+
+
+
 }

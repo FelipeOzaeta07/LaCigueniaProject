@@ -3,6 +3,7 @@ import { UserModel } from '@commons/domains/user/UserModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { ReadUsersUseCase } from '@repository/user/case/ReadUsersUseCase';
 import { USER_DELETE, USER_NAME, USER_EMAIL, USER_OPTION } from '@module/setup/setup-page/component/section-seven/constans/section-seven';
+import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDataUseCase';
 
 @Component({
   selector: 'app-section-seven',
@@ -23,7 +24,7 @@ export class SectionSevenComponent implements OnInit{
 
   userArray: UserModel [] = [];
 
-  constructor(private readUsersUseCase : ReadUsersUseCase){}
+  constructor(private readUsersUseCase : ReadUsersUseCase, private userSharedGetDataUseCase: UserSharedGetDataUseCase){}
 
   ngOnInit(): void {
     this.readUsers();
@@ -44,8 +45,12 @@ export class SectionSevenComponent implements OnInit{
   }
 
   modalDelete(index: number) {
-    this.sendUserId.emit(this.userArray[index].userId);
-    this.modalActivateTwo.emit(true);
+    const NUMBER = this.userSharedGetDataUseCase.execute();
+    const USER_ID = this.userArray[index].userId;
+    if(USER_ID != NUMBER){
+      this.sendUserId.emit(this.userArray[index].userId);
+      this.modalActivateTwo.emit(true);
+    }
   }
 
   eventUpdateUser(){

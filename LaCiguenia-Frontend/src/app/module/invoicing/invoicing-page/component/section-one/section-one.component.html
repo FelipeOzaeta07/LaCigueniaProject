@@ -4,14 +4,21 @@
             placeholder="Digita el producto a buscar" #productInput>
     </div>
     <div class="col_between col_17">
-        <div class="col_3 cursor note border border_radius_div text_center col_center item_center"
-            *ngFor="let categoryItem of category; let i = index" (click)="readProductForCategory(i + 1)">
-            <div class="py_1">
-                <h5 class="size">{{categoryItem.categoryName}}</h5>
-            </div>
+        <div class="col_6">
+            <form [formGroup]="categoryForm" class="col_17">
+                <select formControlName="categoryItem" class="col_17 select size_1" (change)="readProductForCategory()">
+                    <option class="size_1" value="" disabled selected>Seleccionar Categoria</option>
+                    <option class="size_1" *ngFor="let categoryItem of category" [ngValue]="categoryItem">{{ categoryItem.categoryName }}</option>
+                </select>
+            </form>
+        </div>
+        <div class="col_11 ps_1">
+            <h1 class="title cursor bg_color text_center size_1" (click)="readProductAllProduct()">{{textAllProduct}}</h1>
         </div>
     </div>
-    <div class="col_17">
-        <h1 class="title cursor bg_color text_center size" (click)="readProductAllProduct()">{{textAllProduct}}</h1>
-    </div>
+    
+
+    
+    
+  
 </section>

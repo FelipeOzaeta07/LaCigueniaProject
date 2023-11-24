@@ -1,15 +1,14 @@
-.ng-valid:not(form).ng-touched   {
+.ng-valid:not(form).ng-touched:not(.select) {
     padding-top: calc(1.2vw);
     padding-bottom: calc(1.2vw);
     text-indent: 3vh;
     border: 1px solid;
     border-color: var(--color_three);
 }
-.ng-valid:hover.ng-touched   {
+.ng-valid:hover.ng-touched:not(.select) {
     border-color: var(--color_twelve);
-    box-shadow: 0 0 1px var(--color_thirteen);
 }
-.ng-valid:focus.ng-touched   {
+.ng-valid:focus.ng-touched:not(.select) {
     border: 1px solid var(--color_thirteen);
     box-shadow: 0 0 4px var(--color_thirteen);
     outline: none;
@@ -27,4 +26,17 @@
 }
 .bg_color{
     background-color: var(--color_eight);
+}
+.title{
+    padding-top: calc(0.8vw);
+    padding-bottom: calc(0.8vw);
+    border-radius: 20px;
+}
+.select{
+    padding-top: calc(0.8vw);
+    padding-bottom: calc(0.8vw);
+    text-indent: 3vh;
+    border: 1px solid;
+    border-color: var(--color_three);
+    border-radius: 20px;
 }
