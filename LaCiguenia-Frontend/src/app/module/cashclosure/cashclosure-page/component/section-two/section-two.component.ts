@@ -67,7 +67,7 @@ export class SectionTwoComponent implements OnInit{
   }
 
   readExpensesForOpening(){
-    this.readExpensesForOpeningUseCase.execute().subscribe(
+    this.readExpensesForOpeningUseCase.execute(this.informationCashClosure.cashClosureInformationStoreId).subscribe(
       (res: GenericResponse) => {
         this.totalExpense = res.objectResponse;
       }

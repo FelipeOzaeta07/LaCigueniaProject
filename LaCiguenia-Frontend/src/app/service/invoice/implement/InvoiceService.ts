@@ -58,12 +58,13 @@ export class InvoiceService extends InvoiceRepository {
             }));
     }
 
-    override readInformationGeneralInvoices(): Observable<GenericResponse> {
+    override readInformationGeneralInvoices(storeId: number): Observable<GenericResponse> {
         return this.http
-        .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICES_MONTH_DAY)
+        .get<GenericResponse>(BASE_URL_INVOICE + READ_INVOICES_MONTH_DAY + storeId)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));
+
     }
 
     override totalPreviousDayInvoice(): Observable<GenericResponse> {

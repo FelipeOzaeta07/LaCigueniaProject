@@ -29,9 +29,9 @@ export class ExpenseService extends ExpenseRepository {
             return throwError(error);
         }));
     }
-    override readExpensesForOpening(): Observable<GenericResponse> {
+    override readExpensesForOpening(storeId: number): Observable<GenericResponse> {
         return this.http
-        .get<GenericResponse>(BASE_URL_EXPENSE + READ_TOTAL_EXPENSE)
+        .get<GenericResponse>(BASE_URL_EXPENSE + READ_TOTAL_EXPENSE + storeId)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));
@@ -43,9 +43,9 @@ export class ExpenseService extends ExpenseRepository {
             return throwError(error);
         }));
     }
-    override readExpensesForMonth(): Observable<GenericResponse> {
+    override readExpensesForMonth(storeId: Number): Observable<GenericResponse> {
         return this.http
-        .get<GenericResponse>(BASE_URL_EXPENSE + READ_TOTAL_EXPENSE_MONTH)
+        .get<GenericResponse>(BASE_URL_EXPENSE + READ_TOTAL_EXPENSE_MONTH + storeId)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));

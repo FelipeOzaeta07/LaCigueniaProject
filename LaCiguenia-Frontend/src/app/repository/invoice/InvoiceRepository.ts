@@ -10,6 +10,6 @@ export abstract class InvoiceRepository {
     abstract readInvoicies (): Observable<GenericResponse>;
     abstract updateInvoice (invoiceModel :InvoiceModel): Observable<GenericResponse>;
     abstract deleteInvoice (invoiceTotal: number): Observable<GenericResponse>;
-    abstract readInformationGeneralInvoices (): Observable<GenericResponse>;
+    abstract readInformationGeneralInvoices (storeId: number): Observable<GenericResponse>;
     abstract totalPreviousDayInvoice(): Observable<GenericResponse>;
 }

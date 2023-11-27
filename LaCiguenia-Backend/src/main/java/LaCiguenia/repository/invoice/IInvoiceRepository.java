@@ -49,4 +49,7 @@ public interface IInvoiceRepository extends JpaRepository<InvoiceEntity, Integer
                     "AND ic.opening_id = (SELECT MAX(opening_id) FROM opening_ciguenia)\n" +
                     "GROUP BY pm.payment_method_name;", nativeQuery = true)
     Double totalSalesCash();
+
+    @Query(value = "SELECT ic.* FROM invoice_ciguenia ic JOIN opening_ciguenia oc ON oc.opening_id = ic.opening_id  WHERE oc.store_id = :storeId", nativeQuery = true)
+    List<InvoiceEntity> InformationGeneralForStore(@Param("storeId") Integer storeId);
 }

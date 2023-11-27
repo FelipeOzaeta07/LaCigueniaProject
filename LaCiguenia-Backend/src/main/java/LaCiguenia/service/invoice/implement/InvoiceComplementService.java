@@ -33,9 +33,9 @@ public class InvoiceComplementService implements IInvoiceComplementService {
 
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices() {
+    public ResponseEntity<GenericResponseDTO> readInformationGeneralInvoices(Integer storeId) {
         try{
-            List<InvoiceEntity> listInvoice = this.iInvoiceRepository.findAll();
+            List<InvoiceEntity> listInvoice = this.iInvoiceRepository.InformationGeneralForStore(storeId);
             if (!listInvoice.isEmpty()){
                 InformationGeneralInvoice informationGeneralInvoice = new InformationGeneralInvoice();
                 informationGeneralInvoice.salesTotalDay = this.invoiceComponent.invoiceSalesTotalDay(listInvoice);

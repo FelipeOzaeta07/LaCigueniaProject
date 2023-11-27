@@ -17,10 +17,14 @@ public interface IExpenseRepository extends JpaRepository<ExpenseEntity, Integer
             "LIMIT 1;", nativeQuery = true )
     Integer lastIdExpense();
 
-    @Query(value =  "SELECT SUM(i.expense_value) FROM expense_ciguenia i\n" +
-                    "LEFT JOIN cash_closure_ciguenia c ON i.opening_id = c.opening_id\n" +
-                    "WHERE c.opening_id IS NULL ORDER BY i.opening_id DESC;", nativeQuery = true)
-    Double findTotalExpenseForDay();
+    @Query(value =  "SELECT SUM(i.expense_value)\n" +
+            "FROM expense_ciguenia i\n" +
+            "LEFT JOIN cash_closure_ciguenia c ON i.opening_id = c.opening_id\n" +
+            "LEFT JOIN opening_ciguenia oc ON i.opening_id = oc.opening_id\n" +
+            "WHERE c.opening_id IS NULL\n" +
+            "  AND oc.store_id = :storeId\n" +
+            "ORDER BY i.opening_id DESC;", nativeQuery = true)
+    Double findTotalExpenseForDay(@Param("storeId") Integer storeId);
 
     @Query(value =  "SELECT SUM(ec.expense_value)\n" +
                     "FROM expense_ciguenia ec\n" +
@@ -30,8 +34,10 @@ public interface IExpenseRepository extends JpaRepository<ExpenseEntity, Integer
     Double findTotalExpenseForCash();
 
     @Query(value =  "SELECT SUM(expense_value) AS total_gastos\n" +
-                    "FROM expense_ciguenia\n" +
-                    "WHERE YEAR(expense_date) = YEAR(CURRENT_DATE)\n" +
-                    "AND MONTH(expense_date) = MONTH(CURRENT_DATE);", nativeQuery = true)
-    Double findTotalExpenseForMonth();
+            "                    FROM expense_ciguenia ec\n" +
+            "                    JOIN opening_ciguenia oc ON oc.opening_id = ec.opening_id\n" +
+            "                    WHERE YEAR(expense_date) = YEAR(CURRENT_DATE)\n" +
+            "                    AND MONTH(expense_date) = MONTH(CURRENT_DATE)\n" +
+            "                    AND oc.store_id = :storeId", nativeQuery = true)
+    Double findTotalExpenseForMonth(@Param("storeId") Integer storeId);
 }

@@ -90,9 +90,9 @@ public class ExpenseService implements IExpenseService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readExpensesForOpening() {
+    public ResponseEntity<GenericResponseDTO> readExpensesForOpening(Integer storeId) {
         try {
-            Double totalExpense = this.iExpenseRepository.findTotalExpenseForDay();
+            Double totalExpense = this.iExpenseRepository.findTotalExpenseForDay(storeId);
             if (totalExpense != null){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -146,9 +146,9 @@ public class ExpenseService implements IExpenseService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> readTotalExpensesMonth() {
+    public ResponseEntity<GenericResponseDTO> readTotalExpensesMonth(Integer storeId) {
         try {
-            Double totalExpenseMonth = this.iExpenseRepository.findTotalExpenseForMonth();
+            Double totalExpenseMonth = this.iExpenseRepository.findTotalExpenseForMonth(storeId);
             if (totalExpenseMonth != null){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

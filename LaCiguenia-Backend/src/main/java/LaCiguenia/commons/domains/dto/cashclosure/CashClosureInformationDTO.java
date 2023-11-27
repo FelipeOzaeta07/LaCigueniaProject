@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Builder
 public class CashClosureInformationDTO implements Serializable {
     private String cashClosureInformationStore;
+    private Integer cashClosureInformationStoreId;
     private Double cashClosureInformationOpeningBox;
     private Double cashClosureInformationTotalCash;
 }

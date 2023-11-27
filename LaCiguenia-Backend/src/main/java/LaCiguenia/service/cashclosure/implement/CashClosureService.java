@@ -176,6 +176,7 @@ public class CashClosureService implements ICashClosureService {
 
                 CashClosureInformationDTO cashClosureInformationDTO = new CashClosureInformationDTO();
                 cashClosureInformationDTO.setCashClosureInformationStore(openingEntityExist.get().getStoreEntity().getStoreName());
+                cashClosureInformationDTO.setCashClosureInformationStoreId(openingEntityExist.get().getStoreEntity().getStoreId());
                 cashClosureInformationDTO.setCashClosureInformationOpeningBox(openingEntityExist.get().getOpeningTotal());
                 cashClosureInformationDTO.setCashClosureInformationTotalCash(
                         this.iInvoiceRepository.totalSalesCash()

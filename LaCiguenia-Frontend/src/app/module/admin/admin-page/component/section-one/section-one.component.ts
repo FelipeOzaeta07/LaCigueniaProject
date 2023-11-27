@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreModel } from '@commons/domains/store/StoreModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
@@ -16,6 +16,7 @@ export class SectionOneComponent implements OnInit{
   @Input() salesTotalDay!: number;
   @Input() countInvoiceDay!: number;
   @Input() expenseTotalDay!: number;
+  @Output() sendStore = new EventEmitter<StoreModel>();
 
 
   textStore = STORE;
@@ -28,6 +29,7 @@ export class SectionOneComponent implements OnInit{
 
   storeModel: StoreModel [] = [];
   storeForm!: FormGroup;
+  storeId!: number;
 
   constructor(public formulary: FormBuilder, private readStoresUseCase: ReadStoresUseCase){
     this.storeForm = formulary.group({
@@ -47,5 +49,16 @@ export class SectionOneComponent implements OnInit{
         }
       }
     );
+    
+  }
+
+  sendIdStore(){
+    const storeSelectControl = this.storeForm.get('storeSelect');
+
+    if (storeSelectControl) {
+      const selectedStore = storeSelectControl.value;
+      // Aquí puedes usar selectedStore según tus necesidades
+      this.sendStore.emit(selectedStore);
+    }
   }
 }
