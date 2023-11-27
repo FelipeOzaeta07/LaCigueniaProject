@@ -74,8 +74,8 @@ public class ExpenseApi implements IExpenseApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IExpenseEndPoint.READ_TOTAL_EXPENSE)
-    public ResponseEntity<GenericResponseDTO> readExpensesForOpening() {
-        return this.expenseService.readExpensesForOpening();
+    public ResponseEntity<GenericResponseDTO> readExpensesForOpening(@PathVariable Integer storeId) {
+        return this.expenseService.readExpensesForOpening(storeId);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class ExpenseApi implements IExpenseApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IExpenseEndPoint.READ_TOTAL_EXPENSE_MONTH)
-    public ResponseEntity<GenericResponseDTO> readTotalExpensesMonth() {
-        return this.expenseService.readTotalExpensesMonth();
+    public ResponseEntity<GenericResponseDTO> readTotalExpensesMonth(@PathVariable Integer storeId) {
+        return this.expenseService.readTotalExpensesMonth(storeId);
     }
 
     @Override

@@ -7,7 +7,7 @@ export class ReadExpenseForMonthUseCase implements UseCase<number, GenericRespon
 
     constructor(private expenseRepository: ExpenseRepository){}
 
-    execute() : Observable<GenericResponse>{
-        return this.expenseRepository.readExpensesForMonth();
+    execute(storeId: number) : Observable<GenericResponse>{
+        return this.expenseRepository.readExpensesForMonth(storeId);
     }
 }

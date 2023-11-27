@@ -52,7 +52,7 @@ class InvoiceComplementServiceTest {
 
         when(iInvoiceRepository.findAll()).thenReturn(listInvoice);
 
-        ResponseEntity<GenericResponseDTO> response = invoiceComplementService.readInformationGeneralInvoices();
+        ResponseEntity<GenericResponseDTO> response = invoiceComplementService.readInformationGeneralInvoices(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(GeneralResponse.OPERATION_SUCCESS, response.getBody().getMessage());
@@ -77,7 +77,7 @@ class InvoiceComplementServiceTest {
     void testReadInformationGeneralInvoicesFailure() {
         when(iInvoiceRepository.findAll()).thenReturn(new ArrayList<>());
 
-        ResponseEntity<GenericResponseDTO> response = invoiceComplementService.readInformationGeneralInvoices();
+        ResponseEntity<GenericResponseDTO> response = invoiceComplementService.readInformationGeneralInvoices(1);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(GeneralResponse.OPERATION_FAIL, response.getBody().getMessage());

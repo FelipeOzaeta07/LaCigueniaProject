@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailProductMoreSold } from '@commons/domains/detail/DetailProductMoreSold';
-import { InformationGeneralInvoice } from '@commons/domains/invoice/InformationGeneralInvoice';
+import { StoreModel } from '@commons/domains/store/StoreModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { DetailProductoMoreSoldUseCase } from '@repository/detail/case/DetailProductoMoreSoldUseCase';
 import { ReadExpenseForMonthUseCase } from '@repository/expense/case/ReadExpenseForMonthUseCase';
@@ -30,14 +30,11 @@ export class AdminPageComponent implements OnInit{
               private readExpenseForMonthUseCase: ReadExpenseForMonthUseCase){}
   
   ngOnInit(): void {
-    this.readInformationGeneralInvoices();
     this.detailProductoMoreSold();
-    this.readExpensesForOpening();
-    this.readExpenseForMonth();
   }
 
-  readInformationGeneralInvoices(){
-    this.readInformationGeneralInvoicesUseCase.execute().subscribe(
+  readInformationGeneralInvoices(storeId: number){
+    this.readInformationGeneralInvoicesUseCase.execute(storeId).subscribe(
       (res: GenericResponse) => {
           this.salesTotalDay = res.objectResponse.salesTotalDay;
           this.salesTotalMonth = res.objectResponse.salesTotalMonth;
@@ -68,8 +65,8 @@ export class AdminPageComponent implements OnInit{
     )
   }
 
-  readExpenseForMonth(){
-    this.readExpenseForMonthUseCase.execute().subscribe(
+  readExpenseForMonth(storeId: number){
+    this.readExpenseForMonthUseCase.execute(storeId).subscribe(
       (res: GenericResponse) => {
         this.expenseTotalMonth = res.objectResponse;
       },(error) => {
@@ -78,8 +75,8 @@ export class AdminPageComponent implements OnInit{
     );
   }
 
-  readExpensesForOpening(){
-    this.readExpensesForOpeningUseCase.execute().subscribe(
+  readExpensesForOpening(storeId: number){
+    this.readExpensesForOpeningUseCase.execute(storeId).subscribe(
       (res: GenericResponse) => {
         this.expenseTotalDay = res.objectResponse;
       },(error) => {
@@ -94,5 +91,11 @@ export class AdminPageComponent implements OnInit{
 
   modalActivateOne(datos: boolean) {
     this.modalOne = datos;
+  }
+
+  sendStore(store: StoreModel){
+    this.readInformationGeneralInvoices(store.storeId);
+    this.readExpenseForMonth(store.storeId);
+    this.readExpensesForOpening(store.storeId);
   }
 }

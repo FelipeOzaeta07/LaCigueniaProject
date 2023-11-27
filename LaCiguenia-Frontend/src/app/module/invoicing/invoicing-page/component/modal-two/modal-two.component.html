@@ -26,7 +26,7 @@
                             <option class="size_1" *ngFor="let methodItem of methodPaymentModel" [ngValue]="methodItem">{{methodItem.paymentMethodName}}</option>
                         </select>
                     </form>
-                    <input type="number" [(ngModel)]="changesInvoice" class="input col_8 size_2 text_color_two text_end" placeholder="{{textSymbolPrice}} {{invoiceEnd.invoiceTotal | number}}" (input)="substractChanges()">
+                    <input type="number" [(ngModel)]="changesInvoice" class="input col_8 size_2 text_color_two text_center" placeholder="Ingrese valor recibido $ " (input)="substractChanges()">
                 </div>
             </div>
             <div class="col_17 py_1 col_between border_y">

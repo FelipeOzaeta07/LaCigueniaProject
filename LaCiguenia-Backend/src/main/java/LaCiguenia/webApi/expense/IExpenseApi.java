@@ -11,11 +11,11 @@ public interface IExpenseApi {
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readExpenses();
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readExpensesForOpening();
+    ResponseEntity<GenericResponseDTO> readExpensesForOpening(@PathVariable Integer storeId);
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readExpensesForCash();
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> readTotalExpensesMonth();
+    ResponseEntity<GenericResponseDTO> readTotalExpensesMonth(@PathVariable Integer storeId);
     @DeleteMapping()
     ResponseEntity<GenericResponseDTO> deleteExpenses(@PathVariable Integer expenseId);
 }

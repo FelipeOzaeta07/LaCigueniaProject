@@ -5,9 +5,11 @@
         </div>
         <div class="col_5 col_10_mv">
             <form [formGroup]="storeForm" class="col_17">
-                <select  formControlName="storeSelect" class="col_17 select size_1">
+                <select formControlName="storeSelect" class="col_17 select size_1" (change)="sendIdStore()">
                     <option class="size_1" value="" disabled selected>Seleccionar el Almacén</option>
-                    <option class="size_1" *ngFor="let storeItem of storeModel" [ngValue]="storeItem">{{ storeItem.storeName }}</option>
+                    <option class="size_1" *ngFor="let storeItem of storeModel; let i = index" [ngValue]="storeItem">
+                      {{ storeItem.storeName }}
+                    </option>
                 </select>
             </form>
         </div>
