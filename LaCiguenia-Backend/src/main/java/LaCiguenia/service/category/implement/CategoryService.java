@@ -32,6 +32,7 @@ public class CategoryService implements ICategoryService {
             Optional<CategoryEntity> categoryExist = this.iCategoryRepository.findById(categoryDTO.getCategoryId());
             if (!categoryExist.isPresent()) {
                 CategoryEntity categoryEntity = categoryConverter.convertCategoryDTOToCategoryEntity(categoryDTO);
+                categoryEntity.setCategoryStatus("Activa");
                 this.iCategoryRepository.save(categoryEntity);
                 return new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)
@@ -88,7 +89,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public ResponseEntity<GenericResponseDTO> readCategories() {
         try {
-            List<CategoryEntity> listCategoryExist = this.iCategoryRepository.findAll();
+            List<CategoryEntity> listCategoryExist = this.iCategoryRepository.listCategoryActive();
             if (!listCategoryExist.isEmpty()){
                 return  new ResponseEntity<>(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

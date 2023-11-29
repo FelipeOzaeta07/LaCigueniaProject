@@ -6,9 +6,13 @@
     <div class="col_between col_17">
         <div class="col_6">
             <form [formGroup]="categoryForm" class="col_17">
-                <select formControlName="categoryItem" class="col_17 select size_1" (change)="readProductForCategory()">
+                <select formControlName="categoryItem"class="col_17 select size_1" (change)="readProductForCategory()">
                     <option class="size_1" value="" disabled selected>Seleccionar Categoria</option>
-                    <option class="size_1" *ngFor="let categoryItem of category" [ngValue]="categoryItem">{{ categoryItem.categoryName }}</option>
+                    <ng-container *ngFor="let categoryItem of category; let i = index">
+                        <ng-container *ngIf="i >= 1">
+                            <option class="size_1" [ngValue]="categoryItem">{{categoryItem.categoryName}}</option>
+                        </ng-container>
+                    </ng-container>
                 </select>
             </form>
         </div>
@@ -16,9 +20,4 @@
             <h1 class="title cursor bg_color text_center size_1" (click)="readProductAllProduct()">{{textAllProduct}}</h1>
         </div>
     </div>
-    
-
-    
-    
-  
 </section>

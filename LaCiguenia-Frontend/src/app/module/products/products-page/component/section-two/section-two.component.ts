@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { InventoryModel } from '@commons/domains/inventory/InventoryModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { NAME_PRODUCT, TITLE, SALES_PRICE, AMOUNT, OPTION } from '@module/products/products-page/component/section-two/constans/section-two';
@@ -25,7 +26,7 @@ export class SectionTwoComponent implements OnInit{
 
   inventoryModel!: InventoryModel [];
 
-  constructor(private readInventoriesRecentlyCreateUseCase: ReadInventoriesRecentlyCreateUseCase){}
+  constructor(private readInventoriesRecentlyCreateUseCase: ReadInventoriesRecentlyCreateUseCase, private router: Router){}
 
   modalEdit(index: number){
     this.sendProduct.emit(this.inventoryModel[index])
@@ -49,5 +50,9 @@ export class SectionTwoComponent implements OnInit{
       error => {
         console.error("Error en la solicitud: " + error);
       });
+  }
+
+  navigateByUrl(){
+    this.router.navigateByUrl("login-laciguenia/products-page-principal/list-products-page-principal");
   }
 }

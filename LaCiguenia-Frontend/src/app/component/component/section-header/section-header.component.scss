@@ -23,3 +23,31 @@
 .bg_color:hover{
     color: rgb(63, 63, 63);
 }
+
+
+
+
+
+.rojo {
+    color: red; /* Cambia esto según tus necesidades de estilo */
+    fill: red;
+}
+.svg_color svg {
+    fill: red;
+}
+
+.svg_color svg {
+    animation: moveSideways 1s linear infinite; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+}
+
+@keyframes moveSideways {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(2px); /* Ajusta la distancia que quieres que se mueva */
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

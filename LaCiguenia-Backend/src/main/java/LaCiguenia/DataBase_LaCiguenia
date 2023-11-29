@@ -31,7 +31,8 @@ CREATE TABLE opening_ciguenia (
 CREATE TABLE category_ciguenia (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50),
-    category_description VARCHAR(100)
+    category_description VARCHAR(100),
+    category_status VARCHAR(15)
 );
 CREATE TABLE product_ciguenia (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -133,9 +134,10 @@ CREATE TABLE supplier_ciguenia (
 );
 
 -- Registro Categorias
-INSERT INTO category_ciguenia (category_name, category_description)
+INSERT INTO category_ciguenia (category_name, category_description, category_status)
 VALUES
-	('General', 'Categoria Especial para todos los productos');
+	('General', 'Categoria Especial', 'Activa'),
+	('General', 'Categoria Especial para todos los productos', 'Activa');
 
 -- Registro Cliente
 INSERT INTO customer_ciguenia (customer_name, customer_identification, customer_phone_number, customer_email, customer_address)
@@ -155,12 +157,9 @@ VALUES ('General', '123456789', 'General', '3003003030', 'general@example.com', 
 
 
 
-
 ---------------------------------------------------------------------------------------------------
 --------------------------------------    Query Especiales  ---------------------------------------
 ---------------------------------------------------------------------------------------------------
-
-
 
 
 

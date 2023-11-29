@@ -28,7 +28,11 @@
                 <label class="size_2 pb_1">{{textCategory}}</label>
                 <select formControlName="categoryProduct" class="select size_1">
                     <option class="size_1" value="" disabled selected>Ingrese la Categoria</option>
-                    <option class="size_1" *ngFor="let categoryItem of category" [ngValue]="categoryItem">{{ categoryItem.categoryName }}</option>
+                    <ng-container *ngFor="let categoryItem of category; let i = index">
+                        <ng-container *ngIf="i >= 1">
+                            <option class="size_1" [ngValue]="categoryItem">{{ categoryItem.categoryName }}</option>
+                        </ng-container>
+                    </ng-container>
                 </select>
             </div>
             <div class="col_3 row_center">

@@ -1,0 +1,12 @@
+export const CODE = "Código";
+export const OPTIONS = "Opciones";
+export const PAGING = "Facturas por Página";
+export const TEXT_TITLE = "No tienes ningún producto registrado";
+export const TEXT_ONE = "¡Haz clic ";
+export const TEXT_TWO = "aquí";
+export const TEXT_THREE = " para crear tus productos comienza a impulsar tu negocio!";
+export const TITLE = "Lista de Productos";
+export const NAME_PRODUCT = "Nombre del Producto";
+export const SALES_PRICE = "Precio Venta";
+export const AMOUNT = "Cantidad";
+export const OPTION = "Opción";

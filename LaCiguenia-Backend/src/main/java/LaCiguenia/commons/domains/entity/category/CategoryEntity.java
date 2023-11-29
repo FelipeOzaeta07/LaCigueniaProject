@@ -26,6 +26,9 @@ public class CategoryEntity {
     @Column(name = "category_description")
     private String categoryDescription;
 
+    @Column(name = "category_status")
+    private String categoryStatus;
+
     @OneToMany(mappedBy = "categoryEntity")
     @JsonManagedReference
     @JsonIgnore

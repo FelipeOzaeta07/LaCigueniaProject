@@ -16,6 +16,11 @@ export class SectionHeaderComponent {
 
   active: boolean = false;
 
+  //Prueba Datos
+  validadas: boolean = true; // Cambia a false si las notificaciones no están validadas
+  cantidadNotificaciones: number = 3; // Cambia la cantidad según tu aplicación
+  notification: number = 2;
+
   constructor(private closeSesionUserUseCase: CloseSesionUserUseCase, private salesAccessTokenService: SalesAccessTokenService,
     private router: Router){}
 

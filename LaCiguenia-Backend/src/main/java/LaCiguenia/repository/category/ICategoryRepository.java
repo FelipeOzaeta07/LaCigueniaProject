@@ -9,4 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ICategoryRepository extends JpaRepository<CategoryEntity, Integer> {
+
+    @Query(value = "SELECT * FROM category_ciguenia WHERE category_status = 'Activa';", nativeQuery = true)
+    List<CategoryEntity> listCategoryActive();
 }

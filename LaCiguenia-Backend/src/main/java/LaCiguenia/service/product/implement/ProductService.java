@@ -185,6 +185,9 @@ public class ProductService implements IProductService {
             Optional<ProductEntity> productoExist = this.iProductRepository
                     .findById(productDTO.getProductId());
             if (productoExist.isPresent()){
+                if (productDTO.getCategoryEntity().getCategoryId() == 1){
+                    productDTO.setCategoryEntity(productoExist.get().getCategoryEntity());
+                }
                 ProductEntity productEntity = this.productConverter.convertProductDTOToProductEntity(productDTO);
                 this.iProductRepository.save(productEntity);
                 return ResponseEntity.ok(GenericResponseDTO.builder()
