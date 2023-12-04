@@ -16,12 +16,12 @@ import { ReadInformationGeneralInvoicesUseCase } from '@repository/invoice/case/
 export class AdminPageComponent implements OnInit{
 
   modalOne!: boolean;
-  salesTotalDay!: number;
-  salesTotalMonth!: number;
-  expenseTotalDay!: number;
-  expenseTotalMonth!: number;
-  countInvoiceDay!: number;
-  countInvoiceMonth!: number;
+  salesTotalDay: number = 0;
+  salesTotalMonth: number = 0;
+  expenseTotalDay: number = 0;
+  expenseTotalMonth: number = 0;
+  countInvoiceDay: number = 0;
+  countInvoiceMonth: number = 0;
   product!: DetailProductMoreSold;
   detailProduct!: DetailProductMoreSold [];
   productMoreSold: DetailProductMoreSold [][] = [];
@@ -31,7 +31,6 @@ export class AdminPageComponent implements OnInit{
               private readExpenseForMonthUseCase: ReadExpenseForMonthUseCase){}
   
   ngOnInit(): void {
-    this.detailProductoMoreSold();
   }
 
   readInformationGeneralInvoices(storeId: number){
@@ -50,8 +49,9 @@ export class AdminPageComponent implements OnInit{
     )
   }
 
-  detailProductoMoreSold(){
-    this.detailProductoMoreSoldUseCase.execute().subscribe(
+  detailProductoMoreSold(storeId: number){
+    this.productMoreSold = [];
+    this.detailProductoMoreSoldUseCase.execute(storeId).subscribe(
       (res: GenericResponse) => {
         this.detailProduct = res.objectResponse;
         const productsPerGroup = 2;
@@ -98,5 +98,6 @@ export class AdminPageComponent implements OnInit{
     this.readInformationGeneralInvoices(store.storeId);
     this.readExpenseForMonth(store.storeId);
     this.readExpensesForOpening(store.storeId);
+    this.detailProductoMoreSold(store.storeId);
   }
 }
