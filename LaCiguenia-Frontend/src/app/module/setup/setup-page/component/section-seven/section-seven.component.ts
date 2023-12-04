@@ -53,7 +53,7 @@ export class SectionSevenComponent implements OnInit{
     }
   }
 
-  eventUpdateUser(){
+  eventDeleteUser(){
     this.eventDeleteInformationUser.emit(false);
   }
 }

@@ -7,6 +7,7 @@ import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
+import LaCiguenia.component.notification.implement.NotificationComponent;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.repository.opening.IOpeningRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,11 +36,13 @@ class InvoiceServiceTest {
     private IOpeningRepository iOpeningRepository;
     @Mock
     private InvoiceConverter invoiceConverter;
+    @Mock
+    private NotificationComponent notificationComponent;
     private InvoiceService invoiceService;
     @BeforeEach
     void setUp() throws Exception{
         MockitoAnnotations.openMocks(this).close();
-        invoiceService = new InvoiceService(iInvoiceRepository, iOpeningRepository, invoiceConverter);
+        invoiceService = new InvoiceService(iInvoiceRepository, iOpeningRepository, invoiceConverter, notificationComponent);
     }
 
     @Test

@@ -7,6 +7,7 @@ import LaCiguenia.commons.domains.dto.invoice.InvoiceDTO;
 import LaCiguenia.commons.domains.entity.invoice.InvoiceEntity;
 import LaCiguenia.commons.domains.entity.opening.OpeningEntity;
 import LaCiguenia.commons.domains.responseDTO.GenericResponseDTO;
+import LaCiguenia.component.notification.implement.NotificationComponent;
 import LaCiguenia.repository.invoice.IInvoiceRepository;
 import LaCiguenia.repository.opening.IOpeningRepository;
 import LaCiguenia.service.invoice.IInvoiceService;
@@ -26,11 +27,14 @@ public class InvoiceService implements IInvoiceService {
     private final IInvoiceRepository iInvoiceRepository;
     private final IOpeningRepository iOpeningRepository;
     private final InvoiceConverter invoiceConverter;
+    private final NotificationComponent notificationComponent;
 
-    public InvoiceService(IInvoiceRepository iInvoiceRepository, IOpeningRepository iOpeningRepository, InvoiceConverter invoiceConverter) {
+    public InvoiceService(IInvoiceRepository iInvoiceRepository, IOpeningRepository iOpeningRepository,
+                          InvoiceConverter invoiceConverter, NotificationComponent notificationComponent) {
         this.iInvoiceRepository = iInvoiceRepository;
         this.iOpeningRepository = iOpeningRepository;
         this.invoiceConverter = invoiceConverter;
+        this.notificationComponent = notificationComponent;
     }
 
     @Override

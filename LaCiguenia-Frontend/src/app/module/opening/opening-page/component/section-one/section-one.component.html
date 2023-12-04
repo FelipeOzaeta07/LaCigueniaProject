@@ -5,17 +5,21 @@
     <div class="border room py_1">
         <div class="col_17 room">
             <form [formGroup]="storeForm">
+                <div *ngIf="isStoreSelected" class="error-message">
+                    <h1 class="size_1 color_text text_center pb_1"> Antes de realizar la apertura, debes seleccionar el almacén</h1>
+                </div>
                 <div class="col_center">
                     <div class="col_6 item_center">
                         <p class="size_2">{{textStore}}</p>
                     </div>
                     <div class="col_17 col_start">
                         <select formControlName="store" class="col_12 select size_2">
-                            <option class="size_2" value="" disabled selected>Seleccionar el Almacén</option>
-                            <option class="size_2" *ngFor="let storeItem of storeModel" [ngValue]="storeItem">{{ storeItem.storeName }}</option>
+                          <option class="size_2" value="" disabled selected>Seleccionar el Almacén</option>
+                          <option class="size_2" *ngFor="let storeItem of storeModel" [ngValue]="storeItem">{{ storeItem.storeName }}</option>
                         </select>
                     </div>
                 </div>
+                
             </form>
             <div class="col_center py_1">
                 <div class="col_6 item_center">
@@ -33,7 +37,6 @@
                     <input type="number" class="input col_12 size_2" [(ngModel)]="openingBox" name="openingBox">
                 </div>
             </div>
-          
             <div class="col_center pt_1">
                 <div class="col_8">
                     <button (click)="createOpening()" class="col_15 btn_one cursor size_2">{{textTitle}}</button>

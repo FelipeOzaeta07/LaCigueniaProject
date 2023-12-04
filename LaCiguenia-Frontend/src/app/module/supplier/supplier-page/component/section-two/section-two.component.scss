@@ -32,3 +32,15 @@ th{
 .svg_width{
     width: calc(1.5vh + 0.8vw);
 }
+.svg_icon{
+    width: calc(2vh + 1vw);
+}
+.hover{
+    color: var(--color_two);
+    transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+.hover:hover{
+    color: var(--color_one);
+    background-color: var(--color_eight);
+    border-color: var(--color_one);
+}

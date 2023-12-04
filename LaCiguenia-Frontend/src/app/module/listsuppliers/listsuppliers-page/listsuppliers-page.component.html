@@ -1,0 +1,9 @@
+<main class="h_100 col_start">
+    <app-modal-one *ngIf="modalOne" [supplier]="supplierModel" (modalActivateOne)="modalActivateOne($event)"></app-modal-one>
+    <app-modal-two *ngIf="modalTwo" (modalActivateTwo)="modalActivateTwo($event)" [supplierId]="supplierId" class="h_100"></app-modal-two>
+    <app-section-navbar class="col_2"></app-section-navbar>
+    <section class="col_15 h_100">
+        <app-section-header class="col_17 h_8"></app-section-header>
+        <app-section-one (modalActivateOne)="modalActivateOne($event)" (sendSupplier)="sendSupplier($event)" (sendSupplierId)="sendSupplierId($event)" (modalActivateTwo)="modalActivateTwo($event)" class="col_17 h_92"></app-section-one>
+    </section>
+</main>

@@ -15,6 +15,7 @@ import { UserSharedGetDataUseCase } from '@repository/user/case/UserSharedGetDat
 })
 export class SectionSixComponent {
 
+  @Output() eventPaymentAddComponent = new EventEmitter<boolean>;
   @Output() eventUpdateInformationUser = new EventEmitter<boolean>;
   @Output() modalActivate = new EventEmitter<boolean>();
   @Output() sendMessage = new EventEmitter<string>();
