@@ -74,6 +74,10 @@ export class SectionOneComponent implements OnInit{
       total: this.openingBox
     });
 
+    if (!this.storeForm.get('store')?.value){
+      this.isStoreSelected = true;
+    }
+
     this.openingModel = {
       openingId: 0,
       openingDate: this.boxOpeningForm.controls['date'].value,
@@ -93,4 +97,13 @@ export class SectionOneComponent implements OnInit{
       }
     )
   }
+
+
+
+
+
+
+  isStoreSelected: boolean = false;
+
+
 }

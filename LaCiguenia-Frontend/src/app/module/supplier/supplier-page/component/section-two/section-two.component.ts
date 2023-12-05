@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { SupplierModel } from '@commons/domains/suppplier/SupplierModel';
 import { GenericResponse } from '@commons/response/GenericResponse';
 import { TITLE, NAME_SUPPLIER, NIT_RUT, CITY, NUMBER_PHONE, OPTIONS } 
@@ -27,7 +28,7 @@ export class SectionTwoComponent {
   supplierModel!: SupplierModel [];
 
 
-  constructor(private readLastSupplierUseCase: ReadLastSupplierUseCase){}
+  constructor(private readLastSupplierUseCase: ReadLastSupplierUseCase, private router: Router){}
 
   modalEdit(index: number){
     this.SendSupplier.emit(this.supplierModel[index])
@@ -51,5 +52,9 @@ export class SectionTwoComponent {
       (error) => {
         console.error("Error en la solicitud: " + error);
       });
+  }
+
+  navigateByUrl(){
+    this.router.navigateByUrl("login-laciguenia/supplier-page-principal/list-supplier-principal");
   }
 }

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ComponentRoutingModule } from '@component/component-routing.module';
 import { SectionNavbarComponent } from '@component/component/section-navbar/section-navbar.component';
 import { SectionHeaderComponent } from '@component/component/section-header/section-header.component';
-
+import { NotificationsModule } from '@service/notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,8 @@ import { SectionHeaderComponent } from '@component/component/section-header/sect
   ],
   imports: [
     CommonModule,
-    ComponentRoutingModule
+    ComponentRoutingModule,
+    NotificationsModule
   ],
   exports: [
     SectionNavbarComponent,

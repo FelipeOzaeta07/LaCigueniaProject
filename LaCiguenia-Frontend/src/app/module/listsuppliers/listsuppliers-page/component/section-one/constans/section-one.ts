@@ -1,0 +1,10 @@
+export const TITLE = "Lista de Proveedores";
+export const NAME_SUPPLIER = "Nombre del Proveedor";
+export const NIT_SUPPLIER = "NIT o RUT";
+export const CITY = "Ciudad";
+export const PHONE_NUMBER = "Telefóno";
+export const TEXT_TITLE = "No tienes ningún proveedor registrado";
+export const TEXT_ONE = "¡Haz clic ";
+export const TEXT_TWO = "aquí";
+export const TEXT_THREE = " para crear tus proveedores comienza a impulsar tu negocio!";
+export const OPTION = "Opción";

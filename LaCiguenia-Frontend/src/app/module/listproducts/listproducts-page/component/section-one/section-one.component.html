@@ -24,7 +24,7 @@
             <table class="size_1 col_17">
                 <thead>
                     <tr>
-                        <th class="col_7">{{textNameProduct}}</th>
+                        <th class="col_8">{{textNameProduct}}</th>
                         <th class="col_3">{{textSalesPrices}}</th>
                         <th class="col_3">{{textAmount}}</th>
                         <th class="col_3">{{textOption}}</th>
@@ -33,7 +33,7 @@
             </table>
             <div class="col_17 h_68 scroll">
                 <div class="col_17 col_between item_center border_bottom" *ngFor="let inventoryItem of inventoryModel; let i = index">
-                    <div class="size_1 text_center text_color_two col_7">{{inventoryItem.productEntity.productName}}</div>
+                    <div class="size_1 text_center text_color_two col_8">{{inventoryItem.productEntity.productName}}</div>
                     <div class="size_1 text_center text_color_two col_3">$ {{inventoryItem.productEntity.productPrice | number}}</div>
                     <div class="size_1 text_center text_color_two col_3">{{inventoryItem.inventoryAmount}}</div>
                     <div class="text_center text_color_two col_evenly col_3 pt_1">

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(IOpeningEndPoint.BASE_URL_OPENING)
-@Tag(name = "Sistema de Gestión de Apertura", description = "Crear, visualizar, eliminar y actualizar aPERTURA")
+@Tag(name = "Sistema de Gestión de Apertura", description = "Crear, visualizar, eliminar y actualizar Apertura")
 @Log4j2
 public class OpeningApi implements IOpeningApi {
 

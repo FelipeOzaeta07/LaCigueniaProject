@@ -28,26 +28,18 @@
 
 
 
-.rojo {
-    color: red; /* Cambia esto según tus necesidades de estilo */
-    fill: red;
+.red {
+    color: var(--color_ten);
+    animation: moveSideways 1s linear infinite;
 }
 .svg_color svg {
-    fill: red;
+    fill: var(--color_ten);
 }
-
-.svg_color svg {
-    animation: moveSideways 1s linear infinite; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+.svg_color svg:hover {
+    fill: var(--color_eleven);
 }
-
 @keyframes moveSideways {
-    0% {
-        transform: translateX(0);
-    }
     50% {
-        transform: translateX(2px); /* Ajusta la distancia que quieres que se mueva */
-    }
-    100% {
-        transform: translateX(0);
+        transform: translateX(3px);
     }
 }

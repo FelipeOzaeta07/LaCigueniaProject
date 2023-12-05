@@ -9,7 +9,7 @@
         <app-section-three *ngIf="componentThree" (modalActivate)="modalActivate($event)" (eventStoreAddComponent)="eventStoreAddComponent($event)" class="col_17 h_62"></app-section-three>
         <app-section-four *ngIf="componentFour" (modalActivate)="modalActivate($event)" (eventPaymentAddComponent)="eventPaymentAddComponent($event)" class="col_17 h_62"></app-section-four>
         <app-section-five *ngIf="componentFive" (modalActivate)="modalActivate($event)" (eventCategoryAddComponent)="eventCategoryAddComponent($event)" class="col_17 h_62"></app-section-five>
-        <app-section-six *ngIf="componentSix" (sendMessage)="sendMessage($event)" (modalActivate)="modalActivate($event)" (eventUpdateInformationUser)="eventUpdateInformationUser($event)" class="col_17 h_62"></app-section-six>
-        <app-section-seven *ngIf="componentSeven" (modalActivateTwo)="modalActivateTwo($event)" (sendUserId)="sendUserId($event)" (modalActivate)="modalActivate($event)" (eventDeleteInformationUser)="eventDeleteInformationUser($event)" class="col_17 h_62"></app-section-seven>
+        <app-section-six *ngIf="componentSix" (eventUpdateInformationUser)="eventUpdateInformationUser($event)" (sendMessage)="sendMessage($event)" (modalActivate)="modalActivate($event)" (eventUpdateInformationUser)="eventUpdateInformationUser($event)" class="col_17 h_62"></app-section-six>
+        <app-section-seven *ngIf="componentSeven" (eventDeleteInformationUser)="eventDeleteInformationUser($event)" (modalActivateTwo)="modalActivateTwo($event)" (sendUserId)="sendUserId($event)" (modalActivate)="modalActivate($event)" (eventDeleteInformationUser)="eventDeleteInformationUser($event)" class="col_17 h_62"></app-section-seven>
     </section>
 </main>

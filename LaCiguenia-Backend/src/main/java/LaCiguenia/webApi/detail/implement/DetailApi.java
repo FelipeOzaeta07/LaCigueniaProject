@@ -97,8 +97,8 @@ public class DetailApi implements IDetailApi {
             @ApiResponse(responseCode  = "500", description = GeneralResponse.INTERNAL_SERVER,
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IDetailEndPoint.READ_DETAILS_MORE_SOLD)
-    public ResponseEntity<GenericResponseDTO> detailProductoMoreSold() {
-        return this.detailService.detailProductoMoreSold();
+    public ResponseEntity<GenericResponseDTO> detailProductoMoreSold(@PathVariable Integer storeId) {
+        return this.detailService.detailProductoMoreSold(storeId);
     }
 
     @Override
