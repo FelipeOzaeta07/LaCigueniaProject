@@ -13,7 +13,7 @@ public interface IDetailApi {
     @GetMapping()
     ResponseEntity<GenericResponseDTO> readDetails();
     @GetMapping()
-    ResponseEntity<GenericResponseDTO> detailProductoMoreSold();
+    ResponseEntity<GenericResponseDTO> detailProductoMoreSold(@PathVariable Integer storeId);
     @PutMapping()
     ResponseEntity<GenericResponseDTO> updateDetail(@RequestBody DetailDTO detailDTO);
     @DeleteMapping()

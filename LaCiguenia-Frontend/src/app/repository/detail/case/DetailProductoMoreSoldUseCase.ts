@@ -4,11 +4,11 @@ import { GenericResponse } from "@commons/response/GenericResponse";
 import { DetailRepository } from "@repository/detail/DetailRepository";
 import { Observable } from "rxjs";
 
-export class DetailProductoMoreSoldUseCase implements UseCase<DetailModel, GenericResponse>{
+export class DetailProductoMoreSoldUseCase implements UseCase<number, GenericResponse>{
 
     constructor(private detailRepository: DetailRepository){}
 
-    execute() : Observable<GenericResponse>{
-        return this.detailRepository.detailProductoMoreSold();
+    execute(storeId: number) : Observable<GenericResponse>{
+        return this.detailRepository.detailProductoMoreSold(storeId);
     }
 }

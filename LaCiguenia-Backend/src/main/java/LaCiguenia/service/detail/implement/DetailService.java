@@ -128,9 +128,9 @@ public class DetailService implements IDetailService {
     }
 
     @Override
-    public ResponseEntity<GenericResponseDTO> detailProductoMoreSold() {
+    public ResponseEntity<GenericResponseDTO> detailProductoMoreSold(Integer storeId) {
         try {
-            List<DetailProductSoldDTO> detailExist = this.iDetailRepository.detailProductoMoreSold();
+            List<DetailProductSoldDTO> detailExist = this.iDetailRepository.detailProductoMoreSold(storeId);
             if (!detailExist.isEmpty()){
                 return ResponseEntity.ok(GenericResponseDTO.builder()
                         .message(GeneralResponse.OPERATION_SUCCESS)

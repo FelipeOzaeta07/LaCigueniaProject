@@ -8,5 +8,5 @@ export abstract class DetailRepository {
     abstract readDetailes (): Observable<GenericResponse>;
     abstract updateDetail (detailModel :DetailModel): Observable<GenericResponse>;
     abstract deleteDetail (detailId: number): Observable<GenericResponse>;
-    abstract detailProductoMoreSold (): Observable<GenericResponse>;
+    abstract detailProductoMoreSold (storeId: number): Observable<GenericResponse>;
 }

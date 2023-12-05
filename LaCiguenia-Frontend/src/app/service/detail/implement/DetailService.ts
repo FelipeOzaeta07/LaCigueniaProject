@@ -61,9 +61,9 @@ export class DetailService extends DetailRepository {
         }));
     }
 
-    override detailProductoMoreSold(): Observable<GenericResponse> {
+    override detailProductoMoreSold(storeId: number): Observable<GenericResponse> {
         return this.http
-        .get<GenericResponse>(BASE_URL_DETAIL + READ_DETAILS_MORE_SOLD)
+        .get<GenericResponse>(BASE_URL_DETAIL + READ_DETAILS_MORE_SOLD + storeId)
         .pipe(catchError((error: HttpErrorResponse) => {
             return throwError(error);
         }));
